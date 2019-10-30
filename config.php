@@ -1,4 +1,5 @@
 <?php
+//Creates a connection to a data base
     // Database credentials
     define('DB_SERVER', 'localhost:8889');
     define('DB_USERNAME', 'root');
