@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html>
+
   <head>
     <meta charset="utf-8" />
-    <title>Login Form Tutorial</title>
+    <title><?php echo basename($_SERVER["SCRIPT_FILENAME"], '.php')?></title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
