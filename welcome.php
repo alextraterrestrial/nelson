@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo "Welcome, You are now logged in as UserID: " .  $_SESSION['username'];
+
 
 // Initialize the session
 session_start();
@@ -23,12 +23,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
-    <div class="page-header">
+    <div class="page-header container">
         <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
     </div>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
-    </p>
+    <div class="container">
+        <div class="row">
+            <p>
+                <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
+                <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
+            </p>
+        </div>
+    </div>
+    
 </body>
 </html>
