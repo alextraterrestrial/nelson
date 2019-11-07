@@ -6,7 +6,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
     </head>
-
+  
     <body>
       <?php include("headerNav.html")?>
       <section id="secTeam">team</section>
