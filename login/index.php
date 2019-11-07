@@ -4,13 +4,10 @@ require("header.php")
     <main>
         <?php
         if(isset($_SESSION["loggedin"])){
-            require("welcome.html");
+            require("../game/game.php");
         } else{
             require("login.php");
             
         }
         ?>
     </main>
-<?php
-require("footer.php")
-?>
