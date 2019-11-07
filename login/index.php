@@ -1,13 +1,11 @@
+
+
 <?php
-require("header.php")
+
+if(isset($_SESSION["loggedin"])){
+    require("../game/game.php");
+} else{
+    require("login.php");
+    
+}
 ?>
-    <main>
-        <?php
-        if(isset($_SESSION["loggedin"])){
-            require("../game/game.php");
-        } else{
-            require("login.php");
-            
-        }
-        ?>
-    </main>
