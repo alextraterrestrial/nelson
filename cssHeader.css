@@ -1,0 +1,153 @@
+:root {
+  --backgroundColor: #03003a;
+  --color2: #aed04d;
+  --fontSize: 10px;
+}
+
+body {
+  margin: 0px;
+  background-color: var(--backgroundColor);
+  color: var(--color2);
+  font-family: 'Overpass Mono', monospace;
+}
+
+section {
+  border: 1px solid var(--color2);
+  border-radius: 4px;
+  width: 60vw;
+  /* height: 70vh; */
+  margin: 3vh auto 0;
+  display: none;
+}
+
+/* header */
+#headerNav {
+  height: 14vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* leftside and meny */
+.leftHeader {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 1px;
+  flex-grow: 2;
+}
+
+#navMeny {
+  display: flex;
+  flex-grow: 2;
+  font-size: calc(var(--fontSize)*1.4);
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+.circuit {
+  width: 10vw;
+  height: 16vw;
+  max-width: 150px;
+  background-image: url(/nelson-master/graphicResorces/circuitBg.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.circuit img {
+  width: 50%;
+  margin-left: 1.9vw;
+  margin-top: 2.9vw;
+}
+
+
+/* rightside and player info */
+
+.rightHeader > div:first-child{
+  display: flex;
+}
+
+.rightHeader .currentPlayer {
+  text-align: right;
+  margin-top: 1vh;
+}
+
+.playerName{
+  font-size: calc(var(--fontSize)*1.4);
+  text-decoration-line: underline;
+}
+.teamName {
+  font-size: calc(var(--fontSize)*.9);
+}
+
+.circuitRight {
+  width: 6vw;
+  background-image: url(/nelson-master/graphicResorces/circuitRight.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+
+.countDown {
+  text-align: right;
+  margin-right: 5px;
+  font-size: calc(var(--fontSize)*1.6);
+
+}
+
+
+
+
+@media screen and (max-width: 799px) {
+  :root{
+    --fontSize: 9px;
+
+  }
+}
+
+@media screen and (max-width: 599px) {
+
+  section{
+    width: 80vw;
+  }
+
+
+  /* header */
+  .leftHeader {
+    display: block;
+    position: relative;
+  }
+
+  .leftHeader > div {
+    position: absolute;
+  }
+
+  .circuit{
+    z-index: 2;
+    width: 80px;
+    height: 120px;
+  }
+    
+  
+  .circuit img {
+    z-index: 3;
+    width: 40px;
+    margin-left: 14px;
+    margin-top: 22px;
+  }
+
+  #navMeny{
+    display: none;
+    z-index: 2;
+    top: 15vh;
+    left: 5vw;
+  }
+
+  #navMeny div{
+    margin-bottom: var(--fontSize);
+  }
+
+
+}
+
+
