@@ -13,10 +13,10 @@ body {
 }
 
 section {
-  border: 1px solid var(--color2);
+  /* border: 1px solid var(--color2); */
   border-radius: 4px;
   width: 80vw;
-  height: 80vh;
+  height: 87vh;
   margin: 3vh auto 0;
   display: none;
   overflow: scroll;
@@ -43,6 +43,7 @@ section {
   font-size: calc(var(--fontSize)*1);
   justify-content: space-evenly;
   align-items: center;
+  transform-origin: left;
 }
 
 
@@ -63,6 +64,10 @@ section {
 
 
 /* rightside and player info */
+.rightHeader {
+  transform-origin: right;
+  z-index: 2;
+}
 
 .rightHeader > div:first-child{
   display: flex;
@@ -77,8 +82,8 @@ section {
   font-size: calc(var(--fontSize)*1.1);
   text-decoration-line: underline;
 }
-.teamName {
-  font-size: calc(var(--fontSize)*.8);
+.teamName, .currentPlayer div:last-child {
+  font-size: calc(var(--fontSize)*.9);
 }
 
 .circuitRight {
@@ -109,25 +114,33 @@ section {
 
 @media screen and (max-width: 599px) {
 
+  #headerNav {
+    height: 10vh;
+    z-index: 2;
+    position: relative;
+
+  }
+
   section{
-    width: 90vw;
+    width: 95vw;
+    margin-top: -10vh;
+    padding-top: 11vh;
   }
 
 
   /* header */
   .leftHeader {
-    display: block;
     position: relative;
-  }
 
-  .leftHeader > div {
-    position: absolute;
   }
 
   .circuit{
     z-index: 2;
     width: 80px;
     height: 120px;
+
+    flex-shrink: 0;
+    /* is needed for the animation to look good */
   }
     
   
@@ -136,20 +149,23 @@ section {
     width: 40px;
     margin-left: 14px;
     margin-top: 22px;
+    background-color: var(--backgroundColor);
+  }
+
+
+
+  /* animation */
+  #headerNav {
+    width: 17vw;
+    transition: width .2s;
   }
 
   #navMeny{
-    display: none;
-    z-index: 2;
-    top: 15vh;
-    left: 5vw;
+    transform: scaleX(0);
+  }
+  .rightHeader {
+    transform: scaleX(0);
   }
 
-  #navMeny div{
-    margin-bottom: var(--fontSize);
-  }
-
-
-}
-
+  
 
