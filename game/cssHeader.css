@@ -1,23 +1,25 @@
 :root {
   --backgroundColor: #03003a;
   --color2: #aed04d;
-  --fontSize: 10px;
+  --fontSize: 14px;
+  --font: 'Overpass Mono', monospace;
 }
 
 body {
   margin: 0px;
   background-color: var(--backgroundColor);
   color: var(--color2);
-  font-family: 'Overpass Mono', monospace;
+  font-family: var(--font);
 }
 
 section {
   border: 1px solid var(--color2);
   border-radius: 4px;
-  width: 60vw;
-  /* height: 70vh; */
+  width: 80vw;
+  height: 80vh;
   margin: 3vh auto 0;
   display: none;
+  overflow: scroll;
 }
 
 /* header */
@@ -38,7 +40,7 @@ section {
 #navMeny {
   display: flex;
   flex-grow: 2;
-  font-size: calc(var(--fontSize)*1.4);
+  font-size: calc(var(--fontSize)*1);
   justify-content: space-evenly;
   align-items: center;
 }
@@ -48,7 +50,7 @@ section {
   width: 10vw;
   height: 16vw;
   max-width: 150px;
-  background-image: url(/nelson-master/graphicResorces/circuitBg.png);
+  background-image: url(graphicResorces/circuitBg.png);
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -72,16 +74,16 @@ section {
 }
 
 .playerName{
-  font-size: calc(var(--fontSize)*1.4);
+  font-size: calc(var(--fontSize)*1.1);
   text-decoration-line: underline;
 }
 .teamName {
-  font-size: calc(var(--fontSize)*.9);
+  font-size: calc(var(--fontSize)*.8);
 }
 
 .circuitRight {
   width: 6vw;
-  background-image: url(/nelson-master/graphicResorces/circuitRight.png);
+  background-image: url(graphicResorces/circuitRight.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top right;
@@ -91,7 +93,7 @@ section {
 .countDown {
   text-align: right;
   margin-right: 5px;
-  font-size: calc(var(--fontSize)*1.6);
+  font-size: calc(var(--fontSize)*1.1);
 
 }
 
@@ -100,7 +102,7 @@ section {
 
 @media screen and (max-width: 799px) {
   :root{
-    --fontSize: 9px;
+    --fontSize: 12px;
 
   }
 }
@@ -108,7 +110,7 @@ section {
 @media screen and (max-width: 599px) {
 
   section{
-    width: 80vw;
+    width: 90vw;
   }
 
 

@@ -42,7 +42,7 @@ function createMenyAction(action) {
 
     div.click(() => {
         $("section").css({ display: "none" })
-        $("#sec" + action).css({ display: "flex" })
+        $("#sec" + action).css({ display: "block" })
 
         // if(screen.width< 600) {
         //   $("#navMeny").toggle(200)
