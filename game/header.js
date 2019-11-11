@@ -71,7 +71,8 @@ function createMeny(arr) {
 
 
 //Variables
-let menyActions = ["Spelet", "Team", "Spellogg", "Logga ut"]
+// let menyActions = ["Spelet", "Team", "Spellogg", "Logga ut"]
+let menyActions = ["Spelet", "logga in", "arkiv"]
 let timeLeft = 14644
 
 
