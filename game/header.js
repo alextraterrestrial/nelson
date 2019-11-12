@@ -71,20 +71,38 @@ function createMeny(arr) {
 
 
 //Variables
-// let menyActions = ["Spelet", "Team", "Spellogg", "Logga ut"]
-let menyActions = ["Spelet", "logga in", "arkiv"]
+let menyActions = ["Spelet", "Team", "Spellogg", "Logga ut"]
+// let menyActions = ["Spelet", "logga in", "arkiv"]
 let timeLeft = 14644
+let menySwich = 0
 
 
 
 
 //Events
 $(".circuit img").click(() => {
-    if (screen.width < 600) {
-        $("#navMeny").toggle(200)
-    } else {
-        $("#navMeny").css({ display: "flex" })
-            //vad används den till i desktop?
+    if (screen.width < 600 && !menySwich) {
+        $("#headerNav").css({
+            backgroundColor: "var(--backgroundColor)",
+            transition: "width .2s",
+            width: "100vw"
+        })
+        $("#navMeny, .rightHeader").css({
+            transition: "transform .3s linear .2s",
+            transform: "scalex(1)"
+        })
+        menySwich = 1
+    } else if(screen.width < 600) {
+        $("#headerNav").css({
+            backgroundColor: "initial",
+            transition: "width .2s linear .1s",
+            width: "17vw"
+        })
+        $("#navMeny, .rightHeader").css({
+            transition: "transform .1s linear 0s",
+            transform: "scalex(0)"
+        })
+        menySwich = 0
     }
 
 })
