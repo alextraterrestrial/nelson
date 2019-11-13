@@ -6,10 +6,10 @@ ini_set('display_errors', 'on');
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
+// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//     header("location: welcome.php");
+//     exit;
+// }
  
 // Include config file
 require_once "config.php";
@@ -100,8 +100,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .wrapper{ width: 350px; padding: 20px; }
     </style>
 </head> -->
-<?php require('header.php')?>
-<body>
+
+
     <div class="wrapper container">
         <div class="row justify-content-center py-4 my-4">
             <div class="col-sm-8 col-md-6 col-lg-auto p-4">
@@ -126,8 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </div>
     </div>
-</body>
-</html>
+
 
 
 

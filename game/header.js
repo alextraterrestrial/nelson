@@ -17,7 +17,6 @@ function updatePlayer(id) {
 
     $(".playerPoints").html(data.points)
 
-
 }
 
 function countDown(time, endAction) {
@@ -71,8 +70,8 @@ function createMeny(arr) {
 
 
 //Variables
-let menyActions = ["Spelet", "Team", "Spellogg", "Logga ut"]
-// let menyActions = ["Spelet", "logga in", "arkiv"]
+let menyActions = ["Spelet", "Team", "Spellogg", "Logga in", "Logga ut"]
+    // let menyActions = ["Spelet", "logga in", "arkiv"]
 let timeLeft = 14644
 let menySwich = 0
 
@@ -92,7 +91,7 @@ $(".circuit img").click(() => {
             transform: "scalex(1)"
         })
         menySwich = 1
-    } else if(screen.width < 600) {
+    } else if (screen.width < 600) {
         $("#headerNav").css({
             backgroundColor: "initial",
             transition: "width .2s linear .1s",
