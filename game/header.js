@@ -45,6 +45,8 @@ function createMenyAction(action) {
         $("section").css({ display: "none" })
         $("#sec" + action).css({ display: "block" })
 
+        // Load section content
+
         // if(screen.width< 600) {
         //   $("#navMeny").toggle(200)
         // }
@@ -84,7 +86,7 @@ function getCookie(cname) {
 
 
 //Variables
-let menyActions = ["Spelet", "Team", "Spellogg", "Logga in", "Logga ut"]
+let menyActions = ["Spelet", "Team", "Spellogg", "Login", "Logga ut"]
     // let menyActions = ["Spelet", "logga in", "arkiv"]
 let timeLeft = 14644
 let menySwich = 0

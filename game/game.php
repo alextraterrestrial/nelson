@@ -9,16 +9,20 @@
     </head>
   
     <body>
-      <?php include("headerNav.html")?>
-      <section id="secTeam">team</section>
-      <section id="secSpellogg">spellog</section>
-      <?php include("../login/login.php")?>
-      <section id="secLogin">Login</section>
+        <?php include("headerNav.html")?>
+        <section id="secTeam">team</section>
+        <section id="secSpellogg">spellog</section>
+        <section id="secSpelet">
+            <?php include("game.html")?>
+        </section>
+        <section id="secLogin">
+            <?php include("../login/login.php")?>
+        </section>
 
-      <script src="jquery-3.4.1.min.js"></script>
-      <script src="auxFunctions.js"></script>
-      <script src="header.js"></script>
-      <script src="game.js"></script>
+        <script src="jquery-3.4.1.min.js"></script>
+        <script src="auxFunctions.js"></script>
+        <script src="header.js"></script>
+        <script src="game.js"></script>
     </body>
   
   </html>
