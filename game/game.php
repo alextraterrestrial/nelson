@@ -2,9 +2,9 @@
     <head>
         <title>Nelson</title>
         <meta charset="utf-8" />
+        <?php require('../login/bootstrap.html')?>
         <link rel="stylesheet" href="cssHeader.css">
         <link rel="stylesheet" href="game.css">
-        <?php require('../login/bootstrap.html')?>
         <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
     </head>
   
