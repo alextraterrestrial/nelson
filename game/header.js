@@ -1,4 +1,6 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
+console.log(getCookie("user"));
+
 
 function updatePlayer(id) {
     //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
@@ -57,9 +59,21 @@ function createMeny(arr) {
     }
 }
 
-
-
-
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 
 

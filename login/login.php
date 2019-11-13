@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $hashed_password = $row["password"];
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
-                            session_start();
+                            // session_start();
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
@@ -65,7 +65,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["email"] = $email;                            
                             
                             // Redirect user to welcome page
-                            header("location: ../game/game.php");
+                            // header("location: ../game/game.php");
+
+                            //Create a cookie for the loged in user
+
+                            $cookieName = "user";
+                            $cookie = new stdClass();
+                            $cookie -> userId = $id;
+                            $cookie -> logedIn = true;
+                            $cookieValue = json_encode($cookie);
+                            setCookie($cookieName, $cookieValue, 0);
+                            echo $cookieValue;
+                            
+                           
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -89,8 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
-<!DOCTYPE html>
-<html lang="en">
+
 <!-- <head>
     <meta charset="UTF-8">
     <title>Login</title>
