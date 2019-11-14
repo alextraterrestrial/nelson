@@ -1,6 +1,15 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
-console.log(getCookie("user"));
 
+// Kontrollera om användaren är inloggad genom att hämta cookie
+$("body").ready(() => {
+    console.log("Checking user");
+
+});
+
+function checkUser() {
+    if (getCookie())
+        return
+}
 
 function updatePlayer(id) {
     //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
@@ -18,7 +27,6 @@ function updatePlayer(id) {
     }
 
     $(".playerPoints").html(data.points)
-
 }
 
 function countDown(time, endAction) {
@@ -78,20 +86,11 @@ function getCookie(cname) {
 }
 
 
-
-
-
-
-
-
-
 //Variables
 let menyActions = ["Spelet", "Team", "Spellogg", "Login", "Logga ut"]
     // let menyActions = ["Spelet", "logga in", "arkiv"]
 let timeLeft = 14644
 let menySwich = 0
-
-
 
 
 //Events
