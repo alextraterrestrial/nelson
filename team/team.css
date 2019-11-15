@@ -1,0 +1,13 @@
+#teamShowcase, #users {
+  height: 40vh;
+}
+
+#teamMembers {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+#availableUsers {
+  overflow-y: scroll;
+}
