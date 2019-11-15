@@ -1,21 +1,17 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
 
-function updatePlayer(id) {
+function updatePlayer(obj) {
     //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
 
-    let data = { name: "LinusGrahn", teamName: "teamLinus", points: 74 }
-        //get player info from db
-        // in .done() --> 
+    $(".playerName").html(obj.name)
 
-    $(".playerName").html(data.name)
-
-    if (data.teamName) {
-        $(".teamName").html(data.teamName)
+    if (obj.teamName) {
+        $(".teamName").html(obj.teamName)
     } else {
-        console.log(data.teamName)
+        console.log(obj.teamName)
     }
 
-    $(".playerPoints").html(data.points)
+    $(".playerPoints").html(obj.points)
 
 
 }
@@ -71,8 +67,10 @@ function createMeny(arr) {
 
 
 //Variables
-let menyActions = ["Spelet", "Team", "Spellogg", "Logga ut"]
-// let menyActions = ["Spelet", "logga in", "arkiv"]
+let menyActions = ["Spelet", "Team", "arkiv"]
+//"Spelet" måste vara först i arrayen
+
+// let menyActions = ["Spelet", "Logga in"]
 let timeLeft = 14644
 let menySwich = 0
 
@@ -95,11 +93,11 @@ $(".circuit img").click(() => {
     } else if(screen.width < 600) {
         $("#headerNav").css({
             backgroundColor: "initial",
-            transition: "width .2s linear .1s",
+            transition: "width .2s linear .2s",
             width: "17vw"
         })
         $("#navMeny, .rightHeader").css({
-            transition: "transform .1s linear 0s",
+            transition: "transform .2s linear 0s",
             transform: "scalex(0)"
         })
         menySwich = 0
@@ -109,7 +107,7 @@ $(".circuit img").click(() => {
 
 
 //directCode
-updatePlayer()
+updatePlayer(player)
 
 createMeny(menyActions)
 countDown(timeLeft, function() { test("works") })

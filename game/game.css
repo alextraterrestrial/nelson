@@ -73,3 +73,17 @@ textarea{
   border-radius: 4px;
   font-size: var(--fontSize);
 }
+
+.uploadFeedback {
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--color2);
+}
+
+.answerFeedback {
+  border: 1px solid var(--color2);
+  font-family: var(--font);
+  color: var(--color2);
+  padding: 4px;
+  border-radius: 4px;
+}
