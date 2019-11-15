@@ -4,13 +4,15 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="cssHeader.css">
         <link rel="stylesheet" href="game.css">
+        <link rel="stylesheet" href="../team/team.css">
 
         <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
     </head>
   
     <body>
       <?php include("headerNav.html")?>
-      <section id="secTeam">team</section>
+      <!-- <section id="secTeam">team</section> -->
+      <?php include("../team/team.html")?>
       <section id="secSpellogg">spellog</section>
       <?php include("game.html")?>
 
@@ -18,6 +20,7 @@
       <script src="auxFunctions.js"></script>
       <script src="header.js"></script>
       <script src="game.js"></script>
+      <script src="../team/team.js"></script>
     </body>
   
   </html>
