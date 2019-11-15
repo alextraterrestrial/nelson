@@ -6,10 +6,10 @@ ini_set('display_errors', 'on');
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
+// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//     header("location: welcome.php");
+//     exit;
+// }
  
 // Include config file
 require_once "config.php";
@@ -23,14 +23,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if username is empty
     if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter email.";
+        $email_err = "Vänligen ange din mailadress";
     } else{
         $email = trim($_POST["email"]);
     }
     
     // Check if password is empty
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
+        $password_err = "Vänligen ange ditt lösenord";
     } else{
         $password = trim($_POST["password"]);
     }
@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $hashed_password = $row["password"];
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
-                            session_start();
+                            // session_start();
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
@@ -65,18 +65,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["email"] = $email;                            
                             
                             // Redirect user to welcome page
-                            header("location: ../game/game.php");
+                            // header("location: ../game/game.php");
+
+                            //Create a cookie for the loged in user
+
+                            $cookieName = "user";
+                            $cookie = new stdClass();
+                            $cookie -> userId = $id;
+                            $cookie -> logedIn = true;
+                            $cookieValue = json_encode($cookie);
+                            setCookie($cookieName, $cookieValue, 0);
+                            echo $cookieValue;
+                            
+                           
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "Lösenordet du angav var fel";
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $email_err = "No account found with that username.";
+                    $email_err = "Inget konto med mailadressen du angav fanns";
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Ojdå, något gick fel...";
             }
         }
         
@@ -89,8 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
-<!DOCTYPE html>
-<html lang="en">
+
 <!-- <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -100,13 +111,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .wrapper{ width: 350px; padding: 20px; }
     </style>
 </head> -->
-<?php require('header.php')?>
-<body>
+
+
     <div class="wrapper container">
         <div class="row justify-content-center py-4 my-4">
             <div class="col-sm-8 col-md-6 col-lg-auto p-4">
                 <h2>Login</h2>
-                <p>Please fill in your credentials to login.</p>
+            
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                         <label>Email</label>
@@ -114,20 +125,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <span class="help-block"><?php echo $email_err; ?></span>
                     </div>    
                     <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                        <label>Password</label>
+                        <label>Lösenord</label>
                         <input type="password" name="password" class="form-control">
                         <span class="help-block"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Login">
                     </div>
-                    <p>Don't have an account? <a href="signup.php">Sign up now</a>.</p>
+                    <p>Har du inget konto? <a href="">Registrera dig här</a>.</p>
                 </form>
             </div>
         </div>
     </div>
-</body>
-</html>
+
 
 
 
