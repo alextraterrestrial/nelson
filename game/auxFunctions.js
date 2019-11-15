@@ -24,12 +24,14 @@ function getHourMinSecArray(s) {
   return [hour, min, sec]
 }
 
-
-
+function error(jqXHR, textStatus, errorThrown) {
+  console.log(textStatus)
+  console.log(errorThrown)
+}
 
 //testfunctions
 
-function test(a) {
+function debug(a) {
   if (typeof a == "object" || typeof a == "array") {
     console.table(a)
   } else {
