@@ -1,5 +1,20 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
 
+
+// Kontrollera om användaren är inloggad genom att hämta cookie
+$(document).ready(() => {
+    console.log("Checking user");
+
+});
+
+function checkUser() {
+    if (getCookie()) {
+
+    }
+
+}
+
+
 function updatePlayer(obj) {
     //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
 
@@ -11,8 +26,8 @@ function updatePlayer(obj) {
         console.log(obj.teamName)
     }
 
-    $(".playerPoints").html(obj.points)
 
+    $(".playerPoints").html(obj.points)
 
 }
 
@@ -40,6 +55,8 @@ function createMenyAction(action) {
         $("section").css({ display: "none" })
         $("#sec" + action).css({ display: "block" })
 
+        // Load section content
+
         // if(screen.width< 600) {
         //   $("#navMeny").toggle(200)
         // }
@@ -54,27 +71,30 @@ function createMeny(arr) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return null;
+}
 
 
 //Variables
-let menyActions = ["Spelet", "Team", "arkiv"]
-//"Spelet" måste vara först i arrayen
 
-// let menyActions = ["Spelet", "Logga in"]
+let menyActions = ["Spelet", "Team", "Arkiv", "Login", "Logga ut"]
+    // let menyActions = ["Spelet", "logga in", "arkiv"]
+
 let timeLeft = 14644
 let menySwich = 0
-
-
 
 
 //Events
@@ -90,7 +110,7 @@ $(".circuit img").click(() => {
             transform: "scalex(1)"
         })
         menySwich = 1
-    } else if(screen.width < 600) {
+    } else if (screen.width < 600) {
         $("#headerNav").css({
             backgroundColor: "initial",
             transition: "width .2s linear .2s",
