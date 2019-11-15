@@ -1,14 +1,16 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
 
 // Kontrollera om användaren är inloggad genom att hämta cookie
-$("body").ready(() => {
+$(document).ready(() => {
     console.log("Checking user");
 
 });
 
 function checkUser() {
-    if (getCookie())
-        return
+    if (getCookie()) {
+
+    }
+
 }
 
 function updatePlayer(id) {
@@ -82,7 +84,7 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
-    return "";
+    return null;
 }
 
 
