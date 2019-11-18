@@ -3,7 +3,7 @@
         <div class="col-sm-8 col-md-6 col-lg-auto p-4">
             <h2>Login</h2>
 
-            <form action="validateLogin.php" name="login" method="post">
+            <form action="validateLogin.php" name="loginForm" id="loginForm" method="post">
                 <div class="form-group">
                     <label>Email</label>
                     <input type="text" id="loginEmail" name="email" class="form-control">
@@ -13,11 +13,11 @@
                     <input type="password" id="loginPassword" name="password" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Login">
+                    <input type="submit" id="loginSubmit" class="btn btn-primary" value="Login">
                 </div>
                 <p>Har du inget konto? <a href="">Registrera dig här</a>.</p>
             </form>
         </div>
     </div>
 </div>
-<script src="js/form-validation.js"></script>
+<script src="../login/login.js"></script>
