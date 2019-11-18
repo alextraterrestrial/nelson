@@ -126,19 +126,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
-<!DOCTYPE html>
-<html lang="en">
-<!-- <head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head> -->
-<?php require('header.php')?>
-<body>
+
+
+
     <div class="wrapper container">
         <div class="row justify-content-center py-4 my-4">
             <div class="col-sm-8 col-md-6 col-lg-auto p-4">
@@ -171,9 +161,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <p>Already have an account? <a href="login.php">Login here</a>.</p>
                 </form>
-
             </div>
         </div>    
     </div>    
-</body>
-</html>

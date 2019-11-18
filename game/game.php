@@ -40,7 +40,7 @@
                 </div>
                 <div id="secArkiv" class="menyItem">spellog</div>
                 <div id="secLogin" class="menyItem">
-                    <?php //include("../login/login.php")?>
+                    <?php include("../login/login.php")?>
                 </div>
             </section>
         <div>
