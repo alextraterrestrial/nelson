@@ -1,0 +1,15 @@
+#p2 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 10vw);
+  grid-template-rows: repeat(3, 1fr);
+  border: 1px solid var(--color2);
+  border-radius: 4px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#p2 p{
+  margin: 6px 0px 6px;
+}

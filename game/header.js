@@ -1,6 +1,4 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
-
-
 // Kontrollera om användaren är inloggad genom att hämta cookie
 $(document).ready(() => {
     console.log("Checking user");
@@ -14,6 +12,37 @@ function checkUser() {
 
 }
 
+function displayHeader() {
+    if (screen.width < 600 && !menySwich) {
+        $("#headerNav").css({
+            backgroundColor: "var(--backgroundColor)",
+            transition: "width .2s",
+            width: "100vw"
+        })
+        $("#navMeny, .rightHeader").css({
+            transition: "transform .3s linear .2s",
+            transform: "scalex(1)"
+        })
+        menySwich = 1
+    } else if (screen.width < 600) {
+        $("#headerNav").css({
+            backgroundColor: "initial",
+            transition: "width .2s linear .2s",
+            width: "17vw"
+        })
+        $("#navMeny, .rightHeader").css({
+            transition: "transform .2s linear 0s",
+            transform: "scalex(0)"
+        })
+        getBackToHomePage()
+        menySwich = 0
+    }
+}
+
+function getBackToHomePage(){
+    $(".menyItem").css({ display: "none" })
+    $("#menyContent").css({ display: "none" })
+}
 
 function updatePlayer(obj) {
     //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
@@ -52,14 +81,12 @@ function createMenyAction(action) {
     div.html(action)
 
     div.click(() => {
-        $("section").css({ display: "none" })
+        $(".menyItem").css({ display: "none" })
+        $("#menyContent").css({ display: "block" })
         $("#sec" + action).css({ display: "block" })
 
         // Load section content
 
-        // if(screen.width< 600) {
-        //   $("#navMeny").toggle(200)
-        // }
     })
 
     $("#navMeny").append(div)
@@ -90,7 +117,7 @@ function getCookie(cname) {
 
 //Variables
 
-let menyActions = ["Spelet", "Team", "Arkiv", "Login", "Logga ut"]
+let menyActions = ["Team", "Arkiv", "Login", "Logga ut"]
     // let menyActions = ["Spelet", "logga in", "arkiv"]
 
 let timeLeft = 14644
@@ -99,32 +126,15 @@ let menySwich = 0
 
 //Events
 $(".circuit img").click(() => {
-    if (screen.width < 600 && !menySwich) {
-        $("#headerNav").css({
-            backgroundColor: "var(--backgroundColor)",
-            transition: "width .2s",
-            width: "100vw"
-        })
-        $("#navMeny, .rightHeader").css({
-            transition: "transform .3s linear .2s",
-            transform: "scalex(1)"
-        })
-        menySwich = 1
-    } else if (screen.width < 600) {
-        $("#headerNav").css({
-            backgroundColor: "initial",
-            transition: "width .2s linear .2s",
-            width: "17vw"
-        })
-        $("#navMeny, .rightHeader").css({
-            transition: "transform .2s linear 0s",
-            transform: "scalex(0)"
-        })
-        menySwich = 0
-    }
-
+    displayHeader()
 })
 
+$("#menyContent").click((e)=>{
+    if (e.target.id == "menyContent") {
+        getBackToHomePage()
+        displayHeader()
+    }
+})
 
 //directCode
 updatePlayer(player)

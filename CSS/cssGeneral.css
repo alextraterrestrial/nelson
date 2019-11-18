@@ -1,0 +1,96 @@
+/*general css for the whole page*/
+:root {
+  --backgroundColor: #03003a;
+  --backgroundColorTransparent: #03003a8a;
+  --color2: #aed04d;
+  --fontSize: 14px;
+  --font: 'Overpass Mono', monospace;
+}
+
+body {
+  margin: 0px;
+  background-color: var(--backgroundColor);
+  color: var(--color2);
+  font-family: var(--font);
+}
+
+.wrapper {
+  position: relative;
+}
+
+#home {
+  font-size: 12px;
+  line-height: 13px;
+  padding: 8vh 5vw 8vh;
+}
+
+#home h1 {
+  font-size: 16px;
+  line-height: 16px;
+  /* text-align: center; */
+  margin-bottom: 15px;
+}
+
+#secSpelet {
+  margin-top: 0px;
+  padding-top: 0px;
+  width: 70vw;
+  margin: auto;
+}
+
+.menyItem {
+  overflow: scroll;
+  width: 70vw;
+  height: 80vh;
+  border-radius: 4px;
+  border: 1px solid var(--color2);
+  margin: 1vh auto 0;
+  background-color: var(--backgroundColor);
+}
+
+#menyContent {
+  background-color: var(--backgroundColorTransparent);
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding-top: 17vh;
+  display: none;
+}
+
+.inputClass {
+    background-color: var(--backgroundColor);
+    border: 1px solid var(--color2);
+    font-family: var(--font);
+    color: var(--color2);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.linkContainer {
+ display: flex;
+ justify-content: space-around;
+}
+
+@media screen and (max-width: 599px) {
+
+  #home{
+    width: 95vw;
+    padding-top: 15vh;
+  }
+
+  #menyContent{
+    padding-top: 14vh;
+  }
+
+  .menyItem {
+    width: 90vw;
+    height: 84vh;
+  }
+  
+  #secSpelet {
+    width: 100vw;
+  }
+
+}
