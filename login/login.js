@@ -17,17 +17,27 @@ $('document').ready(function() {
             let password = form.password.value;
             let formData = { email: email, password: password };
             formData = JSON.stringify(formData);
-            console.log(formData)
 
             request = $.ajax({
                     url: "../login/login.php",
                     type: "POST",
                     data: formData,
-                    encode: true
+                    encode: true,
+                    beforeSend: function() {
+                        $('#loginSpinner').show();
+                    },
                 })
                 .done((res) => {
+                    // Hide spinner
+                    $('#loginSpinner').hide();
                     console.log("Success")
                     console.log(res)
+
+                    // Hide loggin form
+                    getBackToHomePage();
+
+                    // Load the content for the logged in user
+
                 })
                 .fail(() => {
                     console.log("Fail!")
