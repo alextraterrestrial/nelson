@@ -96,28 +96,40 @@ function createTest(id, content) {
       .done((data)=>{
         console.table(data)
 
-        if(data="Success"){
+        if(data=="Success"){
           
           form.html("")
     
-          let feedback = $("<div>", {
-            class: "uploadFeedback",
-            appendTo: form
+          $("<div>", {
+            class: "uploadAnimation",
+            appendTo: form,
+            html: "Ert svar: " + answer 
           })
           
+        } else if (data=="answered") {
+          form.html("")
+    
+          $("<div>", {
+            class: "uploadAnimation",
+            appendTo: form,
+            html: "Ert lag har redan svarat. Ert svar:" + answer
+          })
         }
         
   
         // setTimeout(()=>{
-        //   $(".uploadFeedback").addClass("answerFeedback")
-        //   $(".uploadFeedback").removeClass("uploadFeedback")
-        //   $(".answerFeedback").html = answer + "<br>" + solution
-        // }, 2000).bind(this)
+        //   $(".uploadAnimation").addClass("answerFeedback")
+        //   $(".uploadAnimation").removeClass("uploadAnimation")
+        //   $(".answerFeedback").html("Ert svar: " + answer).css({fontSize: "var(--fontSize)"})
+        // }, 1000).bind(this)
 
       })
-      .fail(error)
-      .always(()=>{
-
+      .fail(()=>{
+        error()
+        let message = $("<div>", {
+          appendTo: form,
+          html: "Svaret skickade ej."
+        }).css({fontSize: "var(--fontSize)", textAlign: "center"}).click(()=>{message.remove()})
       })
 
 
@@ -166,7 +178,7 @@ function updateSubmissions(arr) {
 //test
 
 
-// getTests()
+getTests()
 
 
 setInterval(() => {
