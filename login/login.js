@@ -32,6 +32,7 @@ $('document').ready(function() {
                     $('#loginSpinner').hide();
                     console.log("Success")
                     console.log(JSON.parse(res))
+                    console.log(res)
 
                     // Hide loggin form
                     getBackToHomePage();
