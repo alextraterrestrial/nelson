@@ -10,10 +10,6 @@
         <link rel="stylesheet" href="../CSS/p.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<<<<<<< HEAD
-=======
-
->>>>>>> 916b549af0f54ece7123c1bc4176798707d1376e
         <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39&display=swap" rel="stylesheet">
     </head>
@@ -31,12 +27,8 @@
                 </div>
             </section>
             <section id="secSpelet">
-<<<<<<< HEAD
                 <!-- för att testa pussel -->
                 <?php include("testPussel.html")?>
-=======
-                <div class="uploadAnimation">Ert svar: T</div>
->>>>>>> 916b549af0f54ece7123c1bc4176798707d1376e
             </section>
             <section id="menyContent">
                 <div id="secTeam" class="menyItem">team
@@ -57,13 +49,6 @@
 
       <script src="game.js"></script>
 
-<<<<<<< HEAD
-      <!-- <script src="../team/team.js"></script> -->
-=======
-      <script src="../team/team.js"></script>
-
-
-
->>>>>>> 916b549af0f54ece7123c1bc4176798707d1376e
+     <script src="../team/team.js"></script> 
     </body>
   </html>
