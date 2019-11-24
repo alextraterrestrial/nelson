@@ -28,7 +28,7 @@
             </section>
             <section id="secSpelet">
                 <!-- för att testa pussel -->
-                <?php include("testPussel.html")?>
+                <?php //include("testPussel.html")?>
             </section>
             <section id="menyContent">
                 <div id="secTeam" class="menyItem">team

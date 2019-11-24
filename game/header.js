@@ -21,7 +21,7 @@ function checkUser() {
 }
 
 function displayHeader() {
-    if (screen.width < 600 && !menySwich) {
+    if ($("body").width() < 600 && !menySwich) {
         $("#headerNav").css({
             backgroundColor: "var(--backgroundColor)",
             transition: "width .2s",
@@ -32,7 +32,7 @@ function displayHeader() {
             transform: "scalex(1)"
         })
         menySwich = 1
-    } else if (screen.width < 600) {
+    } else if ($("body").width() < 600) {
         $("#headerNav").css({
             backgroundColor: "initial",
             transition: "width .2s linear .2s",
