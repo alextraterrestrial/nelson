@@ -15,19 +15,6 @@
     </head>
   
     <body>
-<<<<<<< HEAD
-        <?php include("headerNav.html")?>
-        <section id="secTeam">
-           <?php include("../team/team.html")?>
-        </section>
-        <section id="secSpellogg">spellog</section>
-        <section id="secSpelet">
-            <?php include("game.html")?>
-        </section>
-        <section id="secLogin">
-            <?php include("../login/login.php")?>
-        </section>
-=======
         <div class="wrapper">
             <?php include("headerNav.html")?>
             <section id="home">
@@ -53,7 +40,6 @@
                 </div>
             </section>
         <div>
->>>>>>> ada06ce50b7b10f69bd54d57b80b2ef5827d5ebf
 
       <script src="jquery-3.4.1.min.js"></script>
       <script src="../login/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
