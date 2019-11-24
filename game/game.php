@@ -17,7 +17,7 @@
   
     <body>
         <?php include("headerNav.html")?>
-        <section id="secTeam">team
+        <section id="secTeam">
            <?php include("../team/team.html")?>
         </section>
         <section id="secSpellogg">spellog</section>

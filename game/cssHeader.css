@@ -3,6 +3,7 @@
   --color2: #aed04d;
   --fontSize: 14px;
   --font: 'Overpass Mono', monospace;
+  --radius: 4px;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
 
 section {
   /* border: 1px solid var(--color2); */
-  border-radius: 4px;
+  border-radius: var(--radius);
   width: 80vw;
   height: 87vh;
   margin: 3vh auto 0;
