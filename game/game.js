@@ -50,7 +50,8 @@ function createTest(id, content) {
     rows: "3",
     cols: "30",
     html: "Hur kom du på svaret?",
-    appendTo: "#test" + id + " form"
+    appendTo: "#test" + id + " form",
+    spellcheck: "false"
   }).css({display: "none"}).click(()=>{
     textarea.val("")
   })
@@ -90,38 +91,37 @@ function createTest(id, content) {
     if (!loggedIn) {
       alert("Registerar dig för att Svara")
       //länka till login/reg
-    } else {
+    } else if(input.val()) {
+      prepareAnswer(input.val())
 
-      $.get('../PHP/submitAnswer.php', {answer: input.val(), solution: textarea.val(), teamId: player.teamId, testId: id})
+      $.get('../PHP/submitAnswer.php', {answer: prepareAnswer(input.val()), solution: textarea.val(), teamId: player.teamId, testId: id})
       .done((data)=>{
         console.table(data)
-
+        let div
         if(data=="Success"){
           
           form.html("")
     
-          $("<div>", {
+          div = $("<div>", {
             class: "uploadAnimation",
             appendTo: form,
-            html: "Ert svar: " + answer 
           })
+
+          typeAnimation("Ert svar: " + answer, div)
           
-        } else if (data=="answered") {
+        } else {
           form.html("")
     
-          $("<div>", {
+          div = $("<div>", {
             class: "uploadAnimation",
             appendTo: form,
-            html: "Ert lag har redan svarat. Ert svar:" + answer
           })
+
+          data = JSON.parse(data)
+        
+          typeAnimation("Ert lag har redan svarat. Ert svar är: " + data[0].answer, div)
         }
         
-  
-        // setTimeout(()=>{
-        //   $(".uploadAnimation").addClass("answerFeedback")
-        //   $(".uploadAnimation").removeClass("uploadAnimation")
-        //   $(".answerFeedback").html("Ert svar: " + answer).css({fontSize: "var(--fontSize)"})
-        // }, 1000).bind(this)
 
       })
       .fail(()=>{
@@ -134,6 +134,8 @@ function createTest(id, content) {
 
 
 
+    } else {
+      console.log("no value")
     }
 
     

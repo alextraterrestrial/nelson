@@ -45,8 +45,18 @@ function typeAnimation(string, element) {
   let type = setInterval(() => {
     element.html(string.substr(0,count))
     count++
-    if(count==string.length) {
+    if(count>string.length) {
       clearInterval(type)
     }
-  }, 200);
+  }, 60);
+}
+
+function prepareAnswer(string) {
+  string = string.toLowerCase()
+  
+  let pattern = /[\s;:_,.-]/g
+  
+  string = string.replace(pattern, "funk")
+
+  return string
 }

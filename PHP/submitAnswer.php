@@ -28,7 +28,8 @@ if(!$answer) {
   echo "Success";
 
 } else {
-  echo "answered";
+  $answer = json_encode($answer);
+  echo $answer;
 }
 
 
