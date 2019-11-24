@@ -1,15 +1,23 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
 // Kontrollera om användaren är inloggad genom att hämta cookie
 $(document).ready(() => {
-    console.log("Checking user");
-    getCookie()
+    checkUser();
 });
 
 function checkUser() {
-    if (getCookie()) {
+    let menuActions;
+    if (getCookie("user")) {
+        // Skapa menyn för inloggade användare
+        menuActions = ["Team", "Arkiv", "Logga ut"]
+        updatePlayer(player);
+        console.log(getCookie("user"));
 
+    } else {
+        // Skapa menyn för icke inloggade användare
+        menuActions = ["Team", "Arkiv", "Login"]
     }
-
+    console.log(getCookie("user"));
+    createMeny(menuActions)
 }
 
 function displayHeader() {
@@ -46,6 +54,7 @@ function getBackToHomePage() {
 
 function updatePlayer(obj) {
     //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
+    const userObject = getCookie("user");
 
     $(".playerName").html(obj.name)
 
@@ -93,6 +102,7 @@ function createMenyAction(action) {
 }
 
 function createMeny(arr) {
+    $("#navMeny").empty();
     for (let i = 0; i < arr.length; i++) {
         createMenyAction(arr[i])
     }
@@ -137,7 +147,5 @@ $("#menyContent").click((e) => {
 })
 
 //directCode
-updatePlayer(player)
 
-createMeny(menyActions)
 countDown(timeLeft, function() { test("works") })

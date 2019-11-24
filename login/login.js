@@ -31,11 +31,11 @@ $('document').ready(function() {
                     // Hide spinner
                     $('#loginSpinner').hide();
                     console.log("Success")
-                    console.log(res)
+                    console.log(JSON.parse(res))
 
                     // Hide loggin form
                     getBackToHomePage();
-
+                    checkUser();
                     // Load the content for the logged in user
 
                 })
