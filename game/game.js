@@ -1,9 +1,16 @@
+//variables
+let testIdArray = []
+
+
+//functions
+
 function createTest(id, content) {
-  
-  $("<div>", {
+  testIdArray.push(id)
+
+  let testContainer = $("<div>", {
     class: "test",
     "id": "test" + id,
-    appendTo: "#sec" + menyActions[0]
+    appendTo: "#secSpelet"
   })
 
   //element för att visa hur många som svarat
@@ -11,7 +18,7 @@ function createTest(id, content) {
     class: "testSubmission",
     "id": "testSubmission" + id,
     appendTo: "#test" + id, 
-    html: "antal svar",
+    html: "antal svar ",
   })
 
   $("<span>", {
@@ -31,17 +38,15 @@ function createTest(id, content) {
   })
 
   let input = $("<input>", {
+    class: "inputClass",
     type: "text",
-    name: "answer",
-    value: "Svar",
+    name: "cc" + id,
+    placeholder: "Svar",
     appendTo: "#test" + id + " form"
   })
   
-  // .blur(()=>{
-  //   input.val("Svar")
-  // })
-  
   let textarea = $("<textarea>", {
+    name: "cc" + id,
     rows: "3",
     cols: "30",
     html: "Hur kom du på svaret?",
@@ -50,27 +55,30 @@ function createTest(id, content) {
     textarea.val("")
   })
   
-  // .blur(()=>{
-  //   textarea.val("hur kom du på svaret?")
-  // })
-
   let submit = $("<input>", {
+    name: "cc" + id,
+    class: "inputClass",
     type: "submit",
     value: "Skicka",
     appendTo: "#test" + id + " form"
   }).css({display: "none"})
   
-  input.click(()=>{
-    input.val("")
-    $("#test" + id +" input[type='submit']").css({display: "block"})
-    $("#test" + id +" textarea").css({display: "block"})
-  })
+  testContainer.click((e)=>{
+    console.log(e.target )
 
-  // input.focusout(()=>{
-  //   input.val("svar")
-  //   $("#test" + id +" input[type='submit']").css({display: "none"})
-  //   $("#test" + id +" textarea").css({display: "none"})
-  // })
+    console.log(e.target.name != "cc" + id)
+
+
+    if($("#test" + id +" input[type='submit']").css("display")== "none") {
+      input.val("")
+      $("#test" + id +" input[type='submit']").toggle(130)
+      $("#test" + id +" textarea").toggle(130)
+    } else if(e.target.name != "cc" + id){
+      console.log(e.target.name != "cc" + id)
+      $("#test" + id +" input[type='submit']").toggle(130)
+      $("#test" + id +" textarea").toggle(130)
+    }
+  })
 
 
   form.submit((e)=>{
@@ -88,28 +96,40 @@ function createTest(id, content) {
       .done((data)=>{
         console.table(data)
 
-        if(data="Success"){
+        if(data=="Success"){
           
           form.html("")
     
-          let feedback = $("<div>", {
-            class: "uploadFeedback",
-            appendTo: form
+          $("<div>", {
+            class: "uploadAnimation",
+            appendTo: form,
+            html: "Ert svar: " + answer 
           })
           
+        } else if (data=="answered") {
+          form.html("")
+    
+          $("<div>", {
+            class: "uploadAnimation",
+            appendTo: form,
+            html: "Ert lag har redan svarat. Ert svar:" + answer
+          })
         }
         
   
         // setTimeout(()=>{
-        //   $(".uploadFeedback").addClass("answerFeedback")
-        //   $(".uploadFeedback").removeClass("uploadFeedback")
-        //   $(".answerFeedback").html = answer + "<br>" + solution
-        // }, 2000).bind(this)
+        //   $(".uploadAnimation").addClass("answerFeedback")
+        //   $(".uploadAnimation").removeClass("uploadAnimation")
+        //   $(".answerFeedback").html("Ert svar: " + answer).css({fontSize: "var(--fontSize)"})
+        // }, 1000).bind(this)
 
       })
-      .fail(error)
-      .always(()=>{
-
+      .fail(()=>{
+        error()
+        let message = $("<div>", {
+          appendTo: form,
+          html: "Svaret skickade ej."
+        }).css({fontSize: "var(--fontSize)", textAlign: "center"}).click(()=>{message.remove()})
       })
 
 
@@ -127,8 +147,9 @@ function getTests() {
 
     data.forEach((obj)=>{
       createTest(obj.testId, obj.content)
-      updateSubmissions()
     })
+    updateSubmissions(testIdArray)
+
   })
   .fail(()=>{
     //take away when launching
@@ -140,19 +161,26 @@ function getTests() {
   })
 }
 
-function updateSubmissions() {
-  //fix
+function updateSubmissions(arr) {
+  arr.forEach((item)=>{
+    $.get('../PHP/getSubmissions.php', {testId: item})
+    .done((data)=>{
+      data = JSON.parse(data)
+
+      $("#testSubmission" + item + " span").html(data[0].submissions)
+    })
+    .fail(error)
+  })
 }
 
 
 
 //test
-$("#navMeny > div:first-child").click()
+
 
 getTests()
 
-let submissions = setInterval(() => {
-  updateSubmissions()
-}, 10000);
 
-//update submissions
+setInterval(() => {
+  updateSubmissions(testIdArray)
+}, 10000)

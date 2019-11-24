@@ -5,139 +5,94 @@ ini_set('display_errors', 'on');
 // Initialize the session
 session_start();
  
-// Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: welcome.php");
-//     exit;
-// }
- 
 // Include config file
 require_once "config.php";
- 
-// Define variables and initialize with empty values
-$email = $password = "";
-$email_err = $password_err = "";
- 
+
+//Get form data
+$formData = file_get_contents('php://input');
+$formObject = json_decode($formData);
+
+$email = $formObject -> email;
+$password = $formObject -> password;    
+
+// Variable for the response
+$response = new stdClass();
+
+//If logeed in session already exists
+if($_SESSION["loggedin"]){
+    $response -> loggedIn = true;
+    $response -> userId = $_SESSION["id"];
+    echo json_encode($response);
+    $response = new stdClass();
+}
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    if(empty(trim($_POST["email"]))){
-        $email_err = "Vänligen ange din mailadress";
-    } else{
-        $email = trim($_POST["email"]);
-    }
-    
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Vänligen ange ditt lösenord";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
-    if(empty($email_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT id, email, password FROM users WHERE email = :email";
+
+    // Prepare a select statement
+    $sql = "SELECT id, email, password FROM users WHERE email = :email";
+    
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
         
-        if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
-            
-            // Set parameters
-            $param_email = trim($_POST["email"]);
-            
-            // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                // Check if username exists, if yes then verify password
-                if($stmt->rowCount() == 1){
-                    if($row = $stmt->fetch()){
-                        $id = $row["id"];
-                        $username = $row["email"];
-                        $hashed_password = $row["password"];
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            // session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["email"] = $email;                            
-                            
-                            // Redirect user to welcome page
-                            // header("location: ../game/game.php");
-
-                            //Create a cookie for the loged in user
-
-                            $cookieName = "user";
-                            $cookie = new stdClass();
-                            $cookie -> userId = $id;
-                            $cookie -> logedIn = true;
-                            $cookieValue = json_encode($cookie);
-                            setCookie($cookieName, $cookieValue, 0);
-                            echo $cookieValue;
-                            
-                           
-                        } else{
-                            // Display an error message if password is not valid
-                            $password_err = "Lösenordet du angav var fel";
-                        }
+        // Set parameters
+        $param_email = $email;
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            // Check if username exists, if yes then verify password
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $id = $row["id"];
+                    $username = $row["email"];
+                    $hashed_password = $row["password"];
+                    if(password_verify($password, $hashed_password)){
+                        // Password is correct, so start a new session
+                        session_start();
+                        
+                        // Store data in session variables
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["id"] = $id;
+                        $_SESSION["email"] = $email;  
+                        
+                        //Return login token
+                        $response -> loggedIn = true;
+                        $response -> userId = $id;
+                        
+                        //Create a cookie for the loged in user
+                        $cookieName = "user";
+                        $cookie = new stdClass();
+                        $cookie -> userId = $id;
+                        $cookie -> logedIn = true;
+                        $cookieValue = json_encode($cookie);
+                        setCookie($cookieName, $cookieValue, 0);
+                    } else {
+                        // Wrong password
+                        $response -> errors = ["password"];
                     }
-                } else{
-                    // Display an error message if username doesn't exist
-                    $email_err = "Inget konto med mailadressen du angav fanns";
                 }
             } else{
-                echo "Ojdå, något gick fel...";
+                // Display an error message if username doesn't exist
+                $response -> errors = ["email"];
             }
+        } else{
+            // Could not connect
+            $response -> errors = ["connection"];
         }
-        
-        // Close statement
-        unset($stmt);
     }
     
+    // Close statement
+    unset($stmt);
+
     // Close connection
     unset($pdo);
+
+    //Return the response
+    echo json_encode($response);
 }
 ?>
  
-
-<!-- <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head> -->
-
-
-    <div class="wrapper container">
-        <div class="row justify-content-center py-4 my-4">
-            <div class="col-sm-8 col-md-6 col-lg-auto p-4">
-                <h2>Login</h2>
-            
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                        <label>Email</label>
-                        <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
-                        <span class="help-block"><?php echo $email_err; ?></span>
-                    </div>    
-                    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                        <label>Lösenord</label>
-                        <input type="password" name="password" class="form-control">
-                        <span class="help-block"><?php echo $password_err; ?></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Login">
-                    </div>
-                    <p>Har du inget konto? <a href="">Registrera dig här</a>.</p>
-                </form>
-            </div>
-        </div>
-    </div>
-
 
 
 

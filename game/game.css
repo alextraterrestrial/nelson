@@ -2,7 +2,7 @@
   border: 1px solid var(--color2);
   border-radius: 4px;
   width: 95%;
-  margin: 10px auto 0;
+  margin: 10px auto 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,29 +14,24 @@
 
 .testContent {
   max-width: 90%;
-  border: 1px solid var(--color2);
+  /* border: 1px solid var(--color2); */
   border-radius: 4px;
   padding: 10px;
 
   font-size: var(--fontSize); 
 }
 
-.testContent img {
-  width: 100%;
-  /* background-image: url(images/Jazz.png); */
-  height: 216px;
-  /* background-size: contain; */
-}
 
 .testSubmission {
   align-self: flex-end;
   font-size: var(--fontSize);
 
-  padding: 5px;
+  padding: 5px 10px 5px;
 }
 
 .test form {
   margin: 10px 0;
+  min-height: 40px;
 }
 
 .test form input {
@@ -44,25 +39,6 @@
   margin: 2px auto 3px;
 }
 
-
-
-.test input[type='submit']{
-  background-color: var(--backgroundColor);
-  border: 1px solid var(--color2);
-  font-family: var(--font);
-  color: var(--color2);
-  padding: 4px;
-  border-radius: 4px;
-}
-
-.test input[type='text']{
-  background-color: var(--backgroundColor);
-  border: 1px solid var(--color2);
-  font-family: var(--font);
-  color: var(--color2);
-  padding: 4px;
-  border-radius: 4px;
-}
 
 textarea{
   background-color: var(--backgroundColor);
@@ -74,16 +50,38 @@ textarea{
   font-size: var(--fontSize);
 }
 
-.uploadFeedback {
-  width: 25px;
-  height: 25px;
-  border: 1px solid var(--color2);
+.uploadAnimation {
+  animation-name: uploaded;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+
+
+  /* width: 100px; */
+  height: 18px;
+  font-size: var(--fontSize);
+  overflow: hidden;
 }
 
 .answerFeedback {
-  border: 1px solid var(--color2);
   font-family: var(--font);
   color: var(--color2);
   padding: 4px;
-  border-radius: 4px;
 }
+
+
+#secSpelet input {
+  line-height: 15px;
+  font-size: 11px;
+}
+
+
+/* @keyframes uploaded {
+  0%   {
+    width: 0px;
+
+  }
+
+  100% {
+    width: 100px;
+  }
+} */
