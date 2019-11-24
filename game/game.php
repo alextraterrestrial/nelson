@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Nelson</title>
-        <meta charset="utf-8" />
+        <meta charset="utf-8"/>
         <?php require('../login/bootstrap.html')?>
         <link rel="stylesheet" href="../CSS/cssGeneral.css">
         <link rel="stylesheet" href="cssHeader.css">
@@ -28,7 +28,6 @@
             <section id="secSpelet">
                 <!-- för att testa pussel -->
                 <?php include("testPussel.html")?>
-
             </section>
             <section id="menyContent">
                 <div id="secTeam" class="menyItem">team
@@ -50,9 +49,5 @@
       <script src="game.js"></script>
 
       <!-- <script src="../team/team.js"></script> -->
-
-
-
     </body>
-  
   </html>
