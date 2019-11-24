@@ -2,7 +2,7 @@
 // Kontrollera om användaren är inloggad genom att hämta cookie
 $(document).ready(() => {
     console.log("Checking user");
-
+    getCookie()
 });
 
 function checkUser() {
@@ -39,7 +39,7 @@ function displayHeader() {
     }
 }
 
-function getBackToHomePage(){
+function getBackToHomePage() {
     $(".menyItem").css({ display: "none" })
     $("#menyContent").css({ display: "none" })
 }
@@ -129,7 +129,7 @@ $(".circuit img").click(() => {
     displayHeader()
 })
 
-$("#menyContent").click((e)=>{
+$("#menyContent").click((e) => {
     if (e.target.id == "menyContent") {
         getBackToHomePage()
         displayHeader()
