@@ -1,3 +1,11 @@
+.testContent img {
+  display: block;
+  margin: 0 auto 10px;
+  width: 600px;
+  height: 600px;
+}
+
+
 #p2 {
   width: 100%;
   display: grid;
@@ -7,9 +15,41 @@
   border-radius: 4px;
   justify-items: center;
   align-items: center;
-  margin-top: 10px;
 }
 
-#p2 p{
+#p2 p {
   margin: 6px 0px 6px;
+}
+
+#p11 {
+  line-height: 20px;
+  margin-bottom: 0px;
+}
+
+#p23 {
+  font-family: 'Libre Barcode 39', cursive;
+  line-height: 22px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+
+@media screen and (max-width: 999px) {
+  .testContent img {
+    width: 460px;
+    height: 460px;
+  }
+}
+
+@media screen and (max-width: 579px) {
+  .testContent img {
+    width: 320px;
+    height: 320px;
+  }
+}
+@media screen and (max-width: 399px) {
+  .testContent img {
+    width: 260px;
+    height: 260px;
+  }
 }

@@ -13,8 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-
         <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39&display=swap" rel="stylesheet">
     </head>
   
     <body>
@@ -30,9 +30,7 @@
                 </div>
             </section>
             <section id="secSpelet">
-                <!-- för att testa pussel -->
-                <?php include("testPussel.html")?>
-
+                <div class="uploadAnimation">Ert svar: T</div>
             </section>
             <section id="menyContent">
                 <div id="secTeam" class="menyItem">team
@@ -52,7 +50,7 @@
 
       <script src="game.js"></script>
 
-      <!-- <script src="../team/team.js"></script> -->
+      <script src="../team/team.js"></script>
 
 
 

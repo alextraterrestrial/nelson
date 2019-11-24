@@ -28,7 +28,7 @@ if(!$answer) {
   echo "Success";
 
 } else {
-  echo "Your team have already submitted an answer";
+  echo "answered";
 }
 
 
