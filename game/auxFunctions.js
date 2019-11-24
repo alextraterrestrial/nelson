@@ -39,3 +39,14 @@ function debug(a) {
     console.log(a)
   }
 }
+
+function typeAnimation(string, element) {
+  let count = 1
+  let type = setInterval(() => {
+    element.html(string.substr(0,count))
+    count++
+    if(count==string.length) {
+      clearInterval(type)
+    }
+  }, 200);
+}
