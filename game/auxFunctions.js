@@ -56,7 +56,7 @@ function prepareAnswer(string) {
   
   let pattern = /[\s;:_,.-]/g
   
-  string = string.replace(pattern, "funk")
+  string = string.replace(pattern, "")
 
   return string
 }
