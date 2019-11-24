@@ -25,7 +25,7 @@ function addUser(clickedUser, captain, button) {
     console.log(data)
     // the letter S is just for testing, replace later
     button.html('S')
-    // displayUserInfo()
+    displayUserInfo()
   })
   .fail((error) => {
     console.log(error)
