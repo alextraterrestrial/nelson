@@ -2,17 +2,23 @@
 require_once("config.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET"){
-    $request = $_GET["email"];
-    // echo $request;
-
-    $sql = "SELECT email FROM users WHERE email = :email";
+    
+ 
+    if(isset($_GET["email"])){
+        $request = $_GET["email"];
+        $sql = "SELECT email FROM users WHERE email = :field";
+    }
+    else if(isset($_GET["userName"])){
+        $request = $_GET["userName"];
+        $sql = "SELECT username FROM users WHERE username = :field";
+    }
     
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+        $stmt->bindParam(":field", $param_field, PDO::PARAM_STR);
         
         // Set parameters
-        $param_email = $request;
+        $param_field = $request;
         
         // Attempt to execute the prepared statement
         if($stmt->execute()){

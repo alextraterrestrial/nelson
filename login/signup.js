@@ -9,15 +9,20 @@ $('document').ready(function() {
             },
             userName: {
                 required: true,
-                remote: ""
+                remote: "../login/checkEmail.php",
+                minlength: 4
             },
             password: "required",
-            confirmPassword: "required"
+            confirmPassword: {
+                required: false,
+                equalTo: "#signupPassword"
+            }
         },
         messages: {
             userName: {
                 required: "Vänligen ange ett användarnamn",
-                remote: "Användarnamnet är upptaget"
+                remote: "Användarnamnet är upptaget",
+                minlength: "Användarnamnet måste vara minst 4 tecken långt"
             },
             email: {
                 email: "Vänligen ange en giltig mailadress",
@@ -25,7 +30,10 @@ $('document').ready(function() {
                 remote: "Det finns redan ett konto med den här mailadressen"
             },
             password: "Vänligen ange ett lösenord",
-            confirmPassword: "Vänligen bekräfta ditt lösenord"
+            confirmPassword: {
+                equalTo: "Lösenorden du skrivit in matchar inte varandra",
+                required: "Vänligen bekräfta ditt lösenord"
+            }
         },
 
     })
