@@ -2,31 +2,33 @@
 //Show server errors 'on'
 ini_set('display_errors', 'on');
 
-// Initialize the session
-session_start();
- 
 // Include config file
 require_once "config.php";
 
-//Get form data
-$formData = file_get_contents('php://input');
-$formObject = json_decode($formData);
+// Initialize the session
+session_start();
 
-$email = $formObject -> email;
-$password = $formObject -> password;    
-
-// Variable for the response
+// Object reference for the response
 $response = new stdClass();
 
 //If logeed in session already exists
-if($_SESSION["loggedin"]){
+if(isset($_SESSION["loggedin"])){
     $response -> loggedIn = true;
     $response -> userId = $_SESSION["id"];
     echo json_encode($response);
-    $response = new stdClass();
+    echo "In a session";
+    exit;
 }
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    //Get form data
+    $formData = file_get_contents('php://input');
+    $formObject = json_decode($formData);
+    
+    $email = $formObject -> email;
+    $password = $formObject -> password;    
+    
     // Validate credentials
 
     // Prepare a select statement
@@ -49,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     $hashed_password = $row["password"];
                     if(password_verify($password, $hashed_password)){
                         // Password is correct, so start a new session
-                        session_start();
+                        // session_start();
                         
                         // Store data in session variables
                         $_SESSION["loggedin"] = true;
@@ -60,13 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         $response -> loggedIn = true;
                         $response -> userId = $id;
                         
-                        //Create a cookie for the loged in user
+                        //Create a cookie for the logged in user
                         $cookieName = "user";
                         $cookie = new stdClass();
                         $cookie -> userId = $id;
                         $cookie -> logedIn = true;
                         $cookieValue = json_encode($cookie);
-                        setCookie($cookieName, $cookieValue, 0);
+                        setCookie($cookieName, $cookieValue, time() + (86400 * 14), "/");
+                        
                     } else {
                         // Wrong password
                         $response -> errors = ["password"];
