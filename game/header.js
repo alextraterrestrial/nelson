@@ -11,12 +11,10 @@ function checkUser() {
         menuActions = ["Team", "Arkiv", "Logga ut"]
         updatePlayer(player);
         console.log(getCookie("user"));
-
     } else {
         // Skapa menyn för icke inloggade användare
-        menuActions = ["Team", "Arkiv", "Login"]
+        menuActions = ["Team", "Arkiv", "Login", "Registrering"]
     }
-    console.log(getCookie("user"));
     createMeny(menuActions)
 }
 
@@ -94,8 +92,6 @@ function createMenyAction(action) {
         $("#menyContent").css({ display: "block" })
         $("#sec" + action).css({ display: "block" })
 
-        // Load section content
-
     })
 
     $("#navMeny").append(div)
@@ -123,7 +119,6 @@ function getCookie(cname) {
     }
     return null;
 }
-
 
 //Variables
 

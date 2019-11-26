@@ -1,6 +1,16 @@
 $('document').ready(function() {
     let request;
 
+    //Add listener for go to rgister link
+    $("#goToRegister").click(() => {
+        //Hide login
+        getBackToHomePage();
+
+        //Show register
+        $("#menyContent").css({ display: "block" })
+        $("#secRegistrering").css({ display: "block" })
+    });
+
     // Validate form
     $("form[name='loginForm']").validate({
         //Validation rules
@@ -9,8 +19,8 @@ $('document').ready(function() {
             password: "required"
         },
         messages: {
-            email: "Vänligen ange en mailadress",
-            password: "Vänligen ange ett lösenord"
+            email: "Vänligen ange din mailadress",
+            password: "Vänligen ange ditt lösenord"
         },
         submitHandler: form => {
             let email = form.email.value;
@@ -23,21 +33,33 @@ $('document').ready(function() {
                     type: "POST",
                     data: formData,
                     encode: true,
+
                     beforeSend: function() {
+                        //Clear error message
+                        $("#loginErrorMessage").empty();
+                        //Show spinner
                         $('#loginSpinner').show();
                     },
                 })
                 .done((res) => {
                     // Hide spinner
                     $('#loginSpinner').hide();
-                    console.log("Success")
-                    console.log(JSON.parse(res))
+                    const jsonRes = JSON.parse(res);
+                    console.log(res);
+                    console.log(jsonRes)
 
-                    // Hide loggin form
-                    getBackToHomePage();
-                    checkUser();
-                    // Load the content for the logged in user
+                    // If loggin was successful
+                    if (jsonRes.loggedIn) {
+                        // Hide loggin form
+                        getBackToHomePage();
+                        checkUser();
+                    } else if (jsonRes.errors) {
+                        // $("#loginPassword").attr("aria-invalid", "true");
+                        //Show error message    
+                        $("#loginErrorMessage").html("Fel mailadress eller lösenord")
 
+                        console.log(jsonRes.errors);
+                    }
                 })
                 .fail(() => {
                     console.log("Fail!")

@@ -38,6 +38,9 @@
                 <div id="secLogin" class="menyItem">
                     <?php include("../login/login.html")?>
                 </div>
+                <div id="secRegistrering" class="menyItem">
+                    <?php include("../login/signupform.html") ?>
+                </div>
             </section>
         <div>
 
