@@ -1,4 +1,14 @@
 $('document').ready(function() {
+
+    $("#goToLogin").click(() => {
+        //Hide login
+        getBackToHomePage();
+
+        //Show register
+        $("#menyContent").css({ display: "block" })
+        $("#secLogin").css({ display: "block" })
+    });
+
     //Validate form fileds
     $("form[name='signupForm']").validate({
         rules: {

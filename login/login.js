@@ -1,6 +1,16 @@
 $('document').ready(function() {
     let request;
 
+    //Add listener for go to rgister link
+    $("#goToRegister").click(() => {
+        //Hide login
+        getBackToHomePage();
+
+        //Show register
+        $("#menyContent").css({ display: "block" })
+        $("#secRegistrering").css({ display: "block" })
+    });
+
     // Validate form
     $("form[name='loginForm']").validate({
         //Validation rules
