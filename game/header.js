@@ -50,6 +50,9 @@ function displayHeader() {
 function getBackToHomePage() {
     $(".menyItem").css({ display: "none" })
     $("#menyContent").css({ display: "none" })
+
+    //Remove any messageContainer
+    $("#messageContainer").remove();
 }
 
 function updatePlayer(obj) {
@@ -170,16 +173,15 @@ const logOut = () => {
         .done(res => {
             //Hide spinner
 
-            //Show logout message
-            const messageContainer = document.createElement(div);
+            //Create logout message
+            $("<div id='messageContainer' class='menyItem'>Du är nu utloggad</div>").appendTo("#menyContent");
 
-
-
-            $("<p id='test'>My <em>new</em> text</p>").appendTo("body");
-
+            //Display it
+            $("#menyContent").css({ display: "block" })
+            $("#messageContainer").css({ display: "block" })
 
             //Update menu
-            getBackToHomePage();
+            // getBackToHomePage();
             checkUser();
         })
 }
