@@ -2,6 +2,8 @@
 // Kontrollera om användaren är inloggad genom att hämta cookie
 $(document).ready(() => {
     checkUser();
+
+
 });
 
 function checkUser() {
@@ -86,13 +88,20 @@ function countDown(time, endAction) {
 function createMenyAction(action) {
     let div = $("<div>")
     div.html(action)
+    if (action == "Logga ut") {
+        div.click(() => {
+            // Call the log out function
+            logOut();
+        })
+    } else {
+        div.click(() => {
+            $(".menyItem").css({ display: "none" })
+            $("#menyContent").css({ display: "block" })
+            $("#sec" + action).css({ display: "block" })
 
-    div.click(() => {
-        $(".menyItem").css({ display: "none" })
-        $("#menyContent").css({ display: "block" })
-        $("#sec" + action).css({ display: "block" })
+        })
+    }
 
-    })
 
     $("#navMeny").append(div)
 }
@@ -144,3 +153,33 @@ $("#menyContent").click((e) => {
 //directCode
 
 countDown(timeLeft, function() { test("works") })
+
+// Log out function
+const logOut = () => {
+    $.ajax({
+            url: "../login/logout.php",
+            type: "POST",
+            encode: true,
+            beforeSend: function() {
+                //Create spinner
+
+                //Show spinner
+
+            }
+        })
+        .done(res => {
+            //Hide spinner
+
+            //Show logout message
+            const messageContainer = document.createElement(div);
+
+
+
+            $("<p id='test'>My <em>new</em> text</p>").appendTo("body");
+
+
+            //Update menu
+            getBackToHomePage();
+            checkUser();
+        })
+}
