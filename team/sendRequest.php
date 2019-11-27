@@ -20,5 +20,5 @@ $sql->bindParam(1, $_GET['team']);
 $sql->bindParam(2, $_GET['userID']);
 $sql->execute();
 
-echo 'Request sent';
+echo 'INVITATION SENT';
 ?>

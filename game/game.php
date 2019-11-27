@@ -31,7 +31,7 @@
                 <?php //include("testPussel.html")?>
             </section>
             <section id="menyContent">
-                <div id="secTeam" class="menyItem">team
+                <div id="secTeam" class="menyItem">
                    <?php include("../team/team.html")?>
                 </div>
                 <div id="secArkiv" class="menyItem">spellog</div>
