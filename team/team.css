@@ -4,16 +4,11 @@
   justify-content: center;
 }
 
-#teamShowcase, #users {
-  height: 40vh;
-  padding: 20px;
+#secTeam {
+  position: relative;
 }
 
-#teamMembers {
-  width: 80%;
-}
-
-#availableUsers {
+#availableUsers, #teamMembers {
   overflow-y: scroll;
   width: 80%;
 }
@@ -28,4 +23,34 @@
   border-radius: var(--radius);
   height: 30px;
   width: 30px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.popup {
+  height: 25vh;
+  width: 50%;
+  position: absolute;
+  z-index: 10;
+  top: 25%;
+  left: 25%;
+  background-color: var(--backgroundColor);
+  border: 1px solid var(--color2);
+  border-radius: var(--radius);
+}
+
+.button:hover {
+  background-color: var(--color2);
+  color: var(--backgroundColor);
+}
+
+@media screen and (max-width: 799px) {
+  #teamShowcase, #users {
+    padding: 20px;
+    height: 44%;
+  }
+  
+  #secTeam {
+    height: 80vh;
+  }
 }

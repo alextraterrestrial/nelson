@@ -167,7 +167,7 @@ function updateSubmissions(arr) {
     .done((data)=>{
       data = JSON.parse(data)
 
-      $("#testSubmission" + item + " span").html(data[0].submissions)
+      // $("#testSubmission" + item + " span").html(data[0].submissions)
     })
     .fail(error)
   })
