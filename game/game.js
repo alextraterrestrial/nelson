@@ -121,56 +121,44 @@ function createTest(id, content) {
         
           typeAnimation("Ert lag har redan svarat. Ert svar är: " + data[0].answer, div)
         }
-        
-
-      })
-      .fail(()=>{
-        error()
-        let message = $("<div>", {
-          appendTo: form,
-          html: "Svaret skickade ej."
-        }).css({fontSize: "var(--fontSize)", textAlign: "center"}).click(()=>{message.remove()})
-      })
-
+    })
     } else {
-      console.log("no value")
+      console.log("no submission")
     }
-
-    
   })
 }
 
 function getTests() {
-  $.get("../PHP/getTests.php")
-  .done((data)=>{
-    data= JSON.parse(data)
+    $.get("../PHP/getTests.php")
+        .done((data) => {
+            data = JSON.parse(data)
 
-    data.forEach((obj)=>{
-      createTest(obj.testId, obj.content)
-    })
-    updateSubmissions(testIdArray)
+            data.forEach((obj) => {
+                createTest(obj.testId, obj.content)
+            })
+            updateSubmissions(testIdArray)
 
-  })
-  .fail(()=>{
-    //take away when launching
-    error()
-    $("<p>", {
-      appendTo: "#sec" + menyActions[0],
-      html: "Ops... något vill inte att ni ska se innehållet..."
-    }).css({margin: "10vw"})
-  })
+        })
+        .fail(() => {
+            //take away when launching
+            error()
+            $("<p>", {
+                appendTo: "#sec" + menyActions[0],
+                html: "Ops... något vill inte att ni ska se innehållet..."
+            }).css({ margin: "10vw" })
+        })
 }
 
-function updateSubmissions(arr) {
-  arr.forEach((item)=>{
-    $.get('../PHP/getSubmissions.php', {testId: item})
-    .done((data)=>{
-      data = JSON.parse(data)
+function updateSubmissions(arr)  {
+    arr.forEach((item) => {
+        $.get('../PHP/getSubmissions.php', { testId: item })
+            .done((data) => {
+                data = JSON.parse(data)
 
-      $("#testSubmission" + item + " span").html(data[0].submissions)
+                $("#testSubmission" + item + " span").html(data[0].submissions)
+            })
+            .fail(error)
     })
-    .fail(error)
-  })
 }
 
 
@@ -183,5 +171,5 @@ getTests()
 
 
 setInterval(() => {
-  updateSubmissions(testIdArray)
+    updateSubmissions(testIdArray)
 }, 10000)

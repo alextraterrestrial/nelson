@@ -28,8 +28,8 @@ if(!$answer) {
   // $teamId = $_GET['teamId']
   $teamId = "teamDevs";
 
-  include('givePoints.php');
-  givePoints($teamId, $_GET['testId'], $_GET['answer']);
+  // include('givePoints.php');
+  // givePoints($teamId, $_GET['testId'], $_GET['answer']);
   
   echo "Success";
   
