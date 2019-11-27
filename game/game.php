@@ -28,7 +28,7 @@
             </section>
             <section id="secSpelet">
                 <!-- för att testa pussel -->
-                <?php include("testPussel.html")?>
+                <?php //include("testPussel.html")?>
             </section>
             <section id="menyContent">
                 <div id="secTeam" class="menyItem">
@@ -38,17 +38,19 @@
                 <div id="secLogin" class="menyItem">
                     <?php include("../login/login.html")?>
                 </div>
+                <div id="secRegistrering" class="menyItem">
+                    <?php include("../login/signupform.html") ?>
+                </div>
             </section>
         <div>
 
-      <script src="jquery-3.4.1.min.js"></script>
-      <script src="../login/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-      <script src="testContent.js"></script>
-      <script src="auxFunctions.js"></script>
-      <script src="header.js"></script>
-
-      <script src="game.js"></script>
-
-     <script src="../team/team.js"></script> 
+        <script src="jquery-3.4.1.min.js"></script>
+        <script src="../login/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="testContent.js"></script>
+        <script src="auxFunctions.js"></script>
+        <script src="header.js"></script>
+        <script src="../login/login.js"></script>  
+        <script src="game.js"></script>
+        <script src="../team/team.js"></script> 
     </body>
   </html>

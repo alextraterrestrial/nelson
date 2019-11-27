@@ -9,6 +9,7 @@ $_SESSION = array();
 session_destroy();
  
 //Remove cookie
+setCookie("user", null, time() - 3600, "/");
 
 exit;
 ?>

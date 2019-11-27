@@ -1,19 +1,27 @@
 //när spelaren loggat in engång så sparas inloggning och vi sparar "player Id"? som vi i sin tur hämtar namn, team och poäng med.
 // Kontrollera om användaren är inloggad genom att hämta cookie
 $(document).ready(() => {
-    console.log("Checking user");
-    getCookie()
+    checkUser();
+
+
 });
 
 function checkUser() {
-    if (getCookie()) {
-
+    let menuActions;
+    if (getCookie("user")) {
+        // Skapa menyn för inloggade användare
+        menuActions = ["Team", "Arkiv", "Logga ut"]
+        updatePlayer(player);
+        console.log(getCookie("user"));
+    } else {
+        // Skapa menyn för icke inloggade användare
+        menuActions = ["Team", "Arkiv", "Login", "Registrering"]
     }
-
+    createMeny(menuActions)
 }
 
 function displayHeader() {
-    if (screen.width < 600 && !menySwich) {
+    if ($("body").width() < 600 && !menySwich) {
         $("#headerNav").css({
             backgroundColor: "var(--backgroundColor)",
             transition: "width .2s",
@@ -24,7 +32,7 @@ function displayHeader() {
             transform: "scalex(1)"
         })
         menySwich = 1
-    } else if (screen.width < 600) {
+    } else if ($("body").width() < 600) {
         $("#headerNav").css({
             backgroundColor: "initial",
             transition: "width .2s linear .2s",
@@ -46,6 +54,7 @@ function getBackToHomePage() {
 
 function updatePlayer(obj) {
     //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
+    const userObject = getCookie("user");
 
     $(".playerName").html(obj.name)
 
@@ -79,20 +88,26 @@ function countDown(time, endAction) {
 function createMenyAction(action) {
     let div = $("<div>")
     div.html(action)
+    if (action == "Logga ut") {
+        div.click(() => {
+            // Call the log out function
+            logOut();
+        })
+    } else {
+        div.click(() => {
+            $(".menyItem").css({ display: "none" })
+            $("#menyContent").css({ display: "block" })
+            $("#sec" + action).css({ display: "block" })
 
-    div.click(() => {
-        $(".menyItem").css({ display: "none" })
-        $("#menyContent").css({ display: "block" })
-        $("#sec" + action).css({ display: "block" })
+        })
+    }
 
-        // Load section content
-
-    })
 
     $("#navMeny").append(div)
 }
 
 function createMeny(arr) {
+    $("#navMeny").empty();
     for (let i = 0; i < arr.length; i++) {
         createMenyAction(arr[i])
     }
@@ -113,7 +128,6 @@ function getCookie(cname) {
     }
     return null;
 }
-
 
 //Variables
 
@@ -137,7 +151,35 @@ $("#menyContent").click((e) => {
 })
 
 //directCode
-updatePlayer(player)
 
-createMeny(menyActions)
 countDown(timeLeft, function() { test("works") })
+
+// Log out function
+const logOut = () => {
+    $.ajax({
+            url: "../login/logout.php",
+            type: "POST",
+            encode: true,
+            beforeSend: function() {
+                //Create spinner
+
+                //Show spinner
+
+            }
+        })
+        .done(res => {
+            //Hide spinner
+
+            //Show logout message
+            const messageContainer = document.createElement(div);
+
+
+
+            $("<p id='test'>My <em>new</em> text</p>").appendTo("body");
+
+
+            //Update menu
+            getBackToHomePage();
+            checkUser();
+        })
+}

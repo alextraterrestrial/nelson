@@ -6,6 +6,7 @@
     --color2: #aed04d;
     --fontSize: 14px;
     --font: 'Overpass Mono', monospace;
+    --radius: 4px;
 }
 
 body {
@@ -44,7 +45,7 @@ body {
     overflow: scroll;
     width: 70vw;
     height: 80vh;
-    border-radius: 4px;
+    border-radius: var(--radius);
     border: 1px solid var(--color2);
     margin: 1vh auto 0;
     background-color: var(--backgroundColor);
@@ -67,7 +68,7 @@ body {
     font-family: var(--font);
     color: var(--color2);
     padding: 4px;
-    border-radius: 4px;
+    border-radius: var(--radius);
 }
 
 .linkContainer {

@@ -1,27 +1,3 @@
-:root {
-  --backgroundColor: #03003a;
-  --color2: #aed04d;
-  --fontSize: 14px;
-  --font: 'Overpass Mono', monospace;
-  --radius: 4px;
-}
-
-body {
-  margin: 0px;
-  background-color: var(--backgroundColor);
-  color: var(--color2);
-  font-family: var(--font);
-}
-
-section {
-  /* border: 1px solid var(--color2); */
-  border-radius: var(--radius);
-  width: 80vw;
-  height: 87vh;
-  margin: 3vh auto 0;
-  display: none;
-  overflow: scroll;
-}
 
 /* header */
 #headerNav {
