@@ -56,7 +56,7 @@ function createTest(id, content) {
     textarea.val("")
   })
   
-  let submit = $("<input>", {
+  $("<input>", {
     name: "cc" + id,
     class: "inputClass",
     type: "submit",
@@ -65,9 +65,6 @@ function createTest(id, content) {
   }).css({display: "none"})
   
   testContainer.click((e)=>{
-    console.log(e.target )
-
-    console.log(e.target.name != "cc" + id)
 
 
     if($("#test" + id +" input[type='submit']").css("display")== "none") {
@@ -87,12 +84,15 @@ function createTest(id, content) {
 
     answer = input.val()
     solution = textarea.val()
-    
+    console.log(input.val().length)
+
     if (!loggedIn) {
       alert("Registerar dig för att Svara")
       //länka till login/reg
     } else if(input.val()) {
       prepareAnswer(input.val())
+
+      console.log(player.teamId)
 
       $.get('../PHP/submitAnswer.php', {answer: prepareAnswer(input.val()), solution: textarea.val(), teamId: player.teamId, testId: id})
       .done((data)=>{
@@ -116,7 +116,7 @@ function createTest(id, content) {
             class: "uploadAnimation",
             appendTo: form,
           })
-
+          
           data = JSON.parse(data)
         
           typeAnimation("Ert lag har redan svarat. Ert svar är: " + data[0].answer, div)
@@ -131,8 +131,6 @@ function createTest(id, content) {
           html: "Svaret skickade ej."
         }).css({fontSize: "var(--fontSize)", textAlign: "center"}).click(()=>{message.remove()})
       })
-
-
 
     } else {
       console.log("no value")
@@ -174,6 +172,7 @@ function updateSubmissions(arr) {
     .fail(error)
   })
 }
+
 
 
 

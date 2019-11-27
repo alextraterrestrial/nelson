@@ -25,7 +25,14 @@ if(!$answer) {
 
   $sql->execute();
 
+  // $teamId = $_GET['teamId']
+  $teamId = "teamDevs";
+
+  include('givePoints.php');
+  givePoints($teamId, $_GET['testId'], $_GET['answer']);
+  
   echo "Success";
+  
 
 } else {
   $answer = json_encode($answer);

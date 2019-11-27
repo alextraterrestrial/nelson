@@ -6,15 +6,17 @@ $(document).ready(() => {
 
 function checkUser() {
     let menuActions;
+    //--> för test
     if (getCookie("user")) {
         // Skapa menyn för inloggade användare
         menuActions = ["Team", "Arkiv", "Logga ut"]
         updatePlayer(player);
         console.log(getCookie("user"));
-
+        loggedIn = true
     } else {
         // Skapa menyn för icke inloggade användare
-        menuActions = ["Team", "Arkiv", "Login"]
+        menuActions = ["Login"]
+        loggedIn = false
     }
     console.log(getCookie("user"));
     createMeny(menuActions)
@@ -127,12 +129,10 @@ function getCookie(cname) {
 
 //Variables
 
-let menyActions = ["Team", "Arkiv", "Login", "Logga ut"]
-    // let menyActions = ["Spelet", "logga in", "arkiv"]
-
+// s
 let timeLeft = 14644
 let menySwich = 0
-
+let loggedIn
 
 //Events
 $(".circuit img").click(() => {
