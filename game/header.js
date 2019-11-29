@@ -15,7 +15,7 @@ function checkUser() {
         console.log(getCookie("user"));
     } else {
         // Skapa menyn för icke inloggade användare
-        menuActions = ["Team", "Arkiv", "Login", "Registrering"]
+        menuActions = ["Login", "Registrering"]
     }
     createMeny(menuActions)
 }
