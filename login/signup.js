@@ -1,5 +1,6 @@
 $('document').ready(function() {
 
+    let request;
     $("#goToLogin").click(() => {
         //Hide login
         getBackToHomePage();
@@ -45,6 +46,35 @@ $('document').ready(function() {
                 required: "Vänligen bekräfta ditt lösenord"
             }
         },
+        submitHandler: form => {
+            console.log("Submit handled")
+            let email = form.email.value;
+            let userName = form.username.value;
+            let password = form.password.value;
+            let formData = { email: email, username: username, password: password };
+            formData = JSON.stringify(formData);
+
+            request = $.ajax({
+                    url: "../login/signup.php",
+                    type: "POST",
+                    data: formData,
+                    encode: true,
+
+                    // beforeSend: function() {
+                    //     //Clear error message
+                    //     $("#loginErrorMessage").empty();
+                    //     //Show spinner
+                    //     $('#loginSpinner').show();
+                    // },
+                })
+                .done((res) => {
+                    console.log("Data sent to register.php")
+                })
+                .fail(() => {
+                    console.log("Fail!")
+                })
+        }
+
 
     })
 

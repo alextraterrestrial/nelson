@@ -3,7 +3,7 @@
     define('DB_SERVER', 'localhost:8889');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', 'root');
-    define('DB_NAME', 'loginApp');
+    define('DB_NAME', 'helpnelson-244914');
 
     // define('DB_SERVER', 'my88b.sqlserver.se');
     // define('DB_USERNAME', '244914_xd85104');

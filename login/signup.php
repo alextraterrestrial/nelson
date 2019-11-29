@@ -1,10 +1,10 @@
 <?php
 // Include config file
-require_once "config.php";
+require_once "../login/config.php";
  
 // Define variables and initialize with empty values
 $username = $email = $password = $confirm_password = "";
-$username_err = $email_err = $password_err = $confirm_password_err = "";
+
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO users (email, username, password) VALUES (:email, :username, :password)";
+        $sql = "INSERT INTO User (email, username, password) VALUES (:email, :username, :password)";
          
         if($stmt = $pdo->prepare($sql)){
          

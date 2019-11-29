@@ -2,8 +2,6 @@
 // Kontrollera om användaren är inloggad genom att hämta cookie
 $(document).ready(() => {
     checkUser();
-
-
 });
 
 function checkUser() {
