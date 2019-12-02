@@ -3,7 +3,10 @@ include('connectDB.php');
 
 $pdo = connectDB();
 
-$query = "SELECT testId, content, testImage FROM Test";
+
+// add checkType och minChars för att kolla om svaret följer reglerna?
+// och i så fall lägga till en ok-kolumn i databasen?
+$query = "SELECT puzzleId, contentHTML, image FROM Puzzle1";
 
 $sql = $pdo->prepare($query);
 $sql->execute();
