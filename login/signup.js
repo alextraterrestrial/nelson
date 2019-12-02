@@ -18,7 +18,7 @@ $('document').ready(function() {
                 email: true,
                 remote: "../login/checkEmail.php"
             },
-            userName: {
+            username: {
                 required: true,
                 remote: "../login/checkEmail.php",
                 minlength: 4
@@ -30,7 +30,7 @@ $('document').ready(function() {
             }
         },
         messages: {
-            userName: {
+            username: {
                 required: "Vänligen ange ett användarnamn",
                 remote: "Användarnamnet är upptaget",
                 minlength: "Användarnamnet måste vara minst 4 tecken långt"
@@ -49,10 +49,12 @@ $('document').ready(function() {
         submitHandler: form => {
             console.log("Submit handled")
             let email = form.email.value;
-            let userName = form.username.value;
+            let username = form.username.value;
             let password = form.password.value;
-            let formData = { email: email, username: username, password: password };
+            let passwordConfirm = form.confirmPassword.value;
+            let formData = { email: email, username: username, password: password, passwordConfirm: passwordConfirm };
             formData = JSON.stringify(formData);
+            console.log(formData);
 
             request = $.ajax({
                     url: "../login/signup.php",
@@ -69,9 +71,11 @@ $('document').ready(function() {
                 })
                 .done((res) => {
                     console.log("Data sent to register.php")
+                    console.log(res);
                 })
-                .fail(() => {
+                .fail((res) => {
                     console.log("Fail!")
+                    console.log(res);
                 })
         }
 

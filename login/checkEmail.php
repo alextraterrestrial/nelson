@@ -1,16 +1,15 @@
 <?php
-ini_set("allow_url_include", true );
+
 require_once "../login/config.php";
-var_dump($pdo);
+
 if ($_SERVER["REQUEST_METHOD"] == "GET"){
-   
- 
     if(isset($_GET["email"])){
         $request = $_GET["email"];
         $sql = "SELECT email FROM User WHERE email = :field";
+        
     }
     else if(isset($_GET["username"])){
-        $request = $_GET["userName"];
+        $request = $_GET["username"];
         $sql = "SELECT username FROM User WHERE username = :field";
     }
     
