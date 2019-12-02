@@ -46,9 +46,8 @@ $(document).ready(() => {
                     .done((res) => {
                         // Hide spinner
                         $('#loginSpinner').hide();
-                        const jsonRes = JSON.parse(res);
-                        console.log(res);
-                        console.log(jsonRes)
+                        const parsedRes = JSON.parse(res);
+                        console.log(parsedRes)
 
                         // If loggin was successful
                         if (jsonRes.loggedIn) {

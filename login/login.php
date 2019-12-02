@@ -3,7 +3,7 @@
 ini_set('display_errors', 'on');
 
 // Include config file
-require_once "config.php";
+require_once "../login/config.php";
 
 // Initialize the session
 session_start();
@@ -15,8 +15,9 @@ $response = new stdClass();
 if(isset($_SESSION["loggedin"])){
     $response -> loggedIn = true;
     $response -> userId = $_SESSION["id"];
+    $resonse -> username = $_SESSION["username"];
+    $resonse -> teamName = $_SESSION["teamName"];
     echo json_encode($response);
-    echo "In a session";
     exit;
 }
 // Processing form data when form is submitted
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
 
     // Prepare a select statement
-    $sql = "SELECT id, email, password FROM users WHERE email = :email";
+    $sql = "SELECT * FROM User WHERE email = :email";
     
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
@@ -46,21 +47,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             // Check if username exists, if yes then verify password
             if($stmt->rowCount() == 1){
                 if($row = $stmt->fetch()){
-                    $id = $row["id"];
-                    $username = $row["email"];
+                    $id = $row["userId"];
+                    $username = $row["username"];
                     $hashed_password = $row["password"];
                     if(password_verify($password, $hashed_password)){
                         // Password is correct, so start a new session
                         // session_start();
                         
+                        // Get team data for loged in user
+                        $query = "SELECT * FROM UserTeam LEFT JOIN Team ON UserTeam.teamId=Team.teamId WHERE userId = :userId AND UserTeam.status = 'member'";
+                        $stmt = $pdo->prepare($query);
+                        $stmt -> bindParam(":userId", $param_id, PDO::PARAM_STR);
+
+                        //Set parameters
+                        $param_id  = $id;
+
+                        // Execute query
+                        $stmt -> execute();
+                        $row = $stmt -> fetch();
+
+                        // Check if the user has a team where the status is member 
+                        if($stmt -> rowCount() > 0){
+                            $teamName = $row["teamName"];
+
+                        } else {
+                            $teamName = null;
+                        }
+
                         // Store data in session variables
                         $_SESSION["loggedin"] = true;
                         $_SESSION["id"] = $id;
-                        $_SESSION["email"] = $email;  
+                        $_SESSION["username"] = $username;
+                        $_SESSION["teamName"] = $teamName;
+                          
                         
                         //Return login token
                         $response -> loggedIn = true;
                         $response -> userId = $id;
+                        $response -> teamName = $teamName;
                         
                         //Create a cookie for the logged in user
                         $cookieName = "user";
@@ -70,6 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         $cookieValue = json_encode($cookie);
                         setCookie($cookieName, $cookieValue, time() + (86400 * 14), "/");
                         
+                        //Send response
+                        // echo json_encode($response);
+
                     } else {
                         // Wrong password
                         $response -> errors = ["password"];
