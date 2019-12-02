@@ -4,6 +4,15 @@ $(document).ready(() => {
     checkUser();
 });
 
+//Variables
+
+// Token that holds the an object for the logged in user, otherwise null.
+let loginToken;
+
+let timeLeft = 14644
+let menySwich = 0
+
+
 function checkUser() {
     let menuActions;
     //--> för test
@@ -12,7 +21,7 @@ function checkUser() {
         menuActions = ["Team", "Arkiv", "Logga ut"]
         updatePlayer(player);
         console.log(getCookie("user"));
-        loggedIn = true
+        // loggedIn = true
     } else {
         // Skapa menyn för icke inloggade användare
         menuActions = ["Login", "Registrering"];
@@ -133,12 +142,7 @@ function getCookie(cname) {
     return null;
 }
 
-//Variables
 
-// s
-let timeLeft = 14644
-let menySwich = 0
-let loggedIn
 
 //Events
 $(".circuit img").click(() => {
@@ -178,6 +182,9 @@ const logOut = () => {
             //Display it
             $("#menyContent").css({ display: "block" })
             $("#messageContainer").css({ display: "block" })
+
+            // Empty loginToken
+            loginToken = null;
 
             //Update menu
             // getBackToHomePage();

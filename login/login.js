@@ -1,6 +1,5 @@
 $(document).ready(() => {
 
-    console.log("In login.js")
     let request;
 
     //Add listener for go to rgister link
@@ -51,7 +50,10 @@ $(document).ready(() => {
 
                         // If loggin was successful
                         if (parsedRes.loggedIn) {
-                            // Hide loggin form
+                            // Set the global variable user to the respo
+                            loginToken = parsedRes;
+                            console.log(loginToken)
+                                // Hide loggin form
                             getBackToHomePage();
                             checkUser();
                         } else if (parsedRes.errors) {
