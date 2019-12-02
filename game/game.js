@@ -93,8 +93,8 @@ function createTest(id, content) {
       prepareAnswer(input.val())
 
       console.log(player.teamId)
-
-      $.get('../PHP/submitAnswer.php', {answer: prepareAnswer(input.val()), solution: textarea.val(), teamId: player.teamId, testId: id})
+//db and request names have been changed
+      $.get('../PHP/submitAnswer.php', {submission: prepareAnswer(input.val()), solution: textarea.val(), teamId: player.teamId, puzzleId: id})
       .done((data)=>{
         console.table(data)
         let div
@@ -107,7 +107,7 @@ function createTest(id, content) {
             appendTo: form,
           })
 
-          typeAnimation("Ert svar: " + answer, div)
+          typeAnimation("Ert svar: " + submission, div)
           
         } else {
           form.html("")
@@ -119,7 +119,7 @@ function createTest(id, content) {
           
           data = JSON.parse(data)
         
-          typeAnimation("Ert lag har redan svarat. Ert svar är: " + data[0].answer, div)
+          typeAnimation("Ert lag har redan svarat. Ert svar är: " + data[0].submission, div)
         }
     })
     } else {
@@ -128,13 +128,14 @@ function createTest(id, content) {
   })
 }
 
+//db och request changed for the new database.
 function getTests() {
     $.get("../PHP/getTests.php")
         .done((data) => {
             data = JSON.parse(data)
 
             data.forEach((obj) => {
-                createTest(obj.testId, obj.content)
+                createTest(obj.puzzleId, obj.contentHTML)
             })
             updateSubmissions(testIdArray)
 

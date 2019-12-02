@@ -17,7 +17,7 @@ function checkUser() {
         loggedIn = true
     } else {
         // Skapa menyn för icke inloggade användare
-        menuActions = ["Login"]
+        menuActions = ["Login", "register"]
         loggedIn = false
 
     } 
