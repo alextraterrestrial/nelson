@@ -50,16 +50,16 @@ $(document).ready(() => {
                         console.log(parsedRes)
 
                         // If loggin was successful
-                        if (jsonRes.loggedIn) {
+                        if (parsedRes.loggedIn) {
                             // Hide loggin form
                             getBackToHomePage();
                             checkUser();
-                        } else if (jsonRes.errors) {
+                        } else if (parsedRes.errors) {
                             // $("#loginPassword").attr("aria-invalid", "true");
                             //Show error message    
                             $("#loginErrorMessage").html("Fel mailadress eller lösenord")
 
-                            console.log(jsonRes.errors);
+                            console.log(parsedRes.errors);
                         }
                     })
                     .fail(() => {
