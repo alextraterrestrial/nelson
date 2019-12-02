@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             exit;  
         }
     } else{
-        echo "Ereroeroe";
+        echo "error";
     }
         
     // Close statement
