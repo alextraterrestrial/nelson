@@ -1,5 +1,6 @@
 $('document').ready(function() {
 
+    let request;
     $("#goToLogin").click(() => {
         //Hide login
         getBackToHomePage();
@@ -17,7 +18,7 @@ $('document').ready(function() {
                 email: true,
                 remote: "../login/checkEmail.php"
             },
-            userName: {
+            username: {
                 required: true,
                 remote: "../login/checkEmail.php",
                 minlength: 4
@@ -29,7 +30,7 @@ $('document').ready(function() {
             }
         },
         messages: {
-            userName: {
+            username: {
                 required: "Vänligen ange ett användarnamn",
                 remote: "Användarnamnet är upptaget",
                 minlength: "Användarnamnet måste vara minst 4 tecken långt"
@@ -45,6 +46,41 @@ $('document').ready(function() {
                 required: "Vänligen bekräfta ditt lösenord"
             }
         },
+        submitHandler: form => {
+            console.log("Submit handled")
+            let email = form.email.value;
+            let username = form.username.value;
+            let password = form.password.value;
+            let passwordConfirm = form.confirmPassword.value;
+            let formData = { email: email, username: username, password: password, passwordConfirm: passwordConfirm };
+            formData = JSON.stringify(formData);
+            console.log(formData);
+
+            request = $.ajax({
+                    url: "../login/signup.php",
+                    type: "POST",
+                    data: formData,
+                    encode: true,
+
+                    // beforeSend: function() {
+                    //     //Clear error message
+                    //     $("#loginErrorMessage").empty();
+                    //     //Show spinner
+                    //     $('#loginSpinner').show();
+                    // },
+                })
+                .done((res) => {
+                    console.log("Data sent to register.php")
+
+                    getBackToHomePage();
+                    checkUser();
+                })
+                .fail((res) => {
+                    console.log("Fail!")
+                    console.log(res);
+                })
+        }
+
 
     })
 

@@ -2,25 +2,32 @@
 // Kontrollera om användaren är inloggad genom att hämta cookie
 $(document).ready(() => {
     checkUser();
-
-
 });
+
+//Variables
+
+// Token that holds the an object for the logged in user, otherwise null.
+let loginToken = null;
+
+let timeLeft = 14644
+let menySwich = 0
+
 
 function checkUser() {
     let menuActions;
-    //--> för test
+
     if (getCookie("user")) {
+        loginToken = getCookie("user");
+
         // Skapa menyn för inloggade användare
         menuActions = ["Team", "Arkiv", "Logga ut"]
-        updatePlayer(player);
-        console.log(getCookie("user"));
-        loggedIn = true
+
     } else {
         // Skapa menyn för icke inloggade användare
-        menuActions = ["Login", "register"]
-        loggedIn = false
-
-    } 
+        menuActions = ["Login", "Registrering"];
+        loggedIn = false;
+    }
+    updatePlayer(loginToken);
     createMeny(menuActions)
 }
 
@@ -54,22 +61,33 @@ function displayHeader() {
 function getBackToHomePage() {
     $(".menyItem").css({ display: "none" })
     $("#menyContent").css({ display: "none" })
+
+    //Remove any messageContainer
+    $("#messageContainer").remove();
 }
 
 function updatePlayer(obj) {
-    //kolla session/ cookies efter id och behöver i så fall inte ges som ett argument?
-    const userObject = getCookie("user");
+    if (obj != null) {
 
-    $(".playerName").html(obj.name)
+        $(".playerName").html(obj.username)
 
-    if (obj.teamName) {
-        $(".teamName").html(obj.teamName)
+        if (obj.teamName) {
+            $(".teamName").html(obj.teamName)
+        } else {
+            console.log(obj.teamName)
+        }
+
+        $(".currentPlayer div:last-child").show();
+        $(".playerPoints").html(obj.score)
     } else {
-        console.log(obj.teamName)
+
+        // Remove 
+        $(".playerName").html("");
+        $(".teamName").html("");
+        $(".playerPoints").html("");
+        $(".currentPlayer div:last-child").hide();
     }
 
-
-    $(".playerPoints").html(obj.points)
 
 }
 
@@ -121,24 +139,25 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
+
     for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
+            let pattern = /[+]/g;
+            c = c.replace(pattern, " ");
             c = c.substring(1);
+
+
         }
+
         if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+            return JSON.parse(c.substring(name.length, c.length));
         }
     }
     return null;
 }
 
-//Variables
 
-// s
-let timeLeft = 14644
-let menySwich = 0
-let loggedIn
 
 //Events
 $(".circuit img").click(() => {
@@ -170,18 +189,18 @@ const logOut = () => {
             }
         })
         .done(res => {
-            //Hide spinner
-
-            //Show logout message
-            const messageContainer = document.createElement(div);
+            // Empty loginToken
+            loginToken = null;
 
 
+            //Create logout message
+            $("<div id='messageContainer' class='menyItem'>Du är nu utloggad</div>").appendTo("#menyContent");
 
-            $("<p id='test'>My <em>new</em> text</p>").appendTo("body");
-
+            //Display it
+            $("#menyContent").css({ display: "block" })
+            $("#messageContainer").css({ display: "block" })
 
             //Update menu
-            getBackToHomePage();
             checkUser();
         })
 }

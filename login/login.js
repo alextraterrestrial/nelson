@@ -1,6 +1,5 @@
 $(document).ready(() => {
 
-    console.log("In login.js")
     let request;
 
     //Add listener for go to rgister link
@@ -46,21 +45,23 @@ $(document).ready(() => {
                     .done((res) => {
                         // Hide spinner
                         $('#loginSpinner').hide();
-                        const jsonRes = JSON.parse(res);
-                        console.log(res);
-                        console.log(jsonRes)
+                        const parsedRes = JSON.parse(res);
+                        console.log(parsedRes)
 
                         // If loggin was successful
-                        if (jsonRes.loggedIn) {
-                            // Hide loggin form
+                        if (parsedRes.loggedIn) {
+                            // Set the global variable user to the respo
+                            loginToken = parsedRes;
+                            console.log(loginToken)
+                                // Hide loggin form
                             getBackToHomePage();
                             checkUser();
-                        } else if (jsonRes.errors) {
+                        } else if (parsedRes.errors) {
                             // $("#loginPassword").attr("aria-invalid", "true");
                             //Show error message    
                             $("#loginErrorMessage").html("Fel mailadress eller lösenord")
 
-                            console.log(jsonRes.errors);
+                            console.log(parsedRes.errors);
                         }
                     })
                     .fail(() => {
