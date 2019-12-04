@@ -69,9 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         // Check if the user has a team where the status is member 
                         if($stmt -> rowCount() > 0){
                             $teamName = $row["teamName"];
-
+                            $teamId = $row["teamId"];
                         } else {
                             $teamName = null;
+                            $teamId = null;
                         }
 
                         // Store data in session variables
@@ -85,13 +86,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         $response -> loggedIn = true;
                         $response -> userId = $id;
                         $response -> teamName = $teamName;
+                        $response -> teamId = $teamId;
+                        $response -> username = $username;
                   
                         
                         //Create a cookie for the logged in user
                         $cookieName = "user";
                         $cookie = new stdClass();
+                        $cookie -> loggedIn = true;
                         $cookie -> userId = $id;
-                        $cookie -> logedIn = true;
+                        $cookie -> teamName = $teamName;
+                        $cookie -> teamId = $teamId;
+                        $cookie -> username = $username;
+
                         $cookieValue = json_encode($cookie);
                         setCookie($cookieName, $cookieValue, time() + (86400 * 14), "/");
                         
