@@ -92,9 +92,9 @@ function createTest(id, content) {
         } else if (input.val()) {
             prepareAnswer(input.val())
 
-            console.log(player.teamId)
+            console.log(loginToken)
                 //db and request names have been changed
-            $.get('../PHP/submitAnswer.php', { submission: prepareAnswer(input.val()), solution: textarea.val(), teamId: player.teamId, puzzleId: id })
+            $.get('../PHP/submitAnswer.php', { submission: prepareAnswer(input.val()), solution: textarea.val(), teamId: loginToken.teamId, puzzleId: id })
                 .done((data) => {
                     console.table(data)
                     let div
@@ -107,7 +107,7 @@ function createTest(id, content) {
                             appendTo: form,
                         })
 
-                        typeAnimation("Ert svar: " + submission, div)
+                        typeAnimation("Ert svar: " + data[0].submission, div)
 
                     } else {
                         form.html("")
@@ -155,7 +155,7 @@ function updateSubmissions(arr)  {
         $.get('../PHP/getSubmissions.php', { puzzleId: item })
             .done((data) => {
                 data = JSON.parse(data)
-
+                console.log(data)
                 $("#testSubmission" + item + " span").html(data[0].submissions)
             })
             .fail(error)

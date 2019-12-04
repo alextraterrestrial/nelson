@@ -25,7 +25,6 @@ function checkUser() {
     } else {
         // Skapa menyn för icke inloggade användare
         menuActions = ["Login", "Registrering"];
-        loggedIn = false;
     }
     updatePlayer(loginToken);
     createMeny(menuActions)
@@ -146,7 +145,6 @@ function getCookie(cname) {
             let pattern = /[+]/g;
             c = c.replace(pattern, " ");
             c = c.substring(1);
-
 
         }
 

@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo json_encode("Oops! Something went wrong. Please try again later.");   
         exit; 
     } elseif(strlen(trim($password)) < 6){
-        echo json_encode("Oops! Something went wrong. Please try again later.");
+        echo json_encode("Du behöver 6 tecken");
         exit; 
     }
     
