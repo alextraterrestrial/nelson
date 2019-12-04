@@ -152,7 +152,7 @@ function getTests() {
 
 function updateSubmissions(arr)  {
     arr.forEach((item) => {
-        $.get('../PHP/getSubmissions.php', { testId: item })
+        $.get('../PHP/getSubmissions.php', { puzzleId: item })
             .done((data) => {
                 data = JSON.parse(data)
 
