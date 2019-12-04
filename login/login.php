@@ -85,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         $response -> loggedIn = true;
                         $response -> userId = $id;
                         $response -> teamName = $teamName;
+                  
                         
                         //Create a cookie for the logged in user
                         $cookieName = "user";

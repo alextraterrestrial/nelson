@@ -72,6 +72,7 @@ $('document').ready(function() {
                 .done((res) => {
                     console.log("Data sent to register.php")
                     console.log(res);
+                    getBackToHomePage();
                 })
                 .fail((res) => {
                     console.log("Fail!")
