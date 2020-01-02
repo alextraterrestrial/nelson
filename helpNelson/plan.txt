@@ -9,7 +9,6 @@ möte 17/9 kl 9-13
 
 
 
-
 -------------Plan--------------------
 //struktur
 - sql-filer ligger i php mappen
