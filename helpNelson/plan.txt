@@ -1,0 +1,17 @@
+-------------Att göra-----------------
+första målet:
+-fixa login, registrering och cookies
+-fixa loginTokan objekt och constructer (samt dess metoder som vi kan göra nu)
+-lägga upp på binero och kolla så det vi gjort fungerar.
+möte 17/9 kl 9-13
+
+
+
+
+
+
+-------------Plan--------------------
+//struktur
+- sql-filer ligger i php mappen
+- variables.js ligger direkt
+- 
