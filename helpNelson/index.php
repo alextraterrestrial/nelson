@@ -59,8 +59,11 @@
             </section>
         <div>
 
-        <!-- <script src="jquery-3.4.1.min.js"></script>
-        <script src="../login/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="jquery-3.4.1.min.js"></script>
+        <script src="js/login.js"></script>
+        <script src="js/controller.js"></script>
+
+        <!-- <script src="../login/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="testContent.js"></script>
         <script src="auxFunctions.js"></script>
         <script src="header.js"></script>
