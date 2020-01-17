@@ -1,3 +1,5 @@
+import User from 'user.js';
+
 $(document).ready(() => {
 
     let request;
@@ -70,6 +72,4 @@ $(document).ready(() => {
             }
         })
         //Logout function 
-
-
 })
