@@ -70,9 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($stmt -> rowCount() > 0){
                             $teamName = $row["teamName"];
                             $teamId = $row["teamId"];
+                            $password = $row["password"];
                         } else {
                             $teamName = null;
                             $teamId = null;
+                            $password = null;
                         }
 
                         // Store data in session variables
@@ -80,24 +82,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION["id"] = $id;
                         $_SESSION["username"] = $username;
                         $_SESSION["teamName"] = $teamName;
+
                           
                         
                         //Return login token
-                        $response -> loggedIn = true;
+                        // $response -> loggedIn = true;
                         $response -> userId = $id;
-                        $response -> teamName = $teamName;
-                        $response -> teamId = $teamId;
-                        $response -> username = $username;
+                        // $response -> teamName = $teamName;
+                        // $response -> teamId = $teamId;
+                        // $response -> username = $username;
+                        $response -> password = $password;
                   
                         
                         //Create a cookie for the logged in user
                         $cookieName = "user";
                         $cookie = new stdClass();
-                        $cookie -> loggedIn = true;
+                        // $cookie -> loggedIn = true;
                         $cookie -> userId = $id;
-                        $cookie -> teamName = $teamName;
-                        $cookie -> teamId = $teamId;
-                        $cookie -> username = $username;
+                        // $cookie -> teamName = $teamName;
+                        // $cookie -> teamId = $teamId;
+                        // $cookie -> username = $username;
+                        $cookie -> password = $password;
 
                         $cookieValue = json_encode($cookie);
                         setCookie($cookieName, $cookieValue, time() + (86400 * 14), "/");
