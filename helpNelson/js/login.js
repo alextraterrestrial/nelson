@@ -40,6 +40,7 @@ $(document).ready(() => {
                         beforeSend: function() {
                             //Clear error message
                             $("#loginErrorMessage").empty();
+
                             //Show spinner
                             $('#loginSpinner').show();
                         },
@@ -53,11 +54,18 @@ $(document).ready(() => {
                         // If loggin was successful
                         if (parsedRes.loggedIn) {
                             // Set the global variable user to the respo
-                            loginToken = parsedRes;
+                            let id = parsedRes.userId;
+                            let password = paresRes.password;
+
+                            createUser(id, password);
+                            // loginToken = parsedRes;
+
                             console.log(loginToken)
-                                // Hide loggin form
-                            getBackToHomePage();
-                            checkUser();
+
+                            // Hide loggin form
+                            // getBackToHomePage();
+                            // checkUser();
+
                         } else if (parsedRes.errors) {
                             // $("#loginPassword").attr("aria-invalid", "true");
                             //Show error message    
@@ -73,3 +81,24 @@ $(document).ready(() => {
         })
         //Logout function 
 })
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            let pattern = /[+]/g;
+            c = c.replace(pattern, " ");
+            c = c.substring(1);
+
+        }
+
+        if (c.indexOf(name) == 0) {
+            return JSON.parse(c.substring(name.length, c.length));
+        }
+    }
+    return null;
+}
