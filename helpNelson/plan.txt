@@ -12,5 +12,5 @@ möte 17/9 kl 9-13
 -------------Plan--------------------
 //struktur
 - sql-filer ligger i php mappen
-- variables.js ligger direkt
+- variables.js ligger direkt i js
 - 
