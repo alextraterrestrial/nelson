@@ -17,7 +17,7 @@ function init() {
 }
 
 function checkCookie() {
-    var name = cname + "=";
+    var name = "user=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
     var cookie;

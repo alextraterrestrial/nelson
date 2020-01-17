@@ -3,6 +3,7 @@ function createUser(id, password) {
   .done((data) => {
     data = JSON.parse(data)
     console.log(data)
+    loginToken = new User(data)
   })
   .fail(() => {
     console.log('FAIL')
