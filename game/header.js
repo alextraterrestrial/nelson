@@ -86,8 +86,6 @@ function updatePlayer(obj) {
         $(".playerPoints").html("");
         $(".currentPlayer div:last-child").hide();
     }
-
-
 }
 
 function countDown(time, endAction) {
