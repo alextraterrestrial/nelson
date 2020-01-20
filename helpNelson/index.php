@@ -59,18 +59,20 @@
             </section>
         <div>
 
-        <script src="jquery-3.4.1.min.js"></script>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="js/login.js"></script>
+        <script src="js/signup.js"></script>
         <script src="js/controller.js"></script>
-
-        <!-- <script src="../login/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="testContent.js"></script>
+        <script src="js/userClass.js"></script>
+        <script src="js/userFunctionality.js"></script> 
+        
+        <!-- <script src="testContent.js"></script>
         <script src="auxFunctions.js"></script>
         <script src="header.js"></script>
         <script src="../login/login.js"></script>  
         <script src="game.js"></script>
-        <script src="../team/team.js"></script>  -->
-        <script src="js/userClass.js"></script>
-        <script src="js/userFunctionality.js"></script>
+        <script src="../team/team.js"></script>
+    -->
     </body>
   </html>

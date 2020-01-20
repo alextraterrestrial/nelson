@@ -3,7 +3,7 @@
 ini_set('display_errors', 'on');
 
 // Include config file
-require_once "../login/config.php";
+require_once "config.php";
 
 // Initialize the session
 session_start();
