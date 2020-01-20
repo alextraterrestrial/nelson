@@ -3,7 +3,7 @@
 
 // Include config file
 echo json_encode("testing");
-require_once "config.php";
+// require_once "config.php";
 
 // Processing form data when form is submitted
 $formData = file_get_contents('php://input');
