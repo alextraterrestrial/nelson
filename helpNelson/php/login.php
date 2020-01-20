@@ -133,6 +133,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Return the response
     echo json_encode($response);
+} else{
+    if($_COOKIE['user']){
+        $cookie = $_COOKIE['user'];
+
+        
+    }
 }
 ?>
  

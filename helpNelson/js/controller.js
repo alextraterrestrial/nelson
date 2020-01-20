@@ -35,6 +35,9 @@ function checkCookie() {
             cookie = JSON.parse(c.substring(name.length, c.length));
 
             createUser(cookie.id, cookie.password);
+
+            // Send login request to login.php
+
             return JSON.parse(c.substring(name.length, c.length));
         }
     }
