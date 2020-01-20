@@ -1,5 +1,3 @@
-import User from 'user.js';
-
 $(document).ready(() => {
 
     let request;
@@ -32,7 +30,7 @@ $(document).ready(() => {
                 formData = JSON.stringify(formData);
 
                 request = $.ajax({
-                        url: "../login/login.php",
+                        url: "../php/login.php",
                         type: "POST",
                         data: formData,
                         encode: true,

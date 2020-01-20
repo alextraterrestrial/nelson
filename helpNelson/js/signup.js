@@ -57,7 +57,7 @@ $('document').ready(function() {
             console.log(formData);
 
             request = $.ajax({
-                    url: "../login/signup.php",
+                    url: "../php/signup.php",
                     type: "POST",
                     data: formData,
                     encode: true,
@@ -72,8 +72,8 @@ $('document').ready(function() {
                 .done((res) => {
                     console.log("Data sent to register.php")
                     console.log(res);
-                    getBackToHomePage();
-                    checkUser();
+                    // getBackToHomePage();
+                    // checkUser();
                 })
                 .fail((res) => {
                     console.log("Fail!")
