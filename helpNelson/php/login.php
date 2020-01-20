@@ -21,14 +21,24 @@ if(isset($_SESSION["loggedin"])){
     exit;
 }
 // Processing form data when form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
 
-    //Get form data
-    $formData = file_get_contents('php://input');
-    $formObject = json_decode($formData);
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        //Get form data
+        $formData = file_get_contents('php://input');
+        $formObject = json_decode($formData);
+        
+        $email = $formObject -> email;
+        $password = $formObject -> password; 
+
+    } else if($_COOKIE['user']){
+        $cookie = $_COOKIE['user'];
+        $cookie = json_decode($cookie);
+
+        $id = $cookie -> userId;
+        $password = $cookie -> password; 
+    }
     
-    $email = $formObject -> email;
-    $password = $formObject -> password;    
     
     // Validate credentials
 
@@ -49,59 +59,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($row = $stmt->fetch()){
                     $id = $row["userId"];
                     $username = $row["username"];
+            
                     $hashed_password = $row["password"];
                     if(password_verify($password, $hashed_password)){
                         // Password is correct, so start a new session
-                        // session_start();
                         
                         // Get team data for loged in user
-                        $query = "SELECT * FROM UserTeam LEFT JOIN Team ON UserTeam.teamId=Team.teamId WHERE userId = :userId AND UserTeam.status = 'member'";
-                        $stmt = $pdo->prepare($query);
-                        $stmt -> bindParam(":userId", $param_id, PDO::PARAM_STR);
+                        // $query = "SELECT * FROM UserTeam LEFT JOIN Team ON UserTeam.teamId=Team.teamId WHERE userId = :userId AND UserTeam.status = 'member'";
+                        // $stmt = $pdo->prepare($query);
+                        // $stmt -> bindParam(":userId", $param_id, PDO::PARAM_STR);
 
                         //Set parameters
-                        $param_id  = $id;
+                        // $param_id  = $id;
 
                         // Execute query
-                        $stmt -> execute();
-                        $row = $stmt -> fetch();
+                        // $stmt -> execute();
+                        // $row = $stmt -> fetch();
 
                         // Check if the user has a team where the status is member 
-                        if($stmt -> rowCount() > 0){
-                            $teamName = $row["teamName"];
-                            $teamId = $row["teamId"];
-                            $password = $row["password"];
-                        } else {
-                            $teamName = null;
-                            $teamId = null;
-                            $password = null;
-                        }
+                        // if($stmt -> rowCount() > 0){
+                        //     $teamName = $row["teamName"];
+                        //     $teamId = $row["teamId"];
+                        //     $password = $row["password"];
+                        // } else {
+                        //     $teamName = null;
+                        //     $teamId = null;
+                        //     $password = null;
+                        // }
 
                         // Store data in session variables
-                        $_SESSION["loggedin"] = true;
-                        $_SESSION["id"] = $id;
-                        $_SESSION["username"] = $username;
-                        $_SESSION["teamName"] = $teamName;
+                        // $_SESSION["loggedin"] = true;
+                        // $_SESSION["id"] = $id;
+                        // $_SESSION["username"] = $username;
+                        // $_SESSION["teamName"] = $teamName;
 
-                          
-                        
                         //Return login token
                         // $response -> loggedIn = true;
-                        $response -> userId = $id;
+                        // $response -> userId = $id;
                         // $response -> teamName = $teamName;
                         // $response -> teamId = $teamId;
-                        // $response -> username = $username;
+                        $response -> id = $userId;
                         $response -> password = $password;
-                  
-                        
+                            
                         //Create a cookie for the logged in user
                         $cookieName = "user";
                         $cookie = new stdClass();
-                        // $cookie -> loggedIn = true;
-                        $cookie -> userId = $id;
-                        // $cookie -> teamName = $teamName;
-                        // $cookie -> teamId = $teamId;
-                        // $cookie -> username = $username;
+                        $cookie -> email = $email;
+                        $cookie -> username = $username;
                         $cookie -> password = $password;
 
                         $cookieValue = json_encode($cookie);
@@ -109,6 +113,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                         
                         //Send response
                         // echo json_encode($response);
+
+                    } else if($_SERVER["REQUEST_METHOD"] == "POST"){
+                        // Check credentials with hashed password
+                        if($password == $hashed_password){
+                            $response -> username = $username;
+                            $response -> password = $password;
+                        }
+                        
 
                     } else {
                         // Wrong password
@@ -133,17 +145,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Return the response
     echo json_encode($response);
+    
+// If request is NOT a POST request
 } else{
-    if($_COOKIE['user']){
-        $cookie = $_COOKIE['user'];
+    // if($_COOKIE['user']){
+    //     $cookie = $_COOKIE['user'];
+    //     $cookie = json_decode($cookie);
 
-        
-    }
+    //     // Validate user credentials
+    // }
+    echo "Error";
 }
 ?>
  
-
-
 
 
 
