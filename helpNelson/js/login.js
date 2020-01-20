@@ -30,7 +30,7 @@ $(document).ready(() => {
                 formData = JSON.stringify(formData);
 
                 request = $.ajax({
-                        url: "../php/login.php",
+                        url: "php/login.php",
                         type: "POST",
                         data: formData,
                         encode: true,

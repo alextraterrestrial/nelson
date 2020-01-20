@@ -3,7 +3,7 @@
 ini_set('display_errors', 'on');
 
 // Include config file
-require_once "connectToDB.php";
+require_once "../connectToDB.php";
 
 // Initialize the session
 session_start();

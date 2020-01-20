@@ -16,11 +16,11 @@ $('document').ready(function() {
             email: {
                 required: true,
                 email: true,
-                remote: "../login/checkEmail.php"
+                remote: "php/checkEmail.php"
             },
             username: {
                 required: true,
-                remote: "../login/checkEmail.php",
+                remote: "php/checkEmail.php",
                 minlength: 4
             },
             password: "required",
@@ -57,7 +57,7 @@ $('document').ready(function() {
             console.log(formData);
 
             request = $.ajax({
-                    url: "../php/signup.php",
+                    url: "php/signup.php",
                     type: "POST",
                     data: formData,
                     encode: true,
