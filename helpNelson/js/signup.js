@@ -72,6 +72,8 @@ $('document').ready(function() {
                 .done((res) => {
                     console.log("Data sent to register.php")
                     console.log(res);
+                    createUser(res.id, res.password);
+                    init();
                     // getBackToHomePage();
                     // checkUser();
 
