@@ -5,7 +5,7 @@ $(document).ready(() => {
     //Add listener for go to rgister link
     $("#goToRegister").click(() => {
         //Hide login
-        getBackToHomePage();
+        // getBackToHomePage();
 
         //Show register
         $("#menyContent").css({ display: "block" })
@@ -30,7 +30,7 @@ $(document).ready(() => {
                 formData = JSON.stringify(formData);
 
                 request = $.ajax({
-                        url: "../php/login.php",
+                        url: "php/login.php",
                         type: "POST",
                         data: formData,
                         encode: true,
@@ -50,12 +50,13 @@ $(document).ready(() => {
                         console.log(parsedRes)
 
                         // If loggin was successful
-                        if (parsedRes.loggedIn) {
+                        if (!parsedRes.errors) {
                             // Set the global variable user to the respo
                             let id = parsedRes.userId;
                             let password = paresRes.password;
 
                             createUser(id, password);
+                            init();
                             // loginToken = parsedRes;
 
                             console.log(loginToken)
@@ -80,23 +81,27 @@ $(document).ready(() => {
         //Logout function 
 })
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
+// function login(email, password) {
 
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            let pattern = /[+]/g;
-            c = c.replace(pattern, " ");
-            c = c.substring(1);
+// }
 
-        }
+// function getCookie(cname) {
+//     var name = cname + "=";
+//     var decodedCookie = decodeURIComponent(document.cookie);
+//     var ca = decodedCookie.split(';');
 
-        if (c.indexOf(name) == 0) {
-            return JSON.parse(c.substring(name.length, c.length));
-        }
-    }
-    return null;
-}
+//     for (var i = 0; i < ca.length; i++) {
+//         var c = ca[i];
+//         while (c.charAt(0) == ' ') {
+//             let pattern = /[+]/g;
+//             c = c.replace(pattern, " ");
+//             c = c.substring(1);
+
+//         }
+
+//         if (c.indexOf(name) == 0) {
+//             return JSON.parse(c.substring(name.length, c.length));
+//         }
+//     }
+//     return null;
+// }

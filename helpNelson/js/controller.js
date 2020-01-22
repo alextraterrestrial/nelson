@@ -6,10 +6,20 @@ $(document).ready(() => {
 })
 
 
-
 function init() {
 
-    checkCookie()
+    //Check if user has been logged in recently 
+    if (loginToken) {
+
+
+    } else if (checkCookie()) {
+        console.log(checkCookie())
+            //Validate credentials against DB
+
+    } else {
+
+    }
+
 
     // Display menu and user data
 
@@ -34,9 +44,15 @@ function checkCookie() {
         if (c.indexOf(name) == 0) {
             cookie = JSON.parse(c.substring(name.length, c.length));
 
-            createUser(cookie.id, cookie.password);
-            return JSON.parse(c.substring(name.length, c.length));
+            // Validate credentials against Db
+            request = $.ajax({
+                    url: "php/login.php",
+                    type: "POST",
+                    encode: true,
+                })
+                .done((res) => {}
+                    return JSON.parse(c.substring(name.length, c.length));
+                }
         }
+        return null;
     }
-    return null;
-}
