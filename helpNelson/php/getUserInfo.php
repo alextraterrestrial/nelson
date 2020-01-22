@@ -12,7 +12,7 @@ $sql = $pdo->prepare($query);
 $sql->bindParam(1, $_GET['id']);
 $sql->bindParam(2, $_GET['password']);
 $sql->execute();
-$answer = $sql->fetch();
+$answer = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 if ($answer) {
   
@@ -37,7 +37,7 @@ if ($answer) {
   $sql->bindParam(1, $_GET['id']);
   $sql->bindParam(2, $_GET['password']);
   $sql->execute();
-  $answer = $sql->fetch();
+  $answer = $sql->fetchAll(PDO::FETCH_ASSOC);
 
   $answer = json_encode($answer);
   echo $answer;
