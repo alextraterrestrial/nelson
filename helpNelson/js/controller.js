@@ -1,6 +1,5 @@
+let loginToken = null;
 $(document).ready(() => {
-    let loginToken;
-
     init();
 
 })
@@ -10,23 +9,22 @@ function init() {
 
     //Check if user has been logged in recently 
     if (loginToken) {
+        console.log(loginToken)
 
+    } else if (checkCookie() != null) {
+        console.log("Checking cookie");
+        checkCookie();
 
-    } else if (checkCookie()) {
-        console.log(checkCookie())
-            //Validate credentials against DB
-
-    } else {
+        //Validate credentials against DB
 
     }
-
-
     // Display menu and user data
 
     //Create menu
 }
 
 function checkCookie() {
+    console.log("Checking cookie");
     var name = "user=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -38,10 +36,10 @@ function checkCookie() {
             let pattern = /[+]/g;
             c = c.replace(pattern, " ");
             c = c.substring(1);
-
         }
 
         if (c.indexOf(name) == 0) {
+            console.log("In checkCookie if...")
             cookie = JSON.parse(c.substring(name.length, c.length));
 
             // Validate credentials against Db
@@ -50,9 +48,11 @@ function checkCookie() {
                     type: "POST",
                     encode: true,
                 })
-                .done((res) => {}
-                    return JSON.parse(c.substring(name.length, c.length));
-                }
+                .done((res) => {
+                    console.log(JSON.parse(res));
+                    return JSON.parse(res);
+                })
         }
-        return null;
     }
+    return null;
+}

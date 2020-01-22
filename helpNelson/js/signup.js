@@ -77,7 +77,6 @@ $('document').ready(function() {
                     // getBackToHomePage();
                     // checkUser();
 
-
                 })
                 .fail((res) => {
                     console.log("Fail!")

@@ -3,7 +3,7 @@
 ini_set('display_errors', 'on');
 
 // Include config file
-require_once "../connectToDB.php";
+require_once "connectToDB.php";
 
 // Initialize the session
 session_start();
@@ -13,7 +13,7 @@ $response = new stdClass();
 
 //If logeed in session already exists
 if(isset($_SESSION["userId"])){
-    $response -> id = $_SESSION["userId"];
+    $response -> userId = $_SESSION["userId"];
     $response -> password = $_SESSION["password"];
     echo json_encode($response);
     exit;
@@ -83,13 +83,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             $_SESSION["password"] = $hashed_password;
                             
                             // Create response
-                            $response -> id = $userId;
+                            $response -> userId = $userId;
                             $response -> password = $password;
                                 
                             //Create a cookie for the logged in user
                             $cookieName = "user";
                             $cookie = new stdClass();
-                            $cookie -> id = $id;
+                            $cookie -> userId = $id;
                             $cookie -> password = $hashed_password;
     
                             $cookieValue = json_encode($cookie);
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             $_SESSION["password"] = $hashed_password;
 
                             // Create response
-                            $response -> id = $userId;
+                            $response -> userId = $id;
                             $response -> password = $password;
                         } else{
                             $response -> errors = "Wrong password";
