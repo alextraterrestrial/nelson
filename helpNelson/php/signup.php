@@ -2,7 +2,7 @@
 
 
 // Include config file
-require_once "../connectToDB.php";
+require_once "connectToDB.php";
 
 
 

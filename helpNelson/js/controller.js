@@ -1,5 +1,6 @@
+let loginToken = null;
 $(document).ready(() => {
-    let loginToken;
+
 
     init();
 
@@ -50,9 +51,10 @@ function checkCookie() {
                     type: "POST",
                     encode: true,
                 })
-                .done((res) => {}
+                .done((res) => {
                     return JSON.parse(c.substring(name.length, c.length));
-                }
+                })
         }
         return null;
     }
+}

@@ -47,14 +47,15 @@ $(document).ready(() => {
                         // Hide spinner
                         $('#loginSpinner').hide();
                         const parsedRes = JSON.parse(res);
-                        console.log(parsedRes)
+                        console.log(parsedRes);
 
                         // If loggin was successful
                         if (!parsedRes.errors) {
                             // Set the global variable user to the respo
                             let id = parsedRes.userId;
-                            let password = paresRes.password;
+                            let password = parsedRes.password;
 
+                            console.log(id + " " + password)
                             createUser(id, password);
                             init();
                             // loginToken = parsedRes;
