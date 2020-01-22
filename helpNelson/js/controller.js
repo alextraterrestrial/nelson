@@ -56,3 +56,9 @@ function checkCookie() {
     }
     return null;
 }
+/** 
+ * Clears cookie and logs out user
+ */
+function logOut() {
+
+}
