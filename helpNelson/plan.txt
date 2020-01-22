@@ -13,6 +13,20 @@ html/css struktur
 och dela upp arbete 
 
 
+Need to have
+meny /header (visa användar info?)
+html struktur + click event
+team function
+spel 1 (class)
+logg page
+
+bra mobilversion
+function för att ta bort användare
+function för att ändra lösenord och användar namn
+
+
+
+
 -------------Plan--------------------
 //struktur
 - sql-filer ligger i php mappen
