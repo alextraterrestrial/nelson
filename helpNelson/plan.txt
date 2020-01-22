@@ -12,6 +12,14 @@ funktionsbeskrivning (alla införstådda?)
 html/css struktur
 och dela upp arbete 
 
+Nästa möte 
+Ta beslut om vi använder bibliotek eller inte.
+linus --> layout ouch visuell funktionalitet --> presenterar det på mötet
+Simon --> ta fram team funktionalitet och vilka visuella element och vilka funktioner behövs, samt vad som behövs från databasen. --> presenterar.
+Alex --> fixa klart loginförsta steg och fixa logout () --> presenterar 
+
+
+
 
 Need to have
 meny /header (visa användar info?)
@@ -19,6 +27,7 @@ html struktur + click event
 team function
 spel 1 (class)
 logg page
+logout
 
 bra mobilversion
 function för att ta bort användare
