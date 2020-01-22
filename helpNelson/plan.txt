@@ -6,6 +6,24 @@ första målet:
 möte 17/9 kl 9-13
 
 
+Nästa mål:
+Säkerställa att första målet är klart och fuungerar som det ska live.
+funktionsbeskrivning (alla införstådda?)
+html/css struktur
+och dela upp arbete 
+
+
+Need to have
+meny /header (visa användar info?)
+html struktur + click event
+team function
+spel 1 (class)
+logg page
+
+bra mobilversion
+function för att ta bort användare
+function för att ändra lösenord och användar namn
+
 
 
 
