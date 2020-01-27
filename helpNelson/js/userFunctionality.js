@@ -4,6 +4,7 @@ function createUser(id, password) {
     data = JSON.parse(data)
     console.log(data)
     loginToken = new User(data)
+    return loginToken
   })
   .fail(() => {
     console.log('FAIL')
