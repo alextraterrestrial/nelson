@@ -3,7 +3,7 @@
 ini_set('display_errors', 'on');
 
 // Include config file
-require_once "connectToDB.php";
+include('connectToDB.php');
 
 // Initialize the session
 session_start();
@@ -12,12 +12,12 @@ session_start();
 $response = new stdClass();
 
 //If logeed in session already exists
-if(isset($_SESSION["userId"])){
-    $response -> userId = $_SESSION["userId"];
-    $response -> password = $_SESSION["password"];
-    echo json_encode($response);
-    exit;
-}
+// if(isset($_SESSION["userId"])){
+//     $response -> userId = $_SESSION["userId"];
+//     $response -> password = $_SESSION["password"];
+//     echo json_encode($response);        
+//     exit;
+// }
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             $_SESSION["password"] = $hashed_password;
                             
                             // Create response
-                            $response -> userId = $userId;
+                            $response -> userId = $id;
                             $response -> password = $password;
                                 
                             //Create a cookie for the logged in user
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             setCookie($cookieName, $cookieValue, time() + (86400 * 14), "/");
 
                         } else{
-                            $response -> errors = "Wrong password";
+                            $response -> errors .= "Wrong password";
                         }
                     } else if($_COOKIE['user']){
                         //Validate stored password against DB
