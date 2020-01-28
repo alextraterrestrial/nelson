@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             
                             // Create response
                             $response -> userId = $id;
-                            $response -> password = $password;
+                            $response -> password = $hashed_password;
                                 
                             //Create a cookie for the logged in user
                             $cookieName = "user";
