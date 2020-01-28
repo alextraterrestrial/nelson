@@ -12,22 +12,32 @@ funktionsbeskrivning (alla införstådda?)
 html/css struktur
 och dela upp arbete 
 
-Nästa möte 
+Nästa möte 2020-01-28 
 Ta beslut om vi använder bibliotek eller inte.
 linus --> layout ouch visuell funktionalitet --> presenterar det på mötet
 Simon --> ta fram team funktionalitet och vilka visuella element och vilka funktioner behövs, samt vad som behövs från databasen. --> presenterar.
 Alex --> fixa klart loginförsta steg och fixa logout () --> presenterar 
 
+vi avaktar till morgondagens vip-möte om vi ska göra react eller inte. oavsett så försöker vi 
+moduelera html och css för att också kunna ta hjälp av någon från de lägre klasserna ifall de tillkommer i teamet.
+
+till nästa möte:
+väntar med att boka möte och fördela uppgifter då vi kanske får förstärkning samt ska ta beslut om REACT. 
 
 
 
-Need to have
-meny /header (visa användar info?)
-html struktur + click event
-team function
-spel 1 (class)
-logg page
-logout
+Need to have modueler------------------------------------------------
+- Home page
+    - game module
+- logo/meny button (will check if any user is logged in)
+- #meny module (Includes Elements: palyerinfo, #menyOptionButtons, #menyOptionContent, #menyActions)
+    - team module 
+    - log module
+    - user module
+    - login module
+    - register module
+(- log spel module. Maybe a part of Home page)
+
 
 bra mobilversion
 function för att ta bort användare
