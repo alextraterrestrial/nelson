@@ -11,6 +11,6 @@ session_destroy();
 //Remove cookie
 setCookie("user", null, time() - 3600, "/");
 
-echo json_encode(true); 
+echo json_encode("You are now logged out"); 
 exit;
 ?>

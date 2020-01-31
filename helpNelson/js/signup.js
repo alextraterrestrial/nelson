@@ -26,7 +26,8 @@ $('document').ready(function() {
             password: "required",
             confirmPassword: {
                 required: false,
-                equalTo: "#signupPassword"
+                equalTo: "#signupPassword",
+                minlength: 6
             }
         },
         messages: {
@@ -71,8 +72,9 @@ $('document').ready(function() {
                 })
                 .done((res) => {
                     console.log("Data sent to register.php")
-                    console.log(res);
-                    createUser(res.id, res.password);
+                    let parsedRes = JSON.parse(res)
+                    console.log(parsedRes);
+                    createUser(parsedRes.userId, parsedRes.password);
                     init();
                     // getBackToHomePage();
                     // checkUser();

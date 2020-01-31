@@ -6,17 +6,15 @@ $(document).ready(() => {
 
 
 function init() {
-
+    // let cookie = checkCookie();
+    // console.log(cookie)
     //Check if user has been logged in recently 
-    if (loginToken) {
+    if (loginToken != null) {
         console.log(loginToken)
 
-    } else if (checkCookie() != null) {
-        console.log("Checking cookie");
+    } else {
         checkCookie();
-
-        //Validate credentials against DB
-
+        // console.log("In the else if ");
     }
     // Display menu and user data
 
@@ -24,7 +22,7 @@ function init() {
 }
 
 function checkCookie() {
-    console.log("Checking cookie");
+    // console.log("Checking cookie");
     var name = "user=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -39,26 +37,47 @@ function checkCookie() {
         }
 
         if (c.indexOf(name) == 0) {
-            console.log("In checkCookie if...")
+            // console.log("In checkCookie if...")
             cookie = JSON.parse(c.substring(name.length, c.length));
 
             // Validate credentials against Db
             request = $.ajax({
                     url: "php/login.php",
-                    type: "POST",
+                    type: "GET",
                     encode: true,
                 })
                 .done((res) => {
+                    let parsedRes = JSON.parse(res)
                     console.log(JSON.parse(res));
-                    return JSON.parse(res);
+
+                    // Create a user
+                    createUser(parsedRes.userId, parsedRes.password)
+
+                    // return parsedRes;
                 })
         }
     }
-    return null;
+    // return null;
 }
 /** 
  * Clears cookie and logs out user
  */
 function logOut() {
+    // Variables
+    let request
 
+    // Set loginToken to null
+    loginToken = null
+
+    //Send request to logout.php
+    request = $.ajax({
+            url: "php/logout.php",
+            type: "POST"
+        })
+        .done(res => {
+            console.log(res)
+
+            // Call init function to restart
+            init()
+        })
 }

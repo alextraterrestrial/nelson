@@ -79,7 +79,10 @@ $(document).ready(() => {
                     })
             }
         })
-        //Logout function 
+        //Logout function, testing only
+    $("#testLogout").click(logOut);
+
+
 })
 
 // function login(email, password) {

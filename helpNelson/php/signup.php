@@ -135,14 +135,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 //Set session
                 // session_start();
                 $_SESSION["userId"] = $id;
-                $_SESSION["password"] = $hashed_password;
+                $_SESSION["password"] = $param_password;
 
                 //Set cookie
                 //Create a cookie for the logged in user
                 $cookieName = "user";
                 $cookie = new stdClass();
-                $cookie -> id = $id;
-                $cookie -> password = $hashed_password;
+                $cookie -> userId = $id;
+                $cookie -> password = $param_password;
 
                 $cookieValue = json_encode($cookie);
                 setCookie($cookieName, $cookieValue, time() + (86400 * 14), "/");
