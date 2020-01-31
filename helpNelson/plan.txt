@@ -22,7 +22,7 @@ vi avaktar till morgondagens vip-möte om vi ska göra react eller inte. oavsett
 moduelera html och css för att också kunna ta hjälp av någon från de lägre klasserna ifall de tillkommer i teamet.
 
 till nästa möte:
-väntar med att boka möte och fördela uppgifter då vi kanske får förstärkning samt ska ta beslut om REACT. 
+Väntar med att boka möte och fördela uppgifter då vi kanske får förstärkning samt ska ta beslut om REACT. 
 
 
 
