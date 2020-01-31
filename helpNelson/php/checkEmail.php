@@ -1,6 +1,6 @@
 <?php
 
-require_once "../login/config.php";
+require_once "../connectToDB.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET"){
     if(isset($_GET["email"])){
