@@ -35,7 +35,7 @@
             
             <?php //include("headerN.html")?>
             
-            <!-- Meny, containing the team-, user- and other settings and options -->
+            <!-- menu, containing the team-, user- and other settings and options -->
             <section Id="icon">
                 <div>
                     <div class="circuit">
@@ -43,9 +43,9 @@
                     </div>
                 </div>
             </section>
-            <section id="meny">
-                <!-- Meny top -->
-                <div id="menyHeader">
+            <section id="menu">
+                <!-- menu top -->
+                <div id="menuHeader">
                     <div>
                         <div class="currentPlayer">
                             <div class="playerName">Linus</div>
@@ -57,18 +57,18 @@
                 </div> 
                 
                 <!-- option contatiner -->
-                <div id="menyOptionContainer" class="flexAround">
-                    <?php include("html/menyOptionButton.html")?>
+                <div id="menuOptionContainer" class="flexAround">
+                    <!-- <?php //include("html/menuOptionButton.html")?> -->
                 </div>
 
                 <!-- contains the  -->
-                <div id="menyOptionContent">
-                    <div class="testT1">test1 test1 test1</div> 
+                <div id="menuOptionContent">
+                    <!-- <div class="testT1">test1 test1 test1</div> 
                     <div class="testT2">test2 test2 test2</div> 
-                    <div class="testT3">test3 test3 test3</div> 
+                    <div class="testT3">test3 test3 test3</div>  -->
                 </div>
 
-                <div id="menyOptionActions">
+                <div id="menuOptionActions">
             
                 </div>
 
@@ -97,18 +97,18 @@
 
 
             <!-- kommer att göras om till moduler -->
-            <section id="menyContent">
-                <div id="secTeam" class="menyItem">
+            <!-- <section id="menuContent">
+                <div id="secTeam" class="menuItem">
                    <?php //include("../team/team.html")?>
                 </div>
-                <div id="secArkiv" class="menyItem">spellog</div>
-                <div id="secLogin" class="menyItem">
+                <div id="secArkiv" class="menuItem">spellog</div>
+                <div id="secLogin" class="menuItem">
                     <?php include("html/login.html")?>
                 </div>
-                <div id="secRegistrering" class="menyItem">
+                <div id="secRegistrering" class="menuItem">
                     <?php include("html/signupform.html") ?>
                 </div>
-            </section>
+            </section> -->
         <div>
 
         <script src="js/jquery-3.4.1.min.js"></script>
@@ -118,6 +118,7 @@
         <script src="js/controller.js"></script>
         <script src="js/userClass.js"></script>
         <script src="js/userFunctionality.js"></script> 
+        <script src="js/linus.js"></script> 
         
         <!-- <script src="testContent.js"></script>
         <script src="auxFunctions.js"></script>
