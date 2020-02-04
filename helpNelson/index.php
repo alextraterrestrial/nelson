@@ -39,7 +39,7 @@
             <section Id="icon">
                 <div>
                     <div class="circuit">
-                        <img src="content/graphicResources/circuitIcon.png" class="logoButton"></img>
+                        <img src="content/graphicResources/circuitIcon.png" class="logoButton">
                     </div>
                 </div>
             </section>

@@ -105,7 +105,7 @@ function loadMenu(arr) {
 
 //click events for Icon and menu
 
-$(".logoButton").click(()=>{
+$(".logoButton").click(() => {
     let val
     if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
         val = "-100vw"
@@ -113,7 +113,7 @@ $(".logoButton").click(()=>{
         val = "0vw"
     }
 
-    $("#menu").css({transform: "translateX(" + val + ")"})
+    $("#menu").css({ transform: "translateX(" + val + ")" })
 
 
     // if ($("#menu").css("display")=="none") {
