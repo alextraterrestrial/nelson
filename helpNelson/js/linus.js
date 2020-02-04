@@ -1,7 +1,7 @@
 class MenuOption {
     constructor(label, content) {
         this.iconContainer = $('<div>', {
-            appendTo: "#menuOptionContainer",    
+            appendTo: "#menuOptionContainer",
         })
 
         this.icon = $('<div>', {
@@ -14,19 +14,19 @@ class MenuOption {
         this.content = $('<div>', {
             html: content,
             appendTo: "#menuOptionContent"
-        }).css({display: "none"})
+        }).css({ display: "none" })
 
         this.iconContainer.click(function() {
-            $("#menuOptionContent > div").css({display: "none"})
-            this.content.css({display: "block"})
+            $("#menuOptionContent > div").css({ display: "none" })
+            this.content.css({ display: "block" })
         }.bind(this))
-    } 
+    }
 }
 
 
 let menuOptionLoggedOff = [
-    {label: "Logga in", content: $("<div>").load("html/login.html")},
-    {label: "Skapa konto", content: $("<div>").load("html/signupform.html")}
+    { label: "Logga in", content: $("<div>").load("html/login.html") },
+    { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
 ]
 
 //creates the menu from the passed in array of objects
