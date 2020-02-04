@@ -17,6 +17,7 @@ function init() {
     }
     // Display menu and user data
 
+
     //Create menu
 }
 
