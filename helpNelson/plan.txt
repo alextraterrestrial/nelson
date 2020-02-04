@@ -36,6 +36,8 @@ Need to have modueler------------------------------------------------
     - user module
     - login module
     - register module
+    - GDPR (meddelande)
+    - cookies 
 (- log spel module. Maybe a part of Home page)
 
 
