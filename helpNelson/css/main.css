@@ -74,7 +74,7 @@ body {
     width: 100vw;
     background-color: var(--backgroundColor);
     padding: 0 3vw;
-    position: absolute;
+    position: fixed;
     z-index: 10;
     /* display: none; */
     margin-top: calc(-.66 * var(--heightCircuit));
@@ -90,6 +90,7 @@ body {
 
 #menuOptionContainer {
     height: 10vh;
+    
 }
 
 .menuOptionButton {
@@ -103,6 +104,7 @@ body {
 #menuOptionContent {
     height: calc(80vh - var(--widthCircuit));
     padding-top: 1vh;
+    overflow: scroll;
 }
 
 #menuOptionActions {
