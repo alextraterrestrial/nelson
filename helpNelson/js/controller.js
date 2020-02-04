@@ -1,6 +1,15 @@
+//variables
 let loginToken = null;
+let menuOptionLoggedOff = [
+    {label: "Logga in", content: $("<div>").load("html/login.html")},
+    {label: "Skapa konto", content: $("<div>").load("html/signupform.html")}
+]
+
+
 $(document).ready(() => {
     init();
+
+    loadMenu(menuOptionLoggedOff)
 
 })
 
@@ -81,6 +90,18 @@ function logOut() {
             init()
         })
 }
+
+//creates the menu from the passed in array of objects
+function loadMenu(arr) {
+    arr.forEach((item) => {
+        let o = new MenuOption(item.label, item.content)
+        if (item.label == "Logga in" || item.label == "Team") {
+            o.iconContainer.click()
+        }
+    })
+}
+
+
 
 //click events for Icon and menu
 

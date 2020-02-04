@@ -90,22 +90,6 @@
             
             
             </section>
-
-
-
-            <!-- kommer att göras om till moduler -->
-            <!-- <section id="menuContent">
-                <div id="secTeam" class="menuItem">
-                   <?php //include("../team/team.html")?>
-                </div>
-                <div id="secArkiv" class="menuItem">spellog</div>
-                <div id="secLogin" class="menuItem">
-                    <?php include("html/login.html")?>
-                </div>
-                <div id="secRegistrering" class="menuItem">
-                    <?php include("html/signupform.html") ?>
-                </div>
-            </section> -->
         <div>
 
         <script src="js/jquery-3.4.1.min.js"></script>
