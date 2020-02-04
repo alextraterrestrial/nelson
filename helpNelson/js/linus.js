@@ -33,7 +33,7 @@ let menuOptionLoggedOff = [
 function loadMenu(arr) {
     arr.forEach((item) => {
         let o = new MenuOption(item.label, item.content)
-        if (item.label == "Logga in" || item.label == "team") {
+        if (item.label == "Logga in" || item.label == "Team") {
             o.iconContainer.click()
         }
     })

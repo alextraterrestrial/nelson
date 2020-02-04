@@ -58,14 +58,11 @@
                 
                 <!-- option contatiner -->
                 <div id="menuOptionContainer" class="flexAround">
-                    <!-- <?php //include("html/menuOptionButton.html")?> -->
                 </div>
 
                 <!-- contains the  -->
                 <div id="menuOptionContent">
-                    <!-- <div class="testT1">test1 test1 test1</div> 
-                    <div class="testT2">test2 test2 test2</div> 
-                    <div class="testT3">test3 test3 test3</div>  -->
+
                 </div>
 
                 <div id="menuOptionActions">
