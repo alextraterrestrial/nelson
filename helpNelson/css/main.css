@@ -80,7 +80,10 @@ body {
     margin-top: calc(-.66 * var(--heightCircuit));
 
     transform: translateX(-100vw);
+    -webkit-transform: translateX(-100vw);
+    
     transition: transform 1s ease-out;
+    -webkit-transition: transform 1s ease-out;
 }
 
 #menuHeader {

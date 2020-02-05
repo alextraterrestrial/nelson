@@ -113,7 +113,10 @@ $(".logoButton").click(() => {
         val = "0vw"
     }
 
-    $("#menu").css({ transform: "translateX(" + val + ")" })
+    $("#menu").css({ 
+        transform: "translateX(" + val + ")",
+        "-webkit-transform": "translateX(" + val + ")" 
+    })
 
 
     // if ($("#menu").css("display")=="none") {
