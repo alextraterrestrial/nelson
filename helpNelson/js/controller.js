@@ -10,7 +10,8 @@ $(document).ready(() => {
     init();
 
     loadMenu(menuOptionLoggedOff)
-
+    //TEST FOR MOBILE
+    $(":root").css({"--color2": "red"})
 })
 
 function init() {
@@ -99,6 +100,7 @@ function loadMenu(arr) {
             o.iconContainer.click()
         }
     })
+
 }
 
 
