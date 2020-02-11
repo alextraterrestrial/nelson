@@ -32,9 +32,6 @@
   
     <body>
         <div class="wrapper">
-            
-            <?php //include("headerN.html")?>
-            
             <!-- menu, containing the team-, user- and other settings and options -->
             <section Id="icon">
                 <div>
@@ -82,21 +79,18 @@
                     <input class="inputClass" type="button" value="link 3">
                 </div>
             
-                <div id="secSpelet">
-                    <!-- för att testa pussel -->
-                    <?php //include("testPussel.html")?>
+                <div id="game">
                 </div>
             
             
             
             </section>
-        <div>
+        </div>
 
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-        <!-- Moved to their htmlfiles to debug doc.ready problem-->
-        <!-- <script src="js/login.js"></script> -->
-        <!-- <script src="js/signup.js"></script> -->
+        <script src="js/login.js"></script>
+        <script src="js/signup.js"></script>
         <script src="js/controller.js"></script>
         <script src="js/userClass.js"></script>
         <script src="js/userFunctionality.js"></script> 

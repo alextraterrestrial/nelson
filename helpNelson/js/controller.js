@@ -5,13 +5,27 @@ let menuOptionLoggedOff = [
     {label: "Skapa konto", content: $("<div>").load("html/signupform.html")}
 ]
 
+//test
+let puzzle = [
+    {id: 2},
+    {id: 3}
+]
+let puz
 
 $(document).ready(() => {
     init();
-
+    
+    //check if logged in
     loadMenu(menuOptionLoggedOff)
-    //TEST FOR MOBILE
-    $(":root").css({"--color2": "red"})
+    
+    
+
+    puzzle.forEach((item)=>{
+        puz = new PuzzleGame1(item.id, "<p>HEJ där</p>")
+    })
+
+    //TEST FOR MOBILE console
+    // $(":root").css({"--color2": "red"})
 })
 
 function init() {

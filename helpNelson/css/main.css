@@ -9,7 +9,8 @@
     --radius: 4px;
 
     --widthCircuit: 90px;
-    --heightCircuit: 140px;
+    --heightCircuit: calc(var(--widthCircuit) * 1.555);
+    /* --heightCircuit: 140px; */
     
 }
 
@@ -37,7 +38,6 @@ body {
     align-items: center;
 }
 
-
 /* CSS for Icon and logo */
 #icon {
     position: sticky;
@@ -62,10 +62,11 @@ body {
 }
 
 .circuit img {
-    width: 50%;
-    margin-left: 17px;
-    margin-top: 27px;
+    width: 53%;
+    margin-left: calc(var(--widthCircuit) * 0.181);
+    margin-top: calc(var(--heightCircuit) * 0.181);
     background-color: var(--backgroundColor);
+    border-radius: var(--radius);
 }
 
 /* CSS for the Menu */

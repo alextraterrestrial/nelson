@@ -1,7 +1,5 @@
-// $(document).ready(() => {
-// })
+$(document).ready(() => {
 
-//test without doc-ready()
     let request;
 
     //Add listener for go to rgister link
@@ -85,7 +83,7 @@
     $("#testLogout").click(logOut);
 
 
-
+})
 
 // function login(email, password) {
 
