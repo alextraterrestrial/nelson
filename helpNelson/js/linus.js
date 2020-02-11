@@ -81,11 +81,11 @@ class PuzzleGame1 {
                 } else if (!loginToken.teamId) {
                     message = "Skapa ett team för att skicka in svar"
                 }
-                console.log(message)
+                console.log(this.id)
                 $("#puzzleForm" + this.id).empty()
                 $("#puzzleForm" + this.id).append("<div>" + message + "</div>")
                 $(".logoButton").click()
-            }
+            }.bind(this)
         })
 
 
