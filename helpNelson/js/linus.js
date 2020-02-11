@@ -84,15 +84,80 @@ class PuzzleGame1 {
                 console.log(this.id)
                 $("#puzzleForm" + this.id).empty()
                 $("#puzzleForm" + this.id).append("<div>" + message + "</div>")
-                $(".logoButton").click()
+                setTimeout(()=>{$(".logoButton").click()}, 1000)
             }.bind(this)
         })
-
-
-
     }
 
+    createSubmissionFormInput() {
+        let input = $("<input>", {
+            class: "inputClass",
+            type: "text",
+            placeholder: "Svar",
+            appendTo: "#puzzleForm" + this.id,
+        })
+
+        let submit = $("<input>", {
+            class: "inputClass",
+            type: "submit",
+            value: "Skicka in",
+            appendTo: "#puzzleForm" + this.id
+        }).css({display: "none"})
+
+        input.focus(()=>{
+            submit.css({display: "block"})
+        })
+        // input.focusout((e)=>{
+        //     console.log(e.currentTarget)
+        //     submit.css({display: "none"})
+        // })
+
+        $("#puzzleForm" + this.id).submit((e)=>{
+            e.preventDefault()
+            console.log(input.val())
+
+            $.get('php/submitAnswer.php', { submission: input.val(), teamId: loginToken.teamId, puzzleId: this.id })
+            .done((data)=>{
+                console.log(data)
+                this.getPuzzleSubmissions()
+            })
+            .fail(()=>{
+                $("#puzzleForm" + this.id).append("<div>Något gick fel, försök skicka in igen</div>") 
+            })
+        })
+    }
+
+    getPuzzleSubmissions() {
+        $.get('php/getPuzzleSubmissions.php', {teamId: loginToken.teamId})
+        .done((data)=>{
+            data = JSON.parse(data)
+            
+            $("#puzzleForm" + this.id).empty()
+            if(data[0]) {
+                $("#puzzleForm" + this.id).append("<div>Ni har skickat in " + data[0].submission + " som svar</div>")
+            } else {
+                this.createSubmissionFormInput()
+            }
+        })
+        .fail(error)
+    }
 }
+
+
+function getPuzzles() {
+    $.get('php/getGame1.php')
+    .done((data)=>{
+        data = JSON.parse(data)
+        data.forEach(item => {
+            let p = new PuzzleGame1(item.puzzleId, item.contentHTML)
+            
+            if(loginToken.teamId) {
+                p.getPuzzleSubmissions()
+            } 
+        });
+    })
+}
+
 
 
 

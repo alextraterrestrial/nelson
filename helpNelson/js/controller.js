@@ -6,23 +6,15 @@ let menuOptionLoggedOff = [
 ]
 
 //test
-let puzzle = [
-    {id: 2},
-    {id: 3}
-]
-let puz
+
 
 $(document).ready(() => {
     init();
     
-    //check if logged in
+    //check if logged in (get puzzles ska köras tillsammas med leadMenu (ta bort settimeout))
     loadMenu(menuOptionLoggedOff)
+    setTimeout(getPuzzles, 100)
     
-    
-
-    puzzle.forEach((item)=>{
-        puz = new PuzzleGame1(item.id, "<p>HEJ där</p>")
-    })
 
     //TEST FOR MOBILE console
     // $(":root").css({"--color2": "red"})
@@ -109,9 +101,9 @@ function logOut() {
 //creates the menu from the passed in array of objects
 function loadMenu(arr) {
     arr.forEach((item) => {
-        let o = new MenuOption(item.label, item.content)
+        let opt = new MenuOption(item.label, item.content)
         if (item.label == "Logga in" || item.label == "Team") {
-            o.iconContainer.click()
+            opt.iconContainer.click()
         }
     })
 
