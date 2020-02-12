@@ -11,8 +11,9 @@ let menuOptionLoggedOff = [
 $(document).ready(() => {
     init();
     
-    //check if logged in (get puzzles ska köras tillsammas med leadMenu (ta bort settimeout))
+    //check if logged in 
     loadMenu(menuOptionLoggedOff)
+    //bör köras i .done efter att vi hämtat användarinfo till loginToken
     setTimeout(getPuzzles, 100)
     
 
