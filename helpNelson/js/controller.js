@@ -13,9 +13,10 @@ $(document).ready(() => {
     
     //check if logged in 
     loadMenu(menuOptionLoggedOff)
-    //bör köras i .done efter att vi hämtat användarinfo till loginToken
-    setTimeout(getPuzzles, 100)
+
     
+    getPuzzles()
+
 
     //TEST FOR MOBILE console
     // $(":root").css({"--color2": "red"})

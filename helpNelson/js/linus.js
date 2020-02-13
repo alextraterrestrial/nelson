@@ -145,16 +145,26 @@ class PuzzleGame1 {
 
 
 function getPuzzles() {
+    
     $.get('php/getGame1.php')
     .done((data)=>{
+        let pArr = []
+        
         data = JSON.parse(data)
         data.forEach(item => {
             let p = new PuzzleGame1(item.puzzleId, item.contentHTML)
             
-            if(loginToken.teamId) {
-                p.getPuzzleSubmissions()
-            } 
-        });
+            pArr.push(p) 
+        })
+ 
+        window.updatePuzzles = ()=>{
+            console.log(pArr)
+            pArr.forEach((obj)=>{
+                if(loginToken.teamId) {
+                    obj.getPuzzleSubmissions()
+                } 
+            })
+        }
     })
 }
 
