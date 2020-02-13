@@ -48,10 +48,11 @@ class PuzzleGame1 {
             appendTo: "#game"
         })
         
+        
         //nr of submissions
         $('<div>', {
             "id": "nrOfSub" + this.id,
-            html: "<span>SUBS</span> team har skickat in en lösning.", 
+            html: "<span>SUBS</span> svar har skickats in", 
             class: "puzzleSubmission",
             appendTo: this.puzzleContainer
         })
@@ -128,9 +129,10 @@ class PuzzleGame1 {
     }
 
     getPuzzleSubmissions() {
-        $.get('php/getPuzzleSubmissions.php', {teamId: loginToken.teamId})
+        $.get('php/getPuzzleSubmissions.php', {teamId: loginToken.teamId, puzzleId: this.id})
         .done((data)=>{
             data = JSON.parse(data)
+            console.log(data)
             
             $("#puzzleForm" + this.id).empty()
             if(data[0]) {
