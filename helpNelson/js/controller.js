@@ -15,16 +15,9 @@ $(document).ready(() => {
     init();
 
     //check if logged in 
-<<<<<<< HEAD
     // loadMenu(menuOptionLoggedOff)
     //bör köras i .done efter att vi hämtat användarinfo till loginToken
     setTimeout(getPuzzles, 100)
-=======
-    loadMenu(menuOptionLoggedOff)
-
-    
-    getPuzzles()
->>>>>>> 85dcf43605275dd7308a6c34f4674c09b8e5ae34
 
 
     //TEST FOR MOBILE console
