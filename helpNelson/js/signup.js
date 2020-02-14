@@ -1,4 +1,4 @@
-$('document').ready(function() {
+$(document).ready(function() {
 
     let request;
     $("#goToLogin").click(() => {
@@ -88,5 +88,6 @@ $('document').ready(function() {
 
 
     })
+    
 
 })

@@ -1,7 +1,25 @@
+//variables
 let loginToken = null;
+let menuOptionLoggedOff = [
+    {label: "Logga in", content: $("<div>").load("html/login.html")},
+    {label: "Skapa konto", content: $("<div>").load("html/signupform.html")}
+]
+
+//test
+
+
 $(document).ready(() => {
     init();
+    
+    //check if logged in 
+    loadMenu(menuOptionLoggedOff)
 
+    
+    getPuzzles()
+
+
+    //TEST FOR MOBILE console
+    // $(":root").css({"--color2": "red"})
 })
 
 function init() {
@@ -16,6 +34,7 @@ function init() {
         // console.log("In the else if ");
     }
     // Display menu and user data
+
 
     //Create menu
 }
@@ -81,12 +100,38 @@ function logOut() {
         })
 }
 
-//click events for Icon and meny
+//creates the menu from the passed in array of objects
+function loadMenu(arr) {
+    arr.forEach((item) => {
+        let opt = new MenuOption(item.label, item.content)
+        if (item.label == "Logga in" || item.label == "Team") {
+            opt.iconContainer.click()
+        }
+    })
 
-$(".logoButton").click(()=>{
-    if ($("#meny").css("display")=="none") {
-        $("#meny").css({display: "block"})
+}
+
+
+
+//click events for Icon and menu
+
+$(".logoButton").click(() => {
+    let val
+    if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
+        val = "-100vw"
     } else {
-        $("#meny").css({display: "none"})
+        val = "0vw"
     }
+
+    $("#menu").css({ 
+        transform: "translateX(" + val + ")",
+        "-webkit-transform": "translateX(" + val + ")" 
+    })
+
+
+    // if ($("#menu").css("display")=="none") {
+    //     $("#menu").css({display: "block"})
+    // } else {
+    //     $("#menu").css({display: "none"})
+    // }
 })

@@ -29,6 +29,8 @@ Väntar med att boka möte och fördela uppgifter då vi kanske får förstärkn
 Need to have modueler------------------------------------------------
 - Home page
     - game module
+    - countdown page 
+    - poster puzzle function (with correct answer)
 - logo/meny button (will check if any user is logged in)
 - #meny module (Includes Elements: palyerinfo, #menyOptionButtons, #menyOptionContent, #menyActions)
     - team module 
@@ -36,8 +38,14 @@ Need to have modueler------------------------------------------------
     - user module
     - login module
     - register module
+    - GDPR (medelande)
+    - cookies (medelande)
 (- log spel module. Maybe a part of Home page)
 
+
+Marknadsföring vill ev. att man ska kunna komma in på en countdownsida som kommer vara en väntesida till det riktiga spelet.
+
+google analytics?
 
 bra mobilversion
 function för att ta bort användare
@@ -51,3 +59,11 @@ function för att ändra lösenord och användar namn
 - sql-filer ligger i php mappen
 - variables.js ligger direkt i js
 - 
+
+
+------Future Solutions-----------------
+- Post omkring Ekonomi
+- Css
+- Content
+- Fake inlog till future Solutions
+- Gränssnitt på internweb(för screen shot)
