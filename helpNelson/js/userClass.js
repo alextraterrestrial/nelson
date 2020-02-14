@@ -16,6 +16,25 @@ class User {
     submitAnswer(submission) {
         // takes the submission and checks/uploads to DB, handling team funcitonality
     }
+
+    refreshTeam() {
+        let tN = $("h1>").html(this.teamName)
+        let tP = $("<h3>").html(this.score)
+        let heading = $("<h3>").html("Members:")
+        let members = $("<div>")
+
+        $.get("php/getUsers.php")
+        .done((data) => {
+            allUsers = JSON.parse(data)
+            for (let user of allUsers[0]) {
+                if (user.teamName != this.teamName) {
+                    members.push($("<div>").html(user.username))
+                }
+            }
+        })
+
+        $("#teamWrapper").append(tN, tP, heading, members)
+    }
 }
 
 class Captain extends User {

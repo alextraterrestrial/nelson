@@ -1,26 +1,28 @@
 let allUsers
 
-// why do i need ../ when i'm in the same folder?? check out later
 function getUsers() {
   $.get('../php/getUsers.php') 
   .done((data) => {
     data = JSON.parse(data)
     allUsers = data
-    switch (loginToken.status) {
-      case 'captain':
-        $('#teamShowcase > h3').html(loginToken.teamName)
-        break
-      case 'active':
-        $('#teamShowcase > h3').html(loginToken.teamName)
-        break
-      case 'pending':
-        $('#teamShowcase > h3').html('Invitations:')
-        break
-      case 'passive':
-        $('#teamShowcase > h3').html('Create a team:')
-        break
-    }
-    displayUserInfo()
+    console.log(allUsers)
+    // switch (loginToken.status) {
+    //   case 'captain':
+    //     $('#teamShowcase > h3').html(loginToken.teamName)
+    //     break
+    //   case 'active':
+    //     $('#teamShowcase > h3').html(loginToken.teamName)
+    //     break
+    //   case 'pending':
+    //     $('#teamShowcase > h3').html('Invitations:')
+    //     break
+    //   case 'passive':
+    //     $('#teamShowcase > h3').html('Create a team:')
+    //     break
+    // }
+    // displayUserInfo()
+
+    // loginToken.refreshTeam()
   })
   .fail((error) => {
     console.log(error)
@@ -68,7 +70,7 @@ function popup(message) {
 let members
 function displayUserInfo() {
   console.log(allUsers, loginToken)
-  $("#teamMembers").empty()
+  $("#members").empty()
   members = []
   
   if (loginToken.status == "captain" || loginToken.status == "active") {
@@ -114,14 +116,14 @@ function displayUserInfo() {
         $(memberSlot).append(btnContainer)
       }
 
-      $("#teamMembers").append(memberSlot)
+      $("#members").append(memberSlot)
     }
 
   } else if (loginToken.status == 'pending') {
     let prompt = $("<div>")
     prompt.html('You have been invited to join the following teams:')
-    $("#teamMembers").css('justify-content', 'center')
-    $("#teamMembers").append(prompt)
+    // $("#teamMembers").css('justify-content', 'center')
+    $("#teamWrapper").append(prompt)
     let teamInvites = $("<div>")
     teamInvites.attr('class', 'flex')
 
@@ -147,17 +149,18 @@ function displayUserInfo() {
     deny.css({padding: '0px 5px', width: 'auto'})
     $(teamInvites).append(deny)
     
-    $("#teamMembers").append(teamInvites)
+    $("#teamWrapper").append(teamInvites)
 
   } else if (loginToken.status == 'passive') {
     let prompt = $("<div>")
     prompt.html('Please add users to form a team')
-    $("#teamMembers").css('justify-content', 'center')
-    $("#teamMembers").append(prompt)
+    // $("#teamMembers").css('justify-content', 'center')
+    $("#teamWrapper").append(prompt)
   }
+}
 
-  
-    // fill list of users
+function displayAvaliableUsers() {
+  // fill list of users
   $("#availableUsers").empty()
   for (let user of allUsers) {
     if (user.username != loginToken.username) {

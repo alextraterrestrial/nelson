@@ -25,26 +25,82 @@
         <link rel="stylesheet" href="../CSS/p.css"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/main.css">
         <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39&display=swap" rel="stylesheet">
     </head>
   
     <body>
         <div class="wrapper">
-            <?php //include("headerNav.html")?>
+            
+            <?php //include("headerN.html")?>
+            
+            <!-- Meny, containing the team-, user- and other settings and options -->
+            <section Id="icon">
+                <div>
+                    <div class="circuit">
+                        <img src="content/graphicResources/circuitIcon.png" class="logoButton"></img>
+                    </div>
+                </div>
+            </section>
+            <section id="meny">
+                <!-- Meny top -->
+                <div id="menyHeader">
+                    <div>
+                        <div class="currentPlayer">
+                            <div class="playerName">Linus</div>
+                            <div>Points: <span class="playerPoints">28</span></div>
+                            <div class="countDown">20:20:20 ska vara med?</div>
+                        </div>
+                        <div class="circuitRight"></div>
+                    </div>
+                </div> 
+                
+                <!-- option contatiner -->
+                <div id="menyOptionContainer" class="flexAround">
+                    <?php include("html/menyOptionButton.html")?>
+                </div>
+
+                <!-- contains the  -->
+                <div id="menyOptionContent">
+                    <!-- <div class="testT1">test1 test1 test1</div> 
+                    <div class="testT2">test2 test2 test2</div> 
+                    <div class="testT3">test3 test3 test3</div>  -->
+                    <div id="teamBox">
+                        <div id="teamName"></div>
+                        <div id="members"></div>
+                    </div>
+                </div>
+
+                <div id="menyOptionActions">
+            
+                </div>
+
+            </section>
+            
+            <!-- this section contains the welcome message and the current game -->
             <section id="home">
                 <h1>Välkommen</h1>
                 <p>lLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <!-- behövs knapparna? -->
                 <div class="linkContainer">
                     <input class="inputClass" type="button" value="link 1">
                     <input class="inputClass" type="button" value="link 2">
                     <input class="inputClass" type="button" value="link 3">
                 </div>
+            
+                <div id="secSpelet">
+                    <!-- för att testa pussel -->
+                    <?php //include("testPussel.html")?>
+                </div>
+            
+            
+            
             </section>
-            <section id="secSpelet">
-                <!-- för att testa pussel -->
-                <?php //include("testPussel.html")?>
-            </section>
+
+
+
+            <!-- kommer att göras om till moduler -->
             <section id="menyContent">
                 <div id="secTeam" class="menyItem">
                    <?php //include("../team/team.html")?>
@@ -64,8 +120,9 @@
         <script src="js/login.js"></script>
         <script src="js/signup.js"></script>
         <script src="js/controller.js"></script>
+        <script src="js/team.js"></script>
         <script src="js/userClass.js"></script>
-        <script src="js/userFunctionality.js"></script> 
+        <script src="js/userFunctionality.js"></script>
         
         <!-- <script src="testContent.js"></script>
         <script src="auxFunctions.js"></script>

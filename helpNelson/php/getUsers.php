@@ -1,6 +1,6 @@
 <?php
 
-include('connectToDB.php');
+include('php/connectToDB.php');
 // $pdo = getPDO();
 
 $query = "SELECT User.*, Team.teamId, Team.teamName, UserTeam.status FROM User 

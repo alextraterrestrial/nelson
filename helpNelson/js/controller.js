@@ -4,7 +4,6 @@ $(document).ready(() => {
 
 })
 
-
 function init() {
     // let cookie = checkCookie();
     // console.log(cookie)
@@ -81,3 +80,13 @@ function logOut() {
             init()
         })
 }
+
+//click events for Icon and meny
+
+$(".logoButton").click(()=>{
+    if ($("#meny").css("display")=="none") {
+        $("#meny").css({display: "block"})
+    } else {
+        $("#meny").css({display: "none"})
+    }
+})

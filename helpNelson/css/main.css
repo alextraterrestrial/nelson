@@ -1,0 +1,182 @@
+/*general css for the whole page: Includes variables, media query and general classes used throughout the webpage*/
+
+:root {
+    --backgroundColor: #03003a;
+    --backgroundColorTransparent: #03003a8a;
+    --color2: #aed04d;
+    --fontSize: 14px;
+    --font: 'Overpass Mono', monospace;
+    --radius: 4px;
+
+    --widthCircuit: 90px;
+    --heightCircuit: 140px;
+    /*  */
+}
+
+body {
+    margin: 0px;
+    background-color: var(--backgroundColor);
+    color: var(--color2);
+    font-family: var(--font);
+}
+
+.wrapper {
+    position: relative;
+}
+
+/* general classes */
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexAround {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* CSS for Icon and logo */
+#icon {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+#icon > div {
+    width: var(--widthCircuit);
+    height: calc(var(--heightCircuit) * .66);
+    /* background-color: var(--backgroundColor);
+    border-bottom-right-radius: 50%; */
+}
+
+.circuit {
+    width: var(--widthCircuit);
+    height: var(--heightCircuit);
+    background-image: url(../content/graphicResources/circuitBg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.circuit img {
+    width: 50%;
+    margin-left: 17px;
+    margin-top: 27px;
+    background-color: var(--backgroundColor);
+}
+
+/* CSS for the Meny */
+#meny {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--backgroundColor);
+    padding: 0 3vw;
+    position: absolute;
+    z-index: 10;
+    display: none;
+    margin-top: calc(-.66 * var(--heightCircuit));
+}
+
+#menyHeader {
+    height: calc(var(--heightCircuit) * .66);
+    padding-left: calc(var(--widthCircuit) - 3vw);
+}
+
+#menyOptionContainer {
+    height: 10vh;
+}
+
+.menyOptionButton {
+    border: 1px solid var(--color2);
+    border-radius: 50%;
+    height: 7vh;
+    width: 7vh;
+    flex-shrink: 0;
+}
+
+#menyOptionContent {
+    height: calc(80vh - var(--widthCircuit));
+    padding-top: 1vh;
+}
+
+#menyOptionActions {
+    height: 10vh;
+}
+
+
+
+/* #home {
+    font-size: 12px;
+    line-height: 13px;
+    padding: 8vh 5vw 8vh;
+}
+
+#home h1 {
+    font-size: 16px;
+    line-height: 16px;
+    /* text-align: center;
+    margin-bottom: 15px;
+}
+
+#secSpelet {
+    margin-top: 0px;
+    padding-top: 0px;
+    width: 70vw;
+    margin: auto;
+    display: block;
+}
+
+.menyItem {
+    overflow: scroll;
+    width: 70vw;
+    height: 80vh;
+    border-radius: var(--radius);
+    border: 1px solid var(--color2);
+    margin: 1vh auto 0;
+    background-color: var(--backgroundColor);
+}
+
+#menyContent {
+    background-color: var(--backgroundColorTransparent);
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding-top: 17vh;
+    /* display: none; 
+}
+
+.inputClass {
+    background-color: var(--backgroundColor);
+    border: 1px solid var(--color2);
+    font-family: var(--font);
+    color: var(--color2);
+    padding: 4px;
+    border-radius: var(--radius);
+}
+
+.linkContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 799px) {
+    #home {
+        width: 95vw;
+        padding-top: 15vh;
+    }
+    #menyContent {
+        padding-top: 14vh;
+    }
+    .menyItem {
+        width: 90vw;
+        height: 84vh;
+    }
+    #secSpelet {
+        width: 100vw;
+    }
+}  */
