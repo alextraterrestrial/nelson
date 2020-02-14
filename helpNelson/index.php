@@ -86,14 +86,15 @@
             
             </section>
         </div>
-
+        <script src="js/linus.js"></script> 
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="js/auxFunctions.js"></script> 
         <script src="js/controller.js"></script>
         <script src="js/userClass.js"></script>
         <script src="js/userFunctionality.js"></script> 
-        <script src="js/linus.js"></script> 
+        
+        <script src="js/login.js"></script>
         
         <!-- <script src="testContent.js"></script>
         <script src="auxFunctions.js"></script>
