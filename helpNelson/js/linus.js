@@ -1,10 +1,5 @@
 // code for meny
-function checkTeamSubmition(puzzleid) {
-    if(!loginToken.teamId) {
-        return false
-    }
-    console.log("am I running?")
-}
+
 
 
 

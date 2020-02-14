@@ -36,6 +36,7 @@ function init() {
     // Display menu and user data
     loadMenu();
     getPuzzles();
+    countDown()
 }
 
 function checkCookie() {
