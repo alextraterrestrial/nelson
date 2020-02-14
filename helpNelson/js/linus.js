@@ -52,7 +52,7 @@ class PuzzleGame1 {
         //nr of submissions
         $('<div>', {
             "id": "nrOfSub" + this.id,
-            html: "<span>SUBS</span> svar har skickats in", 
+            html: "<span></span> svar har skickats in", 
             class: "puzzleSubmission",
             appendTo: this.puzzleContainer
         })
@@ -143,8 +143,15 @@ class PuzzleGame1 {
         })
         .fail(error)
     }
-}
 
+    countSubmissions() {
+        $.get('php/countSubmissions.php', {puzzleId: this.id})
+        .done(function(data){
+            data = JSON.parse(data)
+            $("#nrOfSub" + this.id + " span").html(data[0].submissions)
+        }.bind(this))
+    }
+}
 
 function getPuzzles() {
     
@@ -157,6 +164,10 @@ function getPuzzles() {
             let p = new PuzzleGame1(item.puzzleId, item.contentHTML)
             
             pArr.push(p) 
+            p.countSubmissions()
+            setInterval(() => {
+                p.countSubmissions()   
+            }, 30000);
         })
  
         window.updatePuzzles = ()=>{
