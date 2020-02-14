@@ -1,8 +1,11 @@
+// Imports
+// import Menu from "./Menu.js";
+
 //variables
 let loginToken = null;
 let menuOptionLoggedOff = [
-    {label: "Logga in", content: $("<div>").load("html/login.html")},
-    {label: "Skapa konto", content: $("<div>").load("html/signupform.html")}
+    { label: "Logga in", content: $("<div>").load("html/login.html") },
+    { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
 ]
 
 //test
@@ -10,36 +13,32 @@ let menuOptionLoggedOff = [
 
 $(document).ready(() => {
     init();
-    
+
     //check if logged in 
-    loadMenu(menuOptionLoggedOff)
+    // loadMenu(menuOptionLoggedOff)
     //bör köras i .done efter att vi hämtat användarinfo till loginToken
     setTimeout(getPuzzles, 100)
-    
+
 
     //TEST FOR MOBILE console
     // $(":root").css({"--color2": "red"})
 })
 
 function init() {
-    // let cookie = checkCookie();
-    // console.log(cookie)
+
     //Check if user has been logged in recently 
     if (loginToken != null) {
         console.log(loginToken)
 
     } else {
         checkCookie();
-        // console.log("In the else if ");
     }
     // Display menu and user data
+    loadMenu();
 
-
-    //Create menu
 }
 
 function checkCookie() {
-    // console.log("Checking cookie");
     var name = "user=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -54,9 +53,9 @@ function checkCookie() {
         }
 
         if (c.indexOf(name) == 0) {
-            // console.log("In checkCookie if...")
-            cookie = JSON.parse(c.substring(name.length, c.length));
 
+            cookie = JSON.parse(c.substring(name.length, c.length));
+            let request;
             // Validate credentials against Db
             request = $.ajax({
                     url: "php/login.php",
@@ -101,7 +100,29 @@ function logOut() {
 
 //creates the menu from the passed in array of objects
 function loadMenu(arr) {
-    arr.forEach((item) => {
+    // Create an instance of the menu class
+    // const menu = new Menu();
+
+    const menuOptionsBasic = [
+        { label: "Logga in", content: $("<div>").load("html/login.html") },
+        { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
+    ]
+
+    const menuOptionsUser = [
+        { label: "Spela", content: $("<div>").load("html/login.html") },
+        { label: "Min profil", content: $("<div>").load("html/signupform.html") }
+    ]
+    let renderOptions;
+
+    if (loginToken == null) {
+        // Load menu for NOT logged in users
+        renderOptions = menuOptionsUser
+    } else if (loginToken != null) {
+        // Load menu for logged in users
+        renderOptions = menuOptionsBasic;
+    }
+
+    renderOptions.forEach((item) => {
         let opt = new MenuOption(item.label, item.content)
         if (item.label == "Logga in" || item.label == "Team") {
             opt.iconContainer.click()
@@ -110,6 +131,12 @@ function loadMenu(arr) {
 
 }
 
+
+// Event handling
+//Logout function, testing only
+$("#testLogout").click(() => {
+    console.log("asdlkasd")
+});
 
 
 //click events for Icon and menu
@@ -122,9 +149,9 @@ $(".logoButton").click(() => {
         val = "0vw"
     }
 
-    $("#menu").css({ 
+    $("#menu").css({
         transform: "translateX(" + val + ")",
-        "-webkit-transform": "translateX(" + val + ")" 
+        "-webkit-transform": "translateX(" + val + ")"
     })
 
 
