@@ -17,7 +17,7 @@ $(document).ready(() => {
     //check if logged in 
     // loadM:q
     //bör köras i .done efter att vi hämtat användarinfo till loginToken
-    
+
 
 
     //TEST FOR MOBILE console
@@ -110,7 +110,7 @@ function loadMenu(arr) {
     ]
 
     const menuOptionsUser = [
-        { label: "Spela", content: $("<div>").load("html/login.html") },
+        { label: "Team", content: $("<div>").load("html/login.html") },
         { label: "Min profil", content: $("<div>").load("html/signupform.html") }
     ]
     let renderOptions;

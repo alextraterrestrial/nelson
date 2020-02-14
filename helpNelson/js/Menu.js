@@ -1,4 +1,21 @@
-import MenuOption from "./MenuOption.js"
+// import MenuOption from "./MenuOption.js"
+
+// export default class Menu {
+//     constructor() {
+//         this.options = [];
+//         this.$menuContainer = $("#menuOptionContainer");
+//     }
+
+//     addOption(optionLabel, optionContent) {
+//         const option = new MenuOption(optionLabel, optionContent);
+//         options.push(option);
+//     }
+
+//     render() {
+//         this.$menuContainer.empty();
+
+//     }
+// }
 
 class MenuOption {
     constructor(label, content) {
@@ -22,22 +39,5 @@ class MenuOption {
             $("#menuOptionContent > div").css({ display: "none" })
             this.content.css({ display: "block" })
         }.bind(this))
-    }
-}
-
-export default class Menu {
-    constructor() {
-        this.options = [];
-        this.$menuContainer = $("#menuOptionContainer");
-    }
-
-    addOption(optionLabel, optionContent) {
-        const option = new MenuOption(optionLabel, optionContent);
-        options.push(option);
-    }
-
-    render() {
-        this.$menuContainer.empty();
-
     }
 }
