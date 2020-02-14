@@ -48,10 +48,11 @@ class PuzzleGame1 {
             appendTo: "#game"
         })
         
+        
         //nr of submissions
         $('<div>', {
             "id": "nrOfSub" + this.id,
-            html: "<span>SUBS</span> team har skickat in en lösning.", 
+            html: "<span></span> svar har skickats in", 
             class: "puzzleSubmission",
             appendTo: this.puzzleContainer
         })
@@ -128,9 +129,10 @@ class PuzzleGame1 {
     }
 
     getPuzzleSubmissions() {
-        $.get('php/getPuzzleSubmissions.php', {teamId: loginToken.teamId})
+        $.get('php/getPuzzleSubmissions.php', {teamId: loginToken.teamId, puzzleId: this.id})
         .done((data)=>{
             data = JSON.parse(data)
+            console.log(data)
             
             $("#puzzleForm" + this.id).empty()
             if(data[0]) {
@@ -141,20 +143,41 @@ class PuzzleGame1 {
         })
         .fail(error)
     }
+
+    countSubmissions() {
+        $.get('php/countSubmissions.php', {puzzleId: this.id})
+        .done(function(data){
+            data = JSON.parse(data)
+            $("#nrOfSub" + this.id + " span").html(data[0].submissions)
+        }.bind(this))
+    }
 }
 
-
 function getPuzzles() {
+    
     $.get('php/getGame1.php')
     .done((data)=>{
+        let pArr = []
+        
         data = JSON.parse(data)
         data.forEach(item => {
             let p = new PuzzleGame1(item.puzzleId, item.contentHTML)
             
-            if(loginToken.teamId) {
-                p.getPuzzleSubmissions()
-            } 
-        });
+            pArr.push(p) 
+            p.countSubmissions()
+            setInterval(() => {
+                p.countSubmissions()   
+            }, 30000);
+        })
+ 
+        window.updatePuzzles = ()=>{
+            console.log(pArr)
+            pArr.forEach((obj)=>{
+                if(loginToken.teamId) {
+                    obj.getPuzzleSubmissions()
+                } 
+            })
+        }
     })
 }
 
