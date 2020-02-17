@@ -70,7 +70,7 @@
             
             <!-- this section contains the welcome message and the current game -->
             <section id="home">
-                <!-- <h1>Välkommen</h1>
+                <h1>Välkommen</h1>
                 <p>lLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 behövs knapparna?
                 <div class="linkContainer">
@@ -80,7 +80,7 @@
                 </div>
             
                 <div id="game">
-                </div> -->
+                </div>
             
                 <!-- this is just a filler, the $.load() will replace this later, comment this in to test team-stuff -->
                 <!-- <div id="teamWrapper">

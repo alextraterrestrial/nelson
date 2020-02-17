@@ -5,7 +5,7 @@ function createUser(id, password) {
             console.log(data)
             loginToken = new User(data[0]);
             
-            // setTimeout(updatePuzzles, 100)
+            setTimeout(updatePuzzles, 100)
 
             $(".playerName").html(loginToken.username)
             $(".playerPoints").html(loginToken.score)

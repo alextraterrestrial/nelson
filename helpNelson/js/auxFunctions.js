@@ -31,9 +31,6 @@ function getHourMinSecArray(s) {
   } else {
     days = ""
   }
-  console.log(days, hour, min, sec)
-
-
   return [hour, min, sec, days]
 }
 
@@ -43,7 +40,6 @@ function countDown() {
   let time = Math.round((Date.parse('February 28, 2020 14:30:40') - Date.now())/1000)
 
   let timeLeft = getHourMinSecArray(time)
-  console.log(timeLeft[3])
   $(".countDown").html(timeLeft[3] + timeLeft[0] + ":" + timeLeft[1] + ":" + timeLeft[2])
 
   let count = setInterval(() => {
