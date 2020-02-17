@@ -7,7 +7,8 @@ function createUser(id, password) {
             
             // setTimeout(updatePuzzles, 100)
 
-
+            $(".playerName").html(loginToken.username)
+            $(".playerPoints").html(loginToken.score)
         })
         .fail(() => {
             console.log('FAIL')

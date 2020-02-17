@@ -15,9 +15,9 @@ $(document).ready(() => {
     init();
 
     //check if logged in 
-    // loadMenu(menuOptionLoggedOff)
+    // loadM:q
     //bör köras i .done efter att vi hämtat användarinfo till loginToken
-    setTimeout(getPuzzles, 100)
+
 
 
     //TEST FOR MOBILE console
@@ -35,7 +35,8 @@ function init() {
     }
     // Display menu and user data
     loadMenu();
-
+    getPuzzles();
+    countDown()
 }
 
 function checkCookie() {
@@ -109,7 +110,7 @@ function loadMenu(arr) {
     ]
 
     const menuOptionsUser = [
-        { label: "Spela", content: $("<div>").load("html/login.html") },
+        { label: "Team", content: $("<div>").load("html/login.html") },
         { label: "Min profil", content: $("<div>").load("html/signupform.html") }
     ]
     let renderOptions;
