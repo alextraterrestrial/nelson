@@ -59,7 +59,6 @@
 
                 <!-- contains the  -->
                 <div id="menuOptionContent">
-                    <div class="close-btn">close</div>
                 </div>
 
                 <div id="menuOptionActions">

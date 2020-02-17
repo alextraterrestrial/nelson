@@ -1,146 +1,141 @@
 /*general css for the whole page: Includes variables, media query and general classes used throughout the webpage*/
 
 :root {
-    --backgroundColor: #03003a;
-    --backgroundColorTransparent: #03003a8a;
-    --color2: #aed04d;
-    --fontSize: 14px;
-    --font: 'Overpass Mono', monospace;
-    --radius: 4px;
+  --backgroundColor: #03003a;
+  --backgroundColorTransparent: #03003a8a;
+  --color2: #aed04d;
+  --fontSize: 14px;
+  --font: "Overpass Mono", monospace;
+  --radius: 4px;
 
-    --widthCircuit: 90px;
-    --heightCircuit: calc(var(--widthCircuit) * 1.555);
-    /* --heightCircuit: 140px; */
-    
+  --widthCircuit: 90px;
+  --heightCircuit: calc(var(--widthCircuit) * 1.555);
+  /* --heightCircuit: 140px; */
 }
 
 body {
-    margin: 0px;
-    background-color: var(--backgroundColor);
-    color: var(--color2);
-    font-family: var(--font);
+  margin: 0px;
+  background-color: var(--backgroundColor);
+  color: var(--color2);
+  font-family: var(--font);
 }
 
 .wrapper {
-    position: relative;
+  position: relative;
 }
 
 /* general classes */
 .flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flexAround {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-/* CSS for Icon and logo */ 
+/* CSS for Icon and logo */
 #icon {
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 20;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 20;
 }
 
 #icon > div {
-    width: var(--widthCircuit);
-    height: calc(var(--heightCircuit) * .66);
-    /* background-color: var(--backgroundColor);
+  width: var(--widthCircuit);
+  height: calc(var(--heightCircuit) * 0.66);
+  /* background-color: var(--backgroundColor);
     border-bottom-right-radius: 50%; */
 }
 
 .circuit {
-    width: var(--widthCircuit);
-    height: var(--heightCircuit);
-    background-image: url(../content/graphicResources/circuitBg.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+  width: var(--widthCircuit);
+  height: var(--heightCircuit);
+  background-image: url(../content/graphicResources/circuitBg.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .circuit img {
-    width: 53%;
-    margin-left: calc(var(--widthCircuit) * 0.181);
-    margin-top: calc(var(--heightCircuit) * 0.181);
-    background-color: var(--backgroundColor);
-    border-radius: var(--radius);
+  width: 53%;
+  margin-left: calc(var(--widthCircuit) * 0.181);
+  margin-top: calc(var(--heightCircuit) * 0.181);
+  background-color: var(--backgroundColor);
+  border-radius: var(--radius);
 }
 
 /* CSS for the Menu */
 #menu {
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--backgroundColor);
-    padding: 0 3vw;
-    position: fixed;
-    z-index: 10;
-    /* display: none; */
-    margin-top: calc(-.66 * var(--heightCircuit));
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--backgroundColor);
+  padding: 0 3vw;
+  position: fixed;
+  z-index: 10;
+  /* display: none; */
+  margin-top: calc(-0.66 * var(--heightCircuit));
 
-    transform: translateX(-100vw);
-    -webkit-transform: translateX(-100vw);
-    
-    transition: transform 1s ease-out;
-    -webkit-transition: transform 1s ease-out;
+  transform: translateX(-100vw);
+  -webkit-transform: translateX(-100vw);
+
+  transition: transform 1s ease-out;
+  -webkit-transition: transform 1s ease-out;
 }
 
 #menuHeader {
-    height: calc(var(--heightCircuit) * .66);
-    padding-left: calc(var(--widthCircuit) - 3vw);
+  height: calc(var(--heightCircuit) * 0.66);
+  padding-left: calc(var(--widthCircuit) - 3vw);
 }
 
 #menuOptionContainer {
-    height: 10vh;
-    
+  height: 10vh;
 }
 
 .menuOptionButton {
-    border: 1px solid var(--color2);
-    border-radius: 50%;
-    height: 7vh;
-    width: 7vh;
-    flex-shrink: 0;
+  border: 1px solid var(--color2);
+  border-radius: 50%;
+  height: 7vh;
+  width: 7vh;
+  flex-shrink: 0;
 }
 
 #menuOptionContent {
-    height: calc(80vh - var(--widthCircuit));
-    padding-top: 1vh;
-    overflow: scroll;
+  height: calc(80vh - var(--widthCircuit));
+  padding-top: 1vh;
+  overflow: scroll;
 }
 
 #menuOptionActions {
-    height: 10vh;
+  height: 10vh;
 }
-
-
 
 /* home and gamepage */
 #home {
-    padding: 0 3vw;
+  padding: 0 3vw;
 }
 
 .puzzleSubmission {
-    font-size: 11px;
-    margin: 3px 0;
-    text-align: right;
+  font-size: 11px;
+  margin: 3px 0;
+  text-align: right;
 }
 
-
 .puzzleContent img {
-    width: 90%;
-    display: block;
-    margin: 0 auto 5px;
+  width: 90%;
+  display: block;
+  margin: 0 auto 5px;
 }
 
 .puzzleContainer form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .puzzleContainer form input {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
