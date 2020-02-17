@@ -4,161 +4,171 @@
 //variables
 let loginToken = null;
 let menuOptionLoggedOff = [
-    { label: "Logga in", content: $("<div>").load("html/login.html") },
-    { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
-]
+  { label: "Logga in", content: $("<div>").load("html/login.html") },
+  { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
+];
 
 //test
 
-
 $(document).ready(() => {
-    init();
+  init();
 
-    //check if logged in 
-    // loadM:q
-    //bör köras i .done efter att vi hämtat användarinfo till loginToken
+  //check if logged in
+  // loadM:q
+  //bör köras i .done efter att vi hämtat användarinfo till loginToken
 
-
-
-    //TEST FOR MOBILE console
-    // $(":root").css({"--color2": "red"})
-})
+  //TEST FOR MOBILE console
+  // $(":root").css({"--color2": "red"})
+});
 
 function init() {
-
-    //Check if user has been logged in recently 
-    if (loginToken != null) {
-        console.log(loginToken)
-
-    } else {
-        checkCookie();
-    }
-    // Display menu and user data
-    loadMenu();
-    getPuzzles();
-    countDown()
+  //Check if user has been logged in recently
+  if (loginToken != null) {
+    console.log(loginToken);
+  } else {
+    checkCookie();
+  }
+  // Display menu and user data
+  loadMenu();
+  getPuzzles();
+  countDown();
 }
 
 function checkCookie() {
-    var name = "user=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    var cookie;
+  var name = "user=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  var cookie;
 
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            let pattern = /[+]/g;
-            c = c.replace(pattern, " ");
-            c = c.substring(1);
-        }
-
-        if (c.indexOf(name) == 0) {
-
-            cookie = JSON.parse(c.substring(name.length, c.length));
-            let request;
-            // Validate credentials against Db
-            request = $.ajax({
-                    url: "php/login.php",
-                    type: "GET",
-                    encode: true,
-                })
-                .done((res) => {
-                    let parsedRes = JSON.parse(res)
-                    console.log(JSON.parse(res));
-
-                    // Create a user
-                    createUser(parsedRes.userId, parsedRes.password)
-
-                    // return parsedRes;
-                })
-        }
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      let pattern = /[+]/g;
+      c = c.replace(pattern, " ");
+      c = c.substring(1);
     }
-    // return null;
+
+    if (c.indexOf(name) == 0) {
+      cookie = JSON.parse(c.substring(name.length, c.length));
+      let request;
+      // Validate credentials against Db
+      request = $.ajax({
+        url: "php/login.php",
+        type: "GET",
+        encode: true
+      }).done(res => {
+        let parsedRes = JSON.parse(res);
+        console.log(JSON.parse(res));
+
+        // Create a user
+        createUser(parsedRes.userId, parsedRes.password);
+
+        // Load menu
+        loadMenu();
+
+        // return parsedRes;
+      });
+    }
+  }
+  // return null;
 }
-/** 
+/**
  * Clears cookie and logs out user
  */
 function logOut() {
-    // Variables
-    let request
+  // Variables
+  let request;
 
-    // Set loginToken to null
-    loginToken = null
+  // Set loginToken to null
+  loginToken = null;
 
-    //Send request to logout.php
-    request = $.ajax({
-            url: "php/logout.php",
-            type: "POST"
-        })
-        .done(res => {
-            console.log(res)
+  //Send request to logout.php
+  request = $.ajax({
+    url: "php/logout.php",
+    type: "POST"
+  }).done(res => {
+    console.log(res);
 
-            // Call init function to restart
-            init()
-        })
+    // Call init function to restart
+    init();
+  });
 }
 
 //creates the menu from the passed in array of objects
-function loadMenu(arr) {
-    // Create an instance of the menu class
-    // const menu = new Menu();
+function loadMenu() {
+  //Clear menu
+  $("#menuOptionContainer").empty();
+  console.log("oading menu");
 
-    const menuOptionsBasic = [
-        { label: "Logga in", content: $("<div>").load("html/login.html") },
-        { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
-    ]
+  const menuOptionsBasic = [
+    { label: "Logga in", content: $("<div>").load("html/login.html") },
+    { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
+  ];
 
-    const menuOptionsUser = [
-        { label: "Team", content: $("<div>").load("html/login.html") },
-        { label: "Min profil", content: $("<div>").load("html/signupform.html") }
-    ]
-    let renderOptions;
+  const menuOptionsUser = [
+    { label: "Team", content: $("<div>").load("html/login.html") },
+    { label: "Min profil", content: $("<div>").load("html/signupform.html") }
+  ];
+  let renderOptions;
 
-    if (loginToken == null) {
-        // Load menu for NOT logged in users
-        renderOptions = menuOptionsUser
-    } else if (loginToken != null) {
-        // Load menu for logged in users
-        renderOptions = menuOptionsBasic;
+  if (loginToken === null) {
+    // Load menu for NOT logged in users
+    renderOptions = menuOptionsBasic;
+    console.log("loginToken is null");
+  } else if (loginToken != null) {
+    console.log("Not null");
+    // Load menu for logged in users
+    renderOptions = menuOptionsUser;
+  }
+
+  console.log(renderOptions);
+  renderOptions.forEach(item => {
+    let opt = new MenuOption(item.label, item.content);
+    if (item.label == "Logga in" || item.label == "Team") {
+      opt.iconContainer.click();
     }
-
-    renderOptions.forEach((item) => {
-        let opt = new MenuOption(item.label, item.content)
-        if (item.label == "Logga in" || item.label == "Team") {
-            opt.iconContainer.click()
-        }
-    })
-
+  });
 }
+// Toggle between showing and hiding the menu
+function toggleMenu() {
+  let val;
+  if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
+    val = "-100vw";
+  } else {
+    val = "0vw";
+  }
 
+  $("#menu").css({
+    transform: "translateX(" + val + ")",
+    "-webkit-transform": "translateX(" + val + ")"
+  });
+}
 
 // Event handling
 //Logout function, testing only
 $("#testLogout").click(() => {
-    console.log("asdlkasd")
+  console.log("asdlkasd");
 });
 
-
 //click events for Icon and menu
+$(".logoButton").click(toggleMenu);
 
-$(".logoButton").click(() => {
-    let val
-    if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
-        val = "-100vw"
-    } else {
-        val = "0vw"
-    }
+// $(".logoButton").click(() => {
+//   let val;
+//   if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
+//     val = "-100vw";
+//   } else {
+//     val = "0vw";
+//   }
 
-    $("#menu").css({
-        transform: "translateX(" + val + ")",
-        "-webkit-transform": "translateX(" + val + ")"
-    })
+//   $("#menu").css({
+//     transform: "translateX(" + val + ")",
+//     "-webkit-transform": "translateX(" + val + ")"
+//   });
 
-
-    // if ($("#menu").css("display")=="none") {
-    //     $("#menu").css({display: "block"})
-    // } else {
-    //     $("#menu").css({display: "none"})
-    // }
-})
+//   // if ($("#menu").css("display")=="none") {
+//   //     $("#menu").css({display: "block"})
+//   // } else {
+//   //     $("#menu").css({display: "none"})
+//   // }
+// });
