@@ -59,7 +59,7 @@
 
                 <!-- contains the  -->
                 <div id="menuOptionContent">
-
+                    <div class="close-btn">close</div>
                 </div>
 
                 <div id="menuOptionActions">
@@ -98,7 +98,7 @@
         <script src="js/puzzle.js"></script> 
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="js/menu.js"></script> 
+        <script src="js/MenuOption.js"></script> 
         <script src="js/auxFunctions.js"></script> 
         <script src="js/controller.js"></script>
         <script src="js/team.js"></script>
