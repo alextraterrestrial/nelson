@@ -5,9 +5,9 @@ function createUser(id, password) {
             console.log(data)
             loginToken = new User(data[0]);
             
-            //might be rewritten --> se getPuzzle() function 
-            // loginToken.teamId = 2
-            setTimeout(updatePuzzles, 100)
+            // setTimeout(updatePuzzles, 100)
+
+
         })
         .fail(() => {
             console.log('FAIL')

@@ -1,11 +1,22 @@
 let allUsers
 
 function getUsers() {
-  $.get('../php/getUsers.php') 
+  $.get('php/getUsers.php') 
   .done((data) => {
     data = JSON.parse(data)
-    allUsers = data
-    console.log(allUsers)
+    users = data
+    let inTeam = users[0]
+    allUsers = users[1]
+
+    allUsers.forEach((a, i) => {
+      inTeam.forEach((b) => {
+        if (a.username == b.username) {
+          allUsers.splice(i, 1, b)
+        }
+      })
+    })
+
+    // return allUsers
     // switch (loginToken.status) {
     //   case 'captain':
     //     $('#teamShowcase > h3').html(loginToken.teamName)
@@ -31,12 +42,12 @@ function getUsers() {
 
 // WORKS - sends user data to DB => program respone function for requested user
 function addUser(clickedUser, captain) {
-  let team = captain.teamName
-  let requestedId = clickedUser.id
+  let team = captain.teamId
+  let requestedId = clickedUser.userId
 
-  $.get('../php/sendRequest.php', {team: team, userId: requestedId}) 
+  $.get('php/sendRequest.php', {team: team, userId: requestedId}) 
   .done((data) => {
-    // popup(data)
+    popup(data)
     console.log(data)
     getUsers()
   })
@@ -46,7 +57,8 @@ function addUser(clickedUser, captain) {
 }
 
 function updateTeam(action, team, memberToEffect) {
-  $.get('../php/updateTeam.php', {action: action, team: team, member: memberToEffect})
+  console.log(action, team, memberToEffect)
+  $.get('php/updateTeam.php', {action: action, team: team, member: memberToEffect})
     .done((data) => {
       // popup(data)
       console.log(data)
@@ -83,7 +95,7 @@ function displayUserInfo() {
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
       let memberSlot = $("<div>")
-      memberSlot.attr('class', 'flex')
+      memberSlot.attr('class', 'flexAROUND')
       let alias = $("<div>")
       alias.html(member.username)
       $(memberSlot).append(alias)
@@ -94,11 +106,11 @@ function displayUserInfo() {
 
       if (loginToken.status == "captain") {
         let btnContainer = $("<div>")
-        btnContainer.attr('class', 'flex')
+        btnContainer.attr('class', 'flexAround')
 
         let makeCaptain = $("<div>")
         makeCaptain.click(() => {
-          updateTeam('updateCaptain', loginToken.teamName, member.id)
+          updateTeam('updateCaptain', loginToken.teamId, member.userId)
         })
         makeCaptain.attr('class', 'button flex')
         makeCaptain.css({'margin-right': '5px'})
@@ -107,7 +119,7 @@ function displayUserInfo() {
   
         let removeMember = $("<div>")
         removeMember.click(() => {
-          updateTeam('removeMember', loginToken.teamName, member.id)
+          updateTeam('removeMember', loginToken.teamId, member.userId)
         })
         removeMember.attr('class', 'button flex')
         removeMember.html('X')
@@ -151,7 +163,7 @@ function displayUserInfo() {
     
     $("#teamWrapper").append(teamInvites)
 
-  } else if (loginToken.status == 'passive') {
+  } else if (loginToken.status == undefined) {
     let prompt = $("<div>")
     prompt.html('Please add users to form a team')
     // $("#teamMembers").css('justify-content', 'center')
@@ -163,9 +175,9 @@ function displayAvaliableUsers() {
   // fill list of users
   $("#availableUsers").empty()
   for (let user of allUsers) {
-    if (user.username != loginToken.username) {
+    if ((user.username != loginToken.username) && (user.status != 'captain')) {
       let availableUser = $("<div>")
-      availableUser.attr('class', 'flex')
+      availableUser.attr('class', 'flexAround')
       
       let userToAppend = $("<div>")
       userToAppend.html(user.username)
@@ -173,20 +185,24 @@ function displayAvaliableUsers() {
       button.attr('class', 'button flex')
       button.val(user.id)
       button.html(() => {
-        switch (user.status) {
-          case 'passive':
-            return '+'
-          case 'pending':
-            return '?'
-          case 'active':
-            return '✓'
-          case 'captain':
-            return '♕'
+        if (loginToken.status != undefined) {
+          switch (user.status) {
+            case undefined:
+              return '+'
+            case 'pending':
+              return '?'
+            case 'active':
+              return '✓'
+            case 'captain':
+              return '♕'
+          }
+        } else {
+          return '+'
         }
       })
 
       button.click(() => {
-        if (user.status == 'passive' && loginToken.status == 'captain') {
+        if (user.status == undefined && loginToken.status == 'captain') {
         button.html('?')
         addUser(user, loginToken)
         }
@@ -201,3 +217,8 @@ function displayAvaliableUsers() {
 // functions to call on page-load
 
 getUsers()
+function a() {
+  displayUserInfo()
+  displayAvaliableUsers()
+  return "Here you go!"
+}

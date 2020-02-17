@@ -1,7 +1,7 @@
 <?php
-include('../PHP/connectToDB.php');
+include('connectToDB.php');
 
-$pdo = connectDB();
+// $pdo = connectDB();
 
 $query = "INSERT INTO UserTeam(teamId, userId, status) VALUES (?, ?, 'pending')";
 

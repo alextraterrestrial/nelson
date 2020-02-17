@@ -1,20 +1,20 @@
 <?php
-include('../PHP/connectDB.php');
+include('connectToDB.php');
 
-$pdo = connectDB();
+// $pdo = connectDB();
 $action = $_GET['action'];
 
 switch ($action) {
   case 'updateCaptain':
-    $query = "UPDATE UserTeam SET status = 'active' WHERE status = 'captain' AND teamName = ?";
+    $query = "UPDATE UserTeam SET status = 'active' WHERE status = 'captain' AND teamId = ?";
     $sql = $pdo->prepare($query);
     $sql->bindParam(1, $_GET['team']);
     $sql->execute();
     
-    $query = "UPDATE UserTeam SET status = 'captain' WHERE (status = 'active' AND teamName = ?) AND (id = ?)";
+    $query = "UPDATE UserTeam SET status = 'captain' WHERE (status = 'active' AND teamId = ?) AND (userId = ?)";
   break;
   case 'removeMember':
-    $query = "UPDATE users SET status = 'passive', teamName = NULL WHERE teamName = ? AND id = ?";
+    $query = "DELETE FROM UserTeam WHERE teamId = ? AND userId = ?";
   break;
 }
 

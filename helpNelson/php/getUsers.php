@@ -9,21 +9,30 @@ JOIN Team ON UserTeam.teamId = Team.teamId";
 
 $sql = $pdo->prepare($query);
 $sql->execute();
-$answer = $sql->fetchAll(PDO::FETCH_ASSOC);
+$answer1 = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-if ($answer) {
-  $answer = json_encode($answer);
-  echo $answer;
-
-} else {
+// if ($answer1) {
+//   // $answer1 = json_encode($answer);
+//   // $arr1 = array($answer);
+//   // echo $answer;
+  
+// } elseif ($answer == false) {
   $query = "SELECT * FROM User";
-
+  
   $sql = $pdo->prepare($query);
   $sql->execute();
-  $answer = $sql->fetchAll(PDO::FETCH_ASSOC);
+  $answer2 = $sql->fetchAll(PDO::FETCH_ASSOC);
+  
+  // $answer2 = json_encode($answer);
+  // $arr2 = array($answer);
 
-  $answer = json_encode($answer);
-  echo $answer;
-}
+  // echo $answer;
+// }
+$result = array();
+$result[] = $answer1;
+$result[] = $answer2;
+$result = json_encode($result);
+
+echo $result;
 
 ?>

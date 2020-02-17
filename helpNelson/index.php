@@ -70,9 +70,9 @@
             
             <!-- this section contains the welcome message and the current game -->
             <section id="home">
-                <h1>Välkommen</h1>
+                <!-- <h1>Välkommen</h1>
                 <p>lLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <!-- behövs knapparna? -->
+                behövs knapparna?
                 <div class="linkContainer">
                     <input class="inputClass" type="button" value="link 1">
                     <input class="inputClass" type="button" value="link 2">
@@ -80,21 +80,31 @@
                 </div>
             
                 <div id="game">
-                </div>
+                </div> -->
             
+                <!-- this is just a filler, the $.load() will replace this later, comment this in to test team-stuff -->
+                <!-- <div id="teamWrapper">
+                    <div id="teamName"></div>
+                    <div id="teamPoints"></div>
+                    <h3>Members:</h3>
+                    <div id="members"></div>
+
+                <div id="availableUsers"></div>
+                </div> -->
             
             
             </section>
         </div>
-
+        <script src="js/linus.js"></script> 
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="js/auxFunctions.js"></script> 
         <script src="js/controller.js"></script>
-        <!-- <script src="js/team.js"></script> -->
+        <script src="js/team.js"></script>
         <script src="js/userClass.js"></script>
         <script src="js/userFunctionality.js"></script> 
-        <script src="js/linus.js"></script> 
+        
+        <script src="js/login.js"></script>
         
         <!-- <script src="testContent.js"></script>
         <script src="auxFunctions.js"></script>
