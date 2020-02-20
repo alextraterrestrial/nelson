@@ -8,8 +8,6 @@ let menuOptionLoggedOff = [
   { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
 ];
 
-//test
-
 $(document).ready(() => {
   init();
 
@@ -23,55 +21,83 @@ $(document).ready(() => {
 
 function init() {
   //Check if user has been logged in recently
-  if (loginToken != null) {
-    console.log(loginToken);
-  } else {
-    checkCookie();
-  }
+  // if (loginToken != null) {
+  //   console.log(loginToken);
+  // } else {
+  //   checkCookie();
+  // }
+  // loadMenu();
+  checkUser();
   // Display menu and user data
-  loadMenu();
+
   getPuzzles();
   countDown();
 }
 
-function checkCookie() {
-  var name = "user=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(";");
-  var cookie;
+function checkUser() {
+  // loadMenu();
 
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") {
-      let pattern = /[+]/g;
-      c = c.replace(pattern, " ");
-      c = c.substring(1);
-    }
-
-    if (c.indexOf(name) == 0) {
-      cookie = JSON.parse(c.substring(name.length, c.length));
-      let request;
-      // Validate credentials against Db
-      request = $.ajax({
-        url: "php/login.php",
-        type: "GET",
-        encode: true
-      }).done(res => {
-        let parsedRes = JSON.parse(res);
-        console.log(JSON.parse(res));
-
-        // Create a user
-        createUser(parsedRes.userId, parsedRes.password);
-
-        // Load menu
-        loadMenu();
-
-        // return parsedRes;
-      });
-    }
-  }
-  // return null;
+  checkCookie()
+    .then(res => {
+      console.log("done checking cookie");
+      console.log(loginToken);
+      loadMenu();
+    })
+    .then(() => {});
 }
+
+function checkCookie() {
+  return new Promise((resolve, reject) => {
+    var name = "user=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(";");
+    var cookie;
+
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == " ") {
+        let pattern = /[+]/g;
+        c = c.replace(pattern, " ");
+        c = c.substring(1);
+      }
+
+      if (c.indexOf(name) == 0) {
+        cookie = JSON.parse(c.substring(name.length, c.length));
+        let request;
+        // Validate credentials against Db
+        request = $.ajax({
+          url: "php/login.php",
+          type: "GET",
+          encode: true
+        })
+          .done(res => {
+            console.log(res);
+            let parsedRes = JSON.parse(res);
+            console.log(JSON.parse(res));
+
+            // Create a user
+            loginToken = new User(res);
+
+            resolve();
+
+            // createUser(parsedRes.userId, parsedRes.password).then(data => {
+            //   console.log(loginToken);
+            //   resolve(res);
+            // });
+          })
+          .fail(res => {
+            reject(res);
+          });
+        break;
+      }
+      // If no cookie is found -> Resolve
+      if (i == ca.length - 1) {
+        resolve();
+      }
+    }
+  });
+}
+
 /**
  * Clears cookie and logs out user
  */
@@ -87,6 +113,8 @@ function logOut() {
     url: "php/logout.php",
     type: "POST"
   }).done(res => {
+    // Load menu
+    init();
     console.log(res);
 
     // Call init function to restart

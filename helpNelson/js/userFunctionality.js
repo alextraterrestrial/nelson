@@ -1,5 +1,7 @@
-function createUser(id, password) {
-  $.get("php/getUserInfo.php", { id: id, password: password })
+function createUser(user) {
+  // return new Promise((resolve, reject) => {
+  loginToken = new User(user);
+  $.post("php/getUserInfo.php", { id: id, password: password })
     .done(data => {
       data = JSON.parse(data);
       console.log(data);
@@ -9,8 +11,12 @@ function createUser(id, password) {
 
       $(".playerName").html(loginToken.username);
       $(".playerPoints").html(loginToken.score);
+
+      resolve(data);
     })
-    .fail(() => {
+    .fail(data => {
       console.log("FAIL");
+      // reject(data);
     });
+  // });
 }
