@@ -96,7 +96,6 @@ class PuzzleGame1 {
         $.get('php/getPuzzleSubmissions.php', { teamId: loginToken.teamId, puzzleId: this.id })
             .done((data) => {
                 data = JSON.parse(data)
-                console.log(data)
 
                 $("#puzzleForm" + this.id).empty()
                 if (data[0]) {
