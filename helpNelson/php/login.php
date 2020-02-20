@@ -72,10 +72,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                     $username = $row["username"];
                     $hashed_password = $row["password"];
 
+                    $email = $row["email"];
+                    $score = $row["score"];
+                    $dateReg = $row["dateReg"];
+                    
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
                         // Check password against DB
                         if(password_verify($password, $hashed_password)){
                             //Password was correct
+
+                            // // Get user information
+                            // $sql = "SELECT User.*, Team.teamId, Team.teamName, UserTeam.status FROM User 
+                            // JOIN UserTeam ON User.userId = UserTeam.userId 
+                            // JOIN Team ON UserTeam.teamId = Team.teamId
+                            // WHERE User.userId = :userId AND User.password = :userPassword";
+
+                            // if($stmt = $pdo->prepare($sql)){
+                            //     $stmt->bindParam(":userId", $param_id, PDO::PARAM_STR);
+                            //     $stmt->bindParam(":userPassword", $param_hashed_password, PDO::PARAM_STR); 
+
+                            //     $param_id = $id;
+                            //     $param_hashed_password = $hashed_password;
+
+                            //     if($stmt->execute()){
+                            //         if($stmt->rowCount() == 1){
+                            //             if($row = $stmt->fetch()){
+                            //                 $teamName = $row["teamName"];
+                            //                 $teamId = $row["teamId"];
+                            //                 $status = $row["status"];
+                            //             }
+                            //         }
+                            //     }
+
+                            // }
+                            
 
                             //Set session
                             // session_start();
@@ -84,7 +114,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             
                             // Create response
                             $response -> userId = $id;
+                            $response -> username = $username;
                             $response -> password = $hashed_password;
+                            $response -> email = $email;
+                            $response -> score = $score;
+                            $response -> dateReg = $dateReg;
+
+                            // if(isset($teamId)){
+                            //     $response -> teamId = $teamId;
+                            //     $response -> teamName = $teamName;
+                            //     $response -> status = $status;
+                            // } else {
+                            //     $response -> teamId = null;
+                            //     $response -> teamName = null;
+                            //     $response -> status = null;
+                            // }
+                            
+                            
                                 
                             //Create a cookie for the logged in user
                             $cookieName = "user";
@@ -101,6 +147,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                     } else if($_COOKIE['user']){
                         //Validate stored password against DB
                         if($password == $hashed_password){
+
+                            $hashed_password = $password;
+
+                            // // Get user information
+                            //  // Get user information
+                            //  $sql = "SELECT User.userId, Team.teamId, Team.teamName, UserTeam.status FROM User 
+                            //  JOIN UserTeam ON User.userId = UserTeam.userId 
+                            //  JOIN Team ON UserTeam.teamId = Team.teamId
+                            //  WHERE User.userId = :userId AND User.password = :userPassword";
+ 
+                            //  if($stmt = $pdo->prepare($sql)){
+                            //      $stmt->bindParam(":userId", $id, PDO::PARAM_STR);
+                            //      $stmt->bindParam(":userPassword", $hashed_password, PDO::PARAM_STR); 
+ 
+                            //  }
+                            //  if($stmt->execute()){
+                            //      if($stmt->rowCount() == 1){
+                            //          $teamName = $row["teamName"];
+                            //          $teamId = $row["teamId"];
+                            //          $status = $row["status"];
+                            //      }
+                                 
+                            //  }
                             //Start session
                             // session_start();
                             $_SESSION["userId"] = $id;
@@ -109,9 +178,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             // Create response
                             $response -> userId = $id;
                             $response -> password = $password;
+                            $response -> email = $email;
+                            $response -> score = $score;
+                            $response -> dateReg = $dateReg;
+
                         } else{
                             $response -> errors = "Wrong password";
                         }
+                    }
+
+                     // Get user and team information
+                     $sql = "SELECT User.*, Team.teamId, Team.teamName, UserTeam.status FROM User 
+                     JOIN UserTeam ON User.userId = UserTeam.userId 
+                     JOIN Team ON UserTeam.teamId = Team.teamId
+                     WHERE User.userId = :userId AND User.password = :userPassword";
+
+                     if($stmt = $pdo->prepare($sql)){
+                         $stmt->bindParam(":userId", $param_id, PDO::PARAM_STR);
+                         $stmt->bindParam(":userPassword", $param_hashed_password, PDO::PARAM_STR); 
+
+                         $param_id = $id;
+                         $param_hashed_password = $hashed_password;
+
+                         if($stmt->execute()){
+                             if($stmt->rowCount() == 1){
+                                 if($row = $stmt->fetch()){
+                                     $teamName = $row["teamName"];
+                                     $teamId = $row["teamId"];
+                                     $status = $row["status"];
+                                 }
+                             }
+                         }
+
+                     }
+                     //If user is part of a team
+                     if(isset($teamId)){
+                        $response -> teamId = $teamId;
+                        $response -> teamName = $teamName;
+                        $response -> status = $status;
+                    } else {
+                        // Otherwise set to null
+                        $response -> teamId = null;
+                        $response -> teamName = null;
+                        $response -> status = null;
                     }
                     
                     // if(password_verify($password, $hashed_password)){

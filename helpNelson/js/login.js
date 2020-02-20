@@ -44,6 +44,7 @@ $(document).ready(() => {
         .done(res => {
           // Hide spinner
           $("#loginSpinner").hide();
+          console.log(res);
           const parsedRes = JSON.parse(res);
           console.log(parsedRes);
 
@@ -55,17 +56,18 @@ $(document).ready(() => {
 
             console.log(id + " " + password);
 
+            loginToken = new User(parsedRes);
             //Create user
-            createUser(id, password);
+            // createUser(parsedRes).then(() => {
+            //   //Initialize menu
+            //   init();
+            loadMenu();
+            //   // loginToken = parsedRes;
+            //   console.log(loginToken);
 
-            //Initialize menu
-            init();
-
-            // loginToken = parsedRes;
-            console.log(loginToken);
-
-            // Hide menu
-            // toggleMenu();
+            //   // Hide menu
+            toggleMenu();
+            // });
 
             // getBackToHomePage();
             // checkUser();
