@@ -4,7 +4,7 @@
 // Include config file
 require_once "connectToDB.php";
 
-
+$response = new stdClass();
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -19,7 +19,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate email
     if(empty(trim($email))){
-        echo json_encode("Oops! Something went wrong. Please try again later.");
+        $response -> errors = "Oops! Something went wrong. No email provided. Please try again later.";
+        echo json_encode($response);
         exit;
     } else{
         // Prepare a select statement
@@ -35,11 +36,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
-                    echo json_encode("Oops! This email is already registered.");
+                    $response -> errors = "Oops! This email is already registered.";
+                    echo json_encode($response);
                     exit;
                 }
             } else{
-                echo json_encode("Oops! Something went wrong. Please try again later.");
+                $response -> errors = "Oops! Something went wrong with the connection to the db. Please try again later.";
+                echo json_encode($response);
                 exit;
             }
         }
@@ -52,7 +55,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Validate username
     if(empty(trim($username))){
-        echo json_encode("Oops! You didn't enter a valid username");
+        $response -> errors = "Oops! You didn't enter a valid username";
+        echo json_encode($response);
         exit;
     } else{
         // Prepare a select statement
@@ -68,11 +72,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
-                    echo json_encode("Oops! This username is already being used");
+                    $response -> errors = "Oops! This username is already being used";
+                    echo json_encode($response);
                     exit;
                 } 
             } else{
-                echo json_encode("Oops! Something went wrong. Please try again later.");
+                $response -> errors = "Oops! Something went wrong when connecting to the db. Please try again later.";
+                echo json_encode($response);
                 exit;
             }
         }
@@ -83,16 +89,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate password
     if(empty(trim($password))){
-        echo json_encode("Oops! You didn't enter a valid password");   
+        $response -> errors = "Oops! You didn't enter a valid password";
+        echo json_encode($response);
+     
         exit; 
     } elseif(strlen(trim($password)) < 6){
-        echo json_encode("The password was too short");
+        $response -> errors = "The password was too short";
+        echo json_encode($response);
+      
         exit; 
     }
     
     // Validate confirm password
     if(empty(trim($passwordConfirm))){
-        echo json_encode("Oops! Enter a confirm password");
+        $response -> errors = "Oops! Enter a confirm password";
+        echo json_encode($response);
+        
         exit;    
     } 
     
@@ -127,6 +139,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Get id from inserted row
                             if($row = $stmt->fetch()){
                                 $id = $row['userId'];
+                                $username = $row['username'];
+                                $score = $row['score'];
+                                $dateReg = $row['dateReg'];
                             }
                         }
                     }
@@ -136,6 +151,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // session_start();
                 $_SESSION["userId"] = $id;
                 $_SESSION["password"] = $param_password;
+                $_SESSION["username"] = $username;
+                $_SESSION['score'] = $score;
+                $_SESSION['dateReg'] = $dateReg;
 
                 //Set cookie
                 //Create a cookie for the logged in user
@@ -147,18 +165,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $cookieValue = json_encode($cookie);
                 setCookie($cookieName, $cookieValue, time() + (86400 * 14), "/");
 
-                
+                $response -> email = $email;
                 $response -> password = $param_password;
                 $response -> userId = $id;
+                $response -> username = $username;
+                $response -> score = $score;
+                $response -> dateReg = $dateReg;
+                $response -> teamId = null;
+                $response -> teamName = null;
+                $response -> status = null;  
 
                 echo json_encode($response);
             }
         } else{
-            echo json_encode("Oops! Something went wrong. Please try again later.");
+            $response -> errors = "Oops! Something went wrong. Could not insert user into db. Please try again later.";
+            echo json_encode($response);
             exit;  
         }
     } else{
-        echo "Oops... connection error";
+        $response -> errors = "Oops... connection error";
+        echo json_encode($response);
     }
         
     // Close statement
