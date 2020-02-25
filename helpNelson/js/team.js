@@ -222,3 +222,50 @@ function a() {
   displayAvaliableUsers()
   return "Here you go!"
 }
+
+
+
+
+function findPlayersProgram() {
+  $("#searchForPlayer input[type='button']").click(()=>{
+    $("#searchForPlayer input[type='text']").toggle()
+    $("#availableUsers").toggle()
+
+    if($("#searchForPlayer input[type='button']").val() == "sök") {
+      $("#searchForPlayer input[type='button']").val("Göm")
+    } else {
+      $("#searchForPlayer input[type='button']").val("sök")
+    }
+
+  })
+
+  let t
+  $("#searchForPlayer input[type='text']").focus(()=>{
+    t = setInterval(() => {
+      $("#availableUsers > div").css({display: "none"})
+
+      for (let i=1; i<=$("#availableUsers").children().length; i++) {
+        let val = $("#searchForPlayer input[type='text']").val().toLowerCase()
+
+        if($("#availableUsers > div:nth-child(" + i + ") > div").html().toLowerCase().includes(val)) {
+          $("#availableUsers > div:nth-child(" + i + ")").css({display: "flex"})
+
+        }
+      }
+      
+
+    }, 800);
+  })
+
+  $("#searchForPlayer input[type='text']").focusout(()=>{
+    clearInterval(t)
+  })
+
+
+}
+
+
+
+
+
+//searchfunctiono

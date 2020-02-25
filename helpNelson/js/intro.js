@@ -3,7 +3,6 @@
 $("#puzzleFormIntro input[type='button']").click(() => {
     let sub = $("#puzzleFormIntro input[type='text']").val().toLowerCase()
 
-    console.log(sub)
 
    if(sub == "hyllie") {
     //save in cookie?
@@ -15,8 +14,15 @@ $("#puzzleFormIntro input[type='button']").click(() => {
         class: "message"
     })
     
-   } else {
-       console.log("wrong")
+   } else if(sub){
+      let elem = $("<div>", {
+        html: "Fel svar!",
+        appendTo: "#puzzleFormIntro"   
+      })
+
+      setTimeout(() => {
+          elem.remove()
+      }, 1500);
    }
 })
 

@@ -100,7 +100,7 @@ class PuzzleGame1 {
 
                 $("#puzzleForm" + this.id).empty()
                 if (data[0]) {
-                    $("#puzzleForm" + this.id).append("<div>Ni har skickat in " + data[0].submission + " som svar</div>")
+                    $("#puzzleForm" + this.id).append("<div>Ni har svarat " + data[0].submission + " på denna.</div>")
                 } else {
                     this.createSubmissionFormInput()
                 }

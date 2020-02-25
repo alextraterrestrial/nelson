@@ -11,3 +11,7 @@ video {
 #introFooter {
     height: 20vh;
 }
+
+#puzzleFormIntro {
+    min-height: calc(var(--fontSize) * 6);
+}

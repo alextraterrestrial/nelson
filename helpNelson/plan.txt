@@ -67,3 +67,19 @@ function för att ändra lösenord och användar namn
 - Content
 - Fake inlog till future Solutions
 - Gränssnitt på internweb(för screen shot)
+
+
+
+
+
+
+
+
+//
+
+
+getUsers() (körs nu men måste köras)
+
+displayUserInfo()
+displayAvaliableUsers()
+findPlayersProgram()
