@@ -76,11 +76,11 @@ $(document).ready(function() {
       })
         .done(res => {
           console.log("Data sent to register.php");
-          //   let parsedRes = JSON.parse(res);
+          let parsedRes = JSON.parse(res);
           console.log(parsedRes);
 
           if (!parsedRes.errors) {
-            logiToken = new User(parsedRes);
+            loginToken = new User(parsedRes);
 
             loadMenu();
             toggleMenu();
