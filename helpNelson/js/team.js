@@ -216,9 +216,9 @@ function displayAvaliableUsers() {
 
 // functions to call on page-load
 
-// getUsers()
-// function a() {
-//   displayUserInfo()
-//   displayAvaliableUsers()
-//   return "Here you go!"
-// }
+getUsers()
+function a() {
+  displayUserInfo()
+  displayAvaliableUsers()
+  return "Here you go!"
+}

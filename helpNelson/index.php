@@ -18,14 +18,10 @@
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"
         ></script>
-        <!-- <link rel="stylesheet" href="../CSS/cssGeneral.css">
-        <link rel="stylesheet" href="cssHeader.css">
-        <link rel="stylesheet" href="game.css">
-        <link rel="stylesheet" href="../team/team.css">
-        <link rel="stylesheet" href="../CSS/p.css"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/intro.css">
         <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39&display=swap" rel="stylesheet">
     </head>
@@ -69,17 +65,16 @@
             
             <!-- this section contains the welcome message and the current game -->
             <section id="home">
-                <h1>Välkommen</h1>
-                <p>lLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                behövs knapparna?
-                <div class="linkContainer">
-                    <input class="inputClass" type="button" value="link 1">
-                    <input class="inputClass" type="button" value="link 2">
-                    <input class="inputClass" type="button" value="link 3">
-                </div>
-            
-                <div id="game">
-                </div>
+                
+                <?php      
+                include("html/home.html")
+                // include("html/intro.html")
+                ?> 
+                
+                
+
+
+                
             
                 <!-- this is just a filler, the $.load() will replace this later, comment this in to test team-stuff -->
                 <!-- <div id="teamWrapper">
@@ -105,13 +100,5 @@
         <script src="js/userFunctionality.js"></script>
         <script src="js/login.js"></script>
         <script src="js/controller.js"></script>
-        
-        <!-- <script src="testContent.js"></script>
-        <script src="auxFunctions.js"></script>
-        <script src="header.js"></script>
-        <script src="../login/login.js"></script>  
-        <script src="game.js"></script>
-        <script src="../team/team.js"></script>
-    -->
     </body>
   </html>

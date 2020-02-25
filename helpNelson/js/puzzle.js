@@ -38,6 +38,7 @@ class PuzzleGame1 {
         $("<input>", {
             type: "button",
             class: "button",
+            value: "Svara",
             appendTo: "#puzzleForm" + this.id,
             click: function() {
                 let message

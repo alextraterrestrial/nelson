@@ -1,0 +1,13 @@
+.introVid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+video {
+    background-color: black;
+}
+
+#introFooter {
+    height: 20vh;
+}

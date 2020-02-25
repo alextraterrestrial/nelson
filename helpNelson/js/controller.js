@@ -74,7 +74,7 @@ function checkCookie() {
 
             // Create a user
             loginToken = new User(res);
-
+            
             resolve();
 
             // createUser(parsedRes.userId, parsedRes.password).then(data => {
