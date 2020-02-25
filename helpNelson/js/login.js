@@ -86,9 +86,7 @@ $(document).ready(() => {
   });
 });
 
-// function login(email, password) {
-
-// }
+function login(email, password) {}
 
 // function getCookie(cname) {
 //     var name = cname + "=";

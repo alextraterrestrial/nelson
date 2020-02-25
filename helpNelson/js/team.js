@@ -75,15 +75,16 @@ function displayUserInfo() {
   
   if (loginToken.status == "captain" || loginToken.status == "active") {
     for (let user of allUsers) {
-      if (user.teamName == loginToken.teamName) {
+      if ((user.teamName == loginToken.teamName) && user.status != 'pending') {
         members.push(user)
       }
     }
+    console.log(members)
 
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
       let memberSlot = $("<div>")
-      memberSlot.attr('class', 'flexAROUND')
+      memberSlot.attr('class', 'flexAround')
       let alias = $("<div>")
       alias.html(member.username)
       $(memberSlot).append(alias)
@@ -92,7 +93,7 @@ function displayUserInfo() {
       status.html(member.status)
       $(memberSlot).append(status)
 
-      if (loginToken.status == "captain") {
+      if ((loginToken.status == "captain") && (loginToken.id != member.userId)) {
         let btnContainer = $("<div>")
         btnContainer.attr('class', 'flexAround')
 
@@ -128,15 +129,14 @@ function displayUserInfo() {
     .done((data) => {
       data = JSON.parse(data)
       console.log(data)
-      invitations = data[0]
+      invitations = data
 
       let prompt = $("<div>")
-    prompt.html('You have been invited to join the following teams:')
-    // $("#teamMembers").css('justify-content', 'center')
-    $("#teamWrapper").html(prompt)
+      prompt.html('You have been invited to join the following teams:')
+      $("#teamWrapper").html(prompt)
 
     for (let invite of invitations) {
-      let invtitaionId = invite.teamId
+      let invitationId = invite.teamId
       let teamInvites = $("<div>")
       teamInvites.attr('class', 'flexAround')
   
@@ -146,7 +146,7 @@ function displayUserInfo() {
   
       let accept = $("<div>")
       accept.click(() => {
-        $.get('php/handleRequest.php', {action: 'accept', team: invtitaionId, userId: loginToken.id}) 
+        $.get('php/handleRequest.php', {action: 'accept', team: invitationId, userId: loginToken.id}) 
         .done((data) => {
           console.log(data)
           getUsers()
@@ -163,7 +163,7 @@ function displayUserInfo() {
   
       let deny = $("<div>")
       deny.click(() => {
-        $.get('php/handleRequest.php', {action: 'deny', team: invtitaionId, userId: loginToken.id}) 
+        $.get('php/handleRequest.php', {action: 'deny', team: invitationId, userId: loginToken.id}) 
         .done((data) => {
           console.log(data)
           getUsers()
@@ -230,9 +230,11 @@ function displayAvaliableUsers() {
 
       // button by users name, sends a request to the clicked user
       button.click(() => {
-        if (user.status == undefined && loginToken.status == 'captain') {
-        button.html('?')
-        addUser(user, loginToken)
+        if ((user.status == undefined && loginToken.status == 'captain') && members.length <= 2) {
+          button.html('?')
+          addUser(user, loginToken)
+        } else {
+          popup('Cannot add user!')
         }
       })
       
@@ -247,5 +249,9 @@ function displayAvaliableUsers() {
 getUsers()
 function initializeTeam() {
   displayUserInfo()
-  return "Here you go!"
 }
+
+
+setInterval(() => {
+  displayUserInfo()
+}, 5000);
