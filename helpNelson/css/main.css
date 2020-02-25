@@ -161,6 +161,7 @@ body {
   margin-bottom: 5px;
 }
 
+<<<<<<< HEAD
 .puzzleContainer p, .introVid p, .message {
   margin: 5px auto;
   width: 90%;
@@ -168,3 +169,10 @@ body {
   font-size: var(--fontSize);
   color: var(--color3);
 }
+=======
+/* CSS FOR TEAM-PAGE */
+
+#availableUsers {
+  border-top: 2px solid var(--color2);
+}
+>>>>>>> 7276a3004e76702d21256925de0837d0921f5d7a
