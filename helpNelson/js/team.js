@@ -16,24 +16,10 @@ function getUsers() {
       })
     })
 
-    // return allUsers
-    // switch (loginToken.status) {
-    //   case 'captain':
-    //     $('#teamShowcase > h3').html(loginToken.teamName)
-    //     break
-    //   case 'active':
-    //     $('#teamShowcase > h3').html(loginToken.teamName)
-    //     break
-    //   case 'pending':
-    //     $('#teamShowcase > h3').html('Invitations:')
-    //     break
-    //   case 'passive':
-    //     $('#teamShowcase > h3').html('Create a team:')
-    //     break
-    // }
-    // displayUserInfo()
-
-    // loginToken.refreshTeam()
+    // right now this needs a timeout to work, this will probably be removed when the function is moved to some initializing function that runs on refresh 
+    setTimeout(() => {
+      initializeTeam()
+    }, 1000)
   })
   .fail((error) => {
     console.log(error)
@@ -69,6 +55,7 @@ function updateTeam(action, team, memberToEffect) {
     })
 }
 
+// not in use as the moment
 function popup(message) {
   let pop = $('<div>')
   pop.attr('class', 'popup flex')
@@ -80,6 +67,7 @@ function popup(message) {
 }
 
 let members
+// displays members in your team OR invitations if you're not in one
 function displayUserInfo() {
   console.log(allUsers, loginToken)
   $("#members").empty()
@@ -131,38 +119,76 @@ function displayUserInfo() {
       $("#members").append(memberSlot)
     }
 
+    displayAvaliableUsers()
+
+    // shows invitations
   } else if (loginToken.status == 'pending') {
-    let prompt = $("<div>")
+    let invitations
+    $.get('php/getInvitations.php', {userId: loginToken.id})
+    .done((data) => {
+      data = JSON.parse(data)
+      console.log(data)
+      invitations = data[0]
+
+      let prompt = $("<div>")
     prompt.html('You have been invited to join the following teams:')
     // $("#teamMembers").css('justify-content', 'center')
-    $("#teamWrapper").append(prompt)
-    let teamInvites = $("<div>")
-    teamInvites.attr('class', 'flex')
+    $("#teamWrapper").html(prompt)
 
-    let team = $("<div>")
-    team.html(loginToken.teamName)
-    $(teamInvites).append(team)
-
-    let accept = $("<div>")
-    accept.click(() => {
-      // manage corresponding post-request to DB
+    for (let invite of invitations) {
+      let invtitaionId = invite.teamId
+      let teamInvites = $("<div>")
+      teamInvites.attr('class', 'flexAround')
+  
+      let team = $("<h4>")
+      team.html(invite.teamName)
+      $(teamInvites).append(team)
+  
+      let accept = $("<div>")
+      accept.click(() => {
+        $.get('php/handleRequest.php', {action: 'accept', team: invtitaionId, userId: loginToken.id}) 
+        .done((data) => {
+          console.log(data)
+          getUsers()
+          displayUserInfo()
+        })
+        .fail((error) => {
+          console.log(error)
+        })
+      })
+      accept.html("ACCEPT")
+      accept.attr('class', 'button flex')
+      accept.css({padding: '0px 5px', width: 'auto'})
+      $(teamInvites).append(accept)
+  
+      let deny = $("<div>")
+      deny.click(() => {
+        $.get('php/handleRequest.php', {action: 'deny', team: invtitaionId, userId: loginToken.id}) 
+        .done((data) => {
+          console.log(data)
+          getUsers()
+          displayUserInfo()
+        })
+        .fail((error) => {
+          console.log(error)
+        })
+      })
+      deny.html('DENY')
+      deny.attr('class', 'button flex')
+      deny.css({padding: '0px 5px', width: 'auto'})
+      $(teamInvites).append(deny)
+      
+      $("#teamWrapper").append(teamInvites)
+    } 
     })
-    accept.html("ACCEPT")
-    accept.attr('class', 'button flex')
-    accept.css({padding: '0px 5px', width: 'auto'})
-    $(teamInvites).append(accept)
-
-    let deny = $("<div>")
-    deny.click(() => {
-      // manage corresponding post-request to DB
+    .fail((error) => {
+      console.log(error)
     })
-    deny.html('DENY')
-    deny.attr('class', 'button flex')
-    deny.css({padding: '0px 5px', width: 'auto'})
-    $(teamInvites).append(deny)
+    console.log(invitations)
+
     
-    $("#teamWrapper").append(teamInvites)
 
+    // if not invited or in a team, do this
   } else if (loginToken.status == undefined) {
     let prompt = $("<div>")
     prompt.html('Please add users to form a team')
@@ -171,6 +197,7 @@ function displayUserInfo() {
   }
 }
 
+// displays all the users available to be invited by a captain
 function displayAvaliableUsers() {
   // fill list of users
   $("#availableUsers").empty()
@@ -201,6 +228,7 @@ function displayAvaliableUsers() {
         }
       })
 
+      // button by users name, sends a request to the clicked user
       button.click(() => {
         if (user.status == undefined && loginToken.status == 'captain') {
         button.html('?')
@@ -216,9 +244,8 @@ function displayAvaliableUsers() {
 
 // functions to call on page-load
 
-// getUsers()
-// function a() {
-//   displayUserInfo()
-//   displayAvaliableUsers()
-//   return "Here you go!"
-// }
+getUsers()
+function initializeTeam() {
+  displayUserInfo()
+  return "Here you go!"
+}
