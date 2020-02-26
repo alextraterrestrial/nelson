@@ -69,7 +69,7 @@ function popup(message) {
 let members
 // displays members in your team OR invitations if you're not in one
 function displayUserInfo() {
-  console.log(allUsers, loginToken)
+  // console.log(allUsers, loginToken)
   $("#members").empty()
   members = []
   
@@ -190,7 +190,8 @@ function displayUserInfo() {
 
     // if not invited or in a team, do this
   } else if (loginToken.status == undefined) {
-    let prompt = $("<div>")
+    $("#teamMessage").remove()
+    let prompt = $("<div>", {"id": "teamMessage"})
     prompt.html('Please add users to form a team')
     // $("#teamMembers").css('justify-content', 'center')
     $("#teamWrapper").append(prompt)
@@ -209,36 +210,43 @@ function displayAvaliableUsers() {
       let userToAppend = $("<div>")
       userToAppend.html(user.username)
       let button = $("<div>")
-      button.attr('class', 'button flex')
-      button.val(user.id)
-      button.html(() => {
-        if (loginToken.status != undefined) {
-          switch (user.status) {
-            case undefined:
-              return '+'
-            case 'pending':
-              return '?'
-            case 'active':
-              return '✓'
-            case 'captain':
-              return '♕'
-          }
-        } else {
-          return '+'
-        }
-      })
-
+      
       // button by users name, sends a request to the clicked user
-      button.click(() => {
-        if ((user.status == undefined && loginToken.status == 'captain') && members.length <= 2) {
-          button.html('?')
-          addUser(user, loginToken)
-        } else {
-          popup('Cannot add user!')
-        }
-      })
+      if(loginToken.status == "captain") {
+        button.attr('class', 'button flex')
+        button.val(user.id)
+        button.html(() => {
+          if (loginToken.status != undefined) {
+            switch (user.status) {
+              case undefined:
+                return '+'
+              case 'pending':
+                return '?'
+              case 'active':
+                return '✓'
+              case 'captain':
+                return '♕'
+            }
+          } else {
+            return '+'
+          }
+        })
+        
+        button.click(() => {
+          if ((user.status == undefined && loginToken.status == 'captain') && members.length <= 2) {
+            button.html('?')
+            addUser(user, loginToken)
+          } else {
+            popup('Cannot add user!')
+          }
+        })
+
+      }
       
       availableUser.append(userToAppend, button)
+      
+
+      
       $("#availableUsers").append(availableUser)
     }
   }

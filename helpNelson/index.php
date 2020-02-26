@@ -74,9 +74,9 @@
                 
 
 
-                
+<!--                 
             
-                <!-- this is just a filler, the $.load() will replace this later, comment this in to test team-stuff -->
+                this is just a filler, the $.load() will replace this later, comment this in to test team-stuff
                 <div id="teamWrapper">
                     <div id="teamName"></div>
                     <div id="teamPoints"></div>
@@ -84,7 +84,7 @@
                     <div id="members"></div>
 
                     <div id="availableUsers"></div>
-                </div>
+                </div> -->
             
             
             </section>
