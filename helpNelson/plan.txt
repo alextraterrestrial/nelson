@@ -67,3 +67,9 @@ function för att ändra lösenord och användar namn
 - Content
 - Fake inlog till future Solutions
 - Gränssnitt på internweb(för screen shot)
+
+
+
+
+--------TEAM----------
+- Vad kolla vad som händer om man är inbjuden till flera team, vad blir ens status och vilket team är man kopplat till när användaren hämtas?

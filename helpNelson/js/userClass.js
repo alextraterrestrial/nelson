@@ -13,10 +13,11 @@ class User {
     }
 
     // methods
-    submitAnswer(submission) {
-        // takes the submission and checks/uploads to DB, handling team funcitonality
-    }
+    // submitAnswer(submission) {
+    //     // takes the submission and checks/uploads to DB, handling team funcitonality
+    // }
 
+    // not in use right now, displayUserInfo() does this instead
     refreshTeam() {
         let tN = $("h1>").html(this.teamName)
         let tP = $("<h3>").html(this.score)
@@ -37,9 +38,9 @@ class User {
     }
 }
 
-class Captain extends User {
-    // methods
-    adminUser(action) {
-        // targets a user and adds, removes or makes into captain depending on the passed action
-    }
-}
+// class Captain extends User {
+//     // methods
+//     adminUser(action) {
+//         // targets a user and adds, removes or makes into captain depending on the passed action
+//     }
+// }
