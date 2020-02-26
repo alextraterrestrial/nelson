@@ -76,7 +76,7 @@ function checkCookie() {
             console.log(JSON.parse(res));
 
             // Create a user
-            loginToken = new User(res);
+            loginToken = new User(parsedRes);
 
             resolve();
 
