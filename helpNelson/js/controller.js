@@ -11,10 +11,6 @@ let menuOptionLoggedOff = [
 $(document).ready(() => {
   init();
 
-  //check if logged in
-  // loadM:q
-  //bör köras i .done efter att vi hämtat användarinfo till loginToken
-
   //TEST FOR MOBILE console
   // $(":root").css({"--color2": "red"})
 });
@@ -76,6 +72,7 @@ function checkCookie() {
             console.log(JSON.parse(res));
 
             // Create a user
+
             loginToken = new User(parsedRes);
 
             resolve();
@@ -134,8 +131,13 @@ function loadMenu() {
   ];
 
   const menuOptionsUser = [
-    { label: "Team", content: $("<div>").load("html/login.html") },
-    { label: "Min profil", content: $("<div>").load("html/signupform.html") }
+    { label: "Team", content: $("<div>").load("html/teamSnippet.html") },
+    {
+      label: "Min profil",
+      content: $("<div>").html(
+        "Här kommer profilsidan var där man kan logga ut och ev byta lösenord."
+      )
+    }
   ];
   let renderOptions;
 

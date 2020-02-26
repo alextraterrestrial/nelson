@@ -71,5 +71,19 @@ function för att ändra lösenord och användar namn
 
 
 
+
+
+
+
+//
+
+
+
 --------TEAM----------
 - Vad kolla vad som händer om man är inbjuden till flera team, vad blir ens status och vilket team är man kopplat till när användaren hämtas?
+
+getUsers() (körs nu men måste köras)
+
+displayUserInfo()
+displayAvaliableUsers()
+findPlayersProgram()

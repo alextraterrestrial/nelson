@@ -38,6 +38,7 @@ class PuzzleGame1 {
         $("<input>", {
             type: "button",
             class: "button",
+            value: "Svara",
             appendTo: "#puzzleForm" + this.id,
             click: function() {
                 let message
@@ -96,11 +97,10 @@ class PuzzleGame1 {
         $.get('php/getPuzzleSubmissions.php', { teamId: loginToken.teamId, puzzleId: this.id })
             .done((data) => {
                 data = JSON.parse(data)
-                console.log(data)
 
                 $("#puzzleForm" + this.id).empty()
                 if (data[0]) {
-                    $("#puzzleForm" + this.id).append("<div>Ni har skickat in " + data[0].submission + " som svar</div>")
+                    $("#puzzleForm" + this.id).append("<div>Ni har svarat " + data[0].submission + " på denna.</div>")
                 } else {
                     this.createSubmissionFormInput()
                 }

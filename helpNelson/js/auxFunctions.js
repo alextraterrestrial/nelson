@@ -82,3 +82,4 @@ function prepareAnswer(string) {
 
   return string
 }
+

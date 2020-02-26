@@ -1,9 +1,10 @@
 /*general css for the whole page: Includes variables, media query and general classes used throughout the webpage*/
 
 :root {
-  --backgroundColor: #03003a;
-  --backgroundColorTransparent: #03003a8a;
-  --color2: #aed04d;
+  --backgroundColor: #22273b;
+  --backgroundColorTransparent: #22273b8a;
+  --color2: #c33629;
+  --color3: whitesmoke;
   --fontSize: 14px;
   --font: "Overpass Mono", monospace;
   --radius: 4px;
@@ -35,6 +36,26 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.button {
+  font-family: var(--font);
+  background-color: var(--backgroundColor);
+  color: var(--color3);
+  border: 1px solid var(--color2);
+  border-radius: 15%;
+  font-size: var(--fontSize);
+}
+
+.textField {
+  background-color: var(--backgroundColor);
+  font-family: var(--font);
+  border-radius: 15%;
+  border: none;
+  border-bottom: 2px solid var(--color2);
+  caret-color: var(--color2);
+  color: var(--color3);
+  font-size: var(--fontSize);
 }
 
 /* CSS for Icon and logo */
