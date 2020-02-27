@@ -257,7 +257,7 @@ function displayAvaliableUsers() {
 //teamsetup
 function initializeTeam() {
   if(loginToken.teamId) {
-    displayUserInfo()
+    getUsers()
   } else {
     console.log("creata a team")
   }
