@@ -7,6 +7,7 @@ let menuOptionLoggedOff = [
   { label: "Logga in", content: $("<div>").load("html/login.html") },
   { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
 ];
+let puzzles = [];
 
 $(document).ready(() => {
   init();
@@ -26,13 +27,10 @@ function init() {
   checkUser();
   // Display menu and user data
 
-  getPuzzles();
   countDown();
 }
 
 function checkUser() {
-  // loadMenu();
-
   checkCookie().then(res => {
     //When login is complete
     console.log("done checking cookie");
@@ -40,14 +38,11 @@ function checkUser() {
     // Load menu
     loadMenu();
 
-    findPlayersProgram();
     // Load player data, team data etc
     getUsers();
-    // displayUserInfo();
-    // displayAvaliableUsers();
-    // findPlayersProgram()
-    //Update the puzzle
-    updatePuzzle();
+
+    //Load the puzzle
+    puzzles = getPuzzles();
   });
 }
 
