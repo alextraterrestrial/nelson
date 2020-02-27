@@ -42,12 +42,17 @@ function checkUser() {
 
     findPlayersProgram();
     // Load player data, team data etc
-    getUsers();
+    initializeTeam()
+    
+    // getUsers();
+
+
     // displayUserInfo();
     // displayAvaliableUsers();
     // findPlayersProgram()
     //Update the puzzle
-    updatePuzzle();
+
+    // setupdatePuzzle();
   });
 }
 
@@ -163,6 +168,17 @@ function loadMenu() {
     let opt = new MenuOption(item.label, item.content);
     if (item.label == "Logga in" || item.label == "Team") {
       opt.iconContainer.click();
+    }
+
+
+    if (item.label == "Team" && loginToken.teamId) {
+      setTimeout(() => {
+        $("#teamWrapper > div:last-child").toggle()
+      }, 500);
+    } else if (item.label == "Team" && !loginToken.teamId) {
+      setTimeout(() => {
+        $("#teamWrapper > div:first-child").toggle() 
+      }, 500);
     }
   });
 }

@@ -87,11 +87,7 @@ function displayUserInfo() {
         members.push(user);
       }
     }
-<<<<<<< HEAD
     // console.log(members)
-=======
-    console.log(members);
->>>>>>> a0d857b6ff84dd68d2ec6882e18ca4b33d746e11
 
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
@@ -201,14 +197,6 @@ function displayUserInfo() {
           $("#teamWrapper").append(teamInvites);
         }
       })
-      deny.html('DENY')
-      deny.attr('class', 'button flex')
-      deny.css({padding: '0px 5px', width: 'auto'})
-      $(teamInvites).append(deny)
-      
-      $("#teamWrapper").append(teamInvites)
-    } 
-    })
     .fail((error) => {
       console.log(error)
     })
@@ -281,6 +269,42 @@ function displayAvaliableUsers() {
   }
 }
 
+function createTeam() {
+  $("#createTeam").submit((e) =>{
+    e.preventDefault()
+
+    if($("#createTeam input[type='text']").val()) {
+      $.get("php/createTeam.php", {teamName: $("#createTeam input[type='text']").val(), userId: loginToken.userId})
+      .done(data => {
+        data = JSON.parse(data)
+          
+        if (data == "exists") {
+          $("#teamWrapper > div:last-child > div:last:child").html("Det teamet finns redan. Kom på ett annat namn.")
+        } else {
+
+          console.log(data)
+          // loginToken.teamId = data.teamId
+          // loginToken.teamName = data.teamName
+          // loginToken.status = "captain"
+
+          // $("#teamWrapper > div:last-child").toggle()
+          // $("#teamWrapper > div:first-child").toggle()
+          
+          // getUsers()
+        }
+      })
+      .fail(()=>{
+        console.log("fail")
+      })
+      
+      //create Team
+    } else {
+
+      $("#teamWrapper > div:last-child > div:last:child").html("Skriv ert teamnamn.")
+    }
+
+  })
+}
 
 
 //teamsetup
@@ -288,7 +312,10 @@ function initializeTeam() {
   if(loginToken.teamId) {
     getUsers()
   } else {
-    console.log("creata a team")
+    setTimeout(()=>{
+      createTeam()
+    }, 300)
+  
   }
   
 }

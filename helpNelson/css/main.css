@@ -166,3 +166,7 @@ body {
 #availableUsers {
   border-top: 2px solid var(--color2);
 }
+
+#submitTeam {
+  display: block;
+}
