@@ -33,13 +33,22 @@ function init() {
 function checkUser() {
   // loadMenu();
 
-  checkCookie()
-    .then(res => {
-      console.log("done checking cookie");
-      console.log(loginToken);
-      loadMenu();
-    })
-    .then(() => {});
+  checkCookie().then(res => {
+    //When login is complete
+    console.log("done checking cookie");
+    console.log(loginToken);
+    // Load menu
+    loadMenu();
+
+    findPlayersProgram();
+    // Load player data, team data etc
+    getUsers();
+    // displayUserInfo();
+    // displayAvaliableUsers();
+    // findPlayersProgram()
+    //Update the puzzle
+    updatePuzzle();
+  });
 }
 
 function checkCookie() {
@@ -72,11 +81,9 @@ function checkCookie() {
             console.log(JSON.parse(res));
 
             // Create a user
-
             loginToken = new User(parsedRes);
 
             resolve();
-
             // createUser(parsedRes.userId, parsedRes.password).then(data => {
             //   console.log(loginToken);
             //   resolve(res);
