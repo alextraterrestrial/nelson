@@ -274,23 +274,22 @@ function createTeam() {
     e.preventDefault()
 
     if($("#createTeam input[type='text']").val()) {
-      $.get("php/createTeam.php", {teamName: $("#createTeam input[type='text']").val(), userId: loginToken.userId})
+      $.get("php/createTeam.php", {teamName: $("#createTeam input[type='text']").val(), userId: loginToken.id})
       .done(data => {
         data = JSON.parse(data)
-          
+        console.log(data)
+
         if (data == "exists") {
           $("#teamWrapper > div:last-child > div:last:child").html("Det teamet finns redan. Kom på ett annat namn.")
         } else {
+          loginToken.teamId = data[0].teamId
+          loginToken.teamName = data[0].teamName
+          loginToken.status = "captain"
 
-          console.log(data)
-          // loginToken.teamId = data.teamId
-          // loginToken.teamName = data.teamName
-          // loginToken.status = "captain"
-
-          // $("#teamWrapper > div:last-child").toggle()
-          // $("#teamWrapper > div:first-child").toggle()
+          $("#teamWrapper > div:last-child").toggle()
+          $("#teamWrapper > div:first-child").toggle()
           
-          // getUsers()
+          getUsers()
         }
       })
       .fail(()=>{
