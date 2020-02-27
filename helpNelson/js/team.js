@@ -79,7 +79,7 @@ function displayUserInfo() {
         members.push(user)
       }
     }
-    console.log(members)
+    // console.log(members)
 
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
@@ -184,7 +184,7 @@ function displayUserInfo() {
     .fail((error) => {
       console.log(error)
     })
-    console.log(invitations)
+    // console.log(invitations)
 
     
 
@@ -254,9 +254,14 @@ function displayAvaliableUsers() {
 
 
 
-//searchfunctiono
+//teamsetup
 function initializeTeam() {
-  displayUserInfo()
+  if(loginToken.teamId) {
+    displayUserInfo()
+  } else {
+    console.log("creata a team")
+  }
+  
 }
 
 function findPlayersProgram() {
