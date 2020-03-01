@@ -101,9 +101,12 @@ function displayUserInfo() {
       status.html(member.status);
       $(memberSlot).append(status);
 
+      let btnContainer
+      btnContainer = $("<div>");
+      btnContainer.attr("class", "flexAround");
+
       if (loginToken.status == "captain" && loginToken.id != member.userId) {
-        let btnContainer = $("<div>");
-        btnContainer.attr("class", "flexAround");
+        
 
         let makeCaptain = $("<div>");
         makeCaptain.click(() => {
@@ -114,6 +117,9 @@ function displayUserInfo() {
         makeCaptain.html("♕");
         $(btnContainer).append(makeCaptain);
 
+      }
+      
+      if ((loginToken.status == "captain" && loginToken.id != member.userId) || (loginToken.status == "active" && loginToken.id == member.userId)) {
         let removeMember = $("<div>");
         removeMember.click(() => {
           updateTeam("removeMember", loginToken.teamId, member.userId);
@@ -121,10 +127,11 @@ function displayUserInfo() {
         removeMember.attr("class", "button flex");
         removeMember.html("X");
         $(btnContainer).append(removeMember);
-
+  
         $(memberSlot).append(btnContainer);
       }
-
+      
+      
       $("#members").append(memberSlot);
     }
 
@@ -139,9 +146,12 @@ function displayUserInfo() {
         console.log(data);
         invitations = data;
 
-        let prompt = $("<div>");
-        prompt.html("You have been invited to join the following teams:");
-        $("#teamWrapper").html(prompt);
+        // $("#teamWrapper > div:first-child").toggle()
+        // $("#teamWrapper > div:last-child").toggle()
+
+        // let prompt = $("<div>");
+        // prompt.html("You have been invited to join the following teams:");
+        // $("#teamWrapper").append(prompt);
 
         for (let invite of invitations) {
           let invitationId = invite.teamId;
@@ -161,8 +171,11 @@ function displayUserInfo() {
             })
               .done(data => {
                 console.log(data);
-                getUsers();
-                displayUserInfo();
+                prompt.remove()
+                getUsers()
+                $("#teamWrapper > div:first-child").toggle()
+                // updatepuzzles()
+                
               })
               .fail(error => {
                 console.log(error);
@@ -194,7 +207,7 @@ function displayUserInfo() {
           deny.css({ padding: "0px 5px", width: "auto" });
           $(teamInvites).append(deny);
 
-          $("#teamWrapper").append(teamInvites);
+          $("#invites").append(teamInvites);
         }
       })
     .fail((error) => {

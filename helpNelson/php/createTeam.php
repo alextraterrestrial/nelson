@@ -30,10 +30,6 @@ if($answer) {
 
     $answer = $answer[0]['teamId'];
 
-    // sleep(1);
-    // echo $answer;
-    // echo $captain;
-    // echo $_GET['userId'];
 
     $query = "INSERT INTO `UserTeam`(`teamId`, `userId`, `status`) VALUES (?, ?, ?)";
 
@@ -54,25 +50,5 @@ if($answer) {
     echo $answer;
 };
 
-// $answer = json_encode($answer);
 
-
-
-// if ($answer) {
-
-//   $answer = json_encode($answer);
-//   echo $answer;
-
-// } else {
-//   $query = "SELECT * FROM User WHERE User.userId = ? AND User.password = ?";
-
-//   $sql = $pdo->prepare($query);
-//   $sql->bindParam(1, $_GET['id']);
-//   $sql->bindParam(2, $_GET['password']);
-//   $sql->execute();
-//   $answer = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-//   $answer = json_encode($answer);
-//   echo $answer;
-// }
 ?>
