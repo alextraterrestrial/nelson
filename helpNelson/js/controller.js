@@ -169,17 +169,6 @@ function loadMenu() {
     if (item.label == "Logga in" || item.label == "Team") {
       opt.iconContainer.click();
     }
-
-
-    if (item.label == "Team" && loginToken.teamId) {
-      setTimeout(() => {
-        $("#teamWrapper > div:last-child").toggle()
-      }, 500);
-    } else if (item.label == "Team" && !loginToken.teamId) {
-      setTimeout(() => {
-        $("#teamWrapper > div:first-child").toggle() 
-      }, 500);
-    }
   });
 }
 // Toggle between showing and hiding the menu
