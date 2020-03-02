@@ -178,6 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_COOKIE['user']){
                             // Create response
                             $response -> userId = $id;
                             $response -> password = $password;
+                            $response -> username = $username;
                             $response -> email = $email;
                             $response -> score = $score;
                             $response -> dateReg = $dateReg;
