@@ -7,6 +7,7 @@ let menuOptionLoggedOff = [
   { label: "Logga in", content: $("<div>").load("html/login.html") },
   { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
 ];
+let puzzles = [];
 
 $(document).ready(() => {
   init();
@@ -26,13 +27,10 @@ function init() {
   checkUser();
   // Display menu and user data
 
-  getPuzzles();
   countDown();
 }
 
 function checkUser() {
-  // loadMenu();
-
   checkCookie().then(res => {
     //When login is complete
     console.log("done checking cookie");
@@ -40,19 +38,11 @@ function checkUser() {
     // Load menu
     loadMenu();
 
-    findPlayersProgram();
     // Load player data, team data etc
-    initializeTeam()
-    
-    // getUsers();
+    getUsers();
 
-
-    // displayUserInfo();
-    // displayAvaliableUsers();
-    // findPlayersProgram()
-    //Update the puzzle
-
-    // setupdatePuzzle();
+    //Load the puzzle
+    puzzles = getPuzzles();
   });
 }
 
@@ -173,14 +163,14 @@ function loadMenu() {
 }
 // Toggle between showing and hiding the menu
 function toggleMenu() {
-  if($("body").width() < 601) {
+  if ($("body").width() < 601) {
     let val;
     if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
       val = "-100vw";
     } else {
       val = "0vw";
     }
-  
+
     $("#menu").css({
       transform: "translateX(" + val + ")",
       "-webkit-transform": "translateX(" + val + ")"
