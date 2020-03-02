@@ -1,7 +1,7 @@
 /*general css for the whole page: Includes variables, media query and general classes used throughout the webpage*/
 
 :root {
-  --backgroundColor: #22273b;
+  --backgroundColor: white;
   --backgroundColorTransparent: #22273b8a;
   --color2: #c33629;
   --color3: whitesmoke;
