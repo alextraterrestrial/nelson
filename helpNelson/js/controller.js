@@ -37,12 +37,13 @@ function checkUser() {
     console.log(loginToken);
     // Load menu
     loadMenu();
+    initializeTeam()
 
     // Load player data, team data etc
     getUsers();
 
     //Load the puzzle
-    puzzles = getPuzzles();
+      puzzles = getPuzzles();
   });
 }
 

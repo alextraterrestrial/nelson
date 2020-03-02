@@ -18,7 +18,8 @@ function getUsers() {
       });
       
       displayUserInfo();
-      findPlayersProgram();
+      findPlayersProgram()
+      
 
     })
     .fail(error => {
@@ -136,6 +137,11 @@ function displayUserInfo() {
 
     // shows invitations
   } 
+
+  // if (loginToken.status == "captain") {
+    
+    
+  // }
 }
 
 // displays all the users available to be invited by a captain
@@ -319,6 +325,11 @@ function initializeTeam() {
       $("#teamWrapper > div").css({display: "none"})
       $("#teamWrapper > div:first-child").css({display: "block"}) 
       getUsers()
+      
+      // puzzles.forEach(obj => {
+      //   obj.getPuzzleSubmissions();
+      // });
+
     }, 200);
   } else if (!loginToken.status || loginToken.status == "pending") {
     setTimeout(() => {
@@ -331,6 +342,7 @@ function initializeTeam() {
 }
 
 function findPlayersProgram() {
+  console.log("find player program")
   $("#searchForPlayer input[type='button']").click(() => {
     $("#searchForPlayer input[type='text']").toggle();
     $("#availableUsers").toggle();

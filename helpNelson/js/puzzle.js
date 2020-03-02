@@ -151,6 +151,9 @@ function getPuzzles() {
         obj.getPuzzleSubmissions();
       });
     }
+    
+    console.log(pArr)
+    
 
     // window.updatePuzzles = () => {
     //   console.log(pArr);
