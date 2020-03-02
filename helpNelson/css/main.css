@@ -5,8 +5,9 @@
   --backgroundColorTransparent: #22273b8a;
   --color2: #c33629;
   --color3: whitesmoke;
-  --fontSize: 14px;
-  --font: "Overpass Mono", monospace;
+  --fontSize: 20px;
+  /* --font: "Overpass Mono", monospace; */
+  --font: futura-pt, sans-serif;
   --radius: 4px;
 
   --widthCircuit: 90px;
@@ -36,6 +37,15 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+p {
+  font-size: var(--fontSize);
+  font-weight: 400;
 }
 
 .button {
@@ -165,4 +175,8 @@ body {
 
 #availableUsers {
   border-top: 2px solid var(--color2);
+}
+
+#submitTeam {
+  display: block;
 }

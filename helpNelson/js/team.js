@@ -16,12 +16,13 @@ function getUsers() {
           }
         });
       });
-
-      // right now this needs a timeout to work, this will probably be removed when the function is moved to some initializing function that runs on refresh
+      
       displayUserInfo();
       findPlayersProgram();
+
+      // right now this needs a timeout to work, this will probably be removed when the function is moved to some initializing function that runs on refresh
       // setTimeout(() => {
-      //   initializeTeam();
+        //   initializeTeam();
       // }, 1000);
     })
     .fail(error => {
@@ -87,7 +88,7 @@ function displayUserInfo() {
         members.push(user);
       }
     }
-    console.log(members);
+    // console.log(members)
 
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
@@ -101,9 +102,12 @@ function displayUserInfo() {
       status.html(member.status);
       $(memberSlot).append(status);
 
+      let btnContainer
+      btnContainer = $("<div>");
+      btnContainer.attr("class", "flexAround");
+
       if (loginToken.status == "captain" && loginToken.id != member.userId) {
-        let btnContainer = $("<div>");
-        btnContainer.attr("class", "flexAround");
+        
 
         let makeCaptain = $("<div>");
         makeCaptain.click(() => {
@@ -114,6 +118,9 @@ function displayUserInfo() {
         makeCaptain.html("♕");
         $(btnContainer).append(makeCaptain);
 
+      }
+      
+      if ((loginToken.status == "captain" && loginToken.id != member.userId) || (loginToken.status == "active" && loginToken.id == member.userId)) {
         let removeMember = $("<div>");
         removeMember.click(() => {
           updateTeam("removeMember", loginToken.teamId, member.userId);
@@ -121,10 +128,11 @@ function displayUserInfo() {
         removeMember.attr("class", "button flex");
         removeMember.html("X");
         $(btnContainer).append(removeMember);
-
+  
         $(memberSlot).append(btnContainer);
       }
-
+      
+      
       $("#members").append(memberSlot);
     }
 
@@ -138,6 +146,9 @@ function displayUserInfo() {
         data = JSON.parse(data);
         console.log(data);
         invitations = data;
+
+        // $("#teamWrapper > div:first-child").toggle()
+        // $("#teamWrapper > div:last-child").toggle()
 
         let prompt = $("<div>");
         prompt.html("You have been invited to join the following teams:");
@@ -161,8 +172,9 @@ function displayUserInfo() {
             })
               .done(data => {
                 console.log(data);
-                getUsers();
-                displayUserInfo();
+                getUsers()
+                // updatepuzzles()
+                
               })
               .fail(error => {
                 console.log(error);
@@ -194,13 +206,16 @@ function displayUserInfo() {
           deny.css({ padding: "0px 5px", width: "auto" });
           $(teamInvites).append(deny);
 
+          // $("#invites").append(teamInvites);
           $("#teamWrapper").append(teamInvites);
         }
       })
-      .fail(error => {
-        console.log(error);
-      });
-    console.log(invitations);
+    .fail((error) => {
+      console.log(error)
+    })
+    // console.log(invitations)
+
+    
 
     // if not invited or in a team, do this
   } else if (loginToken.status == null) {
@@ -267,9 +282,54 @@ function displayAvaliableUsers() {
   }
 }
 
-//searchfunctiono
+function createTeam() {
+  $("#createTeam").submit((e) =>{
+    e.preventDefault()
+
+    if($("#createTeam input[type='text']").val()) {
+      $.get("php/createTeam.php", {teamName: $("#createTeam input[type='text']").val(), userId: loginToken.id})
+      .done(data => {
+        data = JSON.parse(data)
+        console.log(data)
+
+        if (data == "exists") {
+          $("#teamWrapper > div:last-child > div:last:child").html("Det teamet finns redan. Kom på ett annat namn.")
+        } else {
+          loginToken.teamId = data[0].teamId
+          loginToken.teamName = data[0].teamName
+          loginToken.status = "captain"
+
+          $("#teamWrapper > div:last-child").toggle()
+          $("#teamWrapper > div:first-child").toggle()
+          
+          getUsers()
+        }
+      })
+      .fail(()=>{
+        console.log("fail")
+      })
+      
+      //create Team
+    } else {
+
+      $("#teamWrapper > div:last-child > div:last:child").html("Skriv ert teamnamn.")
+    }
+
+  })
+}
+
+
+//teamsetup
 function initializeTeam() {
-  displayUserInfo();
+  if(loginToken.teamId) {
+    getUsers()
+  } else {
+    setTimeout(()=>{
+      createTeam()
+    }, 300)
+  
+  }
+  
 }
 
 function findPlayersProgram() {
