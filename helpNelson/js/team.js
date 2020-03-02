@@ -16,12 +16,13 @@ function getUsers() {
           }
         });
       });
-
-      // right now this needs a timeout to work, this will probably be removed when the function is moved to some initializing function that runs on refresh
+      
       displayUserInfo();
       findPlayersProgram();
+
+      // right now this needs a timeout to work, this will probably be removed when the function is moved to some initializing function that runs on refresh
       // setTimeout(() => {
-      //   initializeTeam();
+        //   initializeTeam();
       // }, 1000);
     })
     .fail(error => {
@@ -151,64 +152,63 @@ function displayUserInfo() {
 
         // let prompt = $("<div>");
         // prompt.html("You have been invited to join the following teams:");
-        // $("#teamWrapper").append(prompt);
+        // $("#teamWrapper").html(prompt);
 
-        for (let invite of invitations) {
-          let invitationId = invite.teamId;
-          let teamInvites = $("<div>");
-          teamInvites.attr("class", "flexAround");
+        // for (let invite of invitations) {
+        //   let invitationId = invite.teamId;
+        //   let teamInvites = $("<div>");
+        //   teamInvites.attr("class", "flexAround");
 
-          let team = $("<h4>");
-          team.html(invite.teamName);
-          $(teamInvites).append(team);
+        //   let team = $("<h4>");
+        //   team.html(invite.teamName);
+        //   $(teamInvites).append(team);
 
-          let accept = $("<div>");
-          accept.click(() => {
-            $.get("php/handleRequest.php", {
-              action: "accept",
-              team: invitationId,
-              userId: loginToken.id
-            })
-              .done(data => {
-                console.log(data);
-                prompt.remove()
-                getUsers()
-                $("#teamWrapper > div:first-child").toggle()
-                // updatepuzzles()
+        //   let accept = $("<div>");
+        //   accept.click(() => {
+        //     $.get("php/handleRequest.php", {
+        //       action: "accept",
+        //       team: invitationId,
+        //       userId: loginToken.id
+        //     })
+        //       .done(data => {
+        //         console.log(data);
+        //         getUsers()
+        //         // updatepuzzles()
                 
-              })
-              .fail(error => {
-                console.log(error);
-              });
-          });
-          accept.html("ACCEPT");
-          accept.attr("class", "button flex");
-          accept.css({ padding: "0px 5px", width: "auto" });
-          $(teamInvites).append(accept);
+        //       })
+        //       .fail(error => {
+        //         console.log(error);
+        //       });
+        //   });
+        //   accept.html("ACCEPT");
+        //   accept.attr("class", "button flex");
+        //   accept.css({ padding: "0px 5px", width: "auto" });
+        //   $(teamInvites).append(accept);
 
-          let deny = $("<div>");
-          deny.click(() => {
-            $.get("php/handleRequest.php", {
-              action: "deny",
-              team: invitationId,
-              userId: loginToken.id
-            })
-              .done(data => {
-                console.log(data);
-                getUsers();
-                displayUserInfo();
-              })
-              .fail(error => {
-                console.log(error);
-              });
-          });
-          deny.html("DENY");
-          deny.attr("class", "button flex");
-          deny.css({ padding: "0px 5px", width: "auto" });
-          $(teamInvites).append(deny);
+        //   let deny = $("<div>");
+        //   deny.click(() => {
+        //     $.get("php/handleRequest.php", {
+        //       action: "deny",
+        //       team: invitationId,
+        //       userId: loginToken.id
+        //     })
+        //       .done(data => {
+        //         console.log(data);
+        //         getUsers();
+        //         displayUserInfo();
+        //       })
+        //       .fail(error => {
+        //         console.log(error);
+        //       });
+        //   });
+        //   deny.html("DENY");
+        //   deny.attr("class", "button flex");
+        //   deny.css({ padding: "0px 5px", width: "auto" });
+        //   $(teamInvites).append(deny);
 
-          $("#invites").append(teamInvites);
-        }
+        //   // $("#invites").append(teamInvites);
+        //   $("#teamWrapper").append(teamInvites);
+        // }
       })
     .fail((error) => {
       console.log(error)

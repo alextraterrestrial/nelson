@@ -184,17 +184,19 @@ function loadMenu() {
 }
 // Toggle between showing and hiding the menu
 function toggleMenu() {
-  let val;
-  if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
-    val = "-100vw";
-  } else {
-    val = "0vw";
+  if($("body").width() < 601) {
+    let val;
+    if ($("#menu").css("transform") == "matrix(1, 0, 0, 1, 0, 0)") {
+      val = "-100vw";
+    } else {
+      val = "0vw";
+    }
+  
+    $("#menu").css({
+      transform: "translateX(" + val + ")",
+      "-webkit-transform": "translateX(" + val + ")"
+    });
   }
-
-  $("#menu").css({
-    transform: "translateX(" + val + ")",
-    "-webkit-transform": "translateX(" + val + ")"
-  });
 }
 
 // Event handling
