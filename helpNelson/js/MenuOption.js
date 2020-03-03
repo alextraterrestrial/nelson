@@ -1,19 +1,27 @@
 class MenuOption {
-    constructor(label, content) {
+    constructor(label, content, icon) {
 
         this.label = label;
 
         this.target = content;
+
+
 
         this.iconContainer = $('<div>', {
             appendTo: "#menuOptionContainer",
         })
 
         this.icon = $('<div>', {
+            class: "menuOptionButton",
+            appendTo: this.iconContainer
+        }).css("backgroundImage", `url('content/graphicResources/${icon}')`)
+
+        this.iconLabel = $('<div>', {
             html: label,
-            class: "menuOptionButton flexCenter",
+            class: "flexCenter",
             appendTo: this.iconContainer
         })
+
 
         this.content = $('<div>', {
             html: content,

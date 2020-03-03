@@ -18,7 +18,6 @@ function getUsers() {
       });
       
       displayUserInfo();
-      findPlayersProgram()
 
 
 
@@ -81,6 +80,8 @@ function displayUserInfo() {
   members = [];
 
   if (loginToken.status == "captain" || loginToken.status == "active") {
+    $("#teamName").html(loginToken.teamName)
+
     for (let user of allUsers) {
       if (user.teamName == loginToken.teamName && user.status != "pending") {
         members.push(user);
@@ -148,10 +149,13 @@ function displayUserInfo() {
     // shows invitations
   } 
 
-  // if (loginToken.status == "captain") {
-    
-    
-  // }
+  if (loginToken.status == "captain") {
+    $("#findPlayerContainer").css({display: "block"})
+    findPlayersProgram()
+  } else {
+    console.log("done?")
+    $("#findPlayerContainer").css({display: "none"})
+  }
 }
 
 // displays all the users available to be invited by a captain
@@ -161,7 +165,7 @@ function displayAvaliableUsers() {
   for (let user of allUsers) {
     if (user.username != loginToken.username && user.status != "captain") {
       let availableUser = $("<div>");
-      availableUser.attr("class", "flexAround");
+      availableUser.attr("class", "flexBetween");
 
       let userToAppend = $("<div>");
       userToAppend.html(user.username);
@@ -173,15 +177,16 @@ function displayAvaliableUsers() {
         button.val(user.id);
         button.html(() => {
           if (loginToken.status != null) {
+            console.log(user.status)
             switch (user.status) {
-              case null:
-                return "+";
+              case null || undefined:
+                return "bjud in";
               case "pending":
-                return "?";
+                return "inbjuden";
               case "active":
-                return "✓";
+                return loginToken.teamName;
               case "captain":
-                return "♕";
+                return "loginToken.teamName";
             }
           } else {
             return "+";

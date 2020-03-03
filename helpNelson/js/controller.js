@@ -128,17 +128,18 @@ function loadMenu() {
   console.log("oading menu");
 
   const menuOptionsBasic = [
-    { label: "Logga in", content: $("<div>").load("html/login.html") },
-    { label: "Skapa konto", content: $("<div>").load("html/signupform.html") }
+    { label: "Logga in", content: $("<div>").load("html/login.html"), icon: "login.png" },
+    { label: "Skapa konto", content: $("<div>").load("html/signupform.html"), icon: "register.png" }
   ];
 
   const menuOptionsUser = [
-    { label: "Team", content: $("<div>").load("html/teamSnippet.html") },
+    { label: "Team", content: $("<div>").load("html/teamSnippet.html"), icon: "teamIcon.png" },
     {
       label: "Min profil",
       content: $("<div>").html(
         "Här kommer profilsidan var där man kan logga ut och ev byta lösenord."
-      )
+      ),
+      icon: "userIcon.png"
     }
   ];
   let renderOptions;
@@ -155,7 +156,7 @@ function loadMenu() {
 
   console.log(renderOptions);
   renderOptions.forEach(item => {
-    let opt = new MenuOption(item.label, item.content);
+    let opt = new MenuOption(item.label, item.content, item.icon);
     if (item.label == "Logga in" || item.label == "Team") {
       opt.iconContainer.click();
     }

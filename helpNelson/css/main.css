@@ -26,6 +26,11 @@ body {
   position: relative;
 }
 
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 /* general classes */
 .flexCenter {
   display: flex;
@@ -43,6 +48,10 @@ h1 {
   font-weight: 600;
 }
 
+h3 {
+  font-size: calc(var(--fontSize) * 1.2);
+}
+
 p {
   font-size: var(--fontSize);
   font-weight: 400;
@@ -55,6 +64,7 @@ p {
   border: 1px solid var(--color2);
   border-radius: 15%;
   font-size: var(--fontSize);
+  cursor: pointer;
 }
 
 .textField {
@@ -73,7 +83,7 @@ p {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 10;
 }
 
 #icon > div {
@@ -89,6 +99,7 @@ p {
   background-image: url(../content/graphicResources/circuitBg.png);
   background-size: contain;
   background-repeat: no-repeat;
+  border-bottom-right-radius: 100%;
 }
 
 .circuit img {
@@ -106,7 +117,7 @@ p {
   background-color: var(--backgroundColor);
   padding: 0 3vw;
   position: fixed;
-  z-index: 10;
+  z-index: 5;
   /* display: none; */
   margin-top: calc(-0.66 * var(--heightCircuit));
 
@@ -123,15 +134,23 @@ p {
 }
 
 #menuOptionContainer {
-  height: 10vh;
+  height: 12vh;
+  position: relative;
+  z-index: 15;
 }
 
 .menuOptionButton {
   border: 1px solid var(--color2);
   border-radius: 50%;
-  height: 7vh;
-  width: 7vh;
+  height: 8vh;
+  width: 8vh;
   flex-shrink: 0;
+  /* background-image: url(../content/graphicResources/teamIcon.png); */
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
 }
 
 #menuOptionContent {
@@ -173,10 +192,28 @@ p {
 
 /* CSS FOR TEAM-PAGE */
 
+#teamName {
+  font-size: calc(var(--fontSize) * 2);
+}
+
 #availableUsers {
   border-top: 2px solid var(--color2);
+  color: var(--color3)
+}
+
+#availableUsers > div{
+ margin: 3px 0;
+ border: 0px;
+}
+#availableUsers > div > div:last-child{
+ border: none;
+ color: var(--color2);
 }
 
 #submitTeam {
   display: block;
+}
+
+#members{
+  color: var(--color3)
 }
