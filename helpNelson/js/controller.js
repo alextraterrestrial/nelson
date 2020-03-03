@@ -40,7 +40,6 @@ function checkUser() {
     initializeTeam()
 
     // Load player data, team data etc
-    getUsers();
 
     //Load the puzzle
       puzzles = getPuzzles();

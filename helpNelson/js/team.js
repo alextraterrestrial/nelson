@@ -19,7 +19,8 @@ function getUsers() {
       
       displayUserInfo();
       findPlayersProgram()
-      
+
+
 
     })
     .fail(error => {
@@ -95,8 +96,17 @@ function displayUserInfo() {
       alias.html(member.username);
       $(memberSlot).append(alias);
 
+
+      let statusValue
+
+      if(member.status == "captain") {
+        statusValue = "Teamledare"
+      } else if (member.status == "active") {
+        statusValue = "medlem"
+      }
+
       let status = $("<div>");
-      status.html(member.status);
+      status.html(statusValue);
       $(memberSlot).append(status);
 
       let btnContainer
@@ -342,44 +352,46 @@ function initializeTeam() {
 }
 
 function findPlayersProgram() {
-  console.log("find player program")
+  console.log("team")
   $("#searchForPlayer input[type='button']").click(() => {
     $("#searchForPlayer input[type='text']").toggle();
     $("#availableUsers").toggle();
-
+    
     if ($("#searchForPlayer input[type='button']").val() == "sök") {
       $("#searchForPlayer input[type='button']").val("Göm");
     } else {
       $("#searchForPlayer input[type='button']").val("sök");
     }
   });
-
+  
   let t;
   $("#searchForPlayer input[type='text']").focus(() => {
     t = setInterval(() => {
       $("#availableUsers > div").css({ display: "none" });
-
+      
       for (let i = 1; i <= $("#availableUsers").children().length; i++) {
         let val = $("#searchForPlayer input[type='text']")
-          .val()
-          .toLowerCase();
-
+        .val()
+        .toLowerCase();
+        
         if (
           $("#availableUsers > div:nth-child(" + i + ") > div")
-            .html()
-            .toLowerCase()
-            .includes(val)
-        ) {
-          $("#availableUsers > div:nth-child(" + i + ")").css({
-            display: "flex"
-          });
+          .html()
+          .toLowerCase()
+          .includes(val)
+          ) {
+            $("#availableUsers > div:nth-child(" + i + ")").css({
+              display: "flex"
+            });
+          }
         }
-      }
-    }, 800);
-  });
+      }, 800);
+    });
+    
+    $("#searchForPlayer input[type='text']").focusout(() => {
+      clearInterval(t);
+    });
 
-  $("#searchForPlayer input[type='text']").focusout(() => {
-    clearInterval(t);
-  });
-}
-
+    // $("#searchForPlayer input[type='button']").click()
+  }
+  
