@@ -193,8 +193,6 @@ p {
   }
 
   #menuOptionContent {
-    overflow: hidden;
-    height: 70vh;
   }
 
   #menu {
@@ -222,6 +220,10 @@ p {
 
   .puzzleContainer {
     scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .firstPage {
@@ -229,12 +231,16 @@ p {
   }
 
   #game > div {
-    margin: 0 auto;
+    margin: auto;
     height: 100vh;
   }
 
+  .puzzleContent {
+    padding: 2vh;
+  }
+
   .puzzleContent img {
-    width: 70%;
+    width: 55%;
   }
 }
 
