@@ -103,7 +103,7 @@ function displayUserInfo() {
       if(member.status == "captain") {
         statusValue = "Teamledare"
       } else if (member.status == "active") {
-        statusValue = "medlem"
+        statusValue = "Teammedlem"
       }
 
       let status = $("<div>");
