@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Nelson</title>
+        <title>Help Erik</title>
         <meta charset="utf-8"/>
         <link
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -22,8 +22,6 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/intro.css">
-        <!-- <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39&display=swap" rel="stylesheet"> -->
         <link rel="stylesheet" href="https://use.typekit.net/epf5kaq.css">
     </head>
   

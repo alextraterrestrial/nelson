@@ -1,12 +1,11 @@
 /*general css for the whole page: Includes variables, media query and general classes used throughout the webpage*/
 
 :root {
-  --backgroundColor: white;
+  --backgroundColor: #22273b;
   --backgroundColorTransparent: #22273b8a;
   --color2: #c33629;
   --color3: whitesmoke;
   --fontSize: 20px;
-  /* --font: "Overpass Mono", monospace; */
   --font: futura-pt, sans-serif;
   --radius: 4px;
 
@@ -16,7 +15,8 @@
 }
 
 body {
-  margin: 0px;
+  overflow: hidden;
+  margin: 0;
   background-color: var(--backgroundColor);
   color: var(--color2);
   font-family: var(--font);
@@ -99,6 +99,12 @@ p {
   border-radius: var(--radius);
 }
 
+@media only screen and (min-width: 600px) {
+  #icon {
+    position: absolute;
+  }
+}
+
 /* CSS for the Menu */
 #menu {
   height: 100vh;
@@ -169,6 +175,96 @@ p {
 
 .puzzleContainer form input {
   margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 600px) {
+  .wrapper {
+    display: flex;
+  }
+
+  #menu {
+    border-right: 1px solid var(--color2);
+    padding-top: 14vh;
+    flex-basis: 1px;
+    flex-grow: 2;
+    position: static;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+
+  #home {
+    padding-top: 7.5vh;
+    flex-basis: 1px;
+    flex-grow: 5;
+    width: 80%;
+    float: right;
+    max-height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(3rem);
+    scroll-snap-type: y mandatory;
+  }
+
+  .puzzleContainer {
+    scroll-snap-align: start;
+  }
+
+  .firstPage {
+    height: 100vh;
+  }
+
+  #puzzle1 {
+    height: 100vh;
+    padding-top: 60px;
+  }
+
+  #puzzle2 {
+    height: 100vh;
+    padding-top: 200px;
+  }
+
+  #puzzle3 {
+    height: 100vh;
+    padding-top: 200px;
+  }
+
+  #puzzle4 {
+    height: 100vh;
+    padding-top: 120px;
+  }
+
+  #puzzle5 {
+    height: 100vh;
+    
+  }
+
+  #puzzle6 {
+    height: 100vh;
+    
+  }
+
+  #puzzle7 {
+    height: 100vh;
+    
+  }
+
+  #puzzle8 {
+    height: 100vh;
+    
+  }
+
+  #puzzle9 {
+    height: 100vh;
+    
+  }
+
+  #puzzle10 {
+    height: 100vh;
+    
+  }
+  .puzzleContent img {
+    width: 45%;
+  }
 }
 
 /* CSS FOR TEAM-PAGE */
