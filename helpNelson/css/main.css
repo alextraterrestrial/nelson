@@ -104,6 +104,11 @@ p {
   border-radius: var(--radius);
 }
 
+#loginSubmit, #testLogout {
+  background-color: var(--backgroundColor);
+  border-color: var(--color2);
+}
+
 @media only screen and (min-width: 600px) {
   #icon {
     position: absolute;
@@ -187,6 +192,11 @@ p {
     display: flex;
   }
 
+  #menuOptionContent {
+    overflow: hidden;
+    height: 70vh;
+  }
+
   #menu {
     padding-top: 14vh;
     flex-basis: 1px;
@@ -194,11 +204,6 @@ p {
     position: static;
     transform: translateX(0);
     -webkit-transform: translateX(0);
-  }
-
-  #menuOptionContent {
-    overflow: hidden;
-    height: 70vh;
   }
 
   #home {
@@ -226,7 +231,6 @@ p {
   #game > div {
     margin: 0 auto;
     height: 100vh;
-    justify-content: center;
   }
 
   .puzzleContent img {
