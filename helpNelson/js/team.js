@@ -89,7 +89,7 @@ function displayUserInfo() {
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
       let memberSlot = $("<div>");
-      memberSlot.attr("class", "flexAround");
+      memberSlot.attr("class", "flexBetween");
       let alias = $("<div>");
       alias.html(member.username);
       $(memberSlot).append(alias);

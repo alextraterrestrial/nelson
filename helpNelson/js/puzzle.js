@@ -1,7 +1,7 @@
 //Code for puzzle
 
 class PuzzleGame1 {
-  constructor(puzzleId, contentHTML) {
+  constructor(puzzleId, contentHTML, nr) {
     //properties
     this.id = puzzleId;
 
@@ -10,6 +10,13 @@ class PuzzleGame1 {
       class: "puzzleContainer",
       id: "puzzle" + this.id,
       appendTo: "#game"
+    });
+
+    //nr title
+    this.puzzleNr = $("<h3>", {
+      class: "puzzleNr",
+      appendTo: this.puzzleContainer,
+      html: "Pussel " + nr
     });
 
     //nr of submissions
@@ -65,7 +72,7 @@ class PuzzleGame1 {
     });
 
     let submit = $("<input>", {
-      class: "inputClass",
+      class: "inputClass button",
       type: "submit",
       value: "Skicka in",
       appendTo: "#puzzleForm" + this.id
@@ -133,10 +140,12 @@ class PuzzleGame1 {
 function getPuzzles() {
   $.get("php/getGame1.php").done(data => {
     let pArr = [];
+    let nr = 1
 
     data = JSON.parse(data);
     data.forEach(item => {
-      let p = new PuzzleGame1(item.puzzleId, item.contentHTML);
+      let p = new PuzzleGame1(item.puzzleId, item.contentHTML, nr);
+      nr++
 
       pArr.push(p);
       p.countSubmissions();
