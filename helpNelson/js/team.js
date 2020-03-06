@@ -234,7 +234,7 @@ function createTeam() {
           $("#teamWrapper > div:last-child").toggle()
           $("#teamWrapper > div:first-child").toggle()
           
-          getUsers()
+          initializeTeam()
         }
       })
       .fail(()=>{

@@ -131,12 +131,12 @@ function loadMenu() {
     {
       label: "Logga in",
       content: $("<div>").load("html/login.html"),
-      icon: "login.png"
+      icon: "loginIcon.png"
     },
     {
       label: "Skapa konto",
       content: $("<div>").load("html/signupform.html"),
-      icon: "register.png"
+      icon: "registerIcon.png"
     }
   ];
 
