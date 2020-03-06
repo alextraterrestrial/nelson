@@ -56,14 +56,9 @@ $(document).ready(() => {
 
             console.log(id + " " + password);
 
+            // Create the user
             loginToken = new User(parsedRes);
-            //Create user
-            // createUser(parsedRes).then(() => {
-            //   //Initialize menu
-            //   init();
-            loadMenu();
-            //   // loginToken = parsedRes;
-            //   console.log(loginToken);
+            init();
 
             //   // Hide menu
             toggleMenu();
