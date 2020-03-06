@@ -40,9 +40,9 @@
                 <div id="menuHeader">
                     <div>
                         <div class="currentPlayer">
-                            <div class="playerName">Linus</div>
-                            <div>Points: <span class="playerPoints">28</span></div>
-                            <div class="countDown">20:20:20 ska vara med?</div>
+                            <div class="playerName"></div>
+                            <div>Points: <span class="playerPoints"></span></div>
+                            <div class="countDown"></div>
                         </div>
                         <div class="circuitRight"></div>
                     </div>

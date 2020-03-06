@@ -87,3 +87,8 @@ getUsers() (körs nu men måste köras)
 displayUserInfo()
 displayAvaliableUsers()
 findPlayersProgram()
+
+
+------BUGS-------
+- När man redan har ett team och skapar ett nyt team
+- 
