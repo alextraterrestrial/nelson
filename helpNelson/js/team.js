@@ -223,7 +223,7 @@ function createTeam() {
           console.log(data);
 
           if (data == "exists") {
-            $("#teamWrapper > div:last-child > div:last:child").html(
+            $("#teamWrapper > div:last-child > div:last-child").html(
               "Det teamet finns redan. Kom på ett annat namn."
             );
           } else {

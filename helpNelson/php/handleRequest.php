@@ -10,7 +10,7 @@ $sql->bindParam(1, $_GET['team']);
 $sql->execute();
 $response = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-if ($response[0]['count'] >= 3) {
+if ($response[0]['count'] > 2) {
   exit;
 }
 
