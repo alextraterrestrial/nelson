@@ -1,3 +1,20 @@
+<?php
+
+function loadPuzzle(){
+    $releaseDate = "2020-03-12 10:00:00";
+    $releaseTimestamp = new DateTime($releaseDate);
+    $currentTimestamp = new DateTime();
+
+    if($currentTimestamp > $releaseTimestamp){
+        include("html/home.html");
+    } else{
+        include("html/intro.html");
+    }
+}
+
+?>
+
+
 <html>
     <head>
         <title>Help Erik</title>
@@ -64,14 +81,9 @@
             
             <!-- this section contains the welcome message and the current game -->
             <section id="home">
-                
                 <?php      
-                include("html/home.html")
-                // include("html/intro.html")
+                loadPuzzle();
                 ?> 
-                
-            
-            
             </section>
         </div>
         <script src="js/puzzle.js"></script> 
