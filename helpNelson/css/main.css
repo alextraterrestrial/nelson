@@ -67,9 +67,28 @@ p {
   font-size: var(--fontSize);
 }
 
+.btn-primary {
+  background-color: var(--backgroundColor);
+  border-color: var(--color2);
+}
+
+.btn {
+  color: var(--color2);
+}
+
+.btn-primary:hover {
+  background-color: var(--backgroundColor);
+  color: #ffffff;
+  border-color: var(--color2);
+}
+
 @media only screen and (min-width: 600px) {
   body {
     overflow: hidden;
+  }
+
+  .wrapper container {
+    padding: 100px;
   }
 }
 
@@ -162,7 +181,24 @@ p {
 
 /* home and gamepage */
 #home {
+  max-height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(3rem);
+  scroll-snap-type: y mandatory;
   padding: 0 3vw;
+}
+
+#game > div {
+  height: 80vh;
+}
+
+.puzzleContainer {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .puzzleSubmission {
