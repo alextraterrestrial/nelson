@@ -146,14 +146,16 @@ function getPuzzles() {
     });
 
     // Check submissions
-    if (loginToken.teamId) {
-      pArr.forEach(obj => {
-        obj.getPuzzleSubmissions();
-      });
-    }
+    if (loginToken) {
+      if (loginToken.teamId) {
+        pArr.forEach(obj => {
+          obj.getPuzzleSubmissions();
+        });
+      }
 
-    console.log(pArr);
-    puzzles = pArr;
+      console.log(pArr);
+      puzzles = pArr;
+    }
 
     // window.updatePuzzles = () => {
     //   console.log(pArr);

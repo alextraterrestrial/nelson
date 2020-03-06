@@ -127,6 +127,10 @@ function loadMenu() {
   $("#menuOptionContainer").empty();
   console.log("oading menu");
 
+  //Clear header profile info
+  $(".playerName").empty();
+  $(".playerPoints").empty();
+
   const menuOptionsBasic = [
     {
       label: "Logga in",
@@ -148,9 +152,7 @@ function loadMenu() {
     },
     {
       label: "Min profil",
-      content: $("<div>").html(
-        "Här kommer profilsidan var där man kan logga ut och ev byta lösenord."
-      ),
+      content: $("<div>").load("html/profile.html"),
       icon: "userIcon.png"
     }
   ];
@@ -161,9 +163,12 @@ function loadMenu() {
     renderOptions = menuOptionsBasic;
     console.log("loginToken is null");
   } else if (loginToken != null) {
-    console.log("Not null");
     // Load menu for logged in users
     renderOptions = menuOptionsUser;
+
+    // Update profile in header
+    $(".playerName").html(loginToken.username);
+    $(".playerPoints").html(loginToken.score);
   }
 
   console.log(renderOptions);

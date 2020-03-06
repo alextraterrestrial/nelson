@@ -16,11 +16,8 @@ function getUsers() {
           }
         });
       });
-      
+
       displayUserInfo();
-
-
-
     })
     .fail(error => {
       console.log(error);
@@ -80,7 +77,7 @@ function displayUserInfo() {
   members = [];
 
   if (loginToken.status == "captain" || loginToken.status == "active") {
-    $("#teamName").html(loginToken.teamName)
+    $("#teamName").html(loginToken.teamName);
 
     for (let user of allUsers) {
       if (user.teamName == loginToken.teamName && user.status != "pending") {
@@ -97,26 +94,23 @@ function displayUserInfo() {
       alias.html(member.username);
       $(memberSlot).append(alias);
 
+      let statusValue;
 
-      let statusValue
-
-      if(member.status == "captain") {
-        statusValue = "Teamledare"
+      if (member.status == "captain") {
+        statusValue = "Teamledare";
       } else if (member.status == "active") {
-        statusValue = "Teammedlem"
+        statusValue = "Teammedlem";
       }
 
       let status = $("<div>");
       status.html(statusValue);
       $(memberSlot).append(status);
 
-      let btnContainer
+      let btnContainer;
       btnContainer = $("<div>");
       btnContainer.attr("class", "flexAround");
 
       if (loginToken.status == "captain" && loginToken.id != member.userId) {
-        
-
         let makeCaptain = $("<div>");
         makeCaptain.click(() => {
           updateTeam("updateCaptain", loginToken.teamId, member.userId);
@@ -125,10 +119,12 @@ function displayUserInfo() {
         makeCaptain.css({ "margin-right": "5px" });
         makeCaptain.html("♕");
         $(btnContainer).append(makeCaptain);
-
       }
-      
-      if ((loginToken.status == "captain" && loginToken.id != member.userId) || (loginToken.status == "active" && loginToken.id == member.userId)) {
+
+      if (
+        (loginToken.status == "captain" && loginToken.id != member.userId) ||
+        (loginToken.status == "active" && loginToken.id == member.userId)
+      ) {
         let removeMember = $("<div>");
         removeMember.click(() => {
           updateTeam("removeMember", loginToken.teamId, member.userId);
@@ -136,25 +132,24 @@ function displayUserInfo() {
         removeMember.attr("class", "button flex");
         removeMember.html("X");
         $(btnContainer).append(removeMember);
-  
+
         $(memberSlot).append(btnContainer);
       }
-      
-      
+
       $("#members").append(memberSlot);
     }
 
     displayAvaliableUsers();
 
     // shows invitations
-  } 
+  }
 
   if (loginToken.status == "captain") {
-    $("#findPlayerContainer").css({display: "block"})
-    findPlayersProgram()
+    $("#findPlayerContainer").css({ display: "block" });
+    findPlayersProgram();
   } else {
-    console.log("done?")
-    $("#findPlayerContainer").css({display: "none"})
+    console.log("done?");
+    $("#findPlayerContainer").css({ display: "none" });
   }
 }
 
@@ -177,7 +172,7 @@ function displayAvaliableUsers() {
         button.val(user.id);
         button.html(() => {
           if (loginToken.status != null) {
-            console.log(user.status)
+            console.log(user.status);
             switch (user.status) {
               case null || undefined:
                 return "bjud in";
@@ -215,39 +210,44 @@ function displayAvaliableUsers() {
 }
 
 function createTeam() {
-  $("#createTeam").submit((e) =>{
-    e.preventDefault()
+  $("#createTeam").submit(e => {
+    e.preventDefault();
 
-    if($("#createTeam input[type='text']").val()) {
-      $.get("php/createTeam.php", {teamName: $("#createTeam input[type='text']").val(), userId: loginToken.id})
-      .done(data => {
-        data = JSON.parse(data)
-        console.log(data)
-
-        if (data == "exists") {
-          $("#teamWrapper > div:last-child > div:last:child").html("Det teamet finns redan. Kom på ett annat namn.")
-        } else {
-          loginToken.teamId = data[0].teamId
-          loginToken.teamName = data[0].teamName
-          loginToken.status = "captain"
-
-          $("#teamWrapper > div:last-child").toggle()
-          $("#teamWrapper > div:first-child").toggle()
-          
-          initializeTeam()
-        }
+    if ($("#createTeam input[type='text']").val()) {
+      $.get("php/createTeam.php", {
+        teamName: $("#createTeam input[type='text']").val(),
+        userId: loginToken.id
       })
-      .fail(()=>{
-        console.log("fail")
-      })
-      
+        .done(data => {
+          data = JSON.parse(data);
+          console.log(data);
+
+          if (data == "exists") {
+            $("#teamWrapper > div:last-child > div:last-child").html(
+              "Det teamet finns redan. Kom på ett annat namn."
+            );
+          } else {
+            loginToken.teamId = data[0].teamId;
+            loginToken.teamName = data[0].teamName;
+            loginToken.status = "captain";
+
+            $("#teamWrapper > div:last-child").toggle();
+            $("#teamWrapper > div:first-child").toggle();
+
+            initializeTeam();
+          }
+        })
+        .fail(() => {
+          console.log("fail");
+        });
+
       //create Team
     } else {
-
-      $("#teamWrapper > div:last-child > div:last:child").html("Skriv ert teamnamn.")
+      $("#teamWrapper > div:last-child > div:last-child").html(
+        "Skriv ert teamnamn."
+      );
     }
-
-  })
+  });
 
   if (loginToken.status == "pending") {
     let invitations;
@@ -256,10 +256,6 @@ function createTeam() {
         data = JSON.parse(data);
         console.log(data);
         invitations = data;
-
-
-        
-       
 
         for (let invite of invitations) {
           let invitationId = invite.teamId;
@@ -279,9 +275,8 @@ function createTeam() {
             })
               .done(data => {
                 console.log(data);
-                loginToken.status = "active"
-                initializeTeam()
-                
+                loginToken.status = "active";
+                initializeTeam();
               })
               .fail(error => {
                 console.log(error);
@@ -300,7 +295,7 @@ function createTeam() {
               userId: loginToken.id
             })
               .done(data => {
-                teamInvites.remove()
+                teamInvites.remove();
               })
               .fail(error => {
                 console.log(error);
@@ -312,15 +307,15 @@ function createTeam() {
           $(teamInvites).append(deny);
 
           // $("#invites").append(teamInvites);
-          $("#teamWrapper > div:last-child > div:last-child").append(teamInvites);
+          $("#teamWrapper > div:last-child > div:last-child").append(
+            teamInvites
+          );
         }
       })
-    .fail((error) => {
-      console.log(error)
-    })
+      .fail(error => {
+        console.log(error);
+      });
     // console.log(invitations)
-
-    
 
     // if not invited or in a team, do this
   } else if (loginToken.status == null) {
@@ -332,72 +327,69 @@ function createTeam() {
   }
 }
 
-
 //teamsetup
 function initializeTeam() {
-  if (loginToken.status && loginToken.status != "pending") {
-    setTimeout(() => {
-      $("#teamWrapper > div").css({display: "none"})
-      $("#teamWrapper > div:first-child").css({display: "block"}) 
-      getUsers()
-      
-      getPuzzles()
-      // puzzles.forEach(obj => {
-      //   obj.getPuzzleSubmissions();
-      // });
+  if (loginToken) {
+    if (loginToken.status && loginToken.status != "pending") {
+      setTimeout(() => {
+        $("#teamWrapper > div").css({ display: "none" });
+        $("#teamWrapper > div:first-child").css({ display: "block" });
+        getUsers();
 
-    }, 200);
-  } else if (!loginToken.status || loginToken.status == "pending") {
-    setTimeout(() => {
-      $("#teamWrapper > div").css({display: "none"})
-      $("#teamWrapper > div:last-child").css({display: "block"})
-      createTeam()
-    }, 200);
+        // puzzles.forEach(obj => {
+        //   obj.getPuzzleSubmissions();
+        // });
+      }, 200);
+    } else if (!loginToken.status || loginToken.status == "pending") {
+      setTimeout(() => {
+        $("#teamWrapper > div").css({ display: "none" });
+        $("#teamWrapper > div:last-child").css({ display: "block" });
+        createTeam();
+      }, 200);
+    }
   }
-  
 }
 
 function findPlayersProgram() {
-  console.log("team")
+  console.log("team");
   $("#searchForPlayer input[type='button']").click(() => {
     $("#searchForPlayer input[type='text']").toggle();
     $("#availableUsers").toggle();
-    
+
     if ($("#searchForPlayer input[type='button']").val() == "sök") {
       $("#searchForPlayer input[type='button']").val("Göm");
     } else {
       $("#searchForPlayer input[type='button']").val("sök");
     }
   });
-  
+
   let t;
   $("#searchForPlayer input[type='text']").focus(() => {
     t = setInterval(() => {
       $("#availableUsers > div").css({ display: "none" });
-      
+
       for (let i = 1; i <= $("#availableUsers").children().length; i++) {
         let val = $("#searchForPlayer input[type='text']")
-        .val()
-        .toLowerCase();
-        
+          .val()
+          .toLowerCase();
+
         if (
           $("#availableUsers > div:nth-child(" + i + ") > div")
-          .html()
-          .toLowerCase()
-          .includes(val)
-          ) {
-            $("#availableUsers > div:nth-child(" + i + ")").css({
-              display: "flex"
-            });
-          }
+            .html()
+            .toLowerCase()
+            .includes(val)
+        ) {
+          $("#availableUsers > div:nth-child(" + i + ")").css({
+            display: "flex"
+          });
         }
-      }, 800);
-    });
-    
-    $("#searchForPlayer input[type='text']").focusout(() => {
-      clearInterval(t);
-    });
+      }
+    }, 800);
+  });
 
-    // $("#searchForPlayer input[type='button']").click()
-  }
-  
+  $("#searchForPlayer input[type='text']").focusout(() => {
+    clearInterval(t);
+  });
+
+  // $("#searchForPlayer input[type='button']").click()
+}

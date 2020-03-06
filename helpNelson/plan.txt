@@ -4,6 +4,7 @@ första målet:
 -fixa loginTokan objekt och constructer (samt dess metoder som vi kan göra nu)
 -lägga upp på binero och kolla så det vi gjort fungerar.
 möte 17/9 kl 9-13
+- Starta första spelet 12/3 kl 10.
 
 
 Nästa mål:
@@ -87,3 +88,8 @@ getUsers() (körs nu men måste köras)
 displayUserInfo()
 displayAvaliableUsers()
 findPlayersProgram()
+
+
+------BUGS-------
+- När man redan har ett team och skapar ett nyt team
+- 
