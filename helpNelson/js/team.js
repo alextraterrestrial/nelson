@@ -341,6 +341,7 @@ function initializeTeam() {
       $("#teamWrapper > div:first-child").css({display: "block"}) 
       getUsers()
       
+      getPuzzles()
       // puzzles.forEach(obj => {
       //   obj.getPuzzleSubmissions();
       // });
