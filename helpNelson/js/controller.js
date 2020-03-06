@@ -37,12 +37,12 @@ function checkUser() {
     console.log(loginToken);
     // Load menu
     loadMenu();
-    initializeTeam()
+    initializeTeam();
 
     // Load player data, team data etc
 
     //Load the puzzle
-      puzzles = getPuzzles();
+    getPuzzles();
   });
 }
 
@@ -128,12 +128,24 @@ function loadMenu() {
   console.log("oading menu");
 
   const menuOptionsBasic = [
-    { label: "Logga in", content: $("<div>").load("html/login.html"), icon: "login.png" },
-    { label: "Skapa konto", content: $("<div>").load("html/signupform.html"), icon: "register.png" }
+    {
+      label: "Logga in",
+      content: $("<div>").load("html/login.html"),
+      icon: "login.png"
+    },
+    {
+      label: "Skapa konto",
+      content: $("<div>").load("html/signupform.html"),
+      icon: "register.png"
+    }
   ];
 
   const menuOptionsUser = [
-    { label: "Team", content: $("<div>").load("html/teamSnippet.html"), icon: "teamIcon.png" },
+    {
+      label: "Team",
+      content: $("<div>").load("html/teamSnippet.html"),
+      icon: "teamIcon.png"
+    },
     {
       label: "Min profil",
       content: $("<div>").html(
