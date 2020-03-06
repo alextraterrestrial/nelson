@@ -78,9 +78,28 @@ p {
   font-size: var(--fontSize);
 }
 
+.btn-primary {
+  background-color: var(--backgroundColor);
+  border-color: var(--color2);
+}
+
+.btn {
+  color: var(--color2);
+}
+
+.btn-primary:hover {
+  background-color: var(--backgroundColor);
+  color: #ffffff;
+  border-color: var(--color2);
+}
+
 @media only screen and (min-width: 600px) {
   body {
     overflow: hidden;
+  }
+
+  .wrapper container {
+    padding: 100px;
   }
 }
 
@@ -114,6 +133,11 @@ p {
   margin-top: calc(var(--heightCircuit) * 0.181);
   background-color: var(--backgroundColor);
   border-radius: var(--radius);
+}
+
+#loginSubmit, #testLogout {
+  background-color: var(--backgroundColor);
+  border-color: var(--color2);
 }
 
 @media only screen and (min-width: 600px) {
@@ -177,7 +201,24 @@ p {
 
 /* home and gamepage */
 #home {
+  max-height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(3rem);
+  scroll-snap-type: y mandatory;
   padding: 0 3vw;
+}
+
+#game > div {
+  height: 80vh;
+}
+
+.puzzleContainer {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .puzzleSubmission {
@@ -207,8 +248,10 @@ p {
     display: flex;
   }
 
+  #menuOptionContent {
+  }
+
   #menu {
-    border-right: 1px solid var(--color2);
     padding-top: 14vh;
     flex-basis: 1px;
     flex-grow: 2;
@@ -218,6 +261,7 @@ p {
   }
 
   #home {
+    border-left: 1px solid var(--color2);
     padding-top: 7.5vh;
     flex-basis: 1px;
     flex-grow: 5;
@@ -232,14 +276,27 @@ p {
 
   .puzzleContainer {
     scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .firstPage {
     height: 100vh;
   }
 
+  #game > div {
+    margin: auto;
+    height: 100vh;
+  }
+
+  .puzzleContent {
+    padding: 2vh;
+  }
+
   .puzzleContent img {
-    width: 70%;
+    width: 55%;
   }
 }
 

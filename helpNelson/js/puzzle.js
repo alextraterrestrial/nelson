@@ -151,9 +151,9 @@ function getPuzzles() {
         obj.getPuzzleSubmissions();
       });
     }
-    
-    console.log(pArr)
-    
+
+    console.log(pArr);
+    puzzles = pArr;
 
     // window.updatePuzzles = () => {
     //   console.log(pArr);
@@ -163,6 +163,6 @@ function getPuzzles() {
     //     }
     //   });
     // };
-    return pArr;
+    // });
   });
 }
