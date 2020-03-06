@@ -131,6 +131,7 @@ function displayUserInfo() {
         });
         removeMember.attr("class", "button flex");
         removeMember.html("X");
+        removeMember.css({padding: "0 5px"})
         $(btnContainer).append(removeMember);
 
 
