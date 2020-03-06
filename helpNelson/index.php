@@ -1,7 +1,7 @@
 <?php
 
 function loadPuzzle(){
-    $releaseDate = "2020-03-12 10:00:00";
+    $releaseDate = "2020-02-12 10:00:00";
     $releaseTimestamp = new DateTime($releaseDate);
     $currentTimestamp = new DateTime();
 
@@ -58,7 +58,7 @@ function loadPuzzle(){
                     <div>
                         <div class="currentPlayer">
                             <div class="playerName"></div>
-                            <div>Points: <span class="playerPoints"></span></div>
+                            <div><span class="playerPoints"></span></div>
                             <div class="countDown"></div>
                         </div>
                         <div class="circuitRight"></div>
