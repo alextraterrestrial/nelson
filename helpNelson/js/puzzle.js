@@ -89,21 +89,22 @@ class PuzzleGame1 {
     $("#puzzleForm" + this.id).submit(e => {
       e.preventDefault();
       console.log(input.val());
-
-      $.get("php/submitAnswer.php", {
-        submission: input.val(),
-        teamId: loginToken.teamId,
-        puzzleId: this.id
-      })
-        .done(data => {
-          console.log(data);
-          this.getPuzzleSubmissions();
+      if (input.val() != "") {
+        $.get("php/submitAnswer.php", {
+          submission: input.val(),
+          teamId: loginToken.teamId,
+          puzzleId: this.id
         })
-        .fail(() => {
-          $("#puzzleForm" + this.id).append(
-            "<div>Något gick fel, försök skicka in igen</div>"
-          );
-        });
+          .done(data => {
+            console.log(data);
+            this.getPuzzleSubmissions();
+          })
+          .fail(() => {
+            $("#puzzleForm" + this.id).append(
+              "<div>Något gick fel, försök skicka in igen</div>"
+            );
+          });
+      }
     });
   }
 
@@ -138,6 +139,9 @@ class PuzzleGame1 {
 }
 
 function getPuzzles() {
+  // Clear any puzzles already created
+  $("#game").empty();
+
   $.get("php/getGame1.php").done(data => {
     let pArr = [];
     let nr = 1

@@ -12,8 +12,9 @@ let puzzles = [];
 $(document).ready(() => {
   init();
 
-  //TEST FOR MOBILE console
-  // $(":root").css({"--color2": "red"})
+  // Adding event listeners
+  //Icon and menu
+  $(".logoButton").click(toggleMenu);
 });
 
 function init() {
@@ -112,8 +113,6 @@ function logOut() {
     url: "php/logout.php",
     type: "POST"
   }).done(res => {
-    // Load menu
-    init();
     console.log(res);
 
     // Call init function to restart
@@ -168,7 +167,7 @@ function loadMenu() {
 
     // Update profile in header
     $(".playerName").html(loginToken.username);
-    $(".playerPoints").html(loginToken.score);
+    $(".playerPoints").html("Points: " + loginToken.score);
   }
 
   console.log(renderOptions);
@@ -195,15 +194,6 @@ function toggleMenu() {
     });
   }
 }
-
-// Event handling
-//Logout function, testing only
-$("#testLogout").click(() => {
-  console.log("asdlkasd");
-});
-
-//click events for Icon and menu
-$(".logoButton").click(toggleMenu);
 
 // $(".logoButton").click(() => {
 //   let val;
