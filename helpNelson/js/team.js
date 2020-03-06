@@ -89,7 +89,7 @@ function displayUserInfo() {
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
       let memberSlot = $("<div>");
-      memberSlot.attr("class", "flexBetween");
+      memberSlot.attr("class", "flexList");
       let alias = $("<div>");
       alias.html(member.username);
       $(memberSlot).append(alias);
@@ -99,7 +99,7 @@ function displayUserInfo() {
       if (member.status == "captain") {
         statusValue = "Teamledare";
       } else if (member.status == "active") {
-        statusValue = "Teammedlem";
+        statusValue = "Medlem";
       }
 
       let status = $("<div>");
@@ -108,7 +108,7 @@ function displayUserInfo() {
 
       let btnContainer;
       btnContainer = $("<div>");
-      btnContainer.attr("class", "flexAround");
+      btnContainer.attr("class", "flexCenter");
 
       if (loginToken.status == "captain" && loginToken.id != member.userId) {
         let makeCaptain = $("<div>");
@@ -133,6 +133,10 @@ function displayUserInfo() {
         removeMember.html("X");
         $(btnContainer).append(removeMember);
 
+
+        status.css({
+          flexGrow: 2
+        })
         $(memberSlot).append(btnContainer);
       }
 

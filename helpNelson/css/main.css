@@ -44,6 +44,22 @@ body {
   align-items: center;
 }
 
+.flexList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexList > div {
+  flex-basis: 1px;
+  flex-grow: 2;
+}
+
+.flexList > div:nth-child(2) {
+  flex-grow: 4;
+}
+
+
 h1 {
   font-weight: 600;
 }
