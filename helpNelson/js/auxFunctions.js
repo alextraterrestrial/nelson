@@ -53,13 +53,13 @@ function countDown() {
       console.log("GO GO GO!");
     }
     $(".countDown").html(
-      "<p>Nästa challenge startar om: " +
+      "<p>Nästa challenge startar om:<br> <strong>" +
         timeLeft[3] +
         timeLeft[0] +
         ":" +
         timeLeft[1] +
         ":" +
-        timeLeft[2]
+        timeLeft[2] + "</strong></p>"
     );
   }, 1000);
 }
