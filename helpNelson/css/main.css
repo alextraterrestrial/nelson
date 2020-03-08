@@ -411,6 +411,10 @@ p {
   color: var(--color3)
 }
 
+video {
+  background-color: var(--backgroundColor);
+}
+
 /* #members div {
  margin: 1px 0;
 } */

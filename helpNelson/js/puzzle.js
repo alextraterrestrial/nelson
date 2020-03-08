@@ -166,7 +166,7 @@ function getPuzzles() {
         });
       }
 
-      console.log(pArr);
+      // console.log(pArr);
       puzzles = pArr;
     }
 
