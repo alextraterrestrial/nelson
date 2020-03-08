@@ -65,7 +65,7 @@ class PuzzleGame1 {
 
   createSubmissionFormInput() {
     let input = $("<input>", {
-      class: "inputClass",
+      class: "textField",
       type: "text",
       placeholder: "Svar",
       appendTo: "#puzzleForm" + this.id

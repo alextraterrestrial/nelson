@@ -71,7 +71,7 @@ h1 {
   scroll-snap-align: start;
 }
 
-h3 {
+#home h3 {
   font-size: calc(var(--fontSize) * 1.2);
   scroll-snap-align: start;
   padding-top: 15vh;
@@ -84,6 +84,15 @@ p {
 
 .white {
   color: var(--color3);
+}
+
+.link{
+  color: var(--color2);
+}
+.link:hover {
+  color: var(--color3);
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .button {
@@ -304,8 +313,7 @@ p {
     display: flex;
   }
 
-  #menuOptionContent {
-  }
+  
 
   #menu {
     padding-top: 14vh;
