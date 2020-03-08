@@ -1,14 +1,4 @@
-$(document).ready(function() {
-  let request;
-  $("#goToLogin").click(() => {
-    //Hide login
-    getBackToHomePage();
-
-    //Show register
-    $("#menyContent").css({ display: "block" });
-    $("#secLogin").css({ display: "block" });
-  });
-
+function signUp() {
   //Validate form fileds
   $("form[name='signupForm']").validate({
     rules: {
@@ -47,7 +37,7 @@ $(document).ready(function() {
       }
     },
     submitHandler: form => {
-      console.log("Submit handled");
+      // console.log("Submit handled");
       let email = form.email.value;
       let username = form.username.value;
       let password = form.password.value;
@@ -59,7 +49,7 @@ $(document).ready(function() {
         passwordConfirm: passwordConfirm
       };
       formData = JSON.stringify(formData);
-      console.log(formData);
+      // console.log(formData);
 
       request = $.ajax({
         url: "php/signup.php",
@@ -75,9 +65,9 @@ $(document).ready(function() {
         // },
       })
         .done(res => {
-          console.log("Data sent to register.php");
+          // console.log("Data sent to register.php");
           let parsedRes = JSON.parse(res);
-          console.log(parsedRes);
+          // console.log(parsedRes);
 
           if (!parsedRes.errors) {
             loginToken = new User(parsedRes);
@@ -96,4 +86,22 @@ $(document).ready(function() {
         });
     }
   });
-});
+}
+
+function addSignupListener() {
+  $("#signUpSubmit").click(e => {
+    signUp();
+  });
+}
+
+// $(document).ready(function() {
+//   let request;
+//   $("#goToLogin").click(() => {
+//     //Hide login
+//     getBackToHomePage();
+
+//     //Show register
+//     $("#menyContent").css({ display: "block" });
+//     $("#secLogin").css({ display: "block" });
+//   });
+// });

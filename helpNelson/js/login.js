@@ -1,14 +1,21 @@
 $(document).ready(() => {
   let request;
+  // addLoginListener();
+});
 
+function addLoginListener() {
   //Add listener for go to rgister link
-  $("#goToRegister").click(e => {
-    // getBackToHomePage();
-
-    //Show register
-    $("#menyContent").css({ display: "block" });
-    $("#secRegistrering").css({ display: "block" });
+  $("#loginSubmit").click(e => {
+    login();
   });
+}
+
+function login() {
+  // getBackToHomePage();
+
+  //Show register
+  $("#menyContent").css({ display: "block" });
+  $("#secRegistrering").css({ display: "block" });
 
   // Validate form
   $("form[name='loginForm']").validate({
@@ -44,9 +51,9 @@ $(document).ready(() => {
         .done(res => {
           // Hide spinner
           $("#loginSpinner").hide();
-          console.log(res);
+          // console.log(res);
           const parsedRes = JSON.parse(res);
-          console.log(parsedRes);
+          // console.log(parsedRes);
 
           // If loggin was successful
           if (!parsedRes.errors) {
@@ -54,7 +61,7 @@ $(document).ready(() => {
             let id = parsedRes.userId;
             let password = parsedRes.password;
 
-            console.log(id + " " + password);
+            // console.log(id + " " + password);
 
             // Create the user
             loginToken = new User(parsedRes);
@@ -71,7 +78,7 @@ $(document).ready(() => {
             //Show error message
             $("#loginErrorMessage").html("Fel mailadress eller lösenord");
 
-            console.log(parsedRes.errors);
+            // console.log(parsedRes.errors);
           }
         })
         .fail(() => {
@@ -79,6 +86,4 @@ $(document).ready(() => {
         });
     }
   });
-});
-
-function login(email, password) {}
+}
