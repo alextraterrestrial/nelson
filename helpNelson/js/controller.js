@@ -18,24 +18,18 @@ $(document).ready(() => {
 });
 
 function init() {
-  //Check if user has been logged in recently
-  // if (loginToken != null) {
-  //   console.log(loginToken);
-  // } else {
-  //   checkCookie();
-  // }
-  // loadMenu();
+  //Check if user is logged in or not
   checkUser();
-  // Display menu and user data
 
+  //Load info
   countDown();
 }
 
 function checkUser() {
   checkCookie().then(res => {
     //When login is complete
-    console.log("done checking cookie");
-    console.log(loginToken);
+    // console.log("done checking cookie");
+    // console.log(loginToken);
     // Load menu
     loadMenu();
     initializeTeam();
@@ -72,9 +66,9 @@ function checkCookie() {
           encode: true
         })
           .done(res => {
-            console.log(res);
+            // console.log(res);
             let parsedRes = JSON.parse(res);
-            console.log(JSON.parse(res));
+            // console.log(JSON.parse(res));
 
             // Create a user
             loginToken = new User(parsedRes);
@@ -113,7 +107,7 @@ function logOut() {
     url: "php/logout.php",
     type: "POST"
   }).done(res => {
-    console.log(res);
+    // console.log(res);
 
     // Call init function to restart
     init();
@@ -124,7 +118,8 @@ function logOut() {
 function loadMenu() {
   //Clear menu
   $("#menuOptionContainer").empty();
-  console.log("oading menu");
+  $("#menuOptionContent").empty();
+  // console.log("oading menu");
 
   //Clear header profile info
   $(".playerName").empty();
@@ -133,12 +128,16 @@ function loadMenu() {
   const menuOptionsBasic = [
     {
       label: "Logga in",
-      content: $("<div>").load("html/login.html"),
+      content: $("<div>").load("html/login.html", () => {
+        addLoginListener();
+      }),
       icon: "loginIcon.png"
     },
     {
       label: "Skapa konto",
-      content: $("<div>").load("html/signupform.html"),
+      content: $("<div>").load("html/signupform.html", () => {
+        addSignupListener();
+      }),
       icon: "registerIcon.png"
     }
   ];
@@ -160,7 +159,8 @@ function loadMenu() {
   if (loginToken === null) {
     // Load menu for NOT logged in users
     renderOptions = menuOptionsBasic;
-    console.log("loginToken is null");
+
+    // console.log("loginToken is null");
   } else if (loginToken != null) {
     // Load menu for logged in users
     renderOptions = menuOptionsUser;
@@ -170,7 +170,7 @@ function loadMenu() {
     $(".playerPoints").html("Points: " + loginToken.score);
   }
 
-  console.log(renderOptions);
+  // console.log(renderOptions);
   renderOptions.forEach(item => {
     let opt = new MenuOption(item.label, item.content, item.icon);
     if (item.label == "Logga in" || item.label == "Team") {

@@ -96,6 +96,7 @@ function loadPuzzle(){
         <script src="js/userClass.js"></script>
         <script src="js/userFunctionality.js"></script>
         <script src="js/login.js"></script>
+        <script src="js/signup.js"></script>
         <script src="js/controller.js"></script>
     </body>
   </html>
