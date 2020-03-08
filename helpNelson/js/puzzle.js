@@ -119,7 +119,7 @@ class PuzzleGame1 {
         $("#puzzleForm" + this.id).empty();
         if (data[0]) {
           $("#puzzleForm" + this.id).append(
-            "<div>Ni har svarat " + data[0].submission + " på denna.</div>"
+            "<div>Ni har svarat " + data[0].submission + " på detta pussel.</div>"
           );
         } else {
           this.createSubmissionFormInput();

@@ -1,26 +1,20 @@
 let allUsers;
+let members
 
 function getUsers() {
-  $.get("php/getUsers.php")
+  $.get("php/getUsers.php", {teamId: loginToken.teamId})
     .done(data => {
-      console.log("executing getUsers");
+      // console.log("executing getUsers");
       data = JSON.parse(data);
       users = data;
-      let inTeam = users[0];
+      members = users[0];
       allUsers = users[1];
 
-      allUsers.forEach((a, i) => {
-        inTeam.forEach(b => {
-          if (a.username == b.username) {
-            allUsers.splice(i, 1, b);
-          }
-        });
-      });
 
       displayUserInfo();
     })
     .fail(error => {
-      console.log(error);
+      // console.log(error);
     });
 }
 
@@ -32,16 +26,16 @@ function addUser(clickedUser, captain) {
   $.get("php/sendRequest.php", { team: team, userId: requestedId })
     .done(data => {
       popup(data);
-      console.log(data);
+      // console.log(data);
       getUsers();
     })
     .fail(error => {
-      console.log(error);
+      // console.log(error);
     });
 }
 
 function updateTeam(action, team, memberToEffect) {
-  console.log(action, team, memberToEffect);
+  // console.log(action, team, memberToEffect);
   $.get("php/updateTeam.php", {
     action: action,
     team: team,
@@ -49,11 +43,11 @@ function updateTeam(action, team, memberToEffect) {
   })
     .done(data => {
       // popup(data)
-      console.log(data);
+      // console.log(data);
       getUsers();
     })
     .fail(error => {
-      console.log(error);
+      // console.log(error);
     });
 }
 
@@ -68,26 +62,22 @@ function popup(message) {
   }, 1000);
 }
 
-let members;
 // displays members in your team OR invitations if you're not in one
 function displayUserInfo() {
-  console.log("executing displayUserInfo");
-  console.log(allUsers, loginToken);
+  // console.log("executing displayUserInfo");
+  // console.log(allUsers, loginToken);
   $("#members").empty();
-  members = [];
 
   if (loginToken.status == "captain" || loginToken.status == "active") {
     $("#teamName").html(loginToken.teamName);
 
-    for (let user of allUsers) {
-      if (user.teamName == loginToken.teamName && user.status != "pending") {
-        members.push(user);
-      }
-    }
+
+
     // console.log(members)
 
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
+      //name of player
       let memberSlot = $("<div>");
       memberSlot.attr("class", "flexList");
       let alias = $("<div>");
@@ -102,14 +92,18 @@ function displayUserInfo() {
         statusValue = "Medlem";
       }
 
+      //player status
       let status = $("<div>");
       status.html(statusValue);
       $(memberSlot).append(status);
 
+
       let btnContainer;
       btnContainer = $("<div>");
-      btnContainer.attr("class", "flexCenter");
+      btnContainer.attr("class", "flexstart");
+      $(memberSlot).append(btnContainer);
 
+      //make capain button
       if (loginToken.status == "captain" && loginToken.id != member.userId) {
         let makeCaptain = $("<div>");
         makeCaptain.click(() => {
@@ -121,10 +115,9 @@ function displayUserInfo() {
         $(btnContainer).append(makeCaptain);
       }
 
-      if (
-        (loginToken.status == "captain" && loginToken.id != member.userId) ||
-        (loginToken.status == "active" && loginToken.id == member.userId)
-      ) {
+      //remove member
+      if ((loginToken.status == "captain" && loginToken.id != member.userId) ||
+        (loginToken.status == "active" && loginToken.id == member.userId)) {
         let removeMember = $("<div>");
         removeMember.click(() => {
           updateTeam("removeMember", loginToken.teamId, member.userId);
@@ -134,11 +127,14 @@ function displayUserInfo() {
         $(btnContainer).append(removeMember);
 
 
-        status.css({
-          flexGrow: 2
-        })
-        $(memberSlot).append(btnContainer);
+        // status.css({
+        //   flexGrow: 2
+        // })
+        
       }
+
+      //remove teamButton
+      
 
       $("#members").append(memberSlot);
     }
@@ -152,9 +148,11 @@ function displayUserInfo() {
     $("#findPlayerContainer").css({ display: "block" });
     findPlayersProgram();
   } else {
-    console.log("done?");
+    // console.log("done?");
     $("#findPlayerContainer").css({ display: "none" });
   }
+
+ 
 }
 
 // displays all the users available to be invited by a captain
@@ -176,7 +174,7 @@ function displayAvaliableUsers() {
         button.val(user.id);
         button.html(() => {
           if (loginToken.status != null) {
-            console.log(user.status);
+            // console.log(user.status);
             switch (user.status) {
               case null || undefined:
                 return "bjud in";
@@ -187,6 +185,7 @@ function displayAvaliableUsers() {
               case "captain":
                 return "loginToken.teamName";
             }
+
           } else {
             return "+";
           }
@@ -224,7 +223,7 @@ function createTeam() {
       })
         .done(data => {
           data = JSON.parse(data);
-          console.log(data);
+          // console.log(data);
 
           if (data == "exists") {
             $("#teamWrapper > div:last-child > div:last-child").html(
@@ -239,10 +238,11 @@ function createTeam() {
             $("#teamWrapper > div:first-child").toggle();
 
             initializeTeam();
+            getPuzzles()
           }
         })
         .fail(() => {
-          console.log("fail");
+          // console.log("fail");
         });
 
       //create Team
@@ -258,7 +258,7 @@ function createTeam() {
     $.get("php/getInvitations.php", { userId: loginToken.id })
       .done(data => {
         data = JSON.parse(data);
-        console.log(data);
+        // console.log(data);
         invitations = data;
 
         for (let invite of invitations) {
@@ -278,12 +278,12 @@ function createTeam() {
               userId: loginToken.id
             })
               .done(data => {
-                console.log(data);
+                // console.log(data);
                 loginToken.status = "active";
                 initializeTeam();
               })
               .fail(error => {
-                console.log(error);
+                // console.log(error);
               });
           });
           accept.html("ACCEPT");
@@ -302,7 +302,7 @@ function createTeam() {
                 teamInvites.remove();
               })
               .fail(error => {
-                console.log(error);
+                // console.log(error);
               });
           });
           deny.html("DENY");
@@ -317,9 +317,9 @@ function createTeam() {
         }
       })
       .fail(error => {
-        console.log(error);
+        // console.log(error);
       });
-    // console.log(invitations)
+    console.log(invitations)
 
     // if not invited or in a team, do this
   } else if (loginToken.status == null) {
@@ -331,6 +331,10 @@ function createTeam() {
   }
 }
 
+function removeTeam() {
+  console.log("hej")
+}
+
 //teamsetup
 function initializeTeam() {
   if (loginToken) {
@@ -340,9 +344,7 @@ function initializeTeam() {
         $("#teamWrapper > div:first-child").css({ display: "block" });
         getUsers();
 
-        // puzzles.forEach(obj => {
-        //   obj.getPuzzleSubmissions();
-        // });
+
       }, 200);
     } else if (!loginToken.status || loginToken.status == "pending") {
       setTimeout(() => {
@@ -355,7 +357,7 @@ function initializeTeam() {
 }
 
 function findPlayersProgram() {
-  console.log("team");
+  // console.log("team");
   $("#searchForPlayer input[type='button']").click(() => {
     $("#searchForPlayer input[type='text']").toggle();
     $("#availableUsers").toggle();

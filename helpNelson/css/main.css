@@ -5,7 +5,7 @@
   --backgroundColorTransparent: #22273b8a;
   --color2: #c33629;
   --color3: whitesmoke;
-  --fontSize: 16px;
+  --fontSize: 17px;
   /* --font: "Overpass Mono", monospace; */
   --font: futura-pt, sans-serif;
   --radius: 4px;
@@ -20,6 +20,8 @@ body {
   background-color: var(--backgroundColor);
   color: var(--color2);
   font-family: var(--font);
+
+  line-height: 1.3;
 }
 
 .wrapper {
@@ -50,22 +52,29 @@ body {
   align-items: center;
 }
 
+.flexstart {
+  display: flex;
+  align-items: center;
+}
+
 .flexList > div {
   flex-basis: 1px;
   flex-grow: 2;
 }
 
-.flexList > div:nth-child(2) {
-  flex-grow: 4;
-}
+
+
 
 
 h1 {
   font-weight: 600;
+  scroll-snap-align: start;
 }
 
 h3 {
   font-size: calc(var(--fontSize) * 1.2);
+  scroll-snap-align: start;
+  padding-top: 15vh;
 }
 
 p {
@@ -78,6 +87,8 @@ p {
 }
 
 .button {
+  min-height: 15px;
+  min-width: 15px;
   font-family: var(--font);
   background-color: var(--backgroundColor);
   color: var(--color3);
@@ -85,6 +96,8 @@ p {
   border-radius: 15%;
   font-size: var(--fontSize);
   cursor: pointer;
+  padding: 1px 3px;
+  margin: 2px 0;
 }
 
 .textField {
@@ -118,6 +131,14 @@ p {
   flex-direction: column;
   align-items: center;
   padding: 5vh 0;
+}
+
+.countDown p {
+  font-size: calc(var(--fontSize) * .8);
+}
+
+.playerName, .playerPoints {
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 600px) {
@@ -237,9 +258,9 @@ p {
 #home {
   max-height: 100vh;
   overflow-y: scroll;
-  /* scroll-snap-type: mandatory;
+  scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(3rem);
-  scroll-snap-type: y mandatory; */
+  scroll-snap-type: y mandatory;
   padding: 0 3vw;
 }
 
@@ -304,13 +325,18 @@ p {
     float: right;
     max-height: 100vh;
     overflow-y: scroll;
-    /* scroll-snap-type: mandatory;
+  
+    scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(3rem);
-    scroll-snap-type: y mandatory; */
+    scroll-snap-type: y mandatory;
   }
 
   #home .countDown {
     display: none;
+  }
+
+  h3 {
+    padding-top: 5vh;
   }
 
   .puzzleContainer {
@@ -343,13 +369,16 @@ p {
 
   .puzzleContent img {
     width: 75%;
+    /* hitta en bättre lösning */
+    max-height: 75vh;
   }
+  
 }
 
 /* CSS FOR TEAM-PAGE */
 
 #teamName {
-  font-size: calc(var(--fontSize) * 2);
+  font-size: calc(var(--fontSize) * 1.6);
 }
 
 #availableUsers {
@@ -373,3 +402,7 @@ p {
 #members{
   color: var(--color3)
 }
+
+/* #members div {
+ margin: 1px 0;
+} */
