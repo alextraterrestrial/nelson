@@ -53,7 +53,7 @@ function countDown() {
       console.log("GO GO GO!");
     }
     $(".countDown").html(
-      "<p>Nästa challenge startar om:<br> <strong>" +
+      "<p>Utmaningen startar om:<br> <strong>" +
         timeLeft[3] +
         timeLeft[0] +
         ":" +

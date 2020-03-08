@@ -323,11 +323,11 @@ function createTeam() {
 
     // if not invited or in a team, do this
   } else if (loginToken.status == null) {
-    $("#teamMessage").remove();
-    let prompt = $("<div>", { id: "teamMessage" });
-    prompt.html("Please add users to form a team");
+    // $("#teamMessage").remove();
+    // let prompt = $("<div>", { id: "teamMessage" });
+    // prompt.html("Please add users to form a team");
     // $("#teamMembers").css('justify-content', 'center')
-    $("#teamWrapper").append(prompt);
+    // $("#teamWrapper").append(prompt);
   }
 }
 
