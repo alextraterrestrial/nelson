@@ -8,7 +8,6 @@ function getUsers() {
       data = JSON.parse(data);
       users = data;
       members = users[0];
-      allUsers = users[1];
 
 
       displayUserInfo();
@@ -70,10 +69,6 @@ function displayUserInfo() {
 
   if (loginToken.status == "captain" || loginToken.status == "active") {
     $("#teamName").html(loginToken.teamName);
-
-
-
-    // console.log(members)
 
     // fill list of members (TC & ACTIVE)
     for (let member of members) {
@@ -138,15 +133,12 @@ function displayUserInfo() {
 
       $("#members").append(memberSlot);
     }
-
-    displayAvaliableUsers();
-
-    // shows invitations
   }
 
   if (loginToken.status == "captain") {
     $("#findPlayerContainer").css({ display: "block" });
     findPlayersProgram();
+    removeTeamProgram()
   } else {
     // console.log("done?");
     $("#findPlayerContainer").css({ display: "none" });
@@ -157,8 +149,13 @@ function displayUserInfo() {
 
 // displays all the users available to be invited by a captain
 function displayAvaliableUsers() {
-  // fill list of users
-  $("#availableUsers").empty();
+  $.get("php/getUsers.php", {teamId: loginToken.teamId})
+    .done(data => {
+      // console.log("executing getUsers");
+      data = JSON.parse(data);
+      allUsers = data[1];
+
+      $("#availableUsers").empty();
   for (let user of allUsers) {
     if (user.username != loginToken.username && user.status != "captain") {
       let availableUser = $("<div>");
@@ -210,6 +207,12 @@ function displayAvaliableUsers() {
       $("#availableUsers").append(availableUser);
     }
   }
+    })
+    .fail(error => {
+      // console.log(error);
+    });
+  // fill list of users
+  
 }
 
 function createTeam() {
@@ -240,6 +243,7 @@ function createTeam() {
             initializeTeam();
             getPuzzles()
           }
+          $("#createTeam input[type='text']").val("")
         })
         .fail(() => {
           // console.log("fail");
@@ -247,9 +251,7 @@ function createTeam() {
 
       //create Team
     } else {
-      $("#teamWrapper > div:last-child > div:last-child").html(
-        "Skriv ert teamnamn."
-      );
+      $("#teamWrapper > div:last-child > div:last-child").html("Skriv ert teamnamn.");
     }
   });
 
@@ -319,21 +321,13 @@ function createTeam() {
       .fail(error => {
         // console.log(error);
       });
-    console.log(invitations)
+    // console.log(invitations)
 
     // if not invited or in a team, do this
-  } else if (loginToken.status == null) {
-    // $("#teamMessage").remove();
-    // let prompt = $("<div>", { id: "teamMessage" });
-    // prompt.html("Please add users to form a team");
-    // $("#teamMembers").css('justify-content', 'center')
-    // $("#teamWrapper").append(prompt);
-  }
+  } 
+  
 }
 
-function removeTeam() {
-  console.log("hej")
-}
 
 //teamsetup
 function initializeTeam() {
@@ -361,8 +355,9 @@ function findPlayersProgram() {
   $("#searchForPlayer input[type='button']").click(() => {
     $("#searchForPlayer input[type='text']").toggle();
     $("#availableUsers").toggle();
-
+    
     if ($("#searchForPlayer input[type='button']").val() == "sök") {
+      displayAvaliableUsers()
       $("#searchForPlayer input[type='button']").val("Göm");
     } else {
       $("#searchForPlayer input[type='button']").val("sök");
@@ -398,4 +393,54 @@ function findPlayersProgram() {
   });
 
   // $("#searchForPlayer input[type='button']").click()
+}
+
+function removeTeamProgram() {
+  $(".removeTeam").remove()
+  let removeTeam = $('<div>', {
+    appendTo: "#teamWrapper", 
+    class: "removeTeam"
+  })
+  //remove team button
+  let label = $('<div>', {
+    appendTo: removeTeam, 
+    class: "button",
+    html: "Radera team"
+  }).click(()=>{
+    label.html("Är du säker?")
+    label.removeClass("button").css({color: "var(--color3)"})
+
+    
+    //yes
+    $('<div>', {
+      appendTo: label, 
+      class: "button",
+      html: "Ja"
+    }).click(()=>{
+      removeTeam.remove()
+      
+      $.get("php/removeTeam.php", {teamId: loginToken.teamId})
+      .done(data => {
+        loginToken.status = null
+        loginToken.teamId = null
+        loginToken.teamName = null
+        setTimeout(()=> initializeTeam(), 500)
+        
+      })
+
+    })
+    
+    //no
+    $('<div>', {
+      appendTo: label, 
+      class: "button",
+      html: "Nej"
+    }).click(()=>{
+      removeTeam.remove()
+      removeTeamProgram()
+    })
+
+
+
+  })
 }
