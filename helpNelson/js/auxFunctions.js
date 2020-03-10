@@ -25,9 +25,9 @@ function getHourMinSecArray(s) {
   }
 
   if (days > 1) {
-    days = days + " Days ";
+    days = days + " Dagar ";
   } else if (days == 1) {
-    days = days + " Day ";
+    days = days + " Dag ";
   } else {
     days = "";
   }
@@ -50,10 +50,10 @@ function countDown() {
 
     if (!time) {
       clearInterval(count);
-      console.log("GO GO GO!");
+      // console.log("GO GO GO!");
     }
     $(".countDown").html(
-      "<p>Nästa challenge startar om:<br> <strong>" +
+      "<p>Utmaningen startar om:<br> <strong>" +
         timeLeft[3] +
         timeLeft[0] +
         ":" +

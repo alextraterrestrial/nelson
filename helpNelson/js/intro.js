@@ -9,7 +9,7 @@ $("#puzzleFormIntro input[type='button']").click(() => {
     //message create a user to join the real challange
     $("#puzzleFormIntro").empty()
     $("<div>", {
-        html: "Rätt Svarar! Du är Kvalificerad till att anta nästa utmaning!. Skapa en användare och samla ditt team för att delta och vinna priser. Utmaningen släpps på fredag kl. ",
+        html: "Rätt Svarar! Du har nog vad som krävs för att anta nästa utmaning!",
         appendTo: "#puzzleFormIntro",
         class: "message"
     })

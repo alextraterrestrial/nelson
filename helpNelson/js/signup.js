@@ -71,7 +71,7 @@ function signUp() {
 
           if (!parsedRes.errors) {
             loginToken = new User(parsedRes);
-
+            init()
             loadMenu();
             toggleMenu();
           }

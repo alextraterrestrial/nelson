@@ -20,9 +20,7 @@
 }
 
 
-video {
-    background-color: black;
-}
+
 
 #introFooter {
     height: 20vh;
@@ -30,6 +28,11 @@ video {
 
 #puzzleFormIntro {
     min-height: calc(var(--fontSize) * 6);
+}
+
+#home > div > p {
+    scroll-snap-align: start;
+    padding: 0 3px;
 }
 
 @media only screen and (min-width: 600px) {

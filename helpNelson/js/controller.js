@@ -110,7 +110,8 @@ function logOut() {
     // console.log(res);
 
     // Call init function to restart
-    init();
+    // init();
+    location.reload()
   });
 }
 

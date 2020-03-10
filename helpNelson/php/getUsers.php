@@ -11,7 +11,7 @@ $sql->bindParam(1, $_GET['teamId']);
 $sql->execute();
 $answer1 = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-$query = "SELECT * FROM User WHERE userId NOT IN (SELECT userId FROM UserTeam)";
+$query = "SELECT * FROM User WHERE (userId NOT IN (SELECT userId FROM UserTeam))";
 $sql = $pdo->prepare($query);
 $sql->execute();
 $answer2 = $sql->fetchAll(PDO::FETCH_ASSOC);
