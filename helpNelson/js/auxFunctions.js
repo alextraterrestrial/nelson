@@ -36,7 +36,7 @@ function getHourMinSecArray(s) {
 
 function countDown() {
   let time = Math.round(
-    (Date.parse("March 12, 2020 08:00:00") - Date.now()) / 1000
+    (Date.parse("March 12, 2020 10:00:00") - Date.now()) / 1000
   );
 
   let timeLeft = getHourMinSecArray(time);
