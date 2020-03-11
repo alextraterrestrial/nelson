@@ -1,7 +1,7 @@
 <?php
 
 function loadPuzzle(){
-    $releaseDate = "2020-03-12 10:00:00";
+    $releaseDate = "2020-02-12 10:00:00";
     $releaseTimestamp = new DateTime($releaseDate);
     $currentTimestamp = new DateTime();
 
