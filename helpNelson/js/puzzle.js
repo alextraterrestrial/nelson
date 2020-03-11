@@ -88,7 +88,7 @@ class PuzzleGame1 {
 
     $("#puzzleForm" + this.id).submit(e => {
       e.preventDefault();
-      console.log(input.val());
+      // console.log(input.val());
       if (input.val() != "") {
         $.get("php/submitAnswer.php", {
           submission: input.val(),
@@ -96,7 +96,7 @@ class PuzzleGame1 {
           puzzleId: this.id
         })
           .done(data => {
-            console.log(data);
+            // console.log(data);
             this.getPuzzleSubmissions();
           })
           .fail(() => {

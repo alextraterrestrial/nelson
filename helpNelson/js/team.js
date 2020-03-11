@@ -424,7 +424,7 @@ function removeTeamProgram() {
         loginToken.status = null
         loginToken.teamId = null
         loginToken.teamName = null
-        setTimeout(()=> initializeTeam(), 500)
+        setTimeout(()=> init(), 500)
         
       })
 
