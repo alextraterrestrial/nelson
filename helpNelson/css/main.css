@@ -26,6 +26,8 @@ body {
 
 .wrapper {
   position: relative;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .flexBetween {
@@ -62,19 +64,17 @@ body {
   flex-grow: 2;
 }
 
-#home div h1:first-child() {
-  scroll-snap-align: none;
-}
 h1 {
   font-weight: 600;
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
 }
+
 h3 {
   font-size: calc(var(--fontSize) * 1.2);
 }
 #home h3 {
   font-size: calc(var(--fontSize) * 1.2);
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
   padding-top: 15vh;
 }
 
@@ -117,7 +117,7 @@ p {
   border: none;
   /* border: 2px solid var(--color2); */
   caret-color: var(--color2);
-  color: var(--color3);
+  color: var(--color2);
   font-size: var(--fontSize);
   background-color: white;
 }
@@ -185,6 +185,7 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
   border-bottom-right-radius: 100%;
+  z-index: 1000;
 }
 
 .circuit img {
@@ -271,9 +272,9 @@ p {
 #home {
   max-height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: mandatory;
+  /* scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(3rem);
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory; */
   padding: 0 3vw;
 }
 
@@ -283,7 +284,7 @@ p {
 }
 
 .puzzleContainer {
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -336,9 +337,9 @@ p {
     max-height: 100vh;
     overflow-y: scroll;
 
-    scroll-snap-type: mandatory;
+    /* scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(3rem);
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory; */
   }
 
   #home .countDown {
@@ -350,7 +351,7 @@ p {
   }
 
   .puzzleContainer {
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
     display: flex;
     flex-direction: column;
     justify-content: center;
