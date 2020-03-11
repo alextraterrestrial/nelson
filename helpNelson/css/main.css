@@ -62,10 +62,9 @@ body {
   flex-grow: 2;
 }
 
-
-
-
-
+#home div h1:first-child() {
+  scroll-snap-align: none;
+}
 h1 {
   font-weight: 600;
   scroll-snap-align: start;
@@ -88,7 +87,7 @@ p {
   color: var(--color3);
 }
 
-.link{
+.link {
   color: var(--color2);
 }
 .link:hover {
@@ -146,10 +145,11 @@ p {
 }
 
 .countDown p {
-  font-size: calc(var(--fontSize) * .8);
+  font-size: calc(var(--fontSize) * 0.8);
 }
 
-.playerName, .playerPoints {
+.playerName,
+.playerPoints {
   font-weight: bold;
 }
 
@@ -195,7 +195,8 @@ p {
   border-radius: var(--radius);
 }
 
-#loginSubmit, #testLogout {
+#loginSubmit,
+#testLogout {
   background-color: var(--backgroundColor);
   border-color: var(--color2);
 }
@@ -235,7 +236,7 @@ p {
   z-index: 15;
 }
 
-#menuOptionContainer > div{
+#menuOptionContainer > div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -316,8 +317,6 @@ p {
     display: flex;
   }
 
-  
-
   #menu {
     padding-top: 14vh;
     flex-basis: 1px;
@@ -336,7 +335,7 @@ p {
     float: right;
     max-height: 100vh;
     overflow-y: scroll;
-  
+
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(3rem);
     scroll-snap-type: y mandatory;
@@ -367,12 +366,10 @@ p {
     min-height: 70vh;
     margin: 30vh 0;
   }
-  
+
   .puzzleNr {
     border-bottom: 1px solid var(--color2);
-
   }
-
 
   .puzzleContent {
     padding: 2vh;
@@ -383,7 +380,6 @@ p {
     /* hitta en bättre lösning */
     max-height: 75vh;
   }
-  
 }
 
 /* CSS FOR TEAM-PAGE */
@@ -395,31 +391,31 @@ p {
 
 #availableUsers {
   border-top: 2px solid var(--color2);
-  color: var(--color3)
+  color: var(--color3);
 }
 
-#availableUsers > div{
- margin: 3px 0;
- border: 0px;
+#availableUsers > div {
+  margin: 3px 0;
+  border: 0px;
 }
-#availableUsers > div > div:last-child{
- border: none;
- color: var(--color2);
+#availableUsers > div > div:last-child {
+  border: none;
+  color: var(--color2);
 }
 
 #submitTeam {
   display: block;
 }
 
-#members{
-  color: var(--color3)
+#members {
+  color: var(--color3);
 }
 
 video {
   background-color: var(--backgroundColor);
 }
 
-.removeTeam{
+.removeTeam {
   border-top: 1px solid var(--color2);
   padding: 5px 0 0;
   margin-top: 10vh;
