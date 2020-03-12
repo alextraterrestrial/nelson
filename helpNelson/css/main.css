@@ -377,7 +377,7 @@ p {
   }
 
   .puzzleContent img {
-    width: 75%;
+    width: 90%;
     /* hitta en bättre lösning */
     max-height: 75vh;
   }

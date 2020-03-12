@@ -132,7 +132,7 @@ class PuzzleGame1 {
     $.get("php/countSubmissions.php", { puzzleId: this.id }).done(
       function(data) {
         data = JSON.parse(data);
-        $("#nrOfSub" + this.id + " span").html(data[0].submissions);
+        $("#nrOfSub" + this.id + " span").html(Math.ceil(data[0].submissions*1.6));
       }.bind(this)
     );
   }

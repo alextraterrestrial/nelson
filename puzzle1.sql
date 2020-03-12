@@ -1,5 +1,5 @@
 INSERT INTO `Puzzle1`(`contentHTML`, `answer`, `checkType`, `minChars`, `image`) 
-VALUES ('<img src="content/imgGame1/ch1_p1.png">','ammo','ANINSU',0,'ch1_p1.png'),
+VALUES ('<img src="content/imgGame1/ch1_p1.png">','petri','ANINSU',0,'ch1_p1.png'),
 ('<img src="content/imgGame1/ch1_p2.jpg">','malmöhus','SAMEAS',0,'ch1_p2.jpg'),
 ('<img src="content/imgGame1/ch1_p3.jpg">','peralbinhanssonpahansson','SUINAN',7,'ch1_p3.jpg'),
 ('<img src="content/imgGame1/ch1_p4.jpg">','hamngatan','SAMEAS',0,'ch1_p4.jpg'),
