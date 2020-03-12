@@ -22,7 +22,7 @@ function init() {
   checkUser();
 
   //Load info
-  countDown();
+  // countDown();
 }
 
 function checkUser() {
