@@ -80,9 +80,11 @@ function loadPuzzle(){
             </section>
             
             <!-- this section contains the welcome message and the current game -->
-            <section id="home">
+                <section id="home">
+                <h1>Help Erik</h1>
+                <p>TIDEN ÄR UTE! Vinnare utses 17/3.</p>
                 <?php      
-                loadPuzzle();
+                // loadPuzzle();
                 ?> 
             </section>
         </div>
