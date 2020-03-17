@@ -92,7 +92,7 @@ function loadPuzzle(){
             <!-- this section contains the welcome message and the current game -->
                 <section id="home">
                 <h1>Help Erik</h1>
-                <p>TIDEN ÄR UTE! Vinnare utses 17/3.</p>
+                <p>Håll dig uppdaterad på min instagram <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv">@helperik2020</a></span></p>
                 <?php      
                 // loadPuzzle();
                 ?> 
