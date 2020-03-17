@@ -40,6 +40,16 @@ function loadPuzzle(){
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/intro.css">
         <link rel="stylesheet" href="https://use.typekit.net/epf5kaq.css">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160980162-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-160980162-1');
+        </script>
+
     </head>
   
     <body>
