@@ -97,7 +97,7 @@ function loadPuzzle(){
 På en andra plats kom team polis123, grattis Elvis och Theospel! 
 Jag vill passa på och tacka alla som har varit med och löst utmaningarna och hjälpt mig, utan er hade jag fortfarande inte haft alla svar. 
 Jag kommer att kontakta vinnarna via mejl den kommande veckan, så håll utkik i er inkorg!</p>
-                <p>Håll dig uppdaterad på min instagram <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv">@helperik2020</a></span></p>
+                <p>Håll dig uppdaterad på min instagram <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv">@helperik</a></span></p>
                 <?php      
                 // loadPuzzle();
                 ?> 
