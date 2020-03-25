@@ -5,7 +5,7 @@ function getQuestions(){
  
     //Get all questions whwere isAnswered is false
     
-    $query = "SELECT questionId, contentHTML FROM Challenge2Questions";
+    $query = "SELECT questionId, contentHTML FROM Challenge2Questions WHERE isAnswered = 0";
 
     $sql = $pdo->prepare($query);
     $sql->execute();
