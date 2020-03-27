@@ -26,27 +26,48 @@
 <?php
 
 
-// if($_SERVER["REQUEST_METHOD"] == "POST") {
-//     //Get submission data
-//     $submissionData = json_decode(file_get_contents('php://input'));
-//     if(isset($submissionData -> questionId) && isset($submissionData -> answer)){
-//         submitAnswer($submissionData -> questionId, $submissionData -> answer);
-//     }
-// }
-
-function submitAnswer($questionId, $answer, $teamId){
-
-    include("./getQuestions.php");
-    //Check that the question hasn't already been answered
-    $questions = json_decode(getQuestions());
-    // print_r($questions);
-    foreach($questions as $question){
-        if($question -> questionId == $questionId){
-            // echo $question;
-        }
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    //Get submission data
+    $submissionData = json_decode(file_get_contents('php://input'));
+    if(isset($submissionData -> questionId) && isset($submissionData -> answer)){
+        submitAnswer($submissionData -> questionId, $submissionData -> answer);
     }
 }
 
-submitAnswer(1, "A", 2);
+function submitAnswer($questionId, $answer, $teamId){
+    include('../connectToDB.php');
+
+    $response = new stdClass();
+    
+    //Check that the question hasn't already been answered
+    $query = "SELECT questionId, contentHTML FROM Challenge2Questions WHERE isAnswered = 0 AND questionId = :id";
+
+    $sql = $pdo->prepare($query);
+    $sql -> bindParam(":id", $questionId, PDO::PARAM_STR);
+    $sql->execute();
+    $questions = $sql->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($questions);
+
+    //If the question has been answered -> return a error message
+    if(count($questions) < 1){
+        $response -> error = "Question not available for submission";
+        http_response_code(500);
+        var_dump($response);
+    }
+
+    $query = "SELECT questionId, teamId, submissionTimestamp FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
+
+    $sql = $pdo->prepare($query);
+    $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
+    $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
+    $sql->execute();
+    $questions = $sql->fetchAll(PDO::FETCH_ASSOC);
+    
+    var_dump($questions);
+    //Check if the team has answered the question incorrect in the last 30 seconds
+
+}
+
+submitAnswer(2, "A", "1");
 
 ?>
