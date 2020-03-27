@@ -11,11 +11,11 @@ function getQuestions(){
     $sql->execute();
     $answer = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    $answer = json_encode($answer);
-    print_r($answer) ;
+    // $answer = json_encode($answer);
+    return $answer ;
 };
 
-getQuestions();
+echo json_encode(getQuestions());
 
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
