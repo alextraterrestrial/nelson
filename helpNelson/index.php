@@ -96,9 +96,11 @@ function loadPuzzle(){
                 <?php      
                 // loadPuzzle();
                 ?> 
+                <div id="game"></div>
             </section>
         </div>
         <script src="js/puzzle.js"></script> 
+        <script src="js/challenge2/challenge2.js"></script> 
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="js/MenuOption.js"></script> 

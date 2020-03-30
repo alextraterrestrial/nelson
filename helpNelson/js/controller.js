@@ -37,7 +37,8 @@ function checkUser() {
     // Load player data, team data etc
 
     //Load the puzzle
-    getPuzzles();
+    // getPuzzles();
+    testChallenge()
   });
 }
 

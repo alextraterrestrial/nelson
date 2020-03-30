@@ -35,6 +35,15 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+.cooldown {
+  position: absolute;
+  left: 50%;
+  top: 26%;
+  z-index: 20;
+  font-size: 100px;
+}
+
 /* general classes */
 .flexCenter {
   display: flex;
@@ -289,6 +298,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .puzzleSubmission {
