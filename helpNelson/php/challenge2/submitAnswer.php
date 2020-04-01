@@ -26,7 +26,16 @@
 // ***** ADD *****
 
 
+//return
+//timestamp if an answer is incorrect or question have been answered the last 30 sec
+//response: "already answered" - is the question have been answered
+//response: "correct"  - if the submitted answer is correct
 
+//if(timestamp) {
+    //cooldown(time)
+//} else (response == "correct") {
+
+//} etc.
 
 ?>
 
@@ -35,11 +44,16 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Get submission data
-    $submissionData = json_decode(file_get_contents('php://input'));
+    // $submissionData = json_decode(file_get_contents('php://input'));
 
-    $questionId = $submissionData -> questionId;
-    $answer = $submissionData -> answer;
-    $teamId = $submissionData -> teamId;
+    // $questionId = $submissionData -> questionId;
+    // $answer = $submissionData -> answer;
+    // $teamId = $submissionData -> teamId;
+
+    $questionId = $_POST['questionId'];
+    $answer = $_POST['answer'];
+    $teamId = $_POST['teamId'];
+    
     
     if(isset($questionId, $answer, $teamId)){
         submitAnswer($questionId, $answer, $teamId);
@@ -76,7 +90,6 @@ function submitAnswer($questionId, $answer, $teamId){
     //If the question has been answered -> return a error message
     if(!$question){
         $response -> error = "Question has already been answered";
-        http_response_code(500);
         echo json_encode($response);
         return;
     }
@@ -88,7 +101,7 @@ function submitAnswer($questionId, $answer, $teamId){
     // Save minChars
     $minChars = $question[0]["minChars"];
 
-    //Check if the team has answered the question incorrect in the last 30 seconds
+    //Check if the team has answered the question incorrect.
     $query = "SELECT questionId, teamId, submissionTimestamp FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
 
     $sql = $pdo->prepare($query);
@@ -96,6 +109,9 @@ function submitAnswer($questionId, $answer, $teamId){
     $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
     $sql->execute();
     $questionAnswered = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+    //check time when last answered
+
 
    // If it has been answered -> return when it was submitted and message
     if($questionAnswered){
@@ -120,6 +136,7 @@ function submitAnswer($questionId, $answer, $teamId){
     // Check if the answer contains enough characters and was correct
     if($answer < $minchars){
         $response -> correct = false;
+        //return timestamp on asnwer as well
         echo json_encode($response);
         return;
     }
@@ -130,6 +147,7 @@ function submitAnswer($questionId, $answer, $teamId){
         echo json_encode($response);
     } else{
         $response -> correct = false;
+        //return timestamp on asnwer as well
         echo json_encode($response);
     }
 

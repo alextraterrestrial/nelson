@@ -95,32 +95,53 @@ class challenge2 {
     console.log(questionId)
     console.log(teamId)
 
-    $.get("php/challenge2/submitAnswer.php", {teamId: teamId, questionId: questionId, answer: ans})
-    .done(data => {
-      console.log(data)
-      let nrOfPoints = 20
+    let data = {teamId: teamId, questionId: questionId, answer: ans}
+    JSON.stringify(data)
+
+    $.ajax({
+      url: "php/challenge2/submitAnswer.php",
+      type: "POST",
+      data: data
+    }).done(res => {
+      console.log("ok")
+      console.log(res);
+  
       
-      // if correct
-      this.cooldownElement.css({display: "flex"})
-      this.contentContainer.css({filter: "blur(2px)"})
-      this.cooldownElement.html("Rätt svar!")
-      // this.cooldownElement.css({color: 'var(--colorCorrect)'})
-      this.cooldownElement.css({color: '#34be34'})
-
-      setTimeout(function(){
-        this.container.remove()
-      }.bind(this), 3000)
-
-      loginToken.score = parseInt(loginToken.score) + nrOfPoints
-      $(".playerPoints span").html(parseInt(loginToken.score))
-
-      // else run, t = sec from DB
-      // this.setCooldown(30) 
-
+    }).fail((e)=>{
+      console.log(e)
+      console.log("fail")
     })
-    .fail(()=>{
-      console.log("fail, answer")
-    })
+
+
+    // $.post("php/challenge2/submitAnswer.php", {teamId: teamId, questionId: questionId, answer: ans})
+    // .done(data => {
+    //   console.log(data)
+    //   let nrOfPoints = 20
+    //   // data = JSON.parse(data)
+    //   console.log(data)
+      
+      
+    //   // if correct
+    //   // this.cooldownElement.css({display: "flex"})
+    //   // this.contentContainer.css({filter: "blur(2px)"})
+    //   // this.cooldownElement.html("Rätt svar!")
+    //   // // this.cooldownElement.css({color: 'var(--colorCorrect)'})
+    //   // this.cooldownElement.css({color: '#34be34'})
+
+    //   // setTimeout(function(){
+    //   //   this.container.remove()
+    //   // }.bind(this), 3000)
+
+    //   // loginToken.score = parseInt(loginToken.score) + nrOfPoints
+    //   // $(".playerPoints span").html(parseInt(loginToken.score))
+
+    //   // else run, t = sec from DB
+    //   // this.setCooldown(10) 
+
+    // })
+    // .fail(()=>{
+    //   console.log("fail, answer")
+    // })
 
     //in done:
     //if already answered -> remove/blur and show message
@@ -157,10 +178,17 @@ class challenge2 {
 let challenge2Array = []
 
 function getChallenge2() {
+
+  let data = null
+  
+  if(teamId){
+    data = {teamId: teamId}
+  }
+
   //clear #game container
   $("#game").empty();
 
-  $.get("php/challenge2/getQuestions.php")
+  $.get("php/challenge2/getQuestions.php", data)
   .done(data => {
     data = JSON.parse(data);
     console.table(data)
@@ -174,7 +202,9 @@ function getChallenge2() {
 }
 
 
-function updateChallenge2Answers() {
+function updateChallenge2Answers(teamId) {
+  
+
   $.get("php/challenge2/answeredQuestions.php")
   .done(data =>{
     data = JSON.parse(data)
