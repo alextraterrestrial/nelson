@@ -102,16 +102,17 @@ class challenge2 {
       
       // if correct
       this.cooldownElement.css({display: "flex"})
+      this.contentContainer.css({filter: "blur(2px)"})
       this.cooldownElement.html("Rätt svar!")
       // this.cooldownElement.css({color: 'var(--colorCorrect)'})
-      this.cooldownElement.css({color: 'green'})
+      this.cooldownElement.css({color: '#34be34'})
 
       setTimeout(function(){
         this.container.remove()
       }.bind(this), 3000)
 
       loginToken.score = parseInt(loginToken.score) + nrOfPoints
-      $(".playerPoints").html(parseInt($(".playerPoints")) + nrOfPoints)
+      $(".playerPoints span").html(parseInt(loginToken.score))
 
       // else run, t = sec from DB
       // this.setCooldown(30) 

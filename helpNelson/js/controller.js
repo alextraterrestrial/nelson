@@ -38,6 +38,8 @@ function checkUser() {
 
     //Load the puzzle
     // getPuzzles();
+    
+    //send team-id if it exists.
     getChallenge2()
   });
 }
@@ -125,7 +127,7 @@ function loadMenu() {
 
   //Clear header profile info
   $(".playerName").empty();
-  $(".playerPoints").empty();
+  $(".playerPoints span").empty();
 
   const menuOptionsBasic = [
     {
