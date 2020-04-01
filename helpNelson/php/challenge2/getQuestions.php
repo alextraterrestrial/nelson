@@ -1,5 +1,15 @@
 
 <?php
+// ****** ADD *********
+
+// - Property with timestamp if the question has been answered by the team 
+
+
+
+/*  Return all the questions as JSON array with objects.
+/   Each questions contains questionId, contentHTML  
+*/
+
 function getQuestions(){
     include('../connectToDB.php');
  
