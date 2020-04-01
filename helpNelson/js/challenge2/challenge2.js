@@ -22,9 +22,11 @@ class challenge2 {
       appendTo: this.container
     }).css({
       display: "none",
-      position: "absolute",
-      left: "50%",
-      top: "50%",
+      position: "relative",
+      // left: "47%",
+      display: "flex",
+      JustifyContent: "center",
+      top: "47%",
       zIndex: 20,
       fontSize: "100px"
     })
@@ -72,7 +74,10 @@ class challenge2 {
         console.log("Skapa ett team")
         //skapa ett team eller gå med i ett
       } else {
-        this.submitAnswer(this.textField.val(), this.id, loginToken.teamId)
+        let rule = /.[^\s]/
+        if (this.textField.val().search(rule) != -1) {
+          this.submitAnswer(this.textField.val(), this.id, loginToken.teamId)
+        }
       }
 
       this.textField.val("")
@@ -85,19 +90,46 @@ class challenge2 {
   }
 
   //send submit request 
-  submitAnswer(ans, challengeId, teamId) {
+  submitAnswer(ans, questionId, teamId) {
     console.log(ans)
-    console.log(challengeId)
+    console.log(questionId)
     console.log(teamId)
+
+    $.get("php/challenge2/submitAnswer.php", {teamId: teamId, questionId: questionId, answer: ans})
+    .done(data => {
+      console.log(data)
+      let nrOfPoints = 20
+      
+      // if correct
+      this.cooldownElement.css({display: "flex"})
+      this.cooldownElement.html("Rätt svar!")
+      // this.cooldownElement.css({color: 'var(--colorCorrect)'})
+      this.cooldownElement.css({color: 'green'})
+
+      setTimeout(function(){
+        this.container.remove()
+      }.bind(this), 3000)
+
+      loginToken.score = parseInt(loginToken.score) + nrOfPoints
+      $(".playerPoints").html(parseInt($(".playerPoints")) + nrOfPoints)
+
+      // else run, t = sec from DB
+      // this.setCooldown(30) 
+
+    })
+    .fail(()=>{
+      console.log("fail, answer")
+    })
+
     //in done:
     //if already answered -> remove/blur and show message
     //if correct update points throught new get-request
     //if wrong or cooldown on questing --> setCooldown(t) //t is the cooldown time in seconds returned from the request
-    this.setCooldown(3)
+    
   }
 
   setCooldown(s){
-    this.cooldownElement.css({display: "block"})
+    this.cooldownElement.css({display: "flex"})
     this.textField.attr("readonly", "readonly")
     this.contentContainer.css({filter: "blur(" + s +"px)"})
     this.form.css({filter: "blur(" + s +"px)"})
@@ -118,49 +150,56 @@ class challenge2 {
     }.bind(this), 1000)
   }
 
-// 1 WAY TO DO IT
-  checkIfAnswered() {
-    //send request
-    //if answered remove this.container
-  }
-
 }
 
 //(2 WAY)
 let challenge2Array = []
 
-function getChallange2(t) {
-
+function getChallenge2() {
   //clear #game container
+  $("#game").empty();
 
-  //send request for challange2
-  //in done, loop throught array of puzzles and apend/create them + 
-  //(1 WAY)(run setTimeout --> dnewObject.checkIfAnswered.)
-  //(2 WAY) (push into array)
+  $.get("php/challenge2/getQuestions.php")
+  .done(data => {
+    data = JSON.parse(data);
+    console.table(data)
+
+    data.forEach(item => {
+      challenge2Array.push(new challenge2(item.questionId, item.contentHTML))
+      // console.log(loginToken.)
+    })
+  })
+
 }
 
-//(2 WAY)
+
 function updateChallenge2Answers() {
+  $.get("php/challenge2/answeredQuestions.php")
+  .done(data =>{
+    data = JSON.parse(data)
+    console.log(data)
+
+    data.forEach((item)=>{
+      //if item. is answered is 1 and challengeArray. is answered is 0 --> remove(
+      challenge2Array.forEach((item2)=>{
+        if((item.questionId == item2.id) && ((Boolean(parseInt(item.isAnswered)) != item2.isAnswered))) {
+          //remove object.container
+          
+          console.log("remove")
+          console.log(item2)
+        }
+      })
+
+
+    })
+  })
+
   //get an array of challenge2 {id: x, isAnswered: 1/0} (remeber parseInt)
   //data.forEach match by id -->  challenge2.find(item.id) --> if !parseInt(item.IsAnswered) --> remove challenge2.content
 }
 
 
 
+updateChallenge2Answers()
 
-
-
-//TEST
-
-function testChallenge() {
-  // Clear any puzzles already created
-  $("#game").empty();
-
-  $.get("php/getGame1.php").done(data => {
-    data = JSON.parse(data);
-    data.forEach(item => {
-      challenge2Array.push(new challenge2(item.puzzleId, item.contentHTML))
-      // console.log(loginToken.)
-    })
-  });
-}
+//udate team points/ score

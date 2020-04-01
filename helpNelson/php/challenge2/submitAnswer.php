@@ -8,7 +8,7 @@
 // If question hasn't been answered, -> Check that the team hasn't 
 //answered the question in the last 30 seconds Challenge2Submissions
 
-// If it has been answered -> return error
+// If it has been answered -> return error (return seconds)
 
 // If it hasn't been answered -> submit answer to Challenge2Submissions and check if the answer was correct in Challenge2Questions
 

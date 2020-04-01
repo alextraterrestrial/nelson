@@ -38,7 +38,7 @@ function checkUser() {
 
     //Load the puzzle
     // getPuzzles();
-    testChallenge()
+    getChallenge2()
   });
 }
 
@@ -169,7 +169,7 @@ function loadMenu() {
 
     // Update profile in header
     $(".playerName").html(loginToken.username);
-    $(".playerPoints").html("Points: " + loginToken.score);
+    $(".playerPoints span").html(loginToken.score);
   }
 
   // console.log(renderOptions);
