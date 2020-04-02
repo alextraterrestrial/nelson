@@ -38,9 +38,9 @@ function checkUser() {
 
     //Load the puzzle
     // getPuzzles();
-    
+
     //send team-id if it exists.
-    getChallenge2(teamId)
+    getChallenge2(teamId);
   });
 }
 
@@ -114,7 +114,7 @@ function logOut() {
 
     // Call init function to restart
     // init();
-    location.reload()
+    location.reload();
   });
 }
 

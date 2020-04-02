@@ -28,7 +28,7 @@
 
 //return
 //timestamp if an answer is incorrect or question have been answered the last 30 sec
-//response: "already answered" - is the question have been answered
+//response: "already answered" - if the question have been answered
 //response: "correct"  - if the submitted answer is correct
 
 //if(timestamp) {
@@ -44,29 +44,25 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Get submission data
-    // $submissionData = json_decode(file_get_contents('php://input'));
+    $submissionData = json_decode(file_get_contents('php://input'));
 
-    // $questionId = $submissionData -> questionId;
-    // $answer = $submissionData -> answer;
-    // $teamId = $submissionData -> teamId;
+    $questionId = $submissionData -> questionId;
+    $answer = $submissionData -> answer;
+    $teamId = $submissionData -> teamId;
 
-    $questionId = $_POST['questionId'];
-    $answer = $_POST['answer'];
-    $teamId = $_POST['teamId'];
+    // $questionId = $_POST['questionId'];
+    // $answer = $_POST['answer'];
+    // $teamId = $_POST['teamId'];
     
     
     if(isset($questionId, $answer, $teamId)){
         submitAnswer($questionId, $answer, $teamId);
-        //  if(validateAnswer("answer", "correctanswer", "SUINAN")){
-        //      echo "Correct";
-        //  } else{
-        //      echo "False";
-        //  }
     } else{
         echo json_encode("Missing something");
         http_response_code(500);
     }
 }
+
 /*
 //  Takes a submission and submits is to the database
 //  @param $questionID. The id of the question to be submitted
@@ -89,7 +85,7 @@ function submitAnswer($questionId, $answer, $teamId){
 
     //If the question has been answered -> return a error message
     if(!$question){
-        $response -> error = "Question has already been answered";
+        $response -> response = "Question has already been answered";
         echo json_encode($response);
         return;
     }
@@ -111,15 +107,29 @@ function submitAnswer($questionId, $answer, $teamId){
     $questionAnswered = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     //check time when last answered
-
-
    // If it has been answered -> return when it was submitted and message
     if($questionAnswered){
-        $response -> error = "A previous submission by your team was found";
-        $response -> submittedOn = $questionAnswered[0]["submissionTimestamp"];
 
-        echo json_encode($response);
-        return;
+        // Check duration since last submission
+        $submissionTimestamp = strtotime($questionAnswered[0]["submissionTimestamp"]);
+        $timeSinceLastSubmission = (time() + 7200) - $submissionTimestamp;
+        echo $timeSinceLastSubmission;
+
+        if($timeSinceLastSubmission < 30){
+            $response -> response = "previousSubmission";
+            $response -> submittedOn = $questionAnswered[0]["submissionTimestamp"];
+
+            echo json_encode($response);
+            return;
+        }
+        
+        // Remove previous submission 
+        $query = "DELETE FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
+        $sql = $pdo->prepare($query);
+        $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
+        $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
+        $sql->execute();
+        
     }
 
     // If it has NOT been answered incorrectly
@@ -133,6 +143,17 @@ function submitAnswer($questionId, $answer, $teamId){
 
     $sql->execute();
 
+    // Get submissionTimeStamp
+    $query = "SELECT submissionTimestamp FROM Challenge2Submissions WHERE questionId = :questionId AND teamId = :teamId";
+
+    $sql = $pdo->prepare($query);
+    $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
+    $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
+    $sql->execute();
+    $submissions = $sql->fetch();
+
+    $submissionTimestamp = $submissions[0];
+
     // Check if the answer contains enough characters and was correct
     if($answer < $minchars){
         $response -> correct = false;
@@ -143,10 +164,11 @@ function submitAnswer($questionId, $answer, $teamId){
   
     // Check for an exact checkType
     if(validateAnswer($answer, $correctAnswer, $checkType)){
-        $response -> correct = true;
+        $response -> response = "correct";
         echo json_encode($response);
     } else{
-        $response -> correct = false;
+        $response -> response = "incorrect";
+        $response -> lastSubmitted = $submissionTimestamp;
         //return timestamp on asnwer as well
         echo json_encode($response);
     }
@@ -158,9 +180,10 @@ function submitAnswer($questionId, $answer, $teamId){
     //Check for Submission in aswer
 
     // If answer was correct -> Set question to be answered
-    if($response -> correct == true){
-        $query = "INSERT INTO Challenge2Questions (isAnswered) VALUES (1)";
+    if($response -> response == "correct"){
+        $query = "UPDATE Challenge2Questions SET isAnswered = 1 WHERE questionId = :questionId";
         $sql = $pdo->prepare($query);
+        $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
         $sql->execute();
         return;
     }
