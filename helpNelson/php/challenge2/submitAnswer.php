@@ -46,13 +46,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Get submission data
     $submissionData = json_decode(file_get_contents('php://input'));
 
-    $questionId = $submissionData -> questionId;
-    $answer = trim($submissionData -> answer);
-    $teamId = $submissionData -> teamId;
+    // $questionId = $submissionData -> questionId;
+    // $answer = trim($submissionData -> answer);
+    // $teamId = $submissionData -> teamId;
 
-    // $questionId = $_POST['questionId'];
-    // $answer = $_POST['answer'];
-    // $teamId = $_POST['teamId'];
+    $questionId = $_POST['questionId'];
+    $answer = $_POST['answer'];
+    $teamId = $_POST['teamId'];
     
     
     if(isset($questionId, $answer, $teamId)){
@@ -125,11 +125,12 @@ function submitAnswer($questionId, $answer, $teamId){
         }
         
         // Remove previous submission 
-        $query = "DELETE FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
-        $sql = $pdo->prepare($query);
-        $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
-        $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
-        $sql->execute();
+
+        // $query = "DELETE FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
+        // $sql = $pdo->prepare($query);
+        // $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
+        // $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
+        // $sql->execute();
         
     }
 
