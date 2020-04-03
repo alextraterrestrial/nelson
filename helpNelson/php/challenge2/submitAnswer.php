@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $submissionData = json_decode(file_get_contents('php://input'));
 
     $questionId = $submissionData -> questionId;
-    $answer = $submissionData -> answer;
+    $answer = trim($submissionData -> answer);
     $teamId = $submissionData -> teamId;
 
     // $questionId = $_POST['questionId'];
@@ -72,6 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 */
 function submitAnswer($questionId, $answer, $teamId){
     include('../connectToDB.php');
+    header('Content-Type: application/json');
 
     $response = new stdClass();
     
@@ -113,7 +114,7 @@ function submitAnswer($questionId, $answer, $teamId){
         // Check duration since last submission
         $submissionTimestamp = strtotime($questionAnswered[0]["submissionTimestamp"]);
         $timeSinceLastSubmission = (time() + 7200) - $submissionTimestamp;
-        echo $timeSinceLastSubmission;
+        
 
         if($timeSinceLastSubmission < 30){
             $response -> response = "previousSubmission";
