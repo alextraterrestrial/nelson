@@ -44,15 +44,15 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Get submission data
-    // $submissionData = json_decode(file_get_contents('php://input'));
+    $submissionData = json_decode(file_get_contents('php://input'));
 
-    // $questionId = $submissionData -> questionId;
-    // $answer = trim($submissionData -> answer);
-    // $teamId = $submissionData -> teamId;
+    $questionId = $submissionData -> questionId;
+    $answer = trim($submissionData -> answer);
+    $teamId = $submissionData -> teamId;
 
-    $questionId = $_POST['questionId'];
-    $answer = $_POST['answer'];
-    $teamId = $_POST['teamId'];
+    // $questionId = $_POST['questionId'];
+    // $answer = $_POST['answer'];
+    // $teamId = $_POST['teamId'];
     
     
     if(isset($questionId, $answer, $teamId)){
@@ -99,7 +99,7 @@ function submitAnswer($questionId, $answer, $teamId){
     $minChars = $question[0]["minChars"];
 
     //Check if the team has answered the question incorrect.
-    $query = "SELECT questionId, teamId, submissionTimestamp FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
+    $query = "SELECT questionId, teamId, submissionTimestamp, answer FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
 
     $sql = $pdo->prepare($query);
     $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
@@ -119,6 +119,7 @@ function submitAnswer($questionId, $answer, $teamId){
         if($timeSinceLastSubmission < 30){
             $response -> response = "previousSubmission";
             $response -> submittedOn = $questionAnswered[0]["submissionTimestamp"];
+            $response -> submission = $questionAnswered[0]["answer"];
 
             echo json_encode($response);
             return;
@@ -126,11 +127,11 @@ function submitAnswer($questionId, $answer, $teamId){
         
         // Remove previous submission 
 
-        // $query = "DELETE FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
-        // $sql = $pdo->prepare($query);
-        // $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
-        // $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
-        // $sql->execute();
+        $query = "DELETE FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
+        $sql = $pdo->prepare($query);
+        $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
+        $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
+        $sql->execute();
         
     }
 
@@ -146,19 +147,20 @@ function submitAnswer($questionId, $answer, $teamId){
     $sql->execute();
 
     // Get submissionTimeStamp
-    $query = "SELECT submissionTimestamp FROM Challenge2Submissions WHERE questionId = :questionId AND teamId = :teamId";
+    $query = "SELECT submissionTimestamp, answer FROM Challenge2Submissions WHERE questionId = :questionId AND teamId = :teamId";
 
     $sql = $pdo->prepare($query);
     $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
     $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
     $sql->execute();
-    $submissions = $sql->fetch();
+    $submissions = $sql->fetchAll();
 
-    $submissionTimestamp = $submissions[0];
-
+    $submissionTimestamp = $submissions[0]["submissionTimestamp"];
+    $answer = $submissions[0]["answer"];
+    
     // Check if the answer contains enough characters and was correct
     if($answer < $minchars){
-        $response -> correct = false;
+        $response -> response = "incorrect";
         //return timestamp on asnwer as well
         echo json_encode($response);
         return;
@@ -166,20 +168,36 @@ function submitAnswer($questionId, $answer, $teamId){
   
     // Check for an exact checkType
     if(validateAnswer($answer, $correctAnswer, $checkType)){
+        //Get all the teammembers
+        $query = "SELECT userId FROM UserTeam WHERE teamId = :teamId AND UserTeam.status != 'pending'";
+        $sql = $pdo->prepare($query);
+        $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
+
+        $sql->execute();
+        $teamMembers = $sql->fetchAll();
+
+        $points = 10;
+        //Update score for each member in the team
+        foreach($teamMembers as $teamMember){
+            $query = "UPDATE User SET score = score + $points WHERE userId = :userId";
+            $sql = $pdo->prepare($query);
+            $sql -> bindParam(":userId", $teamMember[0], PDO::PARAM_STR);
+            $sql->execute();
+
+            // echo "Updating score for id: " . $teamMember[0] . " ";
+        }
+        
+
         $response -> response = "correct";
         echo json_encode($response);
     } else{
         $response -> response = "incorrect";
         $response -> lastSubmitted = $submissionTimestamp;
+        $response -> submission = $answer;
+  
         //return timestamp on asnwer as well
         echo json_encode($response);
     }
-
-
-
-    // Check for Answer in submission
-
-    //Check for Submission in aswer
 
     // If answer was correct -> Set question to be answered
     if($response -> response == "correct"){
