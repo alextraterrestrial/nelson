@@ -78,16 +78,17 @@ class challenge2 {
         this.cooldownElement.html("logga in eller skapa en användare för att kunna svara.")
   
         setTimeout(function(){
-          this.this.cooldownElement.css({display: "none"})
+          this.cooldownElement.css({display: "none"})
+          this.contentContainer.css({filter: "blur(0px)"})
         }.bind(this), 3000)
 
       } else if (loginToken.status == "pending" || !loginToken.teamId) {
         this.cooldownElement.css({display: "flex"})
-        this.contentContainer.css({filter: "blur(2px)"})
+        this.contentContainer.css({filter: "blur(0px)"})
         this.cooldownElement.html("Skapa ett team eller gå med i ett för att kunna svara.")
   
         setTimeout(function(){
-          this.this.cooldownElement.css({display: "none"})
+          this.cooldownElement.css({display: "none"})
         }.bind(this), 3000)
 
         //create a team or join one to answer

@@ -297,10 +297,17 @@ p {
   text-align: right;
 }
 
-.puzzleContent img {
+.puzzleContent img, .puzzleContent video {
   width: 90%;
   display: block;
   margin: 0 auto 5px;
+}
+
+.puzzleContent video {
+  width: 90%;
+  display: block;
+  margin: 0 auto 5px;
+  background-color: black;
 }
 
 .puzzleContainer form {
