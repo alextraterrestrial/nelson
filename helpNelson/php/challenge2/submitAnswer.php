@@ -125,11 +125,12 @@ function submitAnswer($questionId, $answer, $teamId){
         }
         
         // Remove previous submission 
-        $query = "DELETE FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
-        $sql = $pdo->prepare($query);
-        $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
-        $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
-        $sql->execute();
+
+        // $query = "DELETE FROM Challenge2Submissions WHERE teamId = :teamId AND questionId = :questionId";
+        // $sql = $pdo->prepare($query);
+        // $sql -> bindParam(":questionId", $questionId, PDO::PARAM_STR);
+        // $sql -> bindParam(":teamId", $teamId, PDO::PARAM_STR);
+        // $sql->execute();
         
     }
 

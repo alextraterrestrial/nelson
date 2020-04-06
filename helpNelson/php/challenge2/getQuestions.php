@@ -40,7 +40,8 @@ function getQuestions($teamId){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $submissionData = json_decode(file_get_contents('php://input'));
 
-    $teamId = $submissionData -> teamId;
+    // $teamId = $submissionData -> teamId;
+    $teamId = $_POST['teamId'];
     
     getQuestions($teamId);
 };
