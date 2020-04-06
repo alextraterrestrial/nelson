@@ -44,15 +44,15 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Get submission data
-    $submissionData = json_decode(file_get_contents('php://input'));
+    // $submissionData = json_decode(file_get_contents('php://input'));
 
-    $questionId = $submissionData -> questionId;
-    $answer = trim($submissionData -> answer);
-    $teamId = $submissionData -> teamId;
+    // $questionId = $submissionData -> questionId;
+    // $answer = trim($submissionData -> answer);
+    // $teamId = $submissionData -> teamId;
 
-    // $questionId = $_POST['questionId'];
-    // $answer = $_POST['answer'];
-    // $teamId = $_POST['teamId'];
+    $questionId = $_POST['questionId'];
+    $answer = $_POST['answer'];
+    $teamId = $_POST['teamId'];
     
     
     if(isset($questionId, $answer, $teamId)){

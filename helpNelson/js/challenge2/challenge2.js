@@ -31,7 +31,8 @@ class challenge2 {
       JustifyContent: "center",
       top: "47%",
       zIndex: 20,
-      fontSize: "100px"
+      fontSize: "40px",
+      color: '#34be34'
     })
 
     //container innehåller frågan. innerHTML(contentHTML)
@@ -71,11 +72,25 @@ class challenge2 {
     this.form.submit((e)=>{
       e.preventDefault()
       if (!loginToken) {
-        console.log("ej inloggad")
-        //kontrollruta
-      } else if (loginToken.status == "pending" || !loginToken.id) {
-        console.log("Skapa ett team")
-        //skapa ett team eller gå med i ett
+        //if user isn't logged in
+        this.cooldownElement.css({display: "flex"})
+        this.contentContainer.css({filter: "blur(2px)"})
+        this.cooldownElement.html("logga in eller skapa en användare för att kunna svara.")
+  
+        setTimeout(function(){
+          this.this.cooldownElement.css({display: "none"})
+        }.bind(this), 3000)
+
+      } else if (loginToken.status == "pending" || !loginToken.teamId) {
+        this.cooldownElement.css({display: "flex"})
+        this.contentContainer.css({filter: "blur(2px)"})
+        this.cooldownElement.html("Skapa ett team eller gå med i ett för att kunna svara.")
+  
+        setTimeout(function(){
+          this.this.cooldownElement.css({display: "none"})
+        }.bind(this), 3000)
+
+        //create a team or join one to answer
       } else {
         let rule = /.[^\s]/
         if (this.textField.val().search(rule) != -1) {
@@ -111,7 +126,7 @@ class challenge2 {
       
 
       if(res.response == "correct") {
-        let nrOfPoints = 20
+        let nrOfPoints = 1
 
         this.cooldownElement.css({display: "flex"})
         this.contentContainer.css({filter: "blur(2px)"})
@@ -225,7 +240,7 @@ function updateChallenge2Answers(teamId) {
   $.get("php/challenge2/answeredQuestions.php")
   .done(data =>{
     data = JSON.parse(data)
-    console.log(data)
+    // console.log(data)
 
     data.forEach((item)=>{
       //if item. is answered is 1 and challengeArray. is answered is 0 --> remove(
