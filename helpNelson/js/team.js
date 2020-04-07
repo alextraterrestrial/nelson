@@ -241,7 +241,9 @@ function createTeam() {
             $("#teamWrapper > div:first-child").toggle();
 
             initializeTeam();
-            getPuzzles()
+        
+            getChallenge2(loginToken.teamId)
+            // getPuzzles()
           }
           $("#createTeam input[type='text']").val("")
         })
