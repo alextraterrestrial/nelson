@@ -176,7 +176,7 @@ function submitAnswer($questionId, $answer, $teamId){
         $sql->execute();
         $teamMembers = $sql->fetchAll();
 
-        $points = 10;
+        $points = 1;
         //Update score for each member in the team
         foreach($teamMembers as $teamMember){
             $query = "UPDATE User SET score = score + $points WHERE userId = :userId";
