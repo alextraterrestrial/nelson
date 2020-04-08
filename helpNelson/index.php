@@ -40,6 +40,8 @@ function loadPuzzle(){
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/intro.css">
         <link rel="stylesheet" href="https://use.typekit.net/epf5kaq.css">
+        <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160980162-1"></script>
         <script>
@@ -58,7 +60,7 @@ function loadPuzzle(){
             <section Id="icon">
                 <div>
                     <div class="circuit">
-                        <img src="content/graphicResources/circuitIcon.png" class="logoButton">
+                        <img src="content/graphicResources/logo.png" class="logoButton">
                     </div>
                 </div>
             </section>
@@ -68,7 +70,7 @@ function loadPuzzle(){
                     <div>
                         <div class="currentPlayer">
                             <div class="playerName"></div>
-                            <div class="playerPoints">Points: <span>ss</span></div>
+                            <!-- <div class="playerPoints">Points: <span>ss</span></div> -->
                             <div class="countDown"></div>
                         </div>
                         <div class="circuitRight"></div>
@@ -92,14 +94,12 @@ function loadPuzzle(){
             <!-- this section contains the welcome message and the current game -->
                 <section id="home">
                 <h1>Help Erik</h1>
-                <h4>Äntligen, nu kör vi igen!</h4>
-                <p>
-                 För er som är nya här så heter jag Erik och är universitetslektor på Malmö Universitet. Det här spelet är inte skapat av mig, utan av AI:n Athena!
-Artificiell intelligens behöver kunskap genom information och data för att kunna fungera och utvecklas. Nu hjälps vi åt för att samla kunskap till Athena! 
-
-Första omgången av quizet handlar om Internetkultur, något jag verkligen behöver hjälp med att svara på. Så var med den 16 april, klockan 15.00 för då kör quizet igång!
-                </p>
-                <p>Håll er uppdaterad på min instagram <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv">@helperik</a></span></p>
+                <h4>Grattis till vinnarna!</h4>
+                <p>De som hade flest rätt svar och därmed vann är Team_Html. Grattis till Lolle och Emilc! 
+På en andra plats kom team polis123, grattis Elvis och Theospel! 
+Jag vill passa på och tacka alla som har varit med och löst utmaningarna och hjälpt mig, utan er hade jag fortfarande inte haft alla svar. 
+Jag kommer att kontakta vinnarna via mejl den kommande veckan, så håll utkik i er inkorg!</p>
+                <p>Håll dig uppdaterad på min instagram <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv">@helperik</a></span></p>
                 <?php      
                 // loadPuzzle();
                 ?> 
