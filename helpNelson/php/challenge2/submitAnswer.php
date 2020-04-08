@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // $teamId = $submissionData -> teamId;
 
     $questionId = $_POST['questionId'];
-    $answer = $_POST['answer'];
+    $answer = trim(strtolower($_POST['answer']));
     $teamId = $_POST['teamId'];
     
     
@@ -92,7 +92,7 @@ function submitAnswer($questionId, $answer, $teamId){
     }
   
     //Save answer
-    $correctAnswer = $question[0]["answer"];
+    $correctAnswer = strtolower($question[0]["answer"]);
     //Save checktype
     $checkType = $question[0]["checkType"];
     // Save minChars
