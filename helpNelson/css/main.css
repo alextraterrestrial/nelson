@@ -35,6 +35,7 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
 /* general classes */
 .flexCenter {
   display: flex;
@@ -59,7 +60,7 @@ body {
   align-items: center;
 }
 
-.flexList > div {
+.flexList>div {
   flex-basis: 1px;
   flex-grow: 2;
 }
@@ -72,6 +73,7 @@ h1 {
 h3 {
   font-size: calc(var(--fontSize) * 1.2);
 }
+
 #home h3 {
   font-size: calc(var(--fontSize) * 1.2);
   /* scroll-snap-align: start; */
@@ -90,6 +92,7 @@ p {
 .link {
   color: var(--color2);
 }
+
 .link:hover {
   color: var(--color3);
   font-weight: bold;
@@ -171,7 +174,7 @@ p {
   z-index: 10;
 }
 
-#icon > div {
+#icon>div {
   width: var(--widthCircuit);
   height: calc(var(--heightCircuit) * 0.66);
   /* background-color: var(--backgroundColor);
@@ -237,7 +240,7 @@ p {
   z-index: 15;
 }
 
-#menuOptionContainer > div {
+#menuOptionContainer>div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,7 +281,7 @@ p {
   padding: 0 3vw;
 }
 
-#game > div {
+#game>div {
   height: 80vh;
   display: block;
 }
@@ -297,7 +300,8 @@ p {
   text-align: right;
 }
 
-.puzzleContent img, .puzzleContent video {
+.puzzleContent img,
+.puzzleContent video {
   width: 90%;
   display: block;
   margin: 0 auto 5px;
@@ -369,7 +373,7 @@ p {
     height: 100vh;
   }
 
-  #game > div {
+  #game>div {
     margin: auto;
     min-height: 70vh;
     margin: 30vh 0;
@@ -402,11 +406,12 @@ p {
   color: var(--color3);
 }
 
-#availableUsers > div {
+#availableUsers>div {
   margin: 3px 0;
   border: 0px;
 }
-#availableUsers > div > div:last-child {
+
+#availableUsers>div>div:last-child {
   border: none;
   color: var(--color2);
 }
