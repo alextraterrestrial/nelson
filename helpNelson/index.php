@@ -108,7 +108,7 @@ Första omgången av quizet handlar om Internetkultur, något jag verkligen beh�
                 <div id="game"></div>
             </section>
         </div>
-        <script src="js/puzzle.js"></script> 
+        <!-- <script src="js/puzzle.js"></script>  -->
         <script src="js/challenge2/challenge2.js"></script> 
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
