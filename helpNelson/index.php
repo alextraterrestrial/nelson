@@ -99,7 +99,9 @@ Artificiell intelligens behöver kunskap genom information och data för att kun
 
 Första omgången av quizet handlar om Internetkultur, något jag verkligen behöver hjälp med att svara på. Så var med den 16 april, klockan 15.00 för då kör quizet igång!
                 </p>
+                <p></p>
                 <p>Håll er uppdaterad på min instagram <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv">@helperik</a></span></p>
+                <a class="link" href="https://www.facebook.com/events/507725873240037/"><p>https://www.facebook.com/events/507725873240037/</p></a>
                 <?php      
                 // loadPuzzle();
                 ?> 
