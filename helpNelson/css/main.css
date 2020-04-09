@@ -1,13 +1,16 @@
 /*general css for the whole page: Includes variables, media query and general classes used throughout the webpage*/
 
 :root {
-  --backgroundColor: #22273b;
-  --backgroundColorTransparent: #22273b8a;
-  --color2: #c33629;
+  --backgroundColor: #5CC4EB;
+  --backgroundColorTransparent: #5CC4EB;
+  --color2: ##000000;
   --color3: whitesmoke;
+  --color4: #73BF92;
+  --color5: #46DB19;
+  --color6: #FBB911;
   --fontSize: 17px;
   /* --font: "Overpass Mono", monospace; */
-  --font: futura-pt, sans-serif;
+  --font: 'Major Mono Display', monospace;
   --radius: 4px;
 
   --widthCircuit: 90px;
@@ -30,11 +33,16 @@ body {
   overflow: hidden;
 }
 
+.wrapper container {
+  padding: 0;
+}
+
 .flexBetween {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 /* general classes */
 .flexCenter {
   display: flex;
@@ -43,7 +51,7 @@ body {
 }
 
 .flexAround {
-  display: flex;
+  display: block;
   justify-content: space-around;
   align-items: center;
 }
@@ -59,22 +67,21 @@ body {
   align-items: center;
 }
 
-.flexList > div {
+.flexList>div {
   flex-basis: 1px;
   flex-grow: 2;
 }
 
 h1 {
   font-weight: 600;
-  /* scroll-snap-align: start; */
 }
 
 h3 {
   font-size: calc(var(--fontSize) * 1.2);
 }
+
 #home h3 {
   font-size: calc(var(--fontSize) * 1.2);
-  /* scroll-snap-align: start; */
   padding-top: 15vh;
 }
 
@@ -90,6 +97,7 @@ p {
 .link {
   color: var(--color2);
 }
+
 .link:hover {
   color: var(--color3);
   font-weight: bold;
@@ -100,7 +108,7 @@ p {
   min-height: 15px;
   min-width: 15px;
   font-family: var(--font);
-  background-color: var(--backgroundColor);
+  background-color: var(--color5);
   color: var(--color3);
   border: 1px solid var(--color2);
   border-radius: 15%;
@@ -123,7 +131,7 @@ p {
 }
 
 .btn-primary {
-  background-color: var(--backgroundColor);
+  background-color: var(--color5);
   border-color: var(--color2);
 }
 
@@ -132,7 +140,7 @@ p {
 }
 
 .btn-primary:hover {
-  background-color: var(--backgroundColor);
+  background-color: var(--color5);
   color: #ffffff;
   border-color: var(--color2);
 }
@@ -171,7 +179,7 @@ p {
   z-index: 10;
 }
 
-#icon > div {
+#icon>div {
   width: var(--widthCircuit);
   height: calc(var(--heightCircuit) * 0.66);
   /* background-color: var(--backgroundColor);
@@ -181,18 +189,19 @@ p {
 .circuit {
   width: var(--widthCircuit);
   height: var(--heightCircuit);
-  background-image: url(../content/graphicResources/circuitBg.png);
+  background-image: url(../content/graphicResources/water.png);
   background-size: contain;
   background-repeat: no-repeat;
   border-bottom-right-radius: 100%;
   z-index: 1000;
+  margin-top: calc(var(--heightCircuit) * 0.1);
 }
 
 .circuit img {
-  width: 53%;
-  margin-left: calc(var(--widthCircuit) * 0.181);
-  margin-top: calc(var(--heightCircuit) * 0.181);
-  background-color: var(--backgroundColor);
+  width: 48%;
+  margin-left: calc(var(--widthCircuit) * 0.27);
+  margin-top: calc(var(--heightCircuit) * 0.23);
+  background-color: #ffffff;
   border-radius: var(--radius);
 }
 
@@ -210,14 +219,14 @@ p {
 
 /* CSS for the Menu */
 #menu {
-  height: 100vh;
+  height: 200vh;
   width: 100vw;
-  background-color: var(--backgroundColor);
+  background-color: var(--color4);
   padding: 0 3vw;
   position: fixed;
   z-index: 5;
   /* display: none; */
-  margin-top: calc(-0.66 * var(--heightCircuit));
+  margin-top: calc(-0.758 * var(--heightCircuit));
 
   transform: translateX(-100vw);
   -webkit-transform: translateX(-100vw);
@@ -232,40 +241,17 @@ p {
 }
 
 #menuOptionContainer {
-  height: 12vh;
+  height: 10vh;
   position: relative;
   z-index: 15;
 }
 
-#menuOptionContainer > div {
-  display: flex;
-  justify-content: center;
+.login,
+.create {
+  height: 80px;
+  width: 100%;
+  padding-bottom: 20px;
   align-items: center;
-  flex-direction: column;
-}
-
-.menuOptionButton {
-  border: 1px solid var(--color2);
-  border-radius: 50%;
-  height: 8vh;
-  width: 8vh;
-  flex-shrink: 0;
-  /* background-image: url(../content/graphicResources/teamIcon.png); */
-  background-size: 80%;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-}
-
-#menuOptionContent {
-  height: calc(80vh - var(--widthCircuit));
-  padding-top: 1vh;
-  overflow: scroll;
-}
-
-#menuOptionActions {
-  height: 10vh;
 }
 
 /* home and gamepage */
@@ -278,7 +264,7 @@ p {
   padding: 0 3vw;
 }
 
-#game > div {
+#game>div {
   height: 80vh;
   display: block;
 }
@@ -297,17 +283,10 @@ p {
   text-align: right;
 }
 
-.puzzleContent img, .puzzleContent video {
+.puzzleContent img {
   width: 90%;
   display: block;
   margin: 0 auto 5px;
-}
-
-.puzzleContent video {
-  width: 90%;
-  display: block;
-  margin: 0 auto 5px;
-  background-color: black;
 }
 
 .puzzleContainer form {
@@ -369,7 +348,7 @@ p {
     height: 100vh;
   }
 
-  #game > div {
+  #game>div {
     margin: auto;
     min-height: 70vh;
     margin: 30vh 0;
@@ -402,11 +381,12 @@ p {
   color: var(--color3);
 }
 
-#availableUsers > div {
+#availableUsers>div {
   margin: 3px 0;
   border: 0px;
 }
-#availableUsers > div > div:last-child {
+
+#availableUsers>div>div:last-child {
   border: none;
   color: var(--color2);
 }
