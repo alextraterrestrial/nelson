@@ -40,11 +40,11 @@ function checkUser() {
     // getPuzzles();
 
     //send team-id if it exists.
-    // if(loginToken) {
-    //   getChallenge2(loginToken.teamId);
-    // } else {
-    //   getChallenge2();
-    // }
+    if (loginToken) {
+      getChallenge2(loginToken.teamId);
+    } else {
+      getChallenge2();
+    }
   });
 }
 
