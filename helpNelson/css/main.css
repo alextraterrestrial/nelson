@@ -362,11 +362,17 @@ p {
     padding: 2vh;
   }
 
-  .puzzleContent img {
+  .puzzleContent video {
     width: 90%;
-    /* hitta en bättre lösning */
+    background-color: black;
     max-height: 75vh;
   }
+
+  .puzzleContent img {
+    width: 90%;
+    max-height: 75vh;
+  }
+
 }
 
 /* CSS FOR TEAM-PAGE */

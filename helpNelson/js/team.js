@@ -241,8 +241,10 @@ function createTeam() {
             $("#teamWrapper > div:first-child").toggle();
 
             initializeTeam();
-        
+            // run challenge 2
             getChallenge2(loginToken.teamId)
+
+             // run challenge 1
             // getPuzzles()
           }
           $("#createTeam input[type='text']").val("")
