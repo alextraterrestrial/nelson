@@ -43,7 +43,7 @@ function updateTeam(action, team, memberToEffect) {
     .done(data => {
       // popup(data)
       // console.log(data);
-      getUsers();
+      init();
     })
     .fail(error => {
       // console.log(error);
@@ -66,6 +66,7 @@ function displayUserInfo() {
   // console.log("executing displayUserInfo");
   // console.log(allUsers, loginToken);
   $("#members").empty();
+  $("#findPlayerContainer").css({display: "none"})
 
   if (loginToken.status == "captain" || loginToken.status == "active") {
     $("#teamName").html(loginToken.teamName);
@@ -136,8 +137,11 @@ function displayUserInfo() {
   }
 
   if (loginToken.status == "captain") {
-    $("#findPlayerContainer").css({ display: "block" });
-    findPlayersProgram();
+
+    if(members.length < 2) {
+      $("#findPlayerContainer").css({display: "block"})
+      findPlayersProgram();
+    }
     removeTeamProgram()
   } else {
     // console.log("done?");
@@ -229,7 +233,7 @@ function createTeam() {
           // console.log(data);
 
           if (data == "exists") {
-            $("#teamWrapper > div:last-child > div:last-child").html(
+            $("#teamWrapper .invitations").html(
               "Det teamet finns redan. Kom på ett annat namn."
             );
           } else {
@@ -255,86 +259,152 @@ function createTeam() {
 
       //create Team
     } else {
-      $("#teamWrapper > div:last-child > div:last-child").html("Skriv ert teamnamn.");
+      $("#teamWrapper .invitations").html("Skriv ert teamnamn.");
     }
   });
 
-  if (loginToken.status == "pending") {
-    let invitations;
-    $.get("php/getInvitations.php", { userId: loginToken.id })
-      .done(data => {
-        data = JSON.parse(data);
-        // console.log(data);
-        invitations = data;
+  $("#updateInvitation").click(()=>{
+    getInvitations()
+  })
 
-        for (let invite of invitations) {
-          let invitationId = invite.teamId;
-          let teamInvites = $("<div>");
-          teamInvites.attr("class", "flexAround");
+  getInvitations()
+}
 
-          let team = $("<h4>");
-          team.html(invite.teamName);
-          $(teamInvites).append(team);
+function getInvitations() {
+  $("#teamWrapper .invitations").empty()
 
-          let accept = $("<div>");
-          accept.click(() => {
-            $.get("php/handleRequest.php", {
-              action: "accept",
-              team: invitationId,
-              userId: loginToken.id
-            })
-              .done(data => {
-                // console.log(data);
-                loginToken.status = "active";
-                initializeTeam();
-              })
-              .fail(error => {
-                // console.log(error);
+    $.get("php/checkTeamStatus.php", {userId: parseInt(loginToken.id)})
+    .done(data =>{
+      console.log(data)
+  
+  
+      if(data != "noInvitations") {
+        if(data == "pending") {
+          loginToken.status = "pending"
+        } else {
+          data = JSON.parse(data)
+          console.log(data)
+
+          loginToken.status = data[0].status
+          loginToken.teamId = data[0].teamId
+          loginToken.teamName = data[0].teamName
+          init()
+
+        } 
+  
+      }
+    
+      if (loginToken.status == "pending") {
+        let invitations;
+        $.get("php/getInvitations.php", { userId: loginToken.id })
+          .done(data => {
+            data = JSON.parse(data);
+            console.log(data);
+            invitations = data;
+    
+            for (let invite of invitations) {
+              let invitationId = invite.teamId;
+              let teamInvites = $("<div>");
+              teamInvites.attr("class", "flexAround");
+    
+              let team = $("<h4>");
+              team.html(invite.teamName);
+              $(teamInvites).append(team);
+    
+              let accept = $("<div>");
+              accept.click(() => {
+                $.get("php/handleRequest.php", {
+                  action: "accept",
+                  team: invitationId,
+                  userId: loginToken.id
+                })
+                  .done(data => {
+                    console.log(data)
+                    if(data == "invitation declined") {
+                      teamInvites.empty();
+                      loginToken.teamId = null
+                      loginToken.teamName = null
+                      loginToken.status = null
+    
+                    
+                      teamInvites.html("Det var för många i laget, din inbjudan har tagits bort.")
+                      .css({fontSize: "calc(var(--fontSize) * .7)", opacity: ".5"})
+    
+                      setTimeout(()=>{
+                        teamInvites.remove()
+                        initializeTeam()
+                      }, 4000)
+                    } else {
+                      loginToken.status = "active";
+                      initializeTeam();
+                    }
+    
+                  })
+                  .fail(error => {
+                    // console.log(error);
+                  });
               });
-          });
-          accept.html("ACCEPT");
-          accept.attr("class", "button flex");
-          accept.css({ padding: "0px 5px", width: "auto" });
-          $(teamInvites).append(accept);
-
-          let deny = $("<div>");
-          deny.click(() => {
-            $.get("php/handleRequest.php", {
-              action: "deny",
-              team: invitationId,
-              userId: loginToken.id
-            })
-              .done(data => {
-                teamInvites.remove();
-              })
-              .fail(error => {
-                // console.log(error);
+              accept.html("ACCEPT");
+              accept.attr("class", "button flex");
+              accept.css({ padding: "0px 5px", width: "auto" });
+              $(teamInvites).append(accept);
+    
+              let deny = $("<div>");
+              deny.click(() => {
+                $.get("php/handleRequest.php", {
+                  action: "deny",
+                  team: invitationId,
+                  userId: loginToken.id
+                })
+                  .done(data => {
+                    teamInvites.remove();
+                    loginToken.teamId = null
+                    loginToken.teamName = null
+                    loginToken.status = null
+                    initializeTeam()
+                  })
+                  .fail(error => {
+                    // console.log(error);
+                  });
               });
+              deny.html("DENY");
+              deny.attr("class", "button flex");
+              deny.css({ padding: "0px 5px", width: "auto" });
+              $(teamInvites).append(deny);
+    
+              // $("#invites").append(teamInvites);
+              $("#teamWrapper .invitations").append(
+                teamInvites
+              );
+            }
+          })
+          .fail(error => {
+            // console.log(error);
           });
-          deny.html("DENY");
-          deny.attr("class", "button flex");
-          deny.css({ padding: "0px 5px", width: "auto" });
-          $(teamInvites).append(deny);
+        // console.log(invitations)
+    
+        // if not invited or in a team, do this
+      } else {
+        $('<div>', {
+          html: "Det finns inga inbjudningar, uppdatera för att se om det kommit in nya.",
+          appendTo: "#teamWrapper .invitations",
+        }).css({fontSize: "calc(var(--fontSize) * .7)", opacity: ".5"})
+      }
+    })
 
-          // $("#invites").append(teamInvites);
-          $("#teamWrapper > div:last-child > div:last-child").append(
-            teamInvites
-          );
-        }
-      })
-      .fail(error => {
-        // console.log(error);
-      });
-    // console.log(invitations)
 
-    // if not invited or in a team, do this
-  } 
+  
+
+ 
+
+  
   
 }
 
 
 //teamsetup
 function initializeTeam() {
+  console.log(loginToken)
   if (loginToken) {
     if (loginToken.status && loginToken.status != "pending") {
       setTimeout(() => {
@@ -349,7 +419,7 @@ function initializeTeam() {
         $("#teamWrapper > div").css({ display: "none" });
         $("#teamWrapper > div:last-child").css({ display: "block" });
         createTeam();
-      }, 200);
+      }, 100);
     }
   }
 }

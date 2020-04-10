@@ -6,7 +6,7 @@
     <div id="members">
   
     </div>
-      <div id="findPlayerContainer">
+      <div id="findPlayerContainer" style="display: none;">
         <h3>Hitta spelare</h3>
         <div id="searchForPlayer">
           <input type="button" class="button" value="sök">
@@ -25,7 +25,11 @@
       <input type="submit" id="submitTeam" class="button" value="Skapa">
     </form>
     <div>
-      <div>Teaminbjudningar:</div>
+      <div>
+        <div>Teaminbjudningar:</div> 
+        <input type="button" id="updateInvitation" class="button" value="Uppdatera">
+        <div class="invitations"></div>
+      </div>
     </div>
   </div>
 </div>

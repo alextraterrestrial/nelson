@@ -27,6 +27,7 @@ function init() {
 
 function checkUser() {
   checkCookie().then(res => {
+    console.log(loginToken)
     //When login is complete
     // console.log("done checking cookie");
     // console.log(loginToken);
