@@ -70,19 +70,19 @@ function loadPuzzle(){
                     <div>
                         <div class="currentPlayer">
                             <div class="playerName"></div>
-                            <!-- <div class="playerPoints">Points: <span>ss</span></div> -->
+                            <div class="playerPoints"></div>
                             <div class="countDown"></div>
                         </div>
                         <div class="circuitRight"></div>
                     </div>
                 </div> 
-                
-                <!-- option contatiner -->
-                <div id="menuOptionContainer" class="flexAround">
-                </div>
 
                 <!-- contains the  -->
                 <div id="menuOptionContent">
+                </div>
+
+                <!-- option contatiner -->
+                <div id="menuOptionContainer" class="flexAround">
                 </div>
 
                 <div id="menuOptionActions">
@@ -94,12 +94,13 @@ function loadPuzzle(){
             <!-- this section contains the welcome message and the current game -->
                 <section id="home">
                 <h1>Help Erik</h1>
-                <h4>Grattis till vinnarna!</h4>
-                <p>De som hade flest rätt svar och därmed vann är Team_Html. Grattis till Lolle och Emilc! 
-På en andra plats kom team polis123, grattis Elvis och Theospel! 
-Jag vill passa på och tacka alla som har varit med och löst utmaningarna och hjälpt mig, utan er hade jag fortfarande inte haft alla svar. 
-Jag kommer att kontakta vinnarna via mejl den kommande veckan, så håll utkik i er inkorg!</p>
-                <p>Håll dig uppdaterad på min instagram <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv">@helperik</a></span></p>
+                <h4>Äntligen, nu kör vi igen!</h4>
+                <p>För er som är nya här så heter jag Erik och är universitetslektor på Malmö Universitet. Det här spelet är inte skapat av mig, utan av AI:n Athena! 
+                Artificiell intelligens behöver kunskap genom information och data för att kunna fungera och utvecklas. 
+                Nu hjälps vi åt för att samla kunskap till Athena! Första omgången av quizet handlar om Internet-kultur, något jag verkligen behöver hjälp med att svara på. 
+                Så var med den 16 april, klockan 15.00 för då kör quizet igång! </p>
+                <p>Håll er uppdaterade på min Instagram: <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv" style="background: var(--color6);color: #ffff;">@helperik</a></span></p>
+                <p>https://www.facebook.com/events/507725873240037/</p>
                 <?php      
                 // loadPuzzle();
                 ?> 

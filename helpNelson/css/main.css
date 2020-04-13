@@ -205,6 +205,10 @@ p {
   border-radius: var(--radius);
 }
 
+#signUpSubmit {
+  
+}
+
 #loginSubmit,
 #testLogout {
   background-color: var(--backgroundColor);
@@ -236,7 +240,7 @@ p {
 }
 
 #menuHeader {
-  height: calc(var(--heightCircuit) * 0.66);
+  height: calc(var(--heightCircuit) * 0.5);
   padding-left: calc(var(--widthCircuit) - 3vw);
 }
 
@@ -379,22 +383,21 @@ p {
 
 #teamName {
   font-size: calc(var(--fontSize) * 1.6);
-  border-bottom: 1px solid var(--color2);
+  border-bottom: 1px solid var(--color6);
 }
 
 #availableUsers {
-  border-top: 2px solid var(--color2);
+  border-top: 2px solid var(--color6);
   color: var(--color3);
 }
 
-#availableUsers>div {
+#availableUsers > div {
   margin: 3px 0;
   border: 0px;
 }
-
-#availableUsers>div>div:last-child {
+#availableUsers > div > div:last-child {
   border: none;
-  color: var(--color2);
+  color: var(--color3);;
 }
 
 #submitTeam {
@@ -410,7 +413,7 @@ video {
 }
 
 .removeTeam {
-  border-top: 1px solid var(--color2);
+  border-top: 1px solid var(--color6);
   padding: 5px 0 0;
   margin-top: 10vh;
   display: flex;
@@ -419,3 +422,20 @@ video {
 /* #members div {
  margin: 1px 0;
 } */
+
+/* animation for login and getting points */
+.flashy {
+  animation: flashing 1s linear;
+}
+
+@keyframes flashing {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, .6);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
