@@ -397,7 +397,7 @@ p {
 }
 #availableUsers > div > div:last-child {
   border: none;
-  color: var(--color6);
+  color: var(--color3);;
 }
 
 #submitTeam {
