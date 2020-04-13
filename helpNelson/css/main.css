@@ -205,10 +205,6 @@ p {
   border-radius: var(--radius);
 }
 
-#signUpSubmit {
-  
-}
-
 #loginSubmit,
 #testLogout {
   background-color: var(--backgroundColor);
