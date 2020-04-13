@@ -30,6 +30,21 @@ function getQuestions($teamId){
     $sql->execute();
     $questions = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+    foreach($questions as $key => $question ){
+        $submissionTimestamp = strtotime($questions[$key]["submissionTimestamp"]);
+        $currentTime = time() + 7200;
+        $sinceSubmission = $currentTime - $submissionTimestamp;
+        // echo $submissionTimestamp;
+        // echo " ";
+        // echo $sinceSubmission;
+        // echo date("Y-m-d H:i:s", $currentTime) . " ";
+        if($sinceSubmission > 30){
+            
+            $questions[$key]["submissionTimestamp"] = null;
+            echo $questions[$key]["submissionTimestamp"];
+        }
+        // echo $question["submissionTimestamp"];
+    }
     $questions = json_encode($questions);
     echo $questions;
     

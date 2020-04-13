@@ -64,19 +64,10 @@ function loadPuzzle(){
                     </div>
                 </div>
             </section>
-            <section id="menu">
-                <!-- menu top -->
-                <div id="menuHeader">
-                    <div>
-                        <div class="currentPlayer">
-                            <div class="playerName"></div>
-                            <div class="playerPoints"></div>
-                            <div class="countDown"></div>
-                        </div>
-                        <div class="circuitRight"></div>
-                    </div>
-                </div> 
 
+        
+            <section id="menu">
+                
                 <!-- contains the  -->
                 <div id="menuOptionContent">
                 </div>
@@ -93,6 +84,18 @@ function loadPuzzle(){
             
             <!-- this section contains the welcome message and the current game -->
                 <section id="home">
+                <!-- menu top -->
+                <div id="menuHeader">
+                    <div>
+                        <div class="currentPlayer">
+                            <div class="playerName"></div>
+                            <div class="playerPoints"></div>
+                            <div class="countDown"></div>
+                        </div>
+                        <div class="circuitRight"></div>
+                    </div>
+                </div> 
+
                 <h1>Help Erik</h1>
                 <h4>Äntligen, nu kör vi igen!</h4>
                 <p>För er som är nya här så heter jag Erik och är universitetslektor på Malmö Universitet. Det här spelet är inte skapat av mig, utan av AI:n Athena! 
