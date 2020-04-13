@@ -76,13 +76,13 @@ function loadPuzzle(){
                         <div class="circuitRight"></div>
                     </div>
                 </div> 
-                
-                <!-- option contatiner -->
-                <div id="menuOptionContainer" class="flexAround">
-                </div>
 
                 <!-- contains the  -->
                 <div id="menuOptionContent">
+                </div>
+
+                <!-- option contatiner -->
+                <div id="menuOptionContainer" class="flexAround">
                 </div>
 
                 <div id="menuOptionActions">

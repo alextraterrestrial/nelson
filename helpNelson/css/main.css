@@ -379,22 +379,21 @@ p {
 
 #teamName {
   font-size: calc(var(--fontSize) * 1.6);
-  border-bottom: 1px solid var(--color2);
+  border-bottom: 1px solid var(--color6);
 }
 
 #availableUsers {
-  border-top: 2px solid var(--color2);
+  border-top: 2px solid var(--color6);
   color: var(--color3);
 }
 
-#availableUsers>div {
+#availableUsers > div {
   margin: 3px 0;
   border: 0px;
 }
-
-#availableUsers>div>div:last-child {
+#availableUsers > div > div:last-child {
   border: none;
-  color: var(--color2);
+  color: var(--color6);
 }
 
 #submitTeam {
@@ -410,7 +409,7 @@ video {
 }
 
 .removeTeam {
-  border-top: 1px solid var(--color2);
+  border-top: 1px solid var(--color6);
   padding: 5px 0 0;
   margin-top: 10vh;
   display: flex;
