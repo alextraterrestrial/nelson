@@ -70,7 +70,7 @@ function loadPuzzle(){
                     <div>
                         <div class="currentPlayer">
                             <div class="playerName"></div>
-                            <!-- <div class="playerPoints">Points: <span>ss</span></div> -->
+                            <div class="playerPoints"></div>
                             <div class="countDown"></div>
                         </div>
                         <div class="circuitRight"></div>

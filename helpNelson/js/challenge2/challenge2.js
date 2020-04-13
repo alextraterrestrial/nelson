@@ -76,7 +76,9 @@ class challenge2 {
         this.cooldownElement.css({display: "flex"})
         this.contentContainer.css({filter: "blur(2px)"})
         this.cooldownElement.html("logga in eller skapa en användare för att kunna svara.")
-  
+        toggleMenu();
+        $("#menuOptionContainer").removeClass("flashy")
+        setTimeout(function(){ $("#menuOptionContainer").addClass("flashy") }, 20)
         setTimeout(function(){
           this.cooldownElement.css({display: "none"})
           this.contentContainer.css({filter: "blur(0px)"})
@@ -86,7 +88,9 @@ class challenge2 {
         this.cooldownElement.css({display: "flex"})
         this.contentContainer.css({filter: "blur(0px)"})
         this.cooldownElement.html("Skapa ett team eller gå med i ett för att kunna svara.")
-  
+        toggleMenu();
+        $("#teamWrapper").removeClass("flashy")
+        setTimeout(function(){ $("#teamWrapper").addClass("flashy")}, 20)
         setTimeout(function(){
           this.cooldownElement.css({display: "none"})
         }.bind(this), 3000)
@@ -128,7 +132,9 @@ class challenge2 {
 
       if(res.response == "correct") {
         let nrOfPoints = 1
-
+        // toggleMenu(); depends on the way of showing points
+        $(".playerPoints").removeClass("flashy")
+        setTimeout(function(){ $(".playerPoints").addClass("flashy") }, 20)
         this.cooldownElement.css({display: "flex"})
         this.contentContainer.css({filter: "blur(2px)"})
         this.cooldownElement.html("Rätt svar!")

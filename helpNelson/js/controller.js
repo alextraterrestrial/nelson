@@ -132,7 +132,7 @@ function loadMenu() {
 
   //Clear header profile info
   $(".playerName").empty();
-  $(".playerPoints span").empty();
+  $(".playerPoints").empty();
 
   const menuOptionsBasic = [
     {
@@ -175,8 +175,8 @@ function loadMenu() {
     renderOptions = menuOptionsUser;
 
     // Update profile in header
-    $(".playerName").html(loginToken.username);
-    $(".playerPoints span").html(loginToken.score);
+    $(".playerName").html(`Du är nu inloggad, ${loginToken.username}`);
+    $(".playerPoints").html(`Poäng: <span>${loginToken.score}</span>`);
   }
 
   // console.log(renderOptions);
