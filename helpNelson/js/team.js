@@ -229,14 +229,16 @@ function createTeam() {
         userId: loginToken.id
       })
         .done(data => {
-          data = JSON.parse(data);
           // console.log(data);
+          
 
           if (data == "exists") {
-            $("#teamWrapper .invitations").html(
+            $("#createTeamMessage").html(
               "Det teamet finns redan. Kom på ett annat namn."
             );
           } else {
+            data = JSON.parse(data);
+            
             loginToken.teamId = data[0].teamId;
             loginToken.teamName = data[0].teamName;
             loginToken.status = "captain";
@@ -263,6 +265,10 @@ function createTeam() {
     }
   });
 
+  $("#createTeam #search").focus(()=>{
+    $("#createTeamMessage").html("")
+  })
+
   $("#updateInvitation").click(()=>{
     getInvitations()
   })
@@ -275,7 +281,7 @@ function getInvitations() {
 
     $.get("php/checkTeamStatus.php", {userId: parseInt(loginToken.id)})
     .done(data =>{
-      console.log(data)
+      // console.log(data)
   
   
       if(data != "noInvitations") {
@@ -413,13 +419,13 @@ function initializeTeam() {
         getUsers();
 
 
-      }, 200);
+      },300);
     } else if (!loginToken.status || loginToken.status == "pending") {
       setTimeout(() => {
         $("#teamWrapper > div").css({ display: "none" });
         $("#teamWrapper > div:last-child").css({ display: "block" });
         createTeam();
-      }, 100);
+      }, 300);
     }
   }
 }
