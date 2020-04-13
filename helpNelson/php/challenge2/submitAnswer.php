@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // $submissionData = json_decode(file_get_contents('php://input'));
 
     // $questionId = $submissionData -> questionId;
-    // $answer = trim($submissionData -> answer);
+    // $answer = trim(strtolower($submissionData -> answer));
     // $teamId = $submissionData -> teamId;
 
     $questionId = $_POST['questionId'];
@@ -218,6 +218,7 @@ function submitAnswer($questionId, $answer, $teamId){
 @ return Boolean. True if correct, else false
 */
 function validateAnswer($answer, $correctAnswer, $checkType){
+    $answer = strtolower($answer);
     switch($checkType){
         case "SAMEAS": 
             return $answer == $correctAnswer;
