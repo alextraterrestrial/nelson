@@ -154,7 +154,7 @@ p {
 }
 
 .countDown p {
-  font-size: calc(var(--fontSize) * 0.3);
+  font-size: calc(var(--fontSize) * 0.8);
 }
 
 .playerName,
@@ -265,9 +265,6 @@ p {
 #home {
   max-height: 100vh;
   overflow-y: scroll;
-  /* scroll-snap-type: mandatory;
-  scroll-snap-points-y: repeat(3rem);
-  scroll-snap-type: y mandatory; */
   padding: 0 3vw;
 }
 
@@ -277,7 +274,6 @@ p {
 }
 
 .puzzleContainer {
-  /* scroll-snap-align: start; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -329,10 +325,6 @@ p {
     float: right;
     max-height: 100vh;
     overflow-y: scroll;
-
-    /* scroll-snap-type: mandatory;
-    scroll-snap-points-y: repeat(3rem);
-    scroll-snap-type: y mandatory; */
   }
 
   #home .countDown {
@@ -344,7 +336,6 @@ p {
   }
 
   .puzzleContainer {
-    /* scroll-snap-align: start; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -385,12 +376,12 @@ p {
 /* CSS FOR TEAM-PAGE */
 
 #teamWrapper {
-  padding-top: 2vh;
+  padding-top: 16vh;
 }
 
 #teamName {
   font-size: calc(var(--fontSize) * 1.6);
-  color: var(--color3)
+  color: var(--color3);
   border-bottom: 2px solid var(--color6);
 }
 
