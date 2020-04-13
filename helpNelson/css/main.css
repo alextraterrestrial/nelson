@@ -418,6 +418,13 @@ video {
   display: flex;
 }
 
+.profile-page {
+  padding-top: 82vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* #members div {
  margin: 1px 0;
 } */
