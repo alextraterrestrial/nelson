@@ -27,7 +27,7 @@ function init() {
 
 function checkUser() {
   checkCookie().then(res => {
-    console.log(loginToken)
+    console.log(loginToken);
     //When login is complete
     // console.log("done checking cookie");
     // console.log(loginToken);
@@ -41,11 +41,11 @@ function checkUser() {
     // getPuzzles();
 
     //send team-id if it exists.
-    // if (loginToken) {
-    //   getChallenge2(loginToken.teamId);
-    // } else {
-    //   getChallenge2();
-    // }
+    if (loginToken) {
+      getChallenge2(loginToken.teamId);
+    } else {
+      getChallenge2();
+    }
   });
 }
 

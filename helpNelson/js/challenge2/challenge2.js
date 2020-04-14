@@ -119,9 +119,9 @@ class challenge2 {
 
   //send submit request
   submitAnswer(ans, questionId, teamId) {
-    console.log(ans);
-    console.log(questionId);
-    console.log(teamId);
+    // console.log(ans);
+    // console.log(questionId);
+    // console.log(teamId);
 
     let data = { teamId: teamId, questionId: questionId, answer: ans };
     JSON.stringify(data);
@@ -224,8 +224,7 @@ function getChallenge2(teamId) {
       if (updateChallengeId) {
         clearInterval(updateChallengeId);
       }
-      console.log(res);
-      // JSON.parse(res);
+
       res.forEach(item => {
         let q = new challenge2(item.questionId, item.contentHTML);
         challenge2Array.push(q);
@@ -235,9 +234,9 @@ function getChallenge2(teamId) {
             (Date.now() - Date.parse(item.submissionTimestamp)) / 1000
           );
           let timeLeft = cooldownTime - timeSinceSubmission;
-          console.log(Date.now() / 1000);
-          console.log(Date.parse(item.submissionTimestamp) / 1000);
-          console.log(timeLeft);
+          // console.log(Date.now() / 1000);
+          // console.log(Date.parse(item.submissionTimestamp) / 1000);
+          // console.log(timeLeft);
 
           // Set the cooldown time
           q.setCooldown(timeLeft);
