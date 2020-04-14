@@ -30,7 +30,6 @@ class challenge2 {
       JustifyContent: "center",
       top: "47%",
       zIndex: 20,
-      fontSize: "40px",
       color: "#34be34"
     });
 
@@ -70,39 +69,40 @@ class challenge2 {
       e.preventDefault();
       if (!loginToken) {
         //if user isn't logged in
-        this.cooldownElement.css({ display: "flex" });
-        this.contentContainer.css({ filter: "blur(2px)" });
+        this.cooldownElement.css({ display: "flex", textAlign: "center"});
+        this.contentContainer.css({ filter: "blur(15px)" });
         this.cooldownElement.html(
-          "logga in eller skapa en användare för att kunna svara."
+          "logga in eller<br>skapa en användare<br>för att kunna svara."
         );
-        toggleMenu();
-        $("#menuOptionContainer").removeClass("flashy");
+        $(".col-sm-8").removeClass("flashy");
         setTimeout(function() {
-          $("#menuOptionContainer").addClass("flashy");
-        }, 20);
+          $(".col-sm-8").addClass("flashy");
+          toggleMenu();
+        }, 1500);
         setTimeout(
           function() {
             this.cooldownElement.css({ display: "none" });
             this.contentContainer.css({ filter: "blur(0px)" });
           }.bind(this),
-          3000
+          1700
         );
       } else if (loginToken.status == "pending" || !loginToken.teamId) {
-        this.cooldownElement.css({ display: "flex" });
-        this.contentContainer.css({ filter: "blur(0px)" });
+        this.cooldownElement.css({ display: "flex", textAlign: "center" });
+        this.contentContainer.css({ filter: "blur(15px)" });
         this.cooldownElement.html(
-          "Skapa ett team eller gå med i ett för att kunna svara."
+          "Skapa ett team<br>eller gå med i ett<br>för att kunna svara."
         );
-        toggleMenu();
         $("#teamWrapper").removeClass("flashy");
         setTimeout(function() {
           $("#teamWrapper").addClass("flashy");
-        }, 20);
+          toggleMenu();
+        }, 1500);
         setTimeout(
           function() {
             this.cooldownElement.css({ display: "none" });
+            this.contentContainer.css({ filter: "blur(0px)" });
           }.bind(this),
-          3000
+          1700
         );
 
         //create a team or join one to answer
@@ -138,15 +138,15 @@ class challenge2 {
         if (res.response == "correct") {
           let nrOfPoints = 1;
           // toggleMenu(); depends on the way of showing points
+          this.cooldownElement.css({ display: "flex" });
+          this.contentContainer.css({ filter: "blur(15px)" });
+          this.cooldownElement.html("Rätt svar!<br>Du fick 1 poäng.");
+          // this.cooldownElement.css({color: 'var(--colorCorrect)'})
+          this.cooldownElement.css({ color: "#34be34" });
           $(".playerPoints").removeClass("flashy");
           setTimeout(function() {
             $(".playerPoints").addClass("flashy");
           }, 20);
-          this.cooldownElement.css({ display: "flex" });
-          this.contentContainer.css({ filter: "blur(2px)" });
-          this.cooldownElement.html("Rätt svar!");
-          // this.cooldownElement.css({color: 'var(--colorCorrect)'})
-          this.cooldownElement.css({ color: "#34be34" });
 
           setTimeout(
             function() {
@@ -180,7 +180,7 @@ class challenge2 {
     this.textField.attr("readonly", "readonly");
     this.contentContainer.css({ filter: "blur(" + s + "px)" });
     this.form.css({ filter: "blur(" + s + "px)" });
-    this.cooldownElement.html(s);
+    this.cooldownElement.html(`Fel svar!<br>Försök igen om ${s}`);
 
     let interval = setInterval(
       function() {
@@ -188,7 +188,7 @@ class challenge2 {
 
         this.contentContainer.css({ filter: "blur(" + s + "px)" });
         this.form.css({ filter: "blur(" + s + "px)" });
-        this.cooldownElement.html(s);
+        this.cooldownElement.html(`Fel svar!<br>Försök igen om ${s}`);
 
         if (!s) {
           clearInterval(interval);

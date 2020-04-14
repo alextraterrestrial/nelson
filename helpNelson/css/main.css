@@ -73,6 +73,11 @@ body {
   flex-grow: 2;
 }
 
+.flexList > div:nth-last-of-type(2) {
+  text-align: right;
+  margin-left: 8px;
+}
+
 h1 {
   font-weight: 600;
 }
@@ -174,17 +179,23 @@ p {
 
 /* CSS for Icon and logo */
 #icon {
+  background-color: transparent;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 10;
+  height: 16vh;
+  display: flex;
 }
 
 #icon>div {
   width: var(--widthCircuit);
   height: calc(var(--heightCircuit) * 0.66);
-  /* background-color: var(--backgroundColor);
-    border-bottom-right-radius: 50%; */
+}
+
+#icon>div:nth-of-type(2) {
+  flex: 1 1 20%;
+  height: 100%;
 }
 
 .circuit {
@@ -220,15 +231,14 @@ p {
 
 /* CSS for the Menu */
 #menu {
-  height: 200vh;
+  height: 110vh;
   width: 100vw;
   background-color: var(--color4);
-  padding: 0 3vw;
+  margin-top: calc(-0.88 * var(--heightCircuit));
+  padding: 12vh 3vw;
   position: fixed;
   z-index: 5;
   /* display: none; */
-  margin-top: calc(-0.758 * var(--heightCircuit));
-
   transform: translateX(-100vw);
   -webkit-transform: translateX(-100vw);
 
@@ -237,9 +247,9 @@ p {
 }
 
 #menuHeader {
-  padding: 3vh;
-  height: calc(var(--heightCircuit) * 0.8);
-  padding-left: calc(var(--widthCircuit) - 3vw);
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 #menuOptionContainer {
@@ -251,6 +261,10 @@ p {
 
 #menuOptionContainer .flexCenter {
   background: var(--color6);
+}
+
+#menuOptionContainer > div:nth-of-type(2) {
+  margin-top: 10px;
 }
 
 .login,
@@ -268,8 +282,13 @@ p {
   padding: 0 3vw;
 }
 
+#game {
+  margin-top: 6vh;
+  margin-bottom: 8vh;
+}
+
 #game>div {
-  height: 80vh;
+  height: 50vh;
   display: block;
 }
 
@@ -286,7 +305,18 @@ p {
   text-align: right;
 }
 
+.puzzleContent {
+  display: flex;
+  justify-content: center;
+}
+
 .puzzleContent img {
+  width: 90%;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.puzzleContent video {
   width: 90%;
   display: block;
   margin: 0 auto 5px;
@@ -308,7 +338,8 @@ p {
   }
 
   #menu {
-    padding-top: 14vh;
+    height: 150vh;
+    padding-top: 28vh;
     flex-basis: 1px;
     flex-grow: 2;
     position: static;
@@ -347,9 +378,8 @@ p {
   }
 
   #game>div {
-    margin: auto;
-    min-height: 70vh;
-    margin: 30vh 0;
+    margin: 10vh auto;
+    height: 70vh;
   }
 
   .puzzleNr {
@@ -357,6 +387,7 @@ p {
   }
 
   .puzzleContent {
+    
     padding: 2vh;
   }
 
@@ -371,12 +402,18 @@ p {
     max-height: 75vh;
   }
 
+  .cooldown {
+    display: flex;
+    font-size: 3vw;
+    text-align: center;
+  }
+
 }
 
 /* CSS FOR TEAM-PAGE */
 
 #teamWrapper {
-  padding-top: 16vh;
+  padding-top: 8vh;
 }
 
 #teamName {
@@ -386,6 +423,8 @@ p {
 }
 
 #availableUsers {
+  overflow-y: scroll;
+  height: 38vh;
   border-top: 2px solid var(--color6);
   color: var(--color3);
 }
@@ -419,10 +458,17 @@ video {
 }
 
 .profile-page {
+  height: 41.1vh;
   padding-top: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .profile-page {
+    height: 51.1vh;
+  }
 }
 
 /* #members div {
@@ -431,7 +477,7 @@ video {
 
 /* animation for login and getting points */
 .flashy {
-  animation: flashing 1s linear;
+  animation: flashing 2s linear;
 }
 
 @keyframes flashing {

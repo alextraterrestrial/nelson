@@ -175,7 +175,7 @@ function loadMenu() {
     renderOptions = menuOptionsUser;
 
     // Update profile in header
-    $(".playerName").html(`Du är nu inloggad, ${loginToken.username}`);
+    $(".playerName").html(`Välkommen, ${loginToken.username}`);
     $(".playerPoints").html(`Poäng: <span>${loginToken.score}</span>`);
   }
 
