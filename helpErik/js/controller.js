@@ -41,6 +41,9 @@ function checkUser() {
     // getPuzzles();
 
     //send team-id if it exists.
+    
+
+
     if (loginToken) {
       getChallenge2(loginToken.teamId);
     } else {
@@ -161,6 +164,11 @@ function loadMenu() {
       label: "Min profil",
       content: $("<div>").load("html/profile.html"),
       icon: "userIcon.png"
+    },
+    { 
+      label: "<a href='../scoreBoard/index.php'>scoreBoard</a>",
+      content: "",
+      icon: "",
     }
   ];
   let renderOptions;
