@@ -50,7 +50,7 @@
     $scoreNr = 1;
 
     echo "<h1>helpErik</h1>";
-    echo "<div><a class='button' href='../helpNelson/index.php'>Tillbaka till spelet.</a></div>";
+    echo "<div><a class='button' href='../index.php'>Tillbaka till spelet.</a></div>";
     echo "<h2>ScoreBoard från Challenge2</h2>";
     echo "<div class='scoreBoard'>";
 
@@ -74,7 +74,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="./scoreboard.css">
-    <title>Document</title>
+    <title>Help Erik - Scoreboard</title>
 </head>
 <body>
     
