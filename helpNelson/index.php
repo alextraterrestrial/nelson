@@ -103,7 +103,7 @@ function loadPuzzle(){
                 Nu hjälps vi åt för att samla kunskap till Athena! Första omgången av quizet handlar om Internet-kultur, något jag verkligen behöver hjälp med att svara på. 
                 Så var med den 16 april, klockan 15.00 för då kör quizet igång! </p>
                 <p>Håll er uppdaterade på min Instagram: <span ><a class="link" href="https://www.instagram.com/helperik/?hl=sv" style="background: var(--color6);color: #ffff;">@helperik</a></span></p>
-                <p>Följ vår Facebook event: <span ><a class="link" href="https://www.facebook.com/events/507725873240037/" style="background: var(--color6);color: #ffff;">Facebook</a></span></p>
+                <p>Följ vårt Facebook event: <span ><a class="link" href="https://www.facebook.com/events/507725873240037/" style="background: var(--color6);color: #ffff;">Facebook</a></span></p>
                 <?php      
                 // loadPuzzle();
                 ?> 

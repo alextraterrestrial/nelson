@@ -59,16 +59,25 @@ function checkUser() {
       $("#welcomeMessage").html(challenge2MessageEnd18th);
     } else if (end18 - chT - Date.now() < 0 && end18 - Date.now() > 0) {
       runCH2 = "myth";
+      reloadTime = end18 - Date.now();
     } else if (end17 - Date.now() < 0) {
       $("#welcomeMessage").html(challenge2MessageEnd17th);
     } else if (end17 - chT - Date.now() < 0 && end17 - Date.now() > 0) {
       runCH2 = "film";
+      reloadTime = end17 - Date.now();
     } else if (end16 - Date.now() < 0) {
       $("#welcomeMessage").html(challenge2MessageEnd16th);
     } else if (end16 - chT - Date.now() < 0 && end16 - Date.now() > 0) {
       runCH2 = "memes";
+      reloadTime = end16 - Date.now();
     }
+    // console.log(reloadTime)
 
+    if (reloadTime) {
+      setTimeout(() => {
+        location.reload();
+      }, Math.round(reloadTime));
+    }
     // console.log(runCH2)
 
     if (runCH2) {

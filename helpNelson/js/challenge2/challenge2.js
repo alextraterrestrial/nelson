@@ -161,7 +161,7 @@ class challenge2 {
         } else if (res.response == "incorrect") {
           this.setCooldown(cooldownTime);
         } else {
-          this.cooldownElement.html("Något hann svara före!");
+          this.cooldownElement.html("Någon hann svara före!");
           setTimeout(
             function() {
               this.container.remove();
