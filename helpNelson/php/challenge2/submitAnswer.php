@@ -44,15 +44,15 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Get submission data
-    // $submissionData = json_decode(file_get_contents('php://input'));
+    $submissionData = json_decode(file_get_contents('php://input'));
 
-    // $questionId = $submissionData -> questionId;
-    // $answer = trim(strtolower($submissionData -> answer));
-    // $teamId = $submissionData -> teamId;
+    $questionId = $submissionData -> questionId;
+    $answer = trim(strtolower($submissionData -> answer));
+    $teamId = $submissionData -> teamId;
 
-    $questionId = $_POST['questionId'];
-    $answer = trim(strtolower($_POST['answer']));
-    $teamId = $_POST['teamId'];
+    // $questionId = $_POST['questionId'];
+    // $answer = trim(strtolower($_POST['answer']));
+    // $teamId = $_POST['teamId'];
     
     
     if(isset($questionId, $answer, $teamId)){
@@ -113,7 +113,7 @@ function submitAnswer($questionId, $answer, $teamId){
 
         // Check duration since last submission
         $submissionTimestamp = strtotime($questionAnswered[0]["submissionTimestamp"]);
-        $timeSinceLastSubmission = (time() + 7200) - $submissionTimestamp;
+        $timeSinceLastSubmission = (time()) - $submissionTimestamp;
         
 
         if($timeSinceLastSubmission < 30){

@@ -69,7 +69,7 @@ class challenge2 {
       e.preventDefault();
       if (!loginToken) {
         //if user isn't logged in
-        this.cooldownElement.css({ display: "flex", textAlign: "center"});
+        this.cooldownElement.css({ display: "flex", textAlign: "center" });
         this.contentContainer.css({ filter: "blur(15px)" });
         this.cooldownElement.html(
           "logga in eller<br>skapa en användare<br>för att kunna svara."
@@ -124,12 +124,13 @@ class challenge2 {
     // console.log(teamId);
 
     let data = { teamId: teamId, questionId: questionId, answer: ans };
-    JSON.stringify(data);
+    // JSON.stringify(data);
 
     $.ajax({
       url: "php/challenge2/submitAnswer.php",
       type: "POST",
-      data: data
+      contentType: "application/json",
+      data: JSON.stringify(data)
     })
       .done(res => {
         console.log("ok");
@@ -217,8 +218,8 @@ function getChallenge2(action, teamId) {
   $.ajax({
     url: "php/challenge2/getQuestions.php",
     type: "POST",
-    data: data,
-    contenType: "application/json; charset=utf-8"
+    data: JSON.stringify(data),
+    contentType: "application/json"
   })
     .done(res => {
       if (updateChallengeId) {
