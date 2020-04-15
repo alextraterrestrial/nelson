@@ -89,16 +89,15 @@ function checkUser() {
     }
     // console.log(runCH2)
 
-    if(runCH2) {
-      $("#welcomeMessage").html(challenge2MessageGame)
-      
+    if (runCH2) {
+      $("#welcomeMessage").html(challenge2MessageGame);
+
       if (loginToken) {
         getChallenge2(runCH2, loginToken.teamId);
       } else {
         getChallenge2(runCH2);
       }
     }
-
   });
 }
 
@@ -215,10 +214,10 @@ function loadMenu() {
       content: $("<div>").load("html/profile.html"),
       icon: "userIcon.png"
     },
-    { 
-      label: "<a href='../scoreBoard/index.php'>scoreBoard</a>",
+    {
+      label: "<a href='./scoreBoard/index.php'>scoreBoard</a>",
       content: "",
-      icon: "",
+      icon: ""
     }
   ];
   let renderOptions;
