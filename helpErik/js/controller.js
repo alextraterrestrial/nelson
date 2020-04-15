@@ -48,10 +48,10 @@ function checkUser() {
     let endCH2 = Date.parse("April 20, 2020 09:00:00")
    
     //Test dates    
-    // let end16 = Date.parse("April 14, 2020 12:48:00")
-    // let end17 = Date.parse("April 14, 2020 12:48:00")
-    // let end18 = Date.parse("April 14, 2020 12:48:00")
-    // let endCH2 = Date.parse("April 15, 2020 09:49:00")
+    // let end16 = Date.parse("April 15, 2020 12:48:00")
+    // let end17 = Date.parse("April 16, 2020 12:48:00")
+    // let end18 = Date.parse("April 16, 2020 12:48:00")
+    // let endCH2 = Date.parse("April 17, 2020 09:49:00")
 
     if((endCH2 - Date.now()) < 0) {
       $("#welcomeMessage").html(challenge2MessageEndCH2)
@@ -75,9 +75,9 @@ function checkUser() {
       $("#welcomeMessage").html(challenge2MessageGame)
       
       if (loginToken) {
-        getChallenge2(loginToken.teamId);
+        getChallenge2(runCH2, loginToken.teamId);
       } else {
-        getChallenge2();
+        getChallenge2(runCH2);
       }
     }
 

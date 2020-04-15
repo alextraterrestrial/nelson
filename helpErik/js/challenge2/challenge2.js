@@ -204,11 +204,11 @@ class challenge2 {
 //(2 WAY)
 let challenge2Array = [];
 
-function getChallenge2(teamId) {
+function getChallenge2(action, teamId) {
   let data = null;
 
   if (teamId) {
-    data = { teamId: teamId };
+    data = { teamId: teamId, action: action };
   }
 
   //clear #game container
