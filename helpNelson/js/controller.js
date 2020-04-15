@@ -197,7 +197,7 @@ function loadMenu() {
       icon: "userIcon.png"
     },
     {
-      label: "<a href='../scoreBoard/index.php'>scoreBoard</a>",
+      label: "<a href='./scoreBoard/index.php'>scoreBoard</a>",
       content: "",
       icon: ""
     }

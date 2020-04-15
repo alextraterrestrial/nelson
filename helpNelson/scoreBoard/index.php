@@ -1,5 +1,5 @@
 <?php
-    include("../helpNelson/php/connectToDB.php");
+    include("../php/connectToDB.php");
 
     class teamScore {
         public function __construct($id, $team, $score) {
@@ -72,8 +72,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../helpNelson/css/main.css">
-    <link rel="stylesheet" href="scoreboard.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="./scoreboard.css">
     <title>Document</title>
 </head>
 <body>
