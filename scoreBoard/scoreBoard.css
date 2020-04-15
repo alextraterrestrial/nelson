@@ -1,0 +1,33 @@
+:root {
+    --color2: black;
+}
+
+body {
+    margin: 0;
+    padding: 10px;
+}
+
+
+h2 {
+    border-bottom: 2px solid var(--color2);
+}
+
+a {
+    text-decoration: none;
+    padding: 3px !important;
+    border: none !important;
+}
+
+.scoreItem {
+    align-self: center;
+    width: 60%;
+    display: flex;
+    
+    
+}
+
+.scoreItem *{
+    flex-basis: 1px;
+    flex-grow: 2;
+
+}

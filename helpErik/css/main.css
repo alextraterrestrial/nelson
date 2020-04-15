@@ -1,0 +1,497 @@
+/*general css for the whole page: Includes variables, media query and general classes used throughout the webpage*/
+
+:root {
+  --backgroundColor: #5CC4EB;
+  --backgroundColorTransparent: #5CC4EB;
+  --color2: #000000;
+  --color3: #ffffff;
+  --color4: #73BF92;
+  --color5: #46DB19;
+  --color6: #FBB911;
+  --fontSize: 15px;
+  /* --font: "Overpass Mono", monospace; */
+  --font: 'Major Mono Display', monospace;
+  --radius: 4px;
+
+  --widthCircuit: 90px;
+  --heightCircuit: calc(var(--widthCircuit) * 1.555);
+  /* --heightCircuit: 140px; */
+}
+
+body {
+  margin: 0;
+  background-color: var(--backgroundColor);
+  color: var(--color2);
+  font-family: var(--font);
+
+  line-height: 1.3;
+}
+
+.wrapper {
+  position: relative;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.wrapper container {
+  padding: 0;
+}
+
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* general classes */
+.flexCenter {
+  padding: 1.33vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexAround {
+  display: block;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flexList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexstart {
+  display: flex;
+  align-items: center;
+}
+
+.flexList>div {
+  flex-basis: 1px;
+  flex-grow: 2;
+}
+
+.flexList > div:nth-last-of-type(2) {
+  text-align: right;
+  margin-left: 8px;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+h3 {
+  font-size: calc(var(--fontSize) * 1.2);
+}
+
+#home h3 {
+  font-size: calc(var(--fontSize) * 1.2);
+  padding-top: 15vh;
+}
+
+p {
+  font-size: var(--fontSize);
+  font-weight: 400;
+}
+
+a{
+  color: var(--color2);
+}
+
+.white {
+  color: var(--color3);
+}
+
+.link {
+  color: var(--color2);
+}
+
+.link:hover {
+  color: var(--color3);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.button {
+  min-height: 15px;
+  min-width: 15px;
+  font-family: var(--font);
+  background-color: var(--color5);
+  color: var(--color3);
+  border: 1px solid var(--color5);
+  border-radius: 15%;
+  font-size: var(--fontSize);
+  cursor: pointer;
+  padding: 1px 3px;
+  margin: 2px 0;
+}
+
+.textField {
+  background-color: var(--backgroundColor);
+  font-family: var(--font);
+  border-radius: 4px;
+  border: none;
+  /* border: 2px solid var(--color2); */
+  caret-color: var(--color2);
+  color: var(--color2);
+  font-size: var(--fontSize);
+  background-color: white;
+}
+
+.btn-primary {
+  background-color: var(--color5);
+  border-color: var(--color2);
+}
+
+.btn {
+  color: var(--color2);
+}
+
+.btn-primary:hover {
+  background-color: var(--color5);
+  color: #ffffff;
+  border-color: var(--color2);
+}
+
+.ruleVid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 0;
+}
+
+.countDown p {
+  font-size: calc(var(--fontSize) * 0.8);
+}
+
+.playerName,
+.playerPoints {
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    overflow: hidden;
+  }
+
+  .wrapper container {
+    padding: 100px;
+  }
+}
+
+/* CSS for Icon and logo */
+#icon {
+  background-color: transparent;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 16vh;
+  display: flex;
+}
+
+#icon>div {
+  width: var(--widthCircuit);
+  height: calc(var(--heightCircuit) * 0.66);
+}
+
+#icon>div:nth-of-type(2) {
+  flex: 1 1 20%;
+  height: 100%;
+}
+
+.circuit {
+  width: var(--widthCircuit);
+  height: var(--heightCircuit);
+  background-image: url(../content/graphicResources/water.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-bottom-right-radius: 100%;
+  z-index: 1000;
+  margin-top: calc(var(--heightCircuit) * 0.1);
+}
+
+.circuit img {
+  width: 48%;
+  margin-left: calc(var(--widthCircuit) * 0.27);
+  margin-top: calc(var(--heightCircuit) * 0.23);
+  background-color: #ffffff;
+  border-radius: var(--radius);
+}
+
+#loginSubmit,
+#testLogout {
+  background-color: var(--backgroundColor);
+  border-color: var(--color2);
+}
+
+@media only screen and (min-width: 600px) {
+  #icon {
+    position: absolute;
+  }
+}
+
+/* CSS for the Menu */
+#menu {
+  height: 110vh;
+  width: 100vw;
+  background-color: var(--color4);
+  margin-top: calc(-0.88 * var(--heightCircuit));
+  padding: 12vh 3vw;
+  position: fixed;
+  z-index: 5;
+  /* display: none; */
+  transform: translateX(-100vw);
+  -webkit-transform: translateX(-100vw);
+
+  transition: transform 1s ease-out;
+  -webkit-transition: transform 1s ease-out;
+}
+
+#menuHeader {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#menuOptionContainer {
+  margin: 3vh;
+  height: 10vh;
+  position: relative;
+  z-index: 15;
+}
+
+#menuOptionContainer .flexCenter {
+  background: var(--color6);
+}
+
+#menuOptionContainer > div{
+  margin-top: 10px;
+}
+
+.login,
+.create {
+  height: 80px;
+  width: 100%;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+/* home and gamepage */
+#home {
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: 0 3vw;
+}
+
+#game {
+  margin-top: 6vh;
+  margin-bottom: 8vh;
+}
+
+#game>div {
+  height: 50vh;
+  display: block;
+}
+
+.puzzleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.puzzleSubmission {
+  font-size: var(--fontSize);
+  margin: 3px 0;
+  text-align: right;
+}
+
+.puzzleContent {
+  display: flex;
+  justify-content: center;
+}
+
+.puzzleContent img {
+  width: 90%;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.puzzleContent video {
+  width: 90%;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.puzzleContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.puzzleContainer form input {
+  margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 600px) {
+  .wrapper {
+    display: flex;
+  }
+
+  #menu {
+    height: 150vh;
+    padding-top: 28vh;
+    flex-basis: 1px;
+    flex-grow: 2;
+    position: static;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+
+  #home {
+    border-left: 1px solid var(--color2);
+    padding-top: 7.5vh;
+    flex-basis: 1px;
+    flex-grow: 5;
+    width: 80%;
+    float: right;
+    max-height: 100vh;
+    overflow-y: scroll;
+  }
+
+  #home .countDown {
+    display: none;
+  }
+
+  h3 {
+    padding-top: 5vh;
+  }
+
+  .puzzleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .firstPage {
+    height: 100vh;
+  }
+
+  #game>div {
+    margin: 10vh auto;
+    height: 70vh;
+  }
+
+  .puzzleNr {
+    border-bottom: 1px solid var(--color2);
+  }
+
+  .puzzleContent {
+    
+    padding: 2vh;
+  }
+
+  .puzzleContent video {
+    width: 90%;
+    background-color: black;
+    max-height: 75vh;
+  }
+
+  .puzzleContent img {
+    width: 90%;
+    max-height: 75vh;
+  }
+
+  .cooldown {
+    display: flex;
+    font-size: 3vw;
+    text-align: center;
+  }
+
+}
+
+/* CSS FOR TEAM-PAGE */
+
+#teamWrapper {
+  padding-top: 8vh;
+}
+
+#teamName {
+  font-size: calc(var(--fontSize) * 1.6);
+  color: var(--color3);
+  border-bottom: 2px solid var(--color6);
+}
+
+#availableUsers {
+  overflow-y: scroll;
+  height: 38vh;
+  border-top: 2px solid var(--color6);
+  color: var(--color3);
+}
+
+#availableUsers > div {
+  margin: 3px 0;
+  border: 0px;
+}
+#availableUsers > div > div:last-child {
+  border: none;
+  color: var(--color3);;
+}
+
+#submitTeam {
+  display: block;
+}
+
+#members {
+  color: var(--color3);
+}
+
+video {
+  background-color: var(--backgroundColor);
+}
+
+.removeTeam {
+  border-top: 1px solid var(--color6);
+  padding: 5px 0 0;
+  margin-top: 10vh;
+  display: flex;
+}
+
+.profile-page {
+  height: 41.1vh;
+  padding-top: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .profile-page {
+    height: 51.1vh;
+  }
+}
+
+/* #members div {
+ margin: 1px 0;
+} */
+
+/* animation for login and getting points */
+.flashy {
+  animation: flashing 2s linear;
+}
+
+@keyframes flashing {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, .6);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
