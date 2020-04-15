@@ -29,8 +29,8 @@ class MenuOption {
         }).css({ display: "none" })
 
         this.iconContainer.click(function() {
-            $(".menuOptionButton").css({border: "1px solid var(--color2)"})
-            this.icon.css({border: "3px solid var(--color2)"})
+            // $(".menuOptionButton").css({border: "1px solid var(--color2)"})
+            // this.icon.css({border: "3px solid var(--color2)"})
 
             $("#menuOptionContent > div").css({ display: "none" })
             this.content.css({ display: "block" })

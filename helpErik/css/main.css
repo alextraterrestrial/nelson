@@ -3,7 +3,7 @@
 :root {
   --backgroundColor: #5CC4EB;
   --backgroundColorTransparent: #5CC4EB;
-  --color2: ##000000;
+  --color2: #000000;
   --color3: #ffffff;
   --color4: #73BF92;
   --color5: #46DB19;
@@ -96,6 +96,10 @@ p {
   font-weight: 400;
 }
 
+a{
+  color: var(--color2);
+}
+
 .white {
   color: var(--color3);
 }
@@ -116,7 +120,7 @@ p {
   font-family: var(--font);
   background-color: var(--color5);
   color: var(--color3);
-  border: 1px solid var(--color2);
+  border: 1px solid var(--color5);
   border-radius: 15%;
   font-size: var(--fontSize);
   cursor: pointer;
@@ -263,7 +267,7 @@ p {
   background: var(--color6);
 }
 
-#menuOptionContainer > div:nth-of-type(2) {
+#menuOptionContainer > div{
   margin-top: 10px;
 }
 
