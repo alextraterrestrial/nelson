@@ -50,7 +50,7 @@
     $scoreNr = 1;
 
     echo "<h1>helpErik</h1>";
-    echo "<div><a class='button' href='../helpErik/index.php'> Gå tillbaka till spelet.</a></div>";
+    echo "<div><a class='button' href='../helpErik/index.php'>Tillbaka till spelet.</a></div>";
     echo "<h2>ScoreBoard från Challenge2</h2>";
     echo "<div class='scoreBoard'>";
 

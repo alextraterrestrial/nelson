@@ -98,7 +98,7 @@ function loadPuzzle(){
 
                 <h1>Help Erik</h1>
                 <h4>Äntligen, nu kör vi igen!</h4>
-                <p>För er som är nya här så heter jag Erik och är universitetslektor på Malmö Universitet. Det här spelet är inte skapat av mig, utan av AI:n Athena! 
+                <p id="welcomeMessage">För er som är nya här så heter jag Erik och är universitetslektor på Malmö Universitet. Det här spelet är inte skapat av mig, utan av AI:n Athena! 
                 Artificiell intelligens behöver kunskap genom information och data för att kunna fungera och utvecklas. 
                 Nu hjälps vi åt för att samla kunskap till Athena! Första omgången av quizet handlar om Internet-kultur, något jag verkligen behöver hjälp med att svara på. 
                 Så var med den 16 april, klockan 15.00 för då kör quizet igång! </p>

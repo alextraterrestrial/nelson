@@ -40,15 +40,47 @@ function checkUser() {
     //Load the puzzle
     // getPuzzles();
 
-    //send team-id if it exists.
-    
+    let chT = 10800000
+    let runCH2 = 0
+    let end16 = Date.parse("April 16, 2020 18:00:00")
+    let end17 = Date.parse("April 17, 2020 18:00:00")
+    let end18 = Date.parse("April 18, 2020 18:00:00")
+    let endCH2 = Date.parse("April 20, 2020 09:00:00")
+   
+    //Test dates    
+    // let end16 = Date.parse("April 14, 2020 12:48:00")
+    // let end17 = Date.parse("April 14, 2020 12:48:00")
+    // let end18 = Date.parse("April 14, 2020 12:48:00")
+    // let endCH2 = Date.parse("April 15, 2020 09:49:00")
 
+    if((endCH2 - Date.now()) < 0) {
+      $("#welcomeMessage").html(challenge2MessageEndCH2)
+    } else if ((end18 - Date.now() < 0)) {
+      $("#welcomeMessage").html(challenge2MessageEnd18th)
+    } else if ((end18 - chT - Date.now() < 0) && (end18 - Date.now() > 0)) {
+      runCH2 = "myth"
+    } else if ((end17 - Date.now() < 0)) {
+      $("#welcomeMessage").html(challenge2MessageEnd17th)
+    } else if ((end17 - chT - Date.now() < 0) && (end17 - Date.now() > 0)) {
+      runCH2 = "film"
+    } else if ((end16 - Date.now() < 0)) {
+      $("#welcomeMessage").html(challenge2MessageEnd16th)
+    } else if ((end16 - chT - Date.now() < 0) && (end16 - Date.now() > 0)) {
+      runCH2 = "memes"
+    } 
 
-    if (loginToken) {
-      getChallenge2(loginToken.teamId);
-    } else {
-      getChallenge2();
+    // console.log(runCH2)
+
+    if(runCH2) {
+      $("#welcomeMessage").html(challenge2MessageGame)
+      
+      if (loginToken) {
+        getChallenge2(loginToken.teamId);
+      } else {
+        getChallenge2();
+      }
     }
+
   });
 }
 

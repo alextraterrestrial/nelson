@@ -35,9 +35,7 @@ function getHourMinSecArray(s) {
 }
 
 function countDown() {
-  let time = Math.round(
-    (Date.parse("March 12, 2020 10:00:00") - Date.now()) / 1000
-  );
+  let time = Math.round((Date.parse("March 12, 2020 10:00:00") - Date.now()) / 1000);
 
   let timeLeft = getHourMinSecArray(time);
   $(".countDown").html(
@@ -92,3 +90,18 @@ function prepareAnswer(string) {
 
   return string;
 }
+
+
+
+
+
+
+
+
+//welcome messages
+let challenge2MessageBefore = ""
+let challenge2MessageGame = "Lycka till med utmaningen! Ni har till kl 18.00 på er att lösa gåtorna"
+let challenge2MessageEnd16th = "Nu är alla quizfrågor slut, tack för er kunskap!<br>Ny tävling imorgon med ett nytt tema: Serier och filmer! Start 15.00"
+let challenge2MessageEnd17th = "Bra jobbat! Nu är frågorna slut. Välkommen tillbaka imorgon för temat Mytologi! Quizet startar 15.00."
+let challenge2MessageEnd18th = "Det var sista omgången, tack för er kunskap.<br>På återseende, Athena."
+let challenge2MessageEndCH2 = "Avslutande Tackmeddelande för medverkan under CH2<br>(från Erik)<br>Wow, så roligt att se att så många har deltagit i Athenas spel! Tack för att ni har varit med och tillsammans har vi samlat in gott om kunskap till Athena.<br>Grattis till vinnarna XXX och XXX!<br>Första pris går alltså till team AAA, ni fick flest rätt sammanlagt under alla speldagar.<br>En hederlig andra plats går till team BBB, bra jobbat YYY och YYY!<br>Vinnarna kontaktas återigen via mejl inom kort!<br>/Erik"
