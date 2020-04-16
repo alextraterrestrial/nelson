@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="./scoreboard.css">
+    <title>Help Erik - Scoreboard</title>
+</head>
+<body>
+    
+</body>
+</html>
+
 <?php
     include("../php/connectToDB.php");
 
@@ -66,17 +81,3 @@
     echo "</div>";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="./scoreboard.css">
-    <title>Help Erik - Scoreboard</title>
-</head>
-<body>
-    
-</body>
-</html>

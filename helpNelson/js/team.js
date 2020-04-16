@@ -248,7 +248,15 @@ function createTeam() {
 
             initializeTeam();
             // run challenge 2
-            getChallenge2(loginToken.teamId)
+            if (runCH2) {
+              $("#welcomeMessage").html(challenge2MessageGame);
+        
+              if (loginToken) {
+                getChallenge2(runCH2, loginToken.teamId);
+              } else {
+                getChallenge2(runCH2);
+              }
+            }
 
              // run challenge 1
             // getPuzzles()
@@ -410,7 +418,7 @@ function getInvitations() {
 
 //teamsetup
 function initializeTeam() {
-  console.log(loginToken)
+  // console.log(loginToken)
   if (loginToken) {
     if (loginToken.status && loginToken.status != "pending") {
       setTimeout(() => {

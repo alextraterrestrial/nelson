@@ -31,3 +31,8 @@ a {
     flex-grow: 2;
 
 }
+.scoreItem :first-child {
+    flex-basis: 1px;
+    flex-grow: 1;
+
+}

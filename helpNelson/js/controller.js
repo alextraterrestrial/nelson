@@ -27,7 +27,7 @@ function init() {
 
 function checkUser() {
   checkCookie().then(res => {
-    console.log(loginToken);
+    // console.log(loginToken);
     //When login is complete
     // console.log("done checking cookie");
     // console.log(loginToken);
@@ -43,10 +43,10 @@ function checkUser() {
     let chT = 10800000;
     let runCH2 = 0;
     let end16 = Date.parse("April 16, 2020 18:00:00");
-    let end17 = Date.parse("April 17, 2020 18:00:00");
-    let end18 = Date.parse("April 18, 2020 18:00:00");
-    let endCH2 = Date.parse("April 20, 2020 09:00:00");
-
+    let end17 = Date.parse("April 17, 2020 20:00:00");
+    let end18 = Date.parse("April 18, 2020 16:00:00");
+    let endCH2 = Date.parse("April 19, 2020 17:00:00");
+    let reloadTime
     //Test dates
     // let end16 = Date.parse("April 15, 2020 12:48:00")
     // let end17 = Date.parse("April 16, 2020 12:48:00")
