@@ -38,39 +38,52 @@ body {
 }
 
 .flexBetween {
+  display: -webkit-box;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
 }
 
 /* general classes */
 .flexCenter {
   padding: 1.33vh;
+  display: -webkit-box;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .flexAround {
   display: block;
   justify-content: space-around;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .flexList {
+  display: -webkit-box;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .flexstart {
+  display: -webkit-box;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .flexList>div {
   flex-basis: 1px;
-  flex-grow: 2;
+  -webkit-box-flex: 2;
+          flex-grow: 2;
 }
 
 .flexList > div:nth-last-of-type(2) {
@@ -156,9 +169,13 @@ a{
 }
 
 .ruleVid {
+  display: -webkit-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
   padding: 5vh 0;
 }
 
@@ -184,11 +201,13 @@ a{
 /* CSS for Icon and logo */
 #icon {
   background-color: transparent;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 10;
   height: 16vh;
+  display: -webkit-box;
   display: flex;
 }
 
@@ -198,7 +217,8 @@ a{
 }
 
 #icon>div:nth-of-type(2) {
-  flex: 1 1 20%;
+  -webkit-box-flex: 1;
+          flex: 1 1 20%;
   height: 100%;
 }
 
@@ -246,13 +266,21 @@ a{
   transform: translateX(-100vw);
   -webkit-transform: translateX(-100vw);
 
+  -webkit-transition: -webkit-transform 1s ease-out;
+
+  transition: -webkit-transform 1s ease-out;
+
   transition: transform 1s ease-out;
+
+  transition: transform 1s ease-out, -webkit-transform 1s ease-out;
   -webkit-transition: transform 1s ease-out;
 }
 
 #menuHeader {
+  display: -webkit-box;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
   height: 100%;
 }
 
@@ -276,7 +304,8 @@ a{
   height: 80px;
   width: 100%;
   padding-bottom: 20px;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 /* home and gamepage */
@@ -297,10 +326,15 @@ a{
 }
 
 .puzzleContainer {
+  display: -webkit-box;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .puzzleSubmission {
@@ -310,8 +344,10 @@ a{
 }
 
 .puzzleContent {
+  display: -webkit-box;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 .puzzleContent img {
@@ -327,9 +363,13 @@ a{
 }
 
 .puzzleContainer form {
+  display: -webkit-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .puzzleContainer form input {
@@ -338,6 +378,7 @@ a{
 
 @media only screen and (min-width: 600px) {
   .wrapper {
+    display: -webkit-box;
     display: flex;
   }
 
@@ -345,7 +386,8 @@ a{
     height: 150vh;
     padding-top: 28vh;
     flex-basis: 1px;
-    flex-grow: 2;
+    -webkit-box-flex: 2;
+            flex-grow: 2;
     position: static;
     transform: translateX(0);
     -webkit-transform: translateX(0);
@@ -355,7 +397,8 @@ a{
     border-left: 1px solid var(--color2);
     padding-top: 7.5vh;
     flex-basis: 1px;
-    flex-grow: 5;
+    -webkit-box-flex: 5;
+            flex-grow: 5;
     width: 80%;
     float: right;
     max-height: 100vh;
@@ -371,10 +414,15 @@ a{
   }
 
   .puzzleContainer {
+    display: -webkit-box;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
   }
 
   .firstPage {
@@ -407,6 +455,7 @@ a{
   }
 
   .cooldown {
+    display: -webkit-box;
     display: flex;
     font-size: 3vw;
     text-align: center;
@@ -458,15 +507,19 @@ video {
   border-top: 1px solid var(--color6);
   padding: 5px 0 0;
   margin-top: 10vh;
+  display: -webkit-box;
   display: flex;
 }
 
 .profile-page {
   height: 41.1vh;
   padding-top: 10vh;
+  display: -webkit-box;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 @media only screen and (min-width: 600px) {
@@ -481,7 +534,20 @@ video {
 
 /* animation for login and getting points */
 .flashy {
-  animation: flashing 2s linear;
+  -webkit-animation: flashing 2s linear;
+          animation: flashing 2s linear;
+}
+
+@-webkit-keyframes flashing {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, .6);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+  }
 }
 
 @keyframes flashing {
