@@ -225,28 +225,39 @@ function getChallenge2(action, teamId) {
       if (updateChallengeId) {
         clearInterval(updateChallengeId);
       }
-
-      res.forEach(item => {
-        let q = new challenge2(item.questionId, item.contentHTML);
-        challenge2Array.push(q);
-
-        if (item.submissionTimestamp) {
-          let timeSinceSubmission = Math.round(
-            (Date.now() - Date.parse(item.submissionTimestamp)) / 1000
-          );
-          let timeLeft = cooldownTime - timeSinceSubmission;
-          // console.log(Date.now() / 1000);
-          // console.log(Date.parse(item.submissionTimestamp) / 1000);
-          // console.log(timeLeft);
-
-          // Set the cooldown time
-          q.setCooldown(timeLeft);
+      console.log(Boolean(res[0]))
+      if(res[0]) {
+        res.forEach(item => {
+          let q = new challenge2(item.questionId, item.contentHTML);
+          challenge2Array.push(q);
+  
+          if (item.submissionTimestamp) {
+            let timeSinceSubmission = Math.round(
+              (Date.now() - Date.parse(item.submissionTimestamp)) / 1000
+            );
+            let timeLeft = cooldownTime - timeSinceSubmission;
+            // console.log(Date.now() / 1000);
+            // console.log(Date.parse(item.submissionTimestamp) / 1000);
+            // console.log(timeLeft);
+  
+            // Set the cooldown time
+            q.setCooldown(timeLeft);
+          }
+        });
+  
+        updateChallengeId = setInterval(() => {
+          updateChallenge2Answers();
+        }, 10000);
+      } else {
+        if (action == "film") {
+          $("#welcomeMessage").html(challenge2MessageEnd17th)
+        } else if (action == "myth"){
+          $("#welcomeMessage").html(challenge2MessageEnd18th)
+        } else {
+          console.log("memes")
         }
-      });
+      }
 
-      updateChallengeId = setInterval(() => {
-        updateChallenge2Answers();
-      }, 10000);
     })
     .fail(e => {
       console.log(e);
@@ -257,7 +268,15 @@ function getChallenge2(action, teamId) {
 function updateChallenge2Answers(teamId) {
   $.get("php/challenge2/answeredQuestions.php").done(data => {
     data = JSON.parse(data);
-    // console.log(data)
+      console.log(data.length)
+      let length = 57 //"for film" 
+      // let length = 54 //"for myth" 
+      // let length = 2 //"for memes" 
+
+
+      if(data.length >= length) {
+        location.reload()
+      }
 
     data.forEach(item => {
       //if item. is answered is 1 and challengeArray. is answered is 0 --> remove(
