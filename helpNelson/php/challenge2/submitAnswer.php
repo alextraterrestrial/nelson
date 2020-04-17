@@ -219,6 +219,8 @@ function submitAnswer($questionId, $answer, $teamId){
 */
 function validateAnswer($answer, $correctAnswer, $checkType){
     $answer = strtolower($answer);
+    $correctAnswer = strtolower($correctAnswer);
+    
     switch($checkType){
         case "SAMEAS": 
             return $answer == $correctAnswer;

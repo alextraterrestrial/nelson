@@ -122,6 +122,8 @@ class challenge2 {
     // console.log(ans);
     // console.log(questionId);
     // console.log(teamId);
+    let rule = /\s/gm
+    ans = ans.replace(rule, "")
 
     let data = { teamId: teamId, questionId: questionId, answer: ans };
     // JSON.stringify(data);
@@ -133,8 +135,8 @@ class challenge2 {
       data: JSON.stringify(data)
     })
       .done(res => {
-        console.log("ok");
-        console.log(res);
+        // console.log("ok");
+        // console.log(res);
 
         if (res.response == "correct") {
           let nrOfPoints = 1;
@@ -182,6 +184,7 @@ class challenge2 {
     this.contentContainer.css({ filter: "blur(" + s + "px)" });
     this.form.css({ filter: "blur(" + s + "px)" });
     this.cooldownElement.html(`Fel svar!<br>Försök igen om ${s}`);
+    this.cooldownElement.css({color: "rgb(187, 42, 17)"})
 
     let interval = setInterval(
       function() {
@@ -194,6 +197,7 @@ class challenge2 {
         if (!s) {
           clearInterval(interval);
           this.cooldownElement.css({ display: "none" });
+          this.cooldownElement.css({color: "var(--color5)"})
           this.textField.removeAttr("readonly");
         }
       }.bind(this),
